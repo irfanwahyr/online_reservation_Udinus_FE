@@ -6,7 +6,7 @@ class CustomCard extends StatelessWidget {
   final VoidCallback? onTap;
 
 
-  CustomCard({required this.image, required this.title, required this.onTap});
+  const CustomCard({super.key, required this.image, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomCard extends StatelessWidget {
         child: Column(
           children: [
             // Bagian atas card
-            Container(
+            SizedBox(
               height: 250, // Sesuaikan dengan kebutuhan
               width: 250, // Sesuaikan dengan kebutuhan
               child: image,
@@ -27,7 +27,7 @@ class CustomCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 20.0,
                     fontFamily: "Lexand",
                     fontWeight: FontWeight.bold),

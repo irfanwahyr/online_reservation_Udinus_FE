@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class HoverButtonPrimary extends StatefulWidget {
+class ButtonSecondary extends StatefulWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  const HoverButtonPrimary({
+  const ButtonSecondary({
     Key? key,
     required this.text,
     required this.onPressed,
   }) : super(key: key);
 
   @override
-  _HoverButtonPrimaryState createState() => _HoverButtonPrimaryState();
+  _ButtonSecondaryState createState() => _ButtonSecondaryState();
 }
 
-class _HoverButtonPrimaryState extends State<HoverButtonPrimary> {
+class _ButtonSecondaryState extends State<ButtonSecondary> {
   bool isHovered = false;
 
   @override
@@ -27,7 +27,7 @@ class _HoverButtonPrimaryState extends State<HoverButtonPrimary> {
         style: ElevatedButton.styleFrom(
           backgroundColor: isHovered
               ? Colors.grey.shade300
-              : const Color.fromARGB(255, 255, 168, 7),
+              : const Color.fromARGB(255, 19, 152, 235),
           minimumSize: const Size(100, 50), // Sesuaikan dengan ukuran yang diinginkan
         ),
         child: Text(

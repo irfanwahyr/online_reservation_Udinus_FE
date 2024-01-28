@@ -21,7 +21,7 @@ class Footer {
               padding: EdgeInsets.only(top: 50, left: 20, right: 20),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  if (constraints.maxWidth > 600) {
+                  if (constraints.maxWidth > 700) {
                     // Jika lebar layar lebih besar dari 600, tampilkan sebagai row
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,10 +30,12 @@ class Footer {
                     );
                   } else {
                     // Jika lebar layar kurang dari atau sama dengan 600, tampilkan sebagai column
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: buildColumns(),
+                    return Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: buildColumns(),
+                      ),
                     );
                   }
                 },

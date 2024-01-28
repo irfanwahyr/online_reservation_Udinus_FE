@@ -7,7 +7,7 @@ import 'package:kp2024/models/_heading3.dart';
 class Lapisan1 {
   Container buildContainer() {
     return Container(
-      decoration: BoxDecoration(color: Color.fromARGB(190, 129, 129, 129)),
+      decoration: const BoxDecoration(color: Color.fromARGB(190, 129, 129, 129)),
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -17,7 +17,7 @@ class Lapisan1 {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
+                const Flexible(
                   flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +48,7 @@ class Lapisan1 {
                         child: Image.asset("images/LogoISO.png",
                             fit: BoxFit.cover),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: Image.asset("images/LogoUdinus.png",
                             fit: BoxFit.cover),
@@ -58,14 +58,14 @@ class Lapisan1 {
                 ),
               ],
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             Center(
               child: HoverButtonPrimary(
                 text: "Reservasi Ruangan",
                 onPressed: () {},
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
         ),
       ),

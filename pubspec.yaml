@@ -72,6 +72,9 @@ flutter:
     - images/iconInstagram.png
     - images/iconWhatsapp.png
     - images/iconFacebook.png
+    - images/iconPerson.png
+    - images/wallpaper.png
+    - images/gambar.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

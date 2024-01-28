@@ -20,6 +20,7 @@ class Heading2 extends StatelessWidget {
         color: color,
       ),
       textAlign: TextAlign.left,
+      
     );
   }
 }

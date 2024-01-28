@@ -5,8 +5,8 @@ class Lapisan2 {
   Container buildContainer() {
     return Container(
       height: 500, // Sesuaikan tinggi sesuai kebutuhan
-      decoration: BoxDecoration(color: Color.fromARGB(190, 129, 129, 129)),
-      child: MyCarousel(),
+      decoration: const BoxDecoration(color: Color.fromARGB(190, 129, 129, 129)),
+      child: const MyCarousel(),
     );
   }
 }

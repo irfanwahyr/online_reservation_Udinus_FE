@@ -5,7 +5,7 @@ class IconText extends StatelessWidget {
   final String imageAsset;
   final String text;
 
-  IconText({
+  const IconText({super.key, 
     required this.imageAsset,
     required this.text,
   });
@@ -17,7 +17,7 @@ class IconText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(imageAsset),
-        SizedBox(width: 10,),
+        const SizedBox(width: 10,),
         Heading3(text: text, color: Colors.white)
       ],
     );

@@ -2,26 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_customCard.dart';
 import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/_heading2.dart';
-import 'package:kp2024/pages/user/coba.dart';
+import 'package:kp2024/pages/laboratorium/labDekstop.dart';
+import 'package:kp2024/pages/laboratorium/labMultimedia.dart';
+import 'package:kp2024/pages/laboratorium/labProgramming.dart';
+import 'package:kp2024/pages/laboratorium/labStatistik.dart';
 
 class Lapisan3 {
   Container buildContainer() {
     return Container(
       height: 500,
       width: double.maxFinite,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(142, 158, 158, 158),
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(142, 158, 158, 158),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Judul
-          Heading1(text: "RESERVASI RUANGAN", color: Colors.black),
-          Heading2(
+          const Heading1(text: "RESERVASI RUANGAN", color: Colors.black),
+          const Heading2(
             text: "Sesuai Spesifikasi dan Kebutuhan",
             color: Colors.black,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           // Cards
@@ -40,13 +43,13 @@ class Lapisan3 {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Coba(),
+                          builder: (context) => const LabMultimedia(),
                         ),
                       );
                     },
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Builder(
                   builder: (context) => CustomCard(
                     image: Image.asset("images/comp.jpg"),
@@ -56,13 +59,13 @@ class Lapisan3 {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Coba(),
+                          builder: (context) => const LabDekstop(),
                         ),
                       );
                     },
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Builder(
                   builder: (context) => CustomCard(
                     image: Image.asset("images/comp.jpg"),
@@ -72,13 +75,13 @@ class Lapisan3 {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Coba(),
+                          builder: (context) => const LabProgramming(),
                         ),
                       );
                     },
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Builder(
                   builder: (context) => CustomCard(
                     image: Image.asset("images/comp.jpg"),
@@ -88,13 +91,13 @@ class Lapisan3 {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Coba(),
+                          builder: (context) => const LabStatistik(),
                         ),
                       );
                     },
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
               ],
             ),
           ),

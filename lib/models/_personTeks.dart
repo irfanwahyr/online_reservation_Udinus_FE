@@ -7,7 +7,7 @@ class PersonTeks extends StatelessWidget {
   final String npp;
 
   const PersonTeks(
-      {required this.imageAsset, required this.nama, required this.npp});
+      {super.key, required this.imageAsset, required this.nama, required this.npp});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,11 @@ class PersonTeks extends StatelessWidget {
       height: 440,
       width: 300,
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 26, 134, 206),
+        color: const Color.fromARGB(255, 26, 134, 206),
         borderRadius:
             BorderRadius.circular(10.0), // Ubah nilai sesuai kebutuhan
       ),
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -36,10 +36,10 @@ class PersonTeks extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             nama,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Heading3(text: npp, color: Colors.black)
         ],

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/pages/homePage.dart';
+import 'package:kp2024/pages/logSign.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -15,9 +16,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       // debugShowCheckedModeBanner: false,
       home: HomePage(),
+      // home: LogSign(),
     );
   }
 }

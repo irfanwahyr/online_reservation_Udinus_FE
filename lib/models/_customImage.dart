@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomImage extends StatelessWidget {
   final String imageAsset;
-  CustomImage({required this.imageAsset});
+  const CustomImage({super.key, required this.imageAsset});
 
   @override
   Widget build(BuildContext context) {
