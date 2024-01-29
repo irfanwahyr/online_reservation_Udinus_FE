@@ -4,6 +4,7 @@ import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
+import 'package:kp2024/pages/dashboard/footer.dart';
 
 class LabProgramming extends StatefulWidget {
   const LabProgramming({Key? key}) : super(key: key);
@@ -75,7 +76,9 @@ class _LabProgrammingState extends State<LabProgramming> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 20),
+            Footer().buildContainer(),
           ],
         ),
       ),

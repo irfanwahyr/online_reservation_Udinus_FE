@@ -4,6 +4,7 @@ import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
+import 'package:kp2024/pages/dashboard/footer.dart';
 
 class LabDekstop extends StatefulWidget {
   const LabDekstop({Key? key}) : super(key: key);
@@ -75,7 +76,9 @@ class _LabDekstopState extends State<LabDekstop> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 20),
+            Footer().buildContainer(),
           ],
         ),
       ),

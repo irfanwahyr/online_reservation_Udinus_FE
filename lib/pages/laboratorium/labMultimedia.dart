@@ -4,6 +4,7 @@ import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
+import 'package:kp2024/pages/dashboard/footer.dart';
 
 class LabMultimedia extends StatefulWidget {
   const LabMultimedia({Key? key}) : super(key: key);
@@ -106,7 +107,9 @@ class _LabMultimediaState extends State<LabMultimedia> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 20),
+            Footer().buildContainer(),
           ],
         ),
       ),
