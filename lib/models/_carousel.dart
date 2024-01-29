@@ -30,14 +30,15 @@ class _MyCarouselState extends State<MyCarousel> {
               items: items.map((item) {
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  constraints: const BoxConstraints(maxHeight: 200.0),
+                  constraints: const BoxConstraints(maxHeight: 100.0),
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(20)),
                   child: Center(
                     child: Text(
                       item,
-                      style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 16.0),
                     ),
                   ),
                 );
@@ -62,7 +63,8 @@ class _MyCarouselState extends State<MyCarousel> {
                 return Container(
                   width: 8.0,
                   height: 8.0,
-                  margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 2.0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _currentIndex == index

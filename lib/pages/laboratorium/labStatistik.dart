@@ -5,6 +5,9 @@ import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/detailLab/detailC.dart';
+import 'package:kp2024/pages/detailLab/detailE.dart';
+import 'package:kp2024/pages/detailLab/detailL.dart';
 
 class LabStatistik extends StatefulWidget {
   const LabStatistik({Key? key}) : super(key: key);
@@ -45,7 +48,16 @@ class _LabStatistikState extends State<LabStatistik> {
                           nama: "LAB C",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailC(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -65,7 +77,16 @@ class _LabStatistikState extends State<LabStatistik> {
                           nama: "LAB E",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailE(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -85,7 +106,16 @@ class _LabStatistikState extends State<LabStatistik> {
                           nama: "LAB L",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailL(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -111,7 +141,16 @@ class _LabStatistikState extends State<LabStatistik> {
                           nama: "LAB E",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailE(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -131,7 +170,16 @@ class _LabStatistikState extends State<LabStatistik> {
                           nama: "LAB L",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailL(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",

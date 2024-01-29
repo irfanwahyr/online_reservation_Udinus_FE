@@ -5,6 +5,8 @@ import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/detailLab/detailG.dart';
+import 'package:kp2024/pages/detailLab/detailH.dart';
 
 class LabProgramming extends StatefulWidget {
   const LabProgramming({Key? key}) : super(key: key);
@@ -45,7 +47,16 @@ class _LabProgrammingState extends State<LabProgramming> {
                           nama: "LAB G",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailG(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -65,7 +76,16 @@ class _LabProgrammingState extends State<LabProgramming> {
                           nama: "LAB H",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailH(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",

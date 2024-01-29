@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/pages/homePage.dart';
-import 'package:kp2024/pages/logSign.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -19,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return const MaterialApp(
       // debugShowCheckedModeBanner: false,
       home: HomePage(),
-      // home: LogSign(),
+      // home: DetailA(),
     );
   }
 }

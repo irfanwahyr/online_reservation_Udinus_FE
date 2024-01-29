@@ -21,7 +21,7 @@ class Footer {
               padding: EdgeInsets.only(top: 50, left: 20, right: 20),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  if (constraints.maxWidth > 700) {
+                  if (constraints.maxWidth > 900) {
                     // Jika lebar layar lebih besar dari 600, tampilkan sebagai row
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,6 +77,7 @@ class Footer {
       ),
       SizedBox(
         width: 20,
+        height: 20,
       ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,6 +96,7 @@ class Footer {
       ),
       SizedBox(
         width: 20,
+        height: 20,
       ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,

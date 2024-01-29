@@ -5,6 +5,10 @@ import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/detailLab/detailA.dart';
+import 'package:kp2024/pages/detailLab/detailB.dart';
+import 'package:kp2024/pages/detailLab/detailD.dart';
+import 'package:kp2024/pages/detailLab/detailI.dart';
 
 class LabMultimedia extends StatefulWidget {
   const LabMultimedia({Key? key}) : super(key: key);
@@ -45,7 +49,16 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           nama: "LAB A",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailA(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -62,7 +75,16 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           nama: "LAB B",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailB(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -79,7 +101,16 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           nama: "LAB D",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailD(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -96,7 +127,16 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           nama: "LAB I",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {}),
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailI(),
+                              ),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
