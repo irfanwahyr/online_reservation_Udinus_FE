@@ -8,6 +8,10 @@ import 'package:kp2024/pages/dashboard/lapisan3.dart';
 import 'package:kp2024/pages/dashboard/lapisan4.dart';
 import 'package:kp2024/pages/logSign.dart';
 
+double collapsableHeight = 0.0;
+Color selected = Color(0xffffffff);
+Color notSelected = Color(0xafffffff);
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -28,17 +32,60 @@ class HomePage extends StatelessWidget {
                     text: "Selamat Datang",
                     color: Colors.white,
                   ),
-                  HoverButtonPrimary(
-                    text: "Daftar/Login",
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LogSign(),
-                        ),
-                      );
-                    },
-                  ),
+                  MediaQuery.of(context).size.width < 1200
+                    ? PopupMenuButton<String>(
+                      itemBuilder: (context) {
+                        return [
+                          PopupMenuItem<String>(
+                            child: Container(
+                              color: Colors.white,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LogSign(),
+                                    ),
+                                  );
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 10,
+                                    horizontal: 20,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Daftar / Login',
+                                        style: TextStyle(
+                                          color: Color.fromARGB(255, 1, 24, 50),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ];
+                      },
+                      icon: const Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      ),
+                    )
+
+                    : HoverButtonPrimary(
+                        text: "Daftar/Login",
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LogSign(),
+                            ),
+                          );
+                        },
+                      ),
                 ],
               ),
             ),

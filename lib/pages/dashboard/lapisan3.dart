@@ -29,6 +29,7 @@ class Lapisan3 {
           ),
           // Cards
           SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             scrollDirection: Axis.horizontal,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,7 +98,6 @@ class Lapisan3 {
                     },
                   ),
                 ),
-                const SizedBox(width: 20),
               ],
             ),
           ),
