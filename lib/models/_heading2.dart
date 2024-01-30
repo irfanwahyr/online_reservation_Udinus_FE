@@ -12,10 +12,14 @@ class Heading2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    // Adjust font size based on screen width
+    double fontSize = screenWidth > 400 ? 24.0 : 18.0;
     return Text(
       text,
       style: TextStyle(
-        fontSize: 24, // Sesuaikan dengan ukuran font yang diinginkan
+        fontSize: fontSize, // Sesuaikan dengan ukuran font yang diinginkan
         fontWeight: FontWeight.w500,
         color: color,
       ),
