@@ -8,6 +8,9 @@ import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/detailLab/detailC.dart';
 import 'package:kp2024/pages/detailLab/detailE.dart';
 import 'package:kp2024/pages/detailLab/detailL.dart';
+import 'package:kp2024/pages/detailLab/detailM.dart';
+import 'package:kp2024/pages/detailLab/detailN.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class LabStatistik extends StatefulWidget {
   const LabStatistik({Key? key}) : super(key: key);
@@ -61,7 +64,14 @@ class _LabStatistikState extends State<LabStatistik> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(
+                                        namaLab: "C",
+                                      )));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -90,7 +100,14 @@ class _LabStatistikState extends State<LabStatistik> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(
+                                        namaLab: "E",
+                                      )));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -119,7 +136,14 @@ class _LabStatistikState extends State<LabStatistik> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(
+                                        namaLab: "L",
+                                      )));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -138,7 +162,7 @@ class _LabStatistikState extends State<LabStatistik> {
                     children: [
                       CardLab(
                           imageAsset: "images/gambar.jpg",
-                          nama: "LAB E",
+                          nama: "LAB M",
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
@@ -147,14 +171,21 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailE(),
+                                builder: (context) => DetailM(),
                               ),
                             );
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(
+                                        namaLab: "M",
+                                      )));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -167,7 +198,7 @@ class _LabStatistikState extends State<LabStatistik> {
                     children: [
                       CardLab(
                           imageAsset: "images/gambar.jpg",
-                          nama: "LAB L",
+                          nama: "LAB N",
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
@@ -176,14 +207,21 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailL(),
+                                builder: (context) => DetailN(),
                               ),
                             );
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(
+                                        namaLab: "N",
+                                      )));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],

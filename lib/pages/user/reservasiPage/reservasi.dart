@@ -5,10 +5,15 @@ import 'package:kp2024/models/reservasiModel/_buttonBatalkan.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDipakai.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDipesan.dart';
 import 'package:kp2024/models/reservasiModel/_buttonReservasi.dart';
+import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
+import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
 
 class Reservasi extends StatefulWidget {
-  const Reservasi({super.key});
-
+  final String namaLab;
+  const Reservasi({
+    Key? key,
+    required this.namaLab,
+  }) : super(key: key);
   @override
   State<Reservasi> createState() => _ReservasiState();
 }
@@ -16,12 +21,18 @@ class Reservasi extends StatefulWidget {
 class _ReservasiState extends State<Reservasi> {
   DateTime today = DateTime.now();
   bool showJadwal = false;
+  ListReservasi listReservasi = ListReservasi();
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
       today = day;
       showJadwal = true;
     });
+  }
+
+  void navigateToKeperluan(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Keperluan()));
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -40,8 +51,47 @@ class _ReservasiState extends State<Reservasi> {
     }
   }
 
+  List<Widget> getPesanButtons() {
+    return [
+      const ButtonDipakai(),
+      const ButtonDipakai(),
+      const ButtonDipakai(),
+      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
+      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
+      const ButtonDipakai(),
+      const ButtonDipakai(),
+      const ButtonDipakai(),
+      const ButtonDipakai(),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const ButtonDipesan(),
+          const SizedBox(width: 5),
+          ButtonBatalkan(
+            onPressed: () {},
+          ),
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const ButtonDipesan(),
+          const SizedBox(width: 5),
+          ButtonBatalkan(
+            onPressed: () {},
+          ),
+        ],
+      ),
+      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
+      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
+      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
+    var Pesan = getPesanButtons();
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -51,9 +101,9 @@ class _ReservasiState extends State<Reservasi> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Center(
+                Center(
                   child: Heading2(
-                    text: "Reservasi Ruangan Laboratorium A",
+                    text: "Reservasi Ruangan Laboratorium ${widget.namaLab}",
                     color: Colors.black,
                   ),
                 ),
@@ -74,8 +124,7 @@ class _ReservasiState extends State<Reservasi> {
                         style: TextStyle(fontSize: 20),
                       ),
                       style: ElevatedButton.styleFrom(
-                        minimumSize:
-                            Size(200, 80), // Set lebar dan tinggi button
+                        minimumSize: Size(200, 80),
                       ),
                     ),
                     const SizedBox(width: 20),
@@ -94,10 +143,8 @@ class _ReservasiState extends State<Reservasi> {
                       ),
                     ),
                   ],
-                  
                 ),
                 const SizedBox(height: 20),
-                // Container baru untuk menampilkan pesan
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -105,15 +152,14 @@ class _ReservasiState extends State<Reservasi> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    "Anda memilih hari ${getHari(today.weekday)} tanggal ${today.day} bulan ${getBulan(today.month)} tahun ${today.year}",
+                    // "Anda memilih hari ${getHari(today.weekday)} tanggal ${today.day} bulan ${getBulan(today.month)} tahun ${today.year}",
+                    "Anda memilih hari ${listReservasi.getHari(today.weekday)} tanggal ${today.day} bulan ${listReservasi.getBulan(today.month)} tahun ${today.year}",
                     style: const TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -135,18 +181,16 @@ class _ReservasiState extends State<Reservasi> {
                             color: Colors.green[50],
                           ),
                           child: DataTable(
-                            
                             columns: const <DataColumn>[
-                              
                               DataColumn(
-                                
                                 label: Expanded(
-                                  
                                   child: Center(
                                     child: Text(
                                       "Waktu",
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
                                     ),
                                   ),
                                 ),
@@ -157,7 +201,9 @@ class _ReservasiState extends State<Reservasi> {
                                     child: Text(
                                       "Keterangan",
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
                                     ),
                                   ),
                                 ),
@@ -168,17 +214,16 @@ class _ReservasiState extends State<Reservasi> {
                                     child: Text(
                                       "Pesan",
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
                                     ),
                                   ),
                                 ),
-                                
                               ),
                             ],
-                            
-                            // Gunakan map untuk membuat DataRow secara otomatis dari listWaktu
-                            rows: listWaktu.map((waktu) {
-                              int index = listWaktu.indexOf(waktu);
+                            rows: listReservasi.Waktu.map((waktu) {
+                              int index = listReservasi.Waktu.indexOf(waktu);
                               return DataRow(
                                 cells: <DataCell>[
                                   DataCell(
@@ -192,16 +237,14 @@ class _ReservasiState extends State<Reservasi> {
                                   DataCell(
                                     Center(
                                       child: Text(
-                                        listKeterangan[
-                                            index], // Ganti dengan nilai dari listKeterangan
+                                        listReservasi.Keterangan[index],
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
                                   DataCell(
                                     Center(
-                                      child: Pesan[
-                                          index], // Ganti dengan widget dari list Pesan
+                                      child: Pesan[index],
                                     ),
                                   ),
                                 ],
@@ -220,127 +263,4 @@ class _ReservasiState extends State<Reservasi> {
       ),
     );
   }
-
-  // Fungsi untuk mendapatkan nama hari
-  String getHari(int day) {
-    switch (day) {
-      case 1:
-        return "Senin";
-      case 2:
-        return "Selasa";
-      case 3:
-        return "Rabu";
-      case 4:
-        return "Kamis";
-      case 5:
-        return "Jumat";
-      case 6:
-        return "Sabtu";
-      case 7:
-        return "Minggu";
-      default:
-        return "";
-    }
-  }
-
-  // Fungsi untuk mendapatkan nama bulan
-  String getBulan(int month) {
-    switch (month) {
-      case 1:
-        return "Januari";
-      case 2:
-        return "Februari";
-      case 3:
-        return "Maret";
-      case 4:
-        return "April";
-      case 5:
-        return "Mei";
-      case 6:
-        return "Juni";
-      case 7:
-        return "Juli";
-      case 8:
-        return "Agustus";
-      case 9:
-        return "September";
-      case 10:
-        return "Oktober";
-      case 11:
-        return "November";
-      case 12:
-        return "Desember";
-      default:
-        return "";
-    }
-  }
-
-  List<String> listWaktu = [
-    "07.00 - 07.40",
-    "07.40 - 08.40",
-    "08.40 - 09.30",
-    "10.20 - 11.10",
-    "11.10 - 12.00",
-    "12.30 - 13.20",
-    "13.20 - 14.10",
-    "14.10 - 15.00",
-    "15.30 - 16.20",
-    "16.20 - 17.10",
-    "17.10 - 18.00",
-    "18.30 - 19.20",
-    "19.20 - 20.10",
-    "20.10 - 21.00",
-  ];
-
-  List<String> listKeterangan = [
-    "Pemrograman Perangkat Bergerak",
-    "Pemrograman Perangkat Bergerak",
-    "Pemrograman Perangkat Bergerak",
-    " ",
-    " ",
-    "Desain Grafis",
-    "Desain Grafis",
-    "Pengolahan Citra Digital",
-    "Pengolahan Citra Digital",
-    "Workshop BK",
-    "Workshop BK",
-    " ",
-    " ",
-    " ",
-  ];
-
-  List<Widget> Pesan = [
-    const ButtonDipakai(),
-    const ButtonDipakai(),
-    const ButtonDipakai(),
-    ButtonReservasi(onPressed: () {}),
-    ButtonReservasi(onPressed: () {}),
-    const ButtonDipakai(),
-    const ButtonDipakai(),
-    const ButtonDipakai(),
-    const ButtonDipakai(),
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ButtonDipesan(),
-        SizedBox(width: 5),
-        ButtonBatalkan(
-          onPressed: () {},
-        ),
-      ],
-    ),
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const ButtonDipesan(),
-        const SizedBox(width: 5),
-        ButtonBatalkan(
-          onPressed: () {},
-        ),
-      ],
-    ),
-    ButtonReservasi(onPressed: () {}),
-    ButtonReservasi(onPressed: () {}),
-    ButtonReservasi(onPressed: () {}),
-  ];
 }

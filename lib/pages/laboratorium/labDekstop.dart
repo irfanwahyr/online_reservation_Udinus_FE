@@ -7,6 +7,7 @@ import 'package:kp2024/models/_containerLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/detailLab/detailJ.dart';
 import 'package:kp2024/pages/detailLab/detailK.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class LabDekstop extends StatefulWidget {
   const LabDekstop({Key? key}) : super(key: key);
@@ -47,16 +48,25 @@ class _LabDekstopState extends State<LabDekstop> {
                           nama: "LAB J",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {Navigator.push(
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailJ(),
                               ),
-                            );}),
+                            );
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(namaLab: "J",)));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -72,18 +82,25 @@ class _LabDekstopState extends State<LabDekstop> {
                           nama: "LAB K",
                           onTap: () {}),
                       const SizedBox(height: 5),
-                      ButtonSecondary(text: "detail", onPressed: () {
-                        Navigator.push(
+                      ButtonSecondary(
+                          text: "detail",
+                          onPressed: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailK(),
                               ),
                             );
-                      }),
+                          }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Reservasi(namaLab: "K",)));
+                        },
                       ),
                       const SizedBox(height: 10),
                     ],
