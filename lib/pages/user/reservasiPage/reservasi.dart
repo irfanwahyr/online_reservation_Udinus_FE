@@ -94,6 +94,7 @@ class _ReservasiState extends State<Reservasi> {
                       ),
                     ),
                   ],
+                  
                 ),
                 const SizedBox(height: 20),
                 // Container baru untuk menampilkan pesan
@@ -125,26 +126,6 @@ class _ReservasiState extends State<Reservasi> {
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              "Waktu",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Keterangan",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Pesan",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -154,17 +135,47 @@ class _ReservasiState extends State<Reservasi> {
                             color: Colors.green[50],
                           ),
                           child: DataTable(
+                            
                             columns: const <DataColumn>[
+                              
                               DataColumn(
-                                label: Text(""),
+                                
+                                label: Expanded(
+                                  
+                                  child: Center(
+                                    child: Text(
+                                      "Waktu",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                    ),
+                                  ),
+                                ),
                               ),
                               DataColumn(
-                                label: Text(""),
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "Keterangan",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                    ),
+                                  ),
+                                ),
                               ),
                               DataColumn(
-                                label: Text(""),
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "Pesan",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                                
                               ),
                             ],
+                            
                             // Gunakan map untuk membuat DataRow secara otomatis dari listWaktu
                             rows: listWaktu.map((waktu) {
                               int index = listWaktu.indexOf(waktu);
