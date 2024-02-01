@@ -8,7 +8,7 @@ class Hardware extends StatefulWidget {
   final String keyboard;
   final String mouse;
 
-  Hardware({
+  const Hardware({super.key, 
     required this.processor,
     required this.ram,
     required this.vga,
@@ -30,14 +30,14 @@ class _HardwareState extends State<Hardware> {
         width: 550,
         height: 550,
         decoration: BoxDecoration(
-            color: Color.fromARGB(97, 45, 125, 76),
+            color: const Color.fromARGB(97, 45, 125, 76),
             borderRadius: BorderRadius.circular(20)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "HARDWARE",
                 style: TextStyle(
                   fontSize: 50,
@@ -45,12 +45,12 @@ class _HardwareState extends State<Hardware> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               RichText(
                 text: TextSpan(
-                  style: TextStyle(fontFamily: "Lexend", fontSize: 30),
+                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: "Processor: ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -58,12 +58,12 @@ class _HardwareState extends State<Hardware> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               RichText(
                 text: TextSpan(
-                  style: TextStyle(fontFamily: "Lexend", fontSize: 30),
+                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: "RAM: ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -71,12 +71,12 @@ class _HardwareState extends State<Hardware> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               RichText(
                 text: TextSpan(
-                  style: TextStyle(fontFamily: "Lexend", fontSize: 30),
+                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: "VGA: ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -85,27 +85,27 @@ class _HardwareState extends State<Hardware> {
                 ),
               ),
               // Add more hardware details or icons as needed
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.mouse),
-                  SizedBox(width: 10),
+                  const Icon(Icons.mouse),
+                  const SizedBox(width: 10),
                   Text(
                     widget.mouse,
-                    style: TextStyle(fontFamily: "Lexend", fontSize: 30),
+                    style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                   ),
                 ],
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.keyboard),
-                  SizedBox(width: 10),
+                  const Icon(Icons.keyboard),
+                  const SizedBox(width: 10),
                   Text(
                     widget.keyboard,
-                    style: TextStyle(fontFamily: "Lexend", fontSize: 30),
+                    style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                   ),
                 ],
               ),

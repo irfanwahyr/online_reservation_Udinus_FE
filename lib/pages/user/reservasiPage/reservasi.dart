@@ -32,7 +32,7 @@ class _ReservasiState extends State<Reservasi> {
 
   void navigateToKeperluan(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Keperluan()));
+        context, MaterialPageRoute(builder: (context) => const Keperluan()));
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -118,13 +118,13 @@ class _ReservasiState extends State<Reservasi> {
                   children: [
                     ElevatedButton.icon(
                       onPressed: () => _selectDate(context),
-                      icon: Icon(Icons.calendar_today),
+                      icon: const Icon(Icons.calendar_today),
                       label: const Text(
                         "Pilih Tanggal",
                         style: TextStyle(fontSize: 20),
                       ),
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(200, 80),
+                        minimumSize: const Size(200, 80),
                       ),
                     ),
                     const SizedBox(width: 20),
@@ -138,7 +138,7 @@ class _ReservasiState extends State<Reservasi> {
                       child: Center(
                         child: Text(
                           "${today.day}-${today.month}-${today.year}",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                     ),
@@ -146,9 +146,9 @@ class _ReservasiState extends State<Reservasi> {
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(213, 6, 6, 146),
+                    color: const Color.fromARGB(213, 6, 6, 146),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
@@ -163,7 +163,7 @@ class _ReservasiState extends State<Reservasi> {
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
                     color: Colors.green[50],
@@ -175,7 +175,7 @@ class _ReservasiState extends State<Reservasi> {
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
                                 bottomRight: Radius.circular(20)),
                             color: Colors.green[50],

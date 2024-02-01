@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ButtonReservasi extends StatefulWidget {
+class ButtonDiproses extends StatefulWidget {
   final VoidCallback? onPressed;
-  const ButtonReservasi({Key? key, required this.onPressed}) : super(key: key);
+  const ButtonDiproses({Key? key, required this.onPressed}) : super(key: key);
 
   @override
-  _ButtonReservasiState createState() => _ButtonReservasiState();
+  _ButtonDiprosesState createState() => _ButtonDiprosesState();
 }
 
-class _ButtonReservasiState extends State<ButtonReservasi> {
+class _ButtonDiprosesState extends State<ButtonDiproses> {
   bool isHovered = false;
 
   @override
@@ -16,10 +16,10 @@ class _ButtonReservasiState extends State<ButtonReservasi> {
     return ElevatedButton(
       onPressed: widget.onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromARGB(255, 255, 168, 7),
+        backgroundColor: Color.fromARGB(255, 0, 127, 217),
       ),
       child: const Text(
-        "Reservasi",
+        "Batalkan",
         style: TextStyle(color: Colors.white),
       ),
     );

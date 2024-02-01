@@ -46,7 +46,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                       Text(
                         widget.laboratorium,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: "Archivo",
                           color: Colors.white,
                           fontSize: 80,
@@ -61,10 +61,10 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                       ),
                     ],
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Text(
                     widget.namaLab,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(190, 111, 215, 208),
                       fontFamily: "Archivo",
                       fontSize: 350,
@@ -81,7 +81,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                   Text(
                     widget.laboratorium,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: "Archivo",
                       color: Colors.white,
                       fontSize: 50,
@@ -94,7 +94,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                   ),
                   Text(
                     widget.namaLab,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(190, 111, 215, 208),
                       fontFamily: "Archivo",
                       fontSize: 200,

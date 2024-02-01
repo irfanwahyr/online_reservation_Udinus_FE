@@ -56,7 +56,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailA(),
+                                builder: (context) => const DetailA(),
                               ),
                             );
                           }),
@@ -67,7 +67,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "A",)));
+                                  builder: (context) => const Reservasi(namaLab: "A",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -87,7 +87,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailB(),
+                                builder: (context) => const DetailB(),
                               ),
                             );
                           }),
@@ -98,7 +98,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "B",)));
+                                  builder: (context) => const Reservasi(namaLab: "B",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -118,7 +118,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailD(),
+                                builder: (context) => const DetailD(),
                               ),
                             );
                           }),
@@ -129,7 +129,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "D",)));
+                                  builder: (context) => const Reservasi(namaLab: "D",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -149,7 +149,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailI(),
+                                builder: (context) => const DetailI(),
                               ),
                             );
                           }),
@@ -160,7 +160,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "I",)));
+                                  builder: (context) => const Reservasi(namaLab: "I",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -169,7 +169,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Footer().buildContainer(),
           ],
         ),

@@ -17,9 +17,9 @@ class _ButtonDipesanState extends State<ButtonDipesan> {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 7, 160, 51), // Warna teks button
+        backgroundColor: const Color.fromARGB(255, 7, 160, 51), // Warna teks button
       ),
-      child: Text(
+      child: const Text(
         "Dipesan",
         style: TextStyle(color: Colors.white),
       ),

@@ -7,7 +7,7 @@ class Footer {
   Container buildContainer() {
     return Container(
       width: double.maxFinite,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromARGB(255, 0, 0, 0),
       ),
       child: Padding(
@@ -18,7 +18,7 @@ class Footer {
           children: [
             Image.asset("images/LogoLab.png"),
             Padding(
-              padding: EdgeInsets.only(top: 50, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   if (constraints.maxWidth > 900) {
@@ -49,7 +49,7 @@ class Footer {
 
   List<Widget> buildColumns() {
     return [
-      Column(
+      const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -75,11 +75,11 @@ class Footer {
           ),
         ],
       ),
-      SizedBox(
+      const SizedBox(
         width: 20,
         height: 20,
       ),
-      Column(
+      const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -94,11 +94,11 @@ class Footer {
           ),
         ],
       ),
-      SizedBox(
+      const SizedBox(
         width: 20,
         height: 20,
       ),
-      Column(
+      const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

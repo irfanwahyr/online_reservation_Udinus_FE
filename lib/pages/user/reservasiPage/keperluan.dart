@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/reservasiModel/_cardReservasi.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/user/formKeperluan/acaraKampus.dart';
+import 'package:kp2024/pages/user/formKeperluan/acaraOrganisasi.dart';
+import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
 
 class Keperluan extends StatefulWidget {
   const Keperluan({super.key});
@@ -20,48 +22,32 @@ class _KeperluanState extends State<Keperluan> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
-            Center(
+            const SizedBox(height: 30),
+            const Center(
               child: Heading2(
                 text: "Silahkan Pilih Keperluan",
                 color: Colors.black,
               ),
             ),
-            SizedBox(height: 15),
-            Text(
+            const SizedBox(height: 15),
+            const Text(
               "Menggunakan Laboratorium",
               textAlign: TextAlign.center,
               style: TextStyle(fontFamily: "Archivo", fontSize: 40),
             ),
             Padding(
-              padding:
-                  EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 20),
+              padding: const EdgeInsets.only(
+                  top: 40, left: 10, right: 10, bottom: 20),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  // Ubah menjadi Column jika lebar layar kurang dari atau sama dengan 600
                   if (constraints.maxWidth <= 900) {
                     return Column(
-                      children: [
-                        buildCardReservasi(
-                            "Kuliah Pengganti", "images/gambar.jpg"),
-                        SizedBox(height: 20),
-                        buildCardReservasi(
-                            "Acara Organisasi", "images/gambar.jpg"),
-                        SizedBox(height: 20),
-                        buildCardReservasi("Acara Kampus", "images/gambar.jpg"),
-                      ],
+                      children: buildContent(),
                     );
                   } else {
-                    // Tetap menggunakan Row jika lebar layar lebih besar dari 600
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        buildCardReservasi(
-                            "Kuliah Pengganti", "images/gambar.jpg"),
-                        buildCardReservasi(
-                            "Acara Organisasi", "images/gambar.jpg"),
-                        buildCardReservasi("Acara Kampus", "images/gambar.jpg"),
-                      ],
+                      children: buildContent(),
                     );
                   }
                 },
@@ -74,11 +60,46 @@ class _KeperluanState extends State<Keperluan> {
     );
   }
 
-  Widget buildCardReservasi(String nama, String imageAsset) {
-    return CardReservasi(
-      nama: nama,
-      imageAsset: imageAsset,
-      onTap: () {},
-    ).buildInkwell();
+  List<Widget> buildContent() {
+    return [
+      CardReservasi(
+        nama: "Kuliah Pengganti",
+        imageAsset: "images/gambar.jpg",
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => KuliahPengganti(),
+            ),
+          );
+        },
+      ),
+      SizedBox(height: 10),
+      CardReservasi(
+        nama: "Acara Organisasi",
+        imageAsset: "images/gambar.jpg",
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AcaraOrganisasi(),
+            ),
+          );
+        },
+      ),
+      SizedBox(height: 10),
+      CardReservasi(
+        nama: "Acara Kampus",
+        imageAsset: "images/gambar.jpg",
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AcaraKampus(),
+            ),
+          );
+        },
+      )
+    ];
   }
 }

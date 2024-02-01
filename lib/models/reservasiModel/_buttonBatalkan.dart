@@ -16,9 +16,9 @@ class _ButtonBatalkanState extends State<ButtonBatalkan> {
     return ElevatedButton(
       onPressed: widget.onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 217, 36, 0),
+        backgroundColor: const Color.fromARGB(255, 217, 36, 0),
       ),
-      child: Text(
+      child: const Text(
         "Batalkan",
         style: TextStyle(color: Colors.white),
       ),

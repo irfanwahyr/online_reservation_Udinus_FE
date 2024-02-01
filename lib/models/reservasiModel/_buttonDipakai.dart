@@ -14,7 +14,7 @@ class _ButtonDipakaiState extends State<ButtonDipakai> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return const ElevatedButton(
       onPressed: null,
       child: Text(
         "Dipakai",

@@ -27,12 +27,12 @@ class _DetailMState extends State<DetailM> {
               imageAsset: "images/gambar.jpg",
               onpressed: () {},
             ),
-            SpesifikasiDetailLab(
+            const SpesifikasiDetailLab(
               namaLab: "M",
               jumlahPc: "40",
             ),
             isScreenWide
-                ? Row(
+                ? const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Hardware(
@@ -50,7 +50,7 @@ class _DetailMState extends State<DetailM> {
                       ),
                     ],
                   )
-                : Column(
+                : const Column(
                     children: [
                       Hardware(
                         processor: "Intel I7 7700F ",
@@ -67,7 +67,7 @@ class _DetailMState extends State<DetailM> {
                       ),
                     ],
                   ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Footer().buildContainer()

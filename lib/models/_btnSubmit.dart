@@ -13,7 +13,7 @@ class ButtonSubmit {
       ),
       child: Text(
         nama,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white, // Set text color to white
         ),
       ),

@@ -9,8 +9,8 @@ import 'package:kp2024/pages/dashboard/lapisan4.dart';
 import 'package:kp2024/pages/logSign.dart';
 
 double collapsableHeight = 0.0;
-Color selected = Color(0xffffffff);
-Color notSelected = Color(0xafffffff);
+Color selected = const Color(0xffffffff);
+Color notSelected = const Color(0xafffffff);
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

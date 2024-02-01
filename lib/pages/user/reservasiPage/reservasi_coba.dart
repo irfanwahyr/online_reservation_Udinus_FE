@@ -22,17 +22,17 @@ class _ReservasiCobaState extends State<ReservasiCoba> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                 child: Heading2(
                   text: "ReservasiCoba Ruangan Laboratorium A",
                   color: Colors.black,
                 ),
               ),
-              Heading1(
+              const Heading1(
                 text: "JADWAL LABORATORIUM",
                 color: Colors.black,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Container untuk slider hari
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,13 +51,13 @@ class _ReservasiCobaState extends State<ReservasiCoba> {
                         borderRadius: BorderRadius.circular(5),
                         color: const Color.fromARGB(136, 33, 149, 243),
                       ),
-                      child: Icon(Icons.arrow_back),
+                      child: const Icon(Icons.arrow_back),
                     ),
                   ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -75,7 +75,7 @@ class _ReservasiCobaState extends State<ReservasiCoba> {
                               child: Container(
                                 width: 100,
                                 height: 50,
-                                margin: EdgeInsets.all(2),
+                                margin: const EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: index == _index
@@ -113,7 +113,7 @@ class _ReservasiCobaState extends State<ReservasiCoba> {
                         borderRadius: BorderRadius.circular(5),
                         color: const Color.fromARGB(136, 33, 149, 243),
                       ),
-                      child: Icon(Icons.arrow_forward),
+                      child: const Icon(Icons.arrow_forward),
                     ),
                   ),
                 ],

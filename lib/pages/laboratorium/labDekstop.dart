@@ -54,7 +54,7 @@ class _LabDekstopState extends State<LabDekstop> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailJ(),
+                                builder: (context) => const DetailJ(),
                               ),
                             );
                           }),
@@ -65,7 +65,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "J",)));
+                                  builder: (context) => const Reservasi(namaLab: "J",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -88,7 +88,7 @@ class _LabDekstopState extends State<LabDekstop> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailK(),
+                                builder: (context) => const DetailK(),
                               ),
                             );
                           }),
@@ -99,7 +99,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "K",)));
+                                  builder: (context) => const Reservasi(namaLab: "K",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -108,7 +108,7 @@ class _LabDekstopState extends State<LabDekstop> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Footer().buildContainer(),
           ],
         ),

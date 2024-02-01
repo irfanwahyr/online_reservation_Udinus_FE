@@ -57,7 +57,7 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailC(),
+                                builder: (context) => const DetailC(),
                               ),
                             );
                           }),
@@ -68,7 +68,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(
+                                  builder: (context) => const Reservasi(
                                         namaLab: "C",
                                       )));
                         },
@@ -93,7 +93,7 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailE(),
+                                builder: (context) => const DetailE(),
                               ),
                             );
                           }),
@@ -104,7 +104,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(
+                                  builder: (context) => const Reservasi(
                                         namaLab: "E",
                                       )));
                         },
@@ -129,7 +129,7 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailL(),
+                                builder: (context) => const DetailL(),
                               ),
                             );
                           }),
@@ -140,7 +140,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(
+                                  builder: (context) => const Reservasi(
                                         namaLab: "L",
                                       )));
                         },
@@ -171,7 +171,7 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailM(),
+                                builder: (context) => const DetailM(),
                               ),
                             );
                           }),
@@ -182,7 +182,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(
+                                  builder: (context) => const Reservasi(
                                         namaLab: "M",
                                       )));
                         },
@@ -207,7 +207,7 @@ class _LabStatistikState extends State<LabStatistik> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailN(),
+                                builder: (context) => const DetailN(),
                               ),
                             );
                           }),
@@ -218,7 +218,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(
+                                  builder: (context) => const Reservasi(
                                         namaLab: "N",
                                       )));
                         },
@@ -229,7 +229,7 @@ class _LabStatistikState extends State<LabStatistik> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Footer().buildContainer(),
           ],
         ),

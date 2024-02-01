@@ -18,7 +18,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Container(
         width: double.infinity,
         height: 450,
@@ -30,25 +30,25 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Text(
                 "SPESIFIKASI LAB ${widget.namaLab}",
-                style: TextStyle(fontFamily: "Archivo", fontSize: 30),
+                style: const TextStyle(fontFamily: "Archivo", fontSize: 30),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Container(
                       width: 300,
                       height: 300,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(146, 84, 221, 239),
+                          color: const Color.fromARGB(146, 84, 221, 239),
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,23 +56,23 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                           Text(
                             widget.jumlahPc,
                             style:
-                                TextStyle(fontFamily: "Archivo", fontSize: 90),
+                                const TextStyle(fontFamily: "Archivo", fontSize: 90),
                           ),
-                          Text(
+                          const Text(
                             "PC",
                             style: TextStyle(fontSize: 40),
                           )
                         ],
                       ),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Container(
                       width: 300,
                       height: 300,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(146, 84, 221, 239),
+                          color: const Color.fromARGB(146, 84, 221, 239),
                           borderRadius: BorderRadius.circular(20)),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -84,14 +84,14 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Container(
                       width: 300,
                       height: 300,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(146, 84, 221, 239),
+                          color: const Color.fromARGB(146, 84, 221, 239),
                           borderRadius: BorderRadius.circular(20)),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -102,11 +102,11 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               )
             ],

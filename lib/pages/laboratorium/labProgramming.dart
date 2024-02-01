@@ -54,7 +54,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailG(),
+                                builder: (context) => const DetailG(),
                               ),
                             );
                           }),
@@ -65,7 +65,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "G",)));
+                                  builder: (context) => const Reservasi(namaLab: "G",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -88,7 +88,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailH(),
+                                builder: (context) => const DetailH(),
                               ),
                             );
                           }),
@@ -99,7 +99,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Reservasi(namaLab: "H",)));
+                                  builder: (context) => const Reservasi(namaLab: "H",)));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -108,7 +108,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Footer().buildContainer(),
           ],
         ),
