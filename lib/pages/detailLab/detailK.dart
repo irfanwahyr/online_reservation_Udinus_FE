@@ -4,6 +4,7 @@ import 'package:kp2024/models/detailLabModel/_hardware.dart';
 import 'package:kp2024/models/detailLabModel/_software.dart';
 import 'package:kp2024/models/detailLabModel/_spesifikasiLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class DetailK extends StatefulWidget {
   const DetailK({super.key});
@@ -25,7 +26,14 @@ class _DetailKState extends State<DetailK> {
               laboratorium: "LABORATORIUM \nMULTIMEDIA",
               namaLab: "K",
               imageAsset: "images/gambar.jpg",
-              onpressed: () {},
+              onpressed: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Reservasi(namaLab: "K"),
+                  ),
+                );
+              },
             ),
             const SpesifikasiDetailLab(
               namaLab: "K",

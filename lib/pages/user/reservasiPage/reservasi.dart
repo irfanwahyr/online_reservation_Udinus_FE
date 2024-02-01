@@ -138,7 +138,8 @@ class _ReservasiState extends State<Reservasi> {
                       child: Center(
                         child: Text(
                           "${today.day}-${today.month}-${today.year}",
-                          style: const TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                         ),
                       ),
                     ),
@@ -153,7 +154,7 @@ class _ReservasiState extends State<Reservasi> {
                   ),
                   child: Text(
                     // "Anda memilih hari ${getHari(today.weekday)} tanggal ${today.day} bulan ${getBulan(today.month)} tahun ${today.year}",
-                    "Anda memilih hari ${listReservasi.getHari(today.weekday)} tanggal ${today.day} bulan ${listReservasi.getBulan(today.month)} tahun ${today.year}",
+                    "Anda memilih hari ${listReservasi.getHari(today.weekday)} ${today.day} ${listReservasi.getBulan(today.month)} ${today.year}",
                     style: const TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 255, 255, 255)),
