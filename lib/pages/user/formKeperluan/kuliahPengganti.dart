@@ -122,7 +122,13 @@ class KuliahPengganti extends StatelessWidget {
           const FieldKeterangan(
               judul: "Keterangan Tambahan", keyboardType: TextInputType.text),
           const SizedBox(height: 15),
-          HoverButtonPrimary(text: "Submit", onPressed: () {})
+          SizedBox(
+            height: 70,
+            width: 400,
+            child: Center(
+              child: HoverButtonPrimary(text: "Submit", onPressed: () {}),
+            ),
+          ),
         ],
       ),
     ];
