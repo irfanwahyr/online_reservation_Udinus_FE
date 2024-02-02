@@ -7,6 +7,7 @@ import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_fieldTanggal.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/models/reservasiModel/_uploadPDFButton.dart';
+import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 
 class AcaraOrganisasi extends StatelessWidget {
   static const nameRoute = 'AcaraOrganisasi';
@@ -45,14 +46,14 @@ class AcaraOrganisasi extends StatelessWidget {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildAcaraOrganisasi(),
+                        children: buildAcaraOrganisasi(context),
                       );
                     } else {
                       // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildAcaraOrganisasi(),
+                        children: buildAcaraOrganisasi(context),
                       );
                     }
                   },
@@ -66,7 +67,7 @@ class AcaraOrganisasi extends StatelessWidget {
     );
   }
 
-  List<Widget> buildAcaraOrganisasi() {
+  List<Widget> buildAcaraOrganisasi(BuildContext context) {
     return [
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,8 +137,8 @@ class AcaraOrganisasi extends StatelessWidget {
           SizedBox(
             height: 70,
             width: 400,
-            child: Center(
-              child: HoverButtonPrimary(text: "Submit", onPressed: () {}),
+              child: Center(
+              child: HoverButtonPrimary(text: "Submit", onPressed: () {Navigator.pushNamed(context, BerhasilSubmit.nameRoute);}),
             ),
           ),
         ],

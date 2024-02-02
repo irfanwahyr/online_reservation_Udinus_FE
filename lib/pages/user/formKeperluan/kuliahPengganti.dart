@@ -5,6 +5,7 @@ import 'package:kp2024/models/reservasiModel/_fieldContainer.dart';
 import 'package:kp2024/models/reservasiModel/_fieldJam.dart';
 import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
+import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 
 class KuliahPengganti extends StatelessWidget {
   static const nameRoute = 'KuliahPengganti';
@@ -41,14 +42,14 @@ class KuliahPengganti extends StatelessWidget {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildKuliahPengganti(),
+                        children: buildKuliahPengganti(context),
                       );
                     } else {
                       // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildKuliahPengganti(),
+                        children: buildKuliahPengganti(context),
                       );
                     }
                   },
@@ -62,7 +63,7 @@ class KuliahPengganti extends StatelessWidget {
     );
   }
 
-  List<Widget> buildKuliahPengganti() {
+  List<Widget> buildKuliahPengganti(BuildContext context) {
     return [
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +130,11 @@ class KuliahPengganti extends StatelessWidget {
             height: 70,
             width: 400,
             child: Center(
-              child: HoverButtonPrimary(text: "Submit", onPressed: () {}),
+              child: HoverButtonPrimary(
+                  text: "Submit",
+                  onPressed: () {
+                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                  }),
             ),
           ),
         ],

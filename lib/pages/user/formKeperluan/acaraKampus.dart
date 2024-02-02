@@ -7,6 +7,7 @@ import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_fieldTanggal.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/models/reservasiModel/_uploadPDFButton.dart';
+import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 
 class AcaraKampus extends StatelessWidget {
   static const nameRoute = 'AcaraKampus';
@@ -45,14 +46,14 @@ class AcaraKampus extends StatelessWidget {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildAcaraKampus(),
+                        children: buildAcaraKampus(context),
                       );
                     } else {
                       // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildAcaraKampus(),
+                        children: buildAcaraKampus(context),
                       );
                     }
                   },
@@ -66,7 +67,7 @@ class AcaraKampus extends StatelessWidget {
     );
   }
 
-  List<Widget> buildAcaraKampus() {
+  List<Widget> buildAcaraKampus(BuildContext context) {
     return [
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,7 +138,7 @@ class AcaraKampus extends StatelessWidget {
             height: 70,
             width: 400,
             child: Center(
-              child: HoverButtonPrimary(text: "Submit", onPressed: () {}),
+              child: HoverButtonPrimary(text: "Submit", onPressed: () {Navigator.pushNamed(context, BerhasilSubmit.nameRoute);}),
             ),
           ),
         ],

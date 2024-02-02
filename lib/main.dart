@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/admin/homePageAdmin.dart';
 import 'package:kp2024/pages/detailLab/detailA.dart';
 import 'package:kp2024/pages/detailLab/detailB.dart';
 import 'package:kp2024/pages/detailLab/detailC.dart';
@@ -21,6 +22,7 @@ import 'package:kp2024/pages/logSign.dart';
 import 'package:kp2024/pages/user/formKeperluan/acaraKampus.dart';
 import 'package:kp2024/pages/user/formKeperluan/acaraOrganisasi.dart';
 import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
+import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 
 void main(List<String> args) {
@@ -39,8 +41,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      initialRoute: HomePage.nameRoute,
+      // home: HomePage(),
+      // initialRoute: HomePage.nameRoute,
+      home: HomePageAdmin(),
+      initialRoute: HomePageAdmin.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),
@@ -65,6 +69,7 @@ class _MyAppState extends State<MyApp> {
         AcaraKampus.nameRoute: (context) => AcaraKampus(),
         AcaraOrganisasi.nameRoute: (context) => AcaraOrganisasi(),
         KuliahPengganti.nameRoute: (context) => KuliahPengganti(),
+        BerhasilSubmit.nameRoute: (context) => BerhasilSubmit(),
       },
     );
   }
