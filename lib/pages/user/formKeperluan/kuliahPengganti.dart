@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/reservasiModel/_fieldContainer.dart';
 import 'package:kp2024/models/reservasiModel/_fieldJam.dart';
@@ -6,11 +7,13 @@ import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 
 class KuliahPengganti extends StatelessWidget {
+  static const nameRoute = 'KuliahPengganti';
   const KuliahPengganti({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBarBack().buildAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(

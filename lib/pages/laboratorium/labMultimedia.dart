@@ -12,6 +12,7 @@ import 'package:kp2024/pages/detailLab/detailI.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class LabMultimedia extends StatefulWidget {
+  static const nameRoute = 'LabMultimedia';
   const LabMultimedia({Key? key}) : super(key: key);
 
   @override
@@ -53,21 +54,20 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailA(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailA.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(namaLab: "A",)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "A",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -84,21 +84,20 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailB(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailB.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(namaLab: "B",)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "B",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -115,21 +114,20 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailD(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailD.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(namaLab: "D",)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "D",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -146,21 +144,20 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailI(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailI.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(namaLab: "I",)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "I",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),

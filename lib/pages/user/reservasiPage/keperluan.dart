@@ -7,6 +7,7 @@ import 'package:kp2024/pages/user/formKeperluan/acaraOrganisasi.dart';
 import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
 
 class Keperluan extends StatefulWidget {
+  static const nameRoute = 'Keperluan';
   const Keperluan({super.key});
 
   @override
@@ -66,12 +67,7 @@ class _KeperluanState extends State<Keperluan> {
         nama: "Kuliah Pengganti",
         imageAsset: "images/gambar.jpg",
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => KuliahPengganti(),
-            ),
-          );
+          Navigator.pushNamed(context, KuliahPengganti.nameRoute);
         },
       ),
       SizedBox(height: 10),
@@ -79,12 +75,7 @@ class _KeperluanState extends State<Keperluan> {
         nama: "Acara Organisasi",
         imageAsset: "images/gambar.jpg",
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AcaraOrganisasi(),
-            ),
-          );
+          Navigator.pushNamed(context, AcaraOrganisasi.nameRoute);
         },
       ),
       SizedBox(height: 10),
@@ -92,12 +83,7 @@ class _KeperluanState extends State<Keperluan> {
         nama: "Acara Kampus",
         imageAsset: "images/gambar.jpg",
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AcaraKampus(),
-            ),
-          );
+          Navigator.pushNamed(context, AcaraKampus.nameRoute);
         },
       )
     ];

@@ -10,6 +10,7 @@ import 'package:kp2024/pages/detailLab/detailH.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class LabProgramming extends StatefulWidget {
+  static const nameRoute = 'LogProgramming';
   const LabProgramming({Key? key}) : super(key: key);
 
   @override
@@ -51,12 +52,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailG(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailG.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
@@ -65,7 +61,9 @@ class _LabProgrammingState extends State<LabProgramming> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Reservasi(namaLab: "G",)));
+                                  builder: (context) => const Reservasi(
+                                        namaLab: "G",
+                                      )));
                         },
                       ),
                       const SizedBox(height: 10),
@@ -85,21 +83,20 @@ class _LabProgrammingState extends State<LabProgramming> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailH(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailH.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(namaLab: "H",)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "H",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),

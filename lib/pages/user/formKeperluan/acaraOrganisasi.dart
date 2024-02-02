@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/reservasiModel/_fieldContainer.dart';
 import 'package:kp2024/models/reservasiModel/_fieldJam.dart';
@@ -8,6 +9,7 @@ import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/models/reservasiModel/_uploadPDFButton.dart';
 
 class AcaraOrganisasi extends StatelessWidget {
+  static const nameRoute = 'AcaraOrganisasi';
   const AcaraOrganisasi({
     super.key,
   });
@@ -15,6 +17,7 @@ class AcaraOrganisasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBarBack().buildAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(

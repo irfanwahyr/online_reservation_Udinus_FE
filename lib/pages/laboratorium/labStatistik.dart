@@ -13,6 +13,7 @@ import 'package:kp2024/pages/detailLab/detailN.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class LabStatistik extends StatefulWidget {
+  static const nameRoute = 'LogStatistik';
   const LabStatistik({Key? key}) : super(key: key);
 
   @override
@@ -54,23 +55,20 @@ class _LabStatistikState extends State<LabStatistik> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailC(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailC.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(
-                                        namaLab: "C",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "C",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -90,23 +88,20 @@ class _LabStatistikState extends State<LabStatistik> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailE(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailE.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(
-                                        namaLab: "E",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "E",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -126,23 +121,20 @@ class _LabStatistikState extends State<LabStatistik> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailL(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailL.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(
-                                        namaLab: "L",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "L",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -168,23 +160,20 @@ class _LabStatistikState extends State<LabStatistik> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailM(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailM.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(
-                                        namaLab: "M",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "M",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
@@ -204,23 +193,20 @@ class _LabStatistikState extends State<LabStatistik> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailN(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailN.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Reservasi(
-                                        namaLab: "N",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Reservasi(
+                                namaLab: "N",
+                              ),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),

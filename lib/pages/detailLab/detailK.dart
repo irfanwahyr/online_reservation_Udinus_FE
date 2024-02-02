@@ -7,6 +7,7 @@ import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class DetailK extends StatefulWidget {
+  static const nameRoute = 'detailK';
   const DetailK({super.key});
 
   @override
@@ -27,7 +28,7 @@ class _DetailKState extends State<DetailK> {
               namaLab: "K",
               imageAsset: "images/gambar.jpg",
               onpressed: () {
-                 Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Reservasi(namaLab: "K"),

@@ -7,6 +7,7 @@ import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class DetailE extends StatefulWidget {
+  static const nameRoute = 'DetailE';
   const DetailE({super.key});
 
   @override
@@ -24,19 +25,19 @@ class _DetailEState extends State<DetailE> {
           children: [
             ContainerDetailLab(
               laboratorium: "LABORATORIUM \nMULTIMEDIA",
-              namaLab: "E",
+              namaLab: "D",
               imageAsset: "images/gambar.jpg",
               onpressed: () {
-                 Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Reservasi(namaLab: "E"),
+                    builder: (context) => Reservasi(namaLab: "D"),
                   ),
                 );
               },
             ),
             const SpesifikasiDetailLab(
-              namaLab: "E",
+              namaLab: "D",
               jumlahPc: "40",
             ),
             isScreenWide

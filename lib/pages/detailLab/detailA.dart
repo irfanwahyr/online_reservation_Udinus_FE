@@ -7,6 +7,7 @@ import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class DetailA extends StatefulWidget {
+  static const nameRoute = 'detailA';
   const DetailA({super.key});
 
   @override

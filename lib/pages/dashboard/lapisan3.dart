@@ -41,12 +41,7 @@ class Lapisan3 {
                     title: "Multimedia",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LabMultimedia(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, LabMultimedia.nameRoute);
                     },
                   ),
                 ),
@@ -57,12 +52,7 @@ class Lapisan3 {
                     title: "Dekstop",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LabDekstop(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, LabDekstop.nameRoute);
                     },
                   ),
                 ),
@@ -73,12 +63,7 @@ class Lapisan3 {
                     title: "Pemrograman",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LabProgramming(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, LabProgramming.nameRoute);
                     },
                   ),
                 ),
@@ -89,12 +74,7 @@ class Lapisan3 {
                     title: "Statistik",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LabStatistik(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, LabStatistik.nameRoute);
                     },
                   ),
                 ),

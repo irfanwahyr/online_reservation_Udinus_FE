@@ -31,8 +31,7 @@ class _ReservasiState extends State<Reservasi> {
   }
 
   void navigateToKeperluan(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Keperluan()));
+    Navigator.pushNamed(context, Keperluan.nameRoute);
   }
 
   Future<void> _selectDate(BuildContext context) async {

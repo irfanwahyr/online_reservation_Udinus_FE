@@ -10,6 +10,7 @@ import 'package:kp2024/pages/detailLab/detailK.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class LabDekstop extends StatefulWidget {
+  static const nameRoute = 'LabDekstop';
   const LabDekstop({Key? key}) : super(key: key);
 
   @override
@@ -51,12 +52,7 @@ class _LabDekstopState extends State<LabDekstop> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailJ(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailJ.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
@@ -85,12 +81,7 @@ class _LabDekstopState extends State<LabDekstop> {
                       ButtonSecondary(
                           text: "detail",
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DetailK(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, DetailK.nameRoute);
                           }),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
