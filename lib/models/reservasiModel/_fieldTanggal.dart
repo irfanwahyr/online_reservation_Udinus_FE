@@ -54,10 +54,39 @@ class _FieldTanggalState extends State<FieldTanggal> {
         ),
         const SizedBox(height: 5),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 195,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    MediaQuery.of(context).size.width >= 440
+        ? Container(
+            width: 195,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "${widget.tanggalMulai.day}-${widget.tanggalMulai.month}-${widget.tanggalMulai.year}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  IconButton(
+                    onPressed: () => _selectDate(context, true),
+                    icon: const Icon(
+                      Icons.calendar_month_sharp,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : Expanded(
+            child: Container(
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -84,9 +113,41 @@ class _FieldTanggalState extends State<FieldTanggal> {
                 ),
               ),
             ),
-            const SizedBox(width: 10),
-            Container(
-              width: 195,
+          ),
+    const SizedBox(width: 10),
+    MediaQuery.of(context).size.width >= 440
+        ? Container(
+            width: 195,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.tanggalSelesai != null
+                        ? "${widget.tanggalSelesai!.day}-${widget.tanggalSelesai!.month}-${widget.tanggalSelesai!.year}"
+                        : "Selesai",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  IconButton(
+                    onPressed: () => _selectDate(context, false),
+                    icon: const Icon(
+                      Icons.calendar_month_sharp,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : Expanded(
+            child: Container(
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -115,8 +176,10 @@ class _FieldTanggalState extends State<FieldTanggal> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+  ],
+),
+
       ],
     );
   }
