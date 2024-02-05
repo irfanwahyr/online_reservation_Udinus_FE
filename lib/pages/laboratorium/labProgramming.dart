@@ -5,8 +5,7 @@ import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
-import 'package:kp2024/pages/detailLab/detailG.dart';
-import 'package:kp2024/pages/detailLab/detailH.dart';
+import 'package:kp2024/pages/detailLab/DetailLaboratorium.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,9 +52,13 @@ class _LabProgrammingState extends State<LabProgramming> {
                       const SizedBox(height: 5),
                       ButtonSecondary(
                           text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailG.nameRoute);
-                          }),
+                          onPressed:  () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "G");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -82,9 +85,13 @@ class _LabProgrammingState extends State<LabProgramming> {
                       const SizedBox(height: 5),
                       ButtonSecondary(
                           text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailH.nameRoute);
-                          }),
+                          onPressed:  () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "H");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",

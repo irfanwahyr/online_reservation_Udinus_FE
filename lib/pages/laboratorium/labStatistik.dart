@@ -5,15 +5,9 @@ import 'package:kp2024/models/_buttonSecondary.dart';
 import 'package:kp2024/models/_cardLab.dart';
 import 'package:kp2024/models/_containerLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
-import 'package:kp2024/pages/detailLab/detailC.dart';
-import 'package:kp2024/pages/detailLab/detailE.dart';
-import 'package:kp2024/pages/detailLab/detailL.dart';
-import 'package:kp2024/pages/detailLab/detailM.dart';
-import 'package:kp2024/pages/detailLab/detailN.dart';
+import 'package:kp2024/pages/detailLab/DetailLaboratorium.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
 
 class LabStatistik extends StatefulWidget {
   static const nameRoute = 'LogStatistik';
@@ -56,14 +50,19 @@ class _LabStatistikState extends State<LabStatistik> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailC.nameRoute);
-                          }),
+                        text: "detail",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "C");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed:  () async {
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('data', "C");
@@ -85,10 +84,15 @@ class _LabStatistikState extends State<LabStatistik> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailE.nameRoute);
-                          }),
+                        text: "detail",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "E");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -114,10 +118,15 @@ class _LabStatistikState extends State<LabStatistik> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailL.nameRoute);
-                          }),
+                        text: "detail",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "L");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -149,14 +158,19 @@ class _LabStatistikState extends State<LabStatistik> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailM.nameRoute);
-                          }),
+                        text: "detail",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "M");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed:  () async {
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('data', "M");
@@ -178,14 +192,19 @@ class _LabStatistikState extends State<LabStatistik> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed: () {
-                            Navigator.pushNamed(context, DetailN.nameRoute);
-                          }),
+                        text: "detail",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "N");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed:  () async {
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('data', "N");

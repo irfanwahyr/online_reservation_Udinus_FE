@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:kp2024/pages/detailLab/DetailLaboratorium.dart';
 import 'package:kp2024/pages/detailLab/detailA.dart';
 import 'package:kp2024/pages/detailLab/detailB.dart';
 import 'package:kp2024/pages/detailLab/detailC.dart';
@@ -72,6 +73,7 @@ class _MyAppState extends State<MyApp> {
         KuliahPengganti.nameRoute: (context) => KuliahPengganti(),
         BerhasilSubmit.nameRoute: (context) => BerhasilSubmit(),
         Reservasi.nameRoute: (context) => Reservasi(),
+        DetailLaboratorium.nameRoute: (context) => DetailLaboratorium(),
       },
       // onGenerateRoute: ,
     );
