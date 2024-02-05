@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FieldJam extends StatefulWidget {
   final String judul;
   final String mulai;
@@ -35,70 +36,131 @@ class _FieldJamState extends State<FieldJam> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 195,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  widget.mulai,
-                  style: const TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              width: 195,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+            MediaQuery.of(context).size.width >= 450
+                ? Container(
+                    width: 195,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Center(
                       child: Text(
-                        widget.selesai ?? '',
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.white),
+                        widget.mulai,
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  )
+                : Expanded(
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          widget.mulai,
+                          style: const TextStyle(fontSize: 20),
+                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: DropdownButton<String>(
-                      // value: widget.selesai,
-                      icon: const Icon(
-                        Icons.arrow_drop_down_circle_outlined,
-                        color: Colors.white,
+            const SizedBox(width: 10),
+            MediaQuery.of(context).size.width >= 450
+                ? Container(
+                    width: 195,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Center(
+                            child: Text(
+                              widget.selesai ?? '',
+                              style: const TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: DropdownButton<String>(
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle_outlined,
+                              color: Colors.white,
+                            ),
+                            elevation: 10,
+                            style: const TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              color: const Color.fromARGB(0, 255, 255, 255),
+                            ),
+                            onChanged: (String? value) {
+                              _selectedTime(value ?? '');
+                            },
+                            items: Waktu.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Expanded(
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      elevation: 10,
-                      style: const TextStyle(color: Colors.deepPurple),
-                      underline: Container(
-                        height: 2,
-                        color: const Color.fromARGB(0, 255, 255, 255),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Center(
+                              child: Text(
+                                widget.selesai ?? '',
+                                style: const TextStyle(fontSize: 20, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: DropdownButton<String>(
+                              icon: const Icon(
+                                Icons.arrow_drop_down_circle_outlined,
+                                color: Colors.white,
+                              ),
+                              elevation: 10,
+                              style: const TextStyle(color: Colors.deepPurple),
+                              underline: Container(
+                                height: 2,
+                                color: const Color.fromARGB(0, 255, 255, 255),
+                              ),
+                              onChanged: (String? value) {
+                                _selectedTime(value ?? '');
+                              },
+                              items: Waktu.map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
                       ),
-                      onChanged: (String? value) {
-                        _selectedTime(value ?? '');
-                      },
-                      items:
-                          Waktu.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
                     ),
                   ),
-                ],
-              ),
-            ),
           ],
         ),
       ],
