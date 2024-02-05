@@ -10,6 +10,7 @@ import 'package:kp2024/pages/detailLab/detailB.dart';
 import 'package:kp2024/pages/detailLab/detailD.dart';
 import 'package:kp2024/pages/detailLab/detailI.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LabMultimedia extends StatefulWidget {
   static const nameRoute = 'LabMultimedia';
@@ -59,15 +60,11 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Reservasi(
-                                namaLab: "A",
-                              ),
-                            ),
-                          );
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('data', "A");
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -89,15 +86,11 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Reservasi(
-                                namaLab: "B",
-                              ),
-                            ),
-                          );
+                        onPressed:() async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('data', "B");
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -119,15 +112,11 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Reservasi(
-                                namaLab: "D",
-                              ),
-                            ),
-                          );
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('data', "D");
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -149,15 +138,11 @@ class _LabMultimediaState extends State<LabMultimedia> {
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Reservasi(
-                                namaLab: "I",
-                              ),
-                            ),
-                          );
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('data', "I");
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),

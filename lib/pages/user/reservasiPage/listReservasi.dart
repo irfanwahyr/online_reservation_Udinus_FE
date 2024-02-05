@@ -1,5 +1,4 @@
 class ListReservasi {
-  
   String getHari(int day) {
     switch (day) {
       case 1:
@@ -81,8 +80,8 @@ class ListReservasi {
     "Pengolahan Citra Digital",
     "Workshop BK",
     "Workshop BK",
-    " ",
-    " ",
+    "Karaoke",
+    "Karaoke",
     " ",
   ];
 }

@@ -5,6 +5,8 @@ import 'package:kp2024/models/detailLabModel/_software.dart';
 import 'package:kp2024/models/detailLabModel/_spesifikasiLab.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class DetailC extends StatefulWidget {
   static const nameRoute = 'detailC';
@@ -27,14 +29,12 @@ class _DetailCState extends State<DetailC> {
               laboratorium: "LABORATORIUM \nMULTIMEDIA",
               namaLab: "C",
               imageAsset: "images/gambar.jpg",
-              onpressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Reservasi(namaLab: "C"),
-                  ),
-                );
-              },
+              onpressed:  () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('data', "C");
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                        },
             ),
             const SpesifikasiDetailLab(
               namaLab: "C",

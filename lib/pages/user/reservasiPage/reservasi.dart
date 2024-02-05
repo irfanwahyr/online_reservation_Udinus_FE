@@ -4,15 +4,16 @@ import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/reservasiModel/_buttonBatalkan.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDipakai.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDipesan.dart';
+import 'package:kp2024/models/reservasiModel/_buttonDiproses.dart';
 import 'package:kp2024/models/reservasiModel/_buttonReservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Reservasi extends StatefulWidget {
-  final String namaLab;
+  static const nameRoute = "/Reservasi";
   const Reservasi({
     Key? key,
-    required this.namaLab,
   }) : super(key: key);
   @override
   State<Reservasi> createState() => _ReservasiState();
@@ -22,6 +23,22 @@ class _ReservasiState extends State<Reservasi> {
   DateTime today = DateTime.now();
   bool showJadwal = false;
   ListReservasi listReservasi = ListReservasi();
+  String? dataLab;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? dataLab = prefs.getString('data');
+
+    setState(() {
+      this.dataLab = dataLab;
+    });
+  }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
@@ -81,8 +98,8 @@ class _ReservasiState extends State<Reservasi> {
           ),
         ],
       ),
-      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
-      ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
+      ButtonDiproses(),
+      ButtonDiproses(),
       ButtonReservasi(onPressed: () => navigateToKeperluan(context)),
     ];
   }
@@ -102,7 +119,8 @@ class _ReservasiState extends State<Reservasi> {
               children: [
                 Center(
                   child: Heading2(
-                    text: "Reservasi Ruangan Laboratorium ${widget.namaLab}",
+                    text:
+                        "Reservasi Ruangan Laboratorium ${dataLab.toString()}",
                     color: Colors.black,
                   ),
                 ),

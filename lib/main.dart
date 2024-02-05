@@ -24,6 +24,7 @@ import 'package:kp2024/pages/user/formKeperluan/acaraOrganisasi.dart';
 import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -41,10 +42,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
-      // initialRoute: HomePage.nameRoute,
-      home: HomePageAdmin(),
-      initialRoute: HomePageAdmin.nameRoute,
+      home: HomePage(),
+      initialRoute: HomePage.nameRoute,
+      // home: HomePageAdmin(),
+      // initialRoute: HomePageAdmin.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),
@@ -70,7 +71,9 @@ class _MyAppState extends State<MyApp> {
         AcaraOrganisasi.nameRoute: (context) => AcaraOrganisasi(),
         KuliahPengganti.nameRoute: (context) => KuliahPengganti(),
         BerhasilSubmit.nameRoute: (context) => BerhasilSubmit(),
+        Reservasi.nameRoute: (context) => Reservasi(),
       },
+      // onGenerateRoute: ,
     );
   }
 }
