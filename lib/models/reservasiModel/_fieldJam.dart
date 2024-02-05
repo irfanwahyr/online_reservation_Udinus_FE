@@ -36,7 +36,7 @@ class _FieldJamState extends State<FieldJam> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MediaQuery.of(context).size.width >= 450
+            MediaQuery.of(context).size.width >= 440
                 ? Container(
                     width: 195,
                     height: 50,
@@ -67,7 +67,7 @@ class _FieldJamState extends State<FieldJam> {
                     ),
                   ),
             const SizedBox(width: 10),
-            MediaQuery.of(context).size.width >= 450
+            MediaQuery.of(context).size.width >= 440
                 ? Container(
                     width: 195,
                     height: 50,
