@@ -8,12 +8,41 @@ import 'package:kp2024/models/reservasiModel/_fieldTanggal.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/models/reservasiModel/_uploadPDFButton.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AcaraKampus extends StatelessWidget {
+class AcaraKampus extends StatefulWidget {
   static const nameRoute = 'AcaraKampus';
   const AcaraKampus({
     super.key,
   });
+
+  @override
+  State<AcaraKampus> createState() => _AcaraKampusState();
+}
+
+class _AcaraKampusState extends State<AcaraKampus> {
+  String? dataNamaLab;
+  String? dataTanggal;
+  String? dataJam;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? dataNamaLab = prefs.getString('dataNamaLab');
+    String? dataTanggal = prefs.getString('dataTanggal');
+    String? dataJam = prefs.getString('dataJam');
+
+    setState(() {
+      this.dataNamaLab = dataNamaLab;
+      this.dataTanggal = dataTanggal;
+      this.dataJam = dataJam;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,12 +134,11 @@ class AcaraKampus extends StatelessWidget {
               //fungsi disini wer
             },
           ),
-          const FieldContainer(
-              judul: "Ruangan Dipilih",
-              dataDikirim: "A"), //dataDikirim di ganti dari database wer
+          FieldContainer(
+              judul: "Ruangan Dipilih", dataDikirim: dataNamaLab.toString()),
           const SizedBox(height: 10),
           FieldTanggal(
-              judul: "Masukkan Tanggal", tanggalMulai: DateTime(2024, 2, 22))
+              judul: "Masukkan Tanggal", tanggalMulai: dataTanggal.toString()),
         ],
       ),
       const SizedBox(
@@ -138,7 +166,11 @@ class AcaraKampus extends StatelessWidget {
             height: 70,
             width: 400,
             child: Center(
-              child: HoverButtonPrimary(text: "Submit", onPressed: () {Navigator.pushNamed(context, BerhasilSubmit.nameRoute);}),
+              child: HoverButtonPrimary(
+                  text: "Submit",
+                  onPressed: () {
+                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                  }),
             ),
           ),
         ],

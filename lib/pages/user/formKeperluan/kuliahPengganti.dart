@@ -6,10 +6,39 @@ import 'package:kp2024/models/reservasiModel/_fieldJam.dart';
 import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class KuliahPengganti extends StatelessWidget {
+class KuliahPengganti extends StatefulWidget {
   static const nameRoute = 'KuliahPengganti';
   const KuliahPengganti({super.key});
+
+  @override
+  State<KuliahPengganti> createState() => _KuliahPenggantiState();
+}
+
+class _KuliahPenggantiState extends State<KuliahPengganti> {
+  String? dataNamaLab;
+  String? dataTanggal;
+  String? dataJam;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? dataNamaLab = prefs.getString('dataNamaLab');
+    String? dataTanggal = prefs.getString('dataTanggal');
+    String? dataJam = prefs.getString('dataJam');
+
+    setState(() {
+      this.dataNamaLab = dataNamaLab;
+      this.dataTanggal = dataTanggal;
+      this.dataJam = dataJam;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,12 +130,13 @@ class KuliahPengganti extends StatelessWidget {
               //fungsi disini wer
             },
           ),
-          const FieldContainer(judul: "Ruangan Dipilih", dataDikirim: "A"),
+          FieldContainer(
+              judul: "Ruangan Dipilih", dataDikirim: dataNamaLab.toString()),
           const SizedBox(height: 10), //dataDikirim di ganti dari database wer
-          const FieldContainer(
-              judul: "Tanggal Dipilih",
-              dataDikirim:
-                  "01/02/2024"), //dataDikirim di ganti dari database wer
+          FieldContainer(
+            judul: "Tanggal Dipilih",
+            dataDikirim: dataTanggal.toString(),
+          ), //dataDikirim di ganti dari database wer
         ],
       ),
       const SizedBox(

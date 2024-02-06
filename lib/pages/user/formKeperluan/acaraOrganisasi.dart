@@ -8,12 +8,41 @@ import 'package:kp2024/models/reservasiModel/_fieldTanggal.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/models/reservasiModel/_uploadPDFButton.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AcaraOrganisasi extends StatelessWidget {
+class AcaraOrganisasi extends StatefulWidget {
   static const nameRoute = 'AcaraOrganisasi';
   const AcaraOrganisasi({
     super.key,
   });
+
+  @override
+  State<AcaraOrganisasi> createState() => _AcaraOrganisasiState();
+}
+
+class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
+  String? dataNamaLab;
+  String? dataTanggal;
+  String? dataJam;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? dataNamaLab = prefs.getString('dataNamaLab');
+    String? dataTanggal = prefs.getString('dataTanggal');
+    String? dataJam = prefs.getString('dataJam');
+
+    setState(() {
+      this.dataNamaLab = dataNamaLab;
+      this.dataTanggal = dataTanggal;
+      this.dataJam = dataJam;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,12 +134,13 @@ class AcaraOrganisasi extends StatelessWidget {
               //fungsi disini wer
             },
           ),
-          const FieldContainer(
+          FieldContainer(
               judul: "Ruangan Dipilih",
-              dataDikirim: "A"), //dataDikirim di ganti dari database wer
+              dataDikirim: dataNamaLab
+                  .toString()), //dataDikirim di ganti dari database wer
           const SizedBox(height: 10),
           FieldTanggal(
-              judul: "Masukkan Tanggal", tanggalMulai: DateTime(2024, 2, 22))
+              judul: "Masukkan Tanggal", tanggalMulai: dataTanggal.toString())
         ],
       ),
       const SizedBox(
@@ -137,8 +167,12 @@ class AcaraOrganisasi extends StatelessWidget {
           SizedBox(
             height: 70,
             width: 400,
-              child: Center(
-              child: HoverButtonPrimary(text: "Submit", onPressed: () {Navigator.pushNamed(context, BerhasilSubmit.nameRoute);}),
+            child: Center(
+              child: HoverButtonPrimary(
+                  text: "Submit",
+                  onPressed: () {
+                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                  }),
             ),
           ),
         ],

@@ -64,7 +64,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('data', "J");
+                          await prefs.setString('dataNamaLab', "J");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -97,7 +97,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('data', "K");
+                          await prefs.setString('dataNamaLab', "K");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),

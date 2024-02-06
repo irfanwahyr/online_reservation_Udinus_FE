@@ -65,7 +65,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('data', "G");
+                          await prefs.setString('dataNamaLab', "G");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -98,7 +98,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                         onPressed:() async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('data', "H");
+                          await prefs.setString('dataNamaLab', "H");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
