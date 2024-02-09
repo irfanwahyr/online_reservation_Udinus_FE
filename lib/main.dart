@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/admin/daftarLaboratorium.dart';
+import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
+import 'package:kp2024/pages/admin/daftarPengguna.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:kp2024/pages/admin/kontenDaftarMataKuliah/jadwalHari.dart';
 import 'package:kp2024/pages/detailLab/DetailLaboratorium.dart';
 
 import 'package:kp2024/pages/homePage.dart';
@@ -31,10 +35,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      initialRoute: HomePage.nameRoute,
-      // home: HomePageAdmin(),
-      // initialRoute: HomePageAdmin.nameRoute,
+      // home: HomePage(),
+      // initialRoute: HomePage.nameRoute,
+      home: HomePageAdmin(),
+      initialRoute: HomePageAdmin.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),
@@ -49,6 +53,11 @@ class _MyAppState extends State<MyApp> {
         BerhasilSubmit.nameRoute: (context) => BerhasilSubmit(),
         Reservasi.nameRoute: (context) => Reservasi(),
         DetailLaboratorium.nameRoute: (context) => DetailLaboratorium(),
+        HomePageAdmin.nameRoute: (context) => HomePageAdmin(),
+        DaftarPengguna.nameRoute: (context) => DaftarPengguna(),
+        DaftarMataKuliah.nameRoute: (context) => DaftarMataKuliah(),
+        DaftarLaboratorium.nameRoute: (context) => DaftarLaboratorium(),
+        JadwalHari.nameRoute: (context) => JadwalHari(),
       },
       // onGenerateRoute: ,
     );

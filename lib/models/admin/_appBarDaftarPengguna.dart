@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
 
-class AppBarAdmin extends StatefulWidget implements PreferredSizeWidget {
+class AppBarDaftarPengguna extends StatefulWidget
+    implements PreferredSizeWidget {
   final String namaAdmin;
   final String imageAsset;
   final TabController? tabController;
 
-  const AppBarAdmin({
+  const AppBarDaftarPengguna({
     required this.namaAdmin,
     required this.imageAsset,
     this.tabController,
@@ -15,13 +16,13 @@ class AppBarAdmin extends StatefulWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   @override
-  _AppBarAdminState createState() => _AppBarAdminState();
+  _AppBarDaftarPenggunaState createState() => _AppBarDaftarPenggunaState();
 
   @override
   Size get preferredSize => Size.fromHeight(100);
 }
 
-class _AppBarAdminState extends State<AppBarAdmin>
+class _AppBarDaftarPenggunaState extends State<AppBarDaftarPengguna>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -78,41 +79,19 @@ class _AppBarAdminState extends State<AppBarAdmin>
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Text(
-                "Kuliah Pengganti",
+                "Daftar Pengguna",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Acara Organisasi",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Acara Kampus",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: 20,
                   color: Colors.white,
                 ),
               ),
             ),
           ],
-          indicator: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(5),
-          ),
+          // indicator: BoxDecoration(
+          //   color: Colors.grey,
+          //   borderRadius: BorderRadius.circular(5),
+          // ),
         ),
       ),
     );
