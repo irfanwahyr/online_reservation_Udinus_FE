@@ -19,7 +19,8 @@ class KuliahPengganti extends StatefulWidget {
 class _KuliahPenggantiState extends State<KuliahPengganti> {
   String? dataNamaLab;
   String? dataTanggal;
-  String? dataJam;
+  String? dataJamMulai;
+  String? dataJamSelesai;
 
   @override
   void initState() {
@@ -31,12 +32,14 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? dataNamaLab = prefs.getString('dataNamaLab');
     String? dataTanggal = prefs.getString('dataTanggal');
-    String? dataJam = prefs.getString('dataJam');
+    String? dataJamMulai = prefs.getString('dataJamMulai');
+    String? dataJamSelesai = prefs.getString('dataJamSelesai');
 
     setState(() {
       this.dataNamaLab = dataNamaLab;
       this.dataTanggal = dataTanggal;
-      this.dataJam = dataJam;
+      this.dataJamMulai = dataJamMulai;
+      this.dataJamSelesai = dataJamSelesai;
     });
   }
 
@@ -149,8 +152,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
         children: [
           FieldJam(
             judul: "Jam Dipilih",
-            mulai: "07.00",
-            selesai: "07.40",
+            mulai: dataJamMulai.toString(),
+            selesai: dataJamSelesai.toString(),
           ),
           const SizedBox(height: 15),
           const FieldKeterangan(

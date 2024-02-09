@@ -27,6 +27,23 @@ class _ReservasiState extends State<Reservasi> {
   ListReservasi listReservasi = ListReservasi();
   String? dataLab;
   String? dataTanggal;
+  String? dataJam;
+  List<String> Status = [
+    "1",
+    "0",
+    "0",
+    "0",
+    "1",
+    "2",
+    "1",
+    "1",
+    "3",
+    "0",
+    "3",
+    "1",
+    "2",  
+    "0",
+  ];
 
   @override
   void initState() {
@@ -57,73 +74,68 @@ class _ReservasiState extends State<Reservasi> {
       });
     }
   }
-
   List<Widget> getPesanButtons() {
-    return [
-      const ButtonDipakai(),
-      const ButtonDipakai(),
-      const ButtonDipakai(),
-      ButtonReservasi(
-        onPressed: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('dataNamaLab', dataLab.toString());
-          String dataTanggal = _selectedDate != null
-              ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
-              : DateFormat('dd-MM-yyyy').format(today);
-          await prefs.setString('dataTanggal', dataTanggal.toString());
-          Navigator.pushNamed(context, Keperluan.nameRoute);
-        },
-      ),
-      ButtonReservasi(
-        onPressed: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('dataNamaLab', dataLab.toString());
-          String dataTanggal = _selectedDate != null
-              ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
-              : DateFormat('dd-MM-yyyy').format(today);
-          await prefs.setString('dataTanggal', dataTanggal.toString());
-          Navigator.pushNamed(context, Keperluan.nameRoute);
-        },
-      ),
-      const ButtonDipakai(),
-      const ButtonDipakai(),
-      const ButtonDipakai(),
-      const ButtonDipakai(),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const ButtonDipesan(),
-          const SizedBox(width: 5),
-          ButtonBatalkan(
-            onPressed: () {},
-          ),
-        ],
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const ButtonDipesan(),
-          const SizedBox(width: 5),
-          ButtonBatalkan(
-            onPressed: () {},
-          ),
-        ],
-      ),
-      ButtonDiproses(),
-      ButtonDiproses(),
-      ButtonReservasi(
-        onPressed: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('dataNamaLab', dataLab.toString());
-          String dataTanggal = _selectedDate != null
-              ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
-              : DateFormat('dd-MM-yyyy').format(today);
-          await prefs.setString('dataTanggal', dataTanggal.toString());
-          Navigator.pushNamed(context, Keperluan.nameRoute);
-        },
-      ),
-    ];
+    List<Widget> buttons = [];
+    
+    for (int i = 0; i < Status.length; i++) { 
+      String status = Status[i];
+      
+      // Tentukan tindakan berdasarkan nilai status
+      switch (status) {
+        case "0":
+          buttons.add(
+            const ButtonDipakai(),
+          );
+          break;
+        case "1":
+          buttons.add(
+            ButtonReservasi(
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('dataNamaLab', dataLab.toString());
+                String dataTanggal = _selectedDate != null
+                    ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
+                    : DateFormat('dd-MM-yyyy').format(today);
+                await prefs.setString('dataTanggal', dataTanggal.toString());
+                String dataJamMulai = listReservasi.Waktu_mulai[i].toString();
+                String dataJamSelesai = listReservasi.Waktu_selesai[i].toString();
+                await prefs.setString('dataJamMulai', dataJamMulai.toString());
+                await prefs.setString('dataJamSelesai', dataJamSelesai.toString());
+
+
+                Navigator.pushNamed(context, Keperluan.nameRoute);
+              },
+            ),
+          );
+          break;
+        case "2":
+          buttons.add(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const ButtonDipesan(),
+                const SizedBox(width: 5),
+                ButtonBatalkan(
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          );
+          break;
+        case "3":
+          buttons.add(
+            const ButtonDiproses(),
+          );
+          break;
+        default:
+          // Tindakan default jika diperlukan
+          break;
+      }
+    }
+    
+    return buttons;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -283,8 +295,8 @@ class _ReservasiState extends State<Reservasi> {
                                   ),
                                 ),
                               ],
-                              rows: listReservasi.Waktu.map((waktu) {
-                                int index = listReservasi.Waktu.indexOf(waktu);
+                              rows: List.generate(listReservasi.Waktu_mulai.length, (index) {
+                                String waktuText = "${listReservasi.Waktu_mulai[index]} - ${listReservasi.Waktu_selesai[index]}";
                                 return DataRow(
                                   cells: <DataCell>[
                                     DataCell(
@@ -292,7 +304,7 @@ class _ReservasiState extends State<Reservasi> {
                                         child: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Text(
-                                            waktu,
+                                            waktuText,
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -316,7 +328,8 @@ class _ReservasiState extends State<Reservasi> {
                                     ),
                                   ],
                                 );
-                              }).toList(),
+                              }),
+
                             ),
                           ),
                         ],
