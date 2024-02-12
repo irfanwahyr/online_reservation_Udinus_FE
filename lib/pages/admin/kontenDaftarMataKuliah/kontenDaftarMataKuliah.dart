@@ -6,8 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class KontenDaftarMataKuliah extends StatefulWidget {
   final String namaLab;
-  const KontenDaftarMataKuliah({Key? key, required this.namaLab})
-      : super(key: key);
+  const KontenDaftarMataKuliah({Key? key, required this.namaLab}) : super(key: key);
 
   @override
   State<KontenDaftarMataKuliah> createState() => _KontenDaftarMataKuliahState();
@@ -23,105 +22,84 @@ class _KontenDaftarMataKuliahState extends State<KontenDaftarMataKuliah> {
         children: [
           Heading1(
               text: "Jadwal Matkul Lab ${widget.namaLab}", color: Colors.black),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CardHari(
-                imagePath: "images/gambar.jpg",
-                text: "Senin",
-                onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('namaLabAdmin', "${widget.namaLab}");
-                  await prefs.setString('hariAdmin', "Senin");
-
-                  Navigator.pushNamed(
-                    context,
-                    JadwalHari.nameRoute,
-                  );
-                },
-              ),
-              CardHari(
-                imagePath: "images/gambar.jpg",
-                text: "Selasa",
-                onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('namaLabAdmin', "${widget.namaLab}");
-                  await prefs.setString('hariAdmin', "Selasa");
-                  Navigator.pushNamed(
-                    context,
-                    JadwalHari.nameRoute,
-                  );
-                },
-              ),
-              CardHari(
-                imagePath: "images/gambar.jpg",
-                text: "Rabu",
-                onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('namaLabAdmin', "${widget.namaLab}");
-                  await prefs.setString('hariAdmin', "Rabu");
-                  Navigator.pushNamed(
-                    context,
-                    JadwalHari.nameRoute,
-                  );
-                },
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              if (constraints.maxWidth > 600) {
+                return _buildLargeScreenLayout();
+              }
+              else if (constraints.maxWidth < 400) {
+                return _buildVerySmallScreenLayout();
+              } 
+              
+              else {
+                return _buildSmallScreenLayout();
+              }
+            },
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CardHari(
-                imagePath: "images/gambar.jpg",
-                text: "Kamis",
-                onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('namaLabAdmin', "${widget.namaLab}");
-                  await prefs.setString('hariAdmin', "Kamis");
-                  Navigator.pushNamed(
-                    context,
-                    JadwalHari.nameRoute,
-                  );
-                },
-              ),
-              CardHari(
-                imagePath: "images/gambar.jpg",
-                text: "Jumat",
-                onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('namaLabAdmin', "${widget.namaLab}");
-                  await prefs.setString('hariAdmin', "Jumat");
-                  Navigator.pushNamed(
-                    context,
-                    JadwalHari.nameRoute,
-                  );
-                },
-              ),
-              CardHari(
-                imagePath: "images/gambar.jpg",
-                text: "Sabtu",
-                onTap: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('namaLabAdmin', "${widget.namaLab}");
-                  await prefs.setString('hariAdmin', "Sabtu");
-                  Navigator.pushNamed(
-                    context,
-                    JadwalHari.nameRoute,
-                  );
-                },
-              ),
-            ],
-          )
         ],
       ),
     );
+  }
+
+  Widget _buildVerySmallScreenLayout() {
+  final List<Widget> dayCards = _buildDayCards();
+
+  return Wrap(
+    alignment: WrapAlignment.spaceEvenly,
+    direction: Axis.horizontal,
+    children: dayCards.map((card) {
+      return Container(
+        margin: EdgeInsets.all(4),
+        height: 150, // Sesuaikan margin sesuai kebutuhan
+        width: 150, // Sesuaikan lebar card sesuai kebutuhan
+        child: card,
+      );
+    }).toList(),
+  );
+}
+
+  Widget _buildSmallScreenLayout() {
+    return Wrap(
+      alignment: WrapAlignment.spaceEvenly,
+      direction: Axis.horizontal,
+      children: [
+        ..._buildDayCards(),
+      ],
+    );
+  }
+
+  Widget _buildLargeScreenLayout() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildDayCards().sublist(0, 3),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildDayCards().sublist(3),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildDayCards() {
+    final List<String> days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+    return days.map((day) {
+      return CardHari(
+        imagePath: "images/gambar.jpg",
+        text: day,
+        onTap: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('namaLabAdmin', "${widget.namaLab}");
+          await prefs.setString('hariAdmin', day);
+          Navigator.pushNamed(
+            context,
+            JadwalHari.nameRoute,
+          );
+        },
+      );
+    }).toList();
   }
 }

@@ -222,65 +222,78 @@ class _JadwalHariState extends State<JadwalHari> {
   }
 
   List<DataRow> _generateDummyData() {
-    List<DataRow> dummyData = [];
+  List<DataRow> dummyData = [];
 
-    for (int i = 0; i < WaktuMulai.length; i++) {
-      dummyData.add(
-        DataRow(
-          cells: <DataCell>[
-            DataCell(
-              Text(
+  for (int i = 0; i < WaktuMulai.length; i++) {
+    dummyData.add(
+      DataRow(
+        cells: <DataCell>[
+          DataCell(
+            Center(
+              child: Text(
                 'Laboratorium $namaLabAdmin $hariAdmin',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 WaktuMulai[i],
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 WaktuSelesai[i],
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'Nama Matkul $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'Kode Kelas $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'Dosen Pengampu $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            const DataCell(
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ButtonEdit(),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  ButtonDelete(),
-                ],
-              ),
+          ),
+          const DataCell(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ButtonEdit(),
+                SizedBox(
+                  width: 5,
+                ),
+                ButtonDelete(),
+              ],
             ),
-          ],
-        ),
-      );
-    }
-
-    return dummyData;
+          ),
+        ],
+      ),
+    );
   }
+
+  return dummyData;
+}
+
 }
