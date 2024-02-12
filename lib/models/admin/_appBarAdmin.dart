@@ -73,47 +73,51 @@ class _AppBarAdminState extends State<AppBarAdmin>
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 1, 24, 50),
         bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "Kuliah Pengganti",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
+        controller: _tabController,
+        tabs: const [
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Kuliah Pengganti",
+              textAlign: TextAlign.center, // Menjadikan teks berada di tengah
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: Colors.white,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Acara Organisasi",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Acara Kampus",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-          indicator: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(5),
           ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Acara Organisasi",
+              textAlign: TextAlign.center, // Menjadikan teks berada di tengah
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Acara Kampus",
+              textAlign: TextAlign.center, // Menjadikan teks berada di tengah
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+        indicator: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.circular(5),
         ),
+        labelPadding: EdgeInsets.symmetric(horizontal: 8.0), // Menyesuaikan padding label
+      ),
       ),
     );
   }

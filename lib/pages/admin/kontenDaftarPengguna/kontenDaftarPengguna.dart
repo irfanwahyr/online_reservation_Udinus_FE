@@ -43,59 +43,75 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                         scrollDirection: Axis.horizontal,
                         child: Center(
                           child: DataTable(
+                            headingRowHeight: 50,
                             columns: const <DataColumn>[
                               DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    "No",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "No",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 13,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                               DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    "Nama Lengkap",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "Nama Lengkap",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 13,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                               DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    "Email",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "Email",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 13,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                               DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    "Password",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "Password",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 13,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                               DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    "Opsi",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                label: Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "Action",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 13,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
 
-class AppBarDaftarMataKuliah extends StatefulWidget
-    implements PreferredSizeWidget {
+class AppBarDaftarMataKuliah extends StatefulWidget implements PreferredSizeWidget {
   final String namaAdmin;
   final String imageAsset;
   final TabController? tabController;
@@ -22,15 +21,23 @@ class AppBarDaftarMataKuliah extends StatefulWidget
   Size get preferredSize => Size.fromHeight(100);
 }
 
-class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah>
-    with SingleTickerProviderStateMixin {
+class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  int _activeIndex = 0; // Menyimpan indeks tombol yang aktif
+
+  final List<String> listlab = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
 
   @override
   void initState() {
     super.initState();
-    _tabController =
-        widget.tabController ?? TabController(length: 3, vsync: this);
+    _tabController = widget.tabController ?? TabController(length: 3, vsync: this);
+  }
+
+  void _changeTab(int index) {
+    setState(() {
+      _activeIndex = index; // Mengatur tombol yang aktif
+    });
+    _tabController.animateTo(index);
   }
 
   @override
@@ -47,11 +54,9 @@ class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  // Tambahkan IconButton untuk membuka drawer
-                  icon: Icon(Icons.menu), // Icon menu sebagai indikator drawer
+                  icon: Icon(Icons.menu),
                   onPressed: () {
-                    Scaffold.of(context)
-                        .openDrawer(); // Buka drawer saat tombol ditekan
+                    Scaffold.of(context).openDrawer();
                   },
                 ),
                 const Heading2(text: "Selamat Datang", color: Colors.white),
@@ -73,156 +78,45 @@ class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah>
         ),
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 1, 24, 50),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "A",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                SizedBox(width: 10), // Padding awal
+                for (int i = 0; i < listlab.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextButton(
+                      onPressed: () {
+                        _changeTab(i);
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0), // Atur sudut tombol di sini
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          i == _activeIndex
+                              ? Colors.grey // Warna tombol saat aktif
+                              : Colors.transparent, // Warna tombol saat tidak aktif
+                        ),
+                      ),
+                      child: Text(
+                        listlab[i],
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                SizedBox(width: 10), // Padding akhir
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "B",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "C",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "D",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "E",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "G",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "H",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "I",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "J",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "K",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "L",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "M",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "N",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-          indicator: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(5),
           ),
         ),
       ),
