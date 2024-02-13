@@ -8,12 +8,13 @@ class ButtonDelete extends StatelessWidget {
     return ElevatedButton.icon(
       onPressed: () {},
       icon: Icon(
-        Icons.edit,
+        Icons.delete,
         color: Colors.white,
+        size: 18,
       ),
       label: Text(
         'Hapus',
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(fontSize: 12, color: Colors.white),
         selectionColor: Colors.white,
       ),
       style: ElevatedButton.styleFrom(

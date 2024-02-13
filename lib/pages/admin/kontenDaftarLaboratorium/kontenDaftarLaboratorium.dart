@@ -198,74 +198,91 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
   }
 
   List<DataRow> _generateDummyData() {
-    List<DataRow> dummyData = [];
+  List<DataRow> dummyData = [];
 
-    for (int i = 0; i < Laboratorium.length; i++) {
-      dummyData.add(
-        DataRow(
-          cells: <DataCell>[
-            DataCell(
-              Text(
+  for (int i = 0; i < Laboratorium.length; i++) {
+    dummyData.add(
+      DataRow(
+        cells: <DataCell>[
+          DataCell(
+            Center(
+              child: Text(
                 _no.toString(),
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 "Laboratorium ${Laboratorium[i]}",
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'Jumlah PC $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'RAM $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'Memori $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            DataCell(
-              Text(
+          ),
+          DataCell(
+            Center(
+              child: Text(
                 'VGA $i',
                 style: TextStyle(fontSize: 10),
               ),
             ),
-            for (var j = 0; j < Software.length; j++)
-              DataCell(
-                Text(
+          ),
+          for (var j = 0; j < Software.length; j++)
+            DataCell(
+              Center(
+                child: Text(
                   'Software ${j + 1}',
                   style: TextStyle(fontSize: 10),
                 ),
               ),
-            DataCell(
-              Row(
+            ),
+          const DataCell(
+            Center(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ButtonEdit(),
-                  const SizedBox(
+                  SizedBox(
                     width: 5,
                   ),
                   ButtonDelete(),
                 ],
               ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
 
-      _no++;
-    }
-
-    return dummyData;
+    _no++;
   }
+
+  return dummyData;
+}
+
 }

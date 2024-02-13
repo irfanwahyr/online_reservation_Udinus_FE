@@ -12,10 +12,11 @@ class ButtonEdit extends StatelessWidget {
       icon: Icon(
         Icons.edit,
         color: Colors.white,
+        size: 18,
       ),
       label: Text(
         'Edit',
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(fontSize: 12, color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.amber[700],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
-import 'package:kp2024/models/admin/_buttonFile.dart';
+import 'package:kp2024/models/admin/_buttonProposal.dart';
+import 'package:kp2024/models/admin/_buttonSuratPinjam.dart';
 
 class AcaraOrganisasiAdmin extends StatefulWidget {
   const AcaraOrganisasiAdmin({Key? key}) : super(key: key);
@@ -40,6 +41,7 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                   scrollDirection: Axis.horizontal,
                   child: Center(
                     child: DataTable(
+                      
                       columns: const <DataColumn>[
                         DataColumn(
                           label: Expanded(
@@ -177,22 +179,12 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                           label: Expanded(
                             child: Center(
                               child: Text(
-                                "Proposal",
+                                "Surat",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 10),
-                              ),
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                            child: Center(
-                              child: Text(
-                                "Surat Pinjam",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 10),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
                               ),
                             ),
                           ),
@@ -273,8 +265,20 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
               'Keterangan $i',
               style: TextStyle(fontSize: 10),
             )),
-            DataCell(ButtonFile()),
-            DataCell(ButtonFile()),
+            DataCell(Row(
+              children: [
+                Tooltip(
+                  message: 'Proposal',
+                  child: ButtonProposal(),
+                ),
+                Text(" | "),
+                Tooltip(
+                  message: 'Surat pinjam',
+                  child: ButtonSuratPinjam(),
+                ),
+              ],
+            )),
+
             DataCell(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
