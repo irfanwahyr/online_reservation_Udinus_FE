@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
+import 'package:kp2024/models/admin/_buttonEditKecil.dart';
 import 'package:kp2024/models/admin/_buttonProposal.dart';
 import 'package:kp2024/models/admin/_buttonSuratPinjam.dart';
+import 'package:kp2024/pages/admin/editPage/editAcaraKampus.dart';
 
 class AcaraKampusAdmin extends StatefulWidget {
   const AcaraKampusAdmin({Key? key}) : super(key: key);
@@ -186,7 +188,6 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
                             ),
                           ),
                         ),
-                        
                         DataColumn(
                           label: Expanded(
                             child: Center(
@@ -280,10 +281,25 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonDenied(),
-                SizedBox(
-                  width: 5,
-                ),
+                SizedBox(width: 5),
                 ButtonAcc(),
+                SizedBox(width: 5),
+                ButtonEditKecil(
+                  onTap: () {
+                    _showEditFormPopup(
+                      'Fakultas $i',
+                      'Penanggung jawab $i',
+                      'No Whatsapp $i',
+                      'Nama Acara $i',
+                      'Ruang $i',
+                      'Tanggal Mulai $i',
+                      'Tanggal Selesai $i',
+                      'Jam Mulai $i',
+                      'Jam Selesai $i',
+                      'Keterangan $i',
+                    );
+                  },
+                ),
               ],
             )),
           ],
@@ -294,5 +310,36 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
     }
 
     return dummyData;
+  }
+
+  void _showEditFormPopup(
+    String fakultas,
+    String penanggungJawab,
+    String noWhatsapp,
+    String namaAcara,
+    String ruang,
+    String tanggalMulai,
+    String tanggalSelesai,
+    String jamMulai,
+    String jamSelesai,
+    String keterangan,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return EditAcaraKampus(
+          fakultas: fakultas,
+          penanggungJawab: penanggungJawab,
+          noWhatsapp: noWhatsapp,
+          namaAcara: namaAcara,
+          ruang: ruang,
+          tanggalMulai: tanggalMulai,
+          tanggalSelesai: tanggalSelesai,
+          jamMulai: jamMulai,
+          jamSelesai: jamSelesai,
+          keterangan: keterangan,
+        );
+      },
+    );
   }
 }

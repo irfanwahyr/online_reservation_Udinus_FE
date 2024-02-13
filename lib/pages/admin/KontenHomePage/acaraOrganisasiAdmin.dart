@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
+import 'package:kp2024/models/admin/_buttonEditKecil.dart';
 import 'package:kp2024/models/admin/_buttonProposal.dart';
 import 'package:kp2024/models/admin/_buttonSuratPinjam.dart';
+import 'package:kp2024/pages/admin/editPage/editAcaraOrganasisasi.dart';
 
 class AcaraOrganisasiAdmin extends StatefulWidget {
   const AcaraOrganisasiAdmin({Key? key}) : super(key: key);
@@ -41,7 +43,6 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                   scrollDirection: Axis.horizontal,
                   child: Center(
                     child: DataTable(
-                      
                       columns: const <DataColumn>[
                         DataColumn(
                           label: Expanded(
@@ -278,15 +279,29 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                 ),
               ],
             )),
-
             DataCell(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonDenied(),
-                SizedBox(
-                  width: 5,
-                ),
+                SizedBox(width: 5),
                 ButtonAcc(),
+                SizedBox(width: 5),
+                ButtonEditKecil(
+                  onTap: () {
+                    _showEditFormPopup(
+                      'Organisasi $i',
+                      'Penanggung jawab $i',
+                      'No Whatsapp $i',
+                      'Nama Acara $i',
+                      'Ruang $i',
+                      'Tanggal Mulai $i',
+                      'Tanggal Selesai $i',
+                      'Jam Mulai $i',
+                      'Jam Selesai $i',
+                      'Keterangan $i',
+                    );
+                  },
+                ),
               ],
             )),
           ],
@@ -297,5 +312,36 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
     }
 
     return dummyData;
+  }
+
+  void _showEditFormPopup(
+    String organisasi,
+    String penanggungJawab,
+    String noWhatsapp,
+    String namaAcara,
+    String ruang,
+    String tanggalMulai,
+    String tanggalSelesai,
+    String jamMulai,
+    String jamSelesai,
+    String keterangan,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return EditAcaraOrganisasi(
+          organisasi: organisasi,
+          penanggungJawab: penanggungJawab,
+          noWhatsapp: noWhatsapp,
+          namaAcara: namaAcara,
+          ruang: ruang,
+          tanggalMulai: tanggalMulai,
+          tanggalSelesai: tanggalSelesai,
+          jamMulai: jamMulai,
+          jamSelesai: jamSelesai,
+          keterangan: keterangan,
+        );
+      },
+    );
   }
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ButtonEdit extends StatelessWidget {
-  const ButtonEdit({super.key});
+  final VoidCallback? onPressed;
+  const ButtonEdit({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: () {
-        // Tambahkan aksi yang ingin dilakukan ketika tombol ditekan
-      },
+      onPressed: onPressed,
       icon: Icon(
         Icons.edit,
         color: Colors.white,

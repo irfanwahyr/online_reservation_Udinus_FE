@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
+import 'package:kp2024/models/admin/_buttonEditKecil.dart';
+import 'package:kp2024/pages/admin/editPage/editKuliahPengganti.dart';
 
 class KuliahPenggantiAdmin extends StatefulWidget {
   const KuliahPenggantiAdmin({Key? key}) : super(key: key);
@@ -213,10 +215,24 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ButtonDenied(),
-              SizedBox(
-                width: 5,
-              ),
+              SizedBox(width: 5),
               ButtonAcc(),
+              SizedBox(width: 5),
+              ButtonEditKecil(
+                onTap: () {
+                  _showEditFormPopup(
+                    'Dosen $i',
+                    'Mata Kuliah $i',
+                    'Kode $i',
+                    'Ruang $i',
+                    'No Whatsapp $i',
+                    'Tanggal Pinjam $i',
+                    'Jam Mulai $i',
+                    'Jam Selesai $i',
+                    'Keterangan $i',
+                  );
+                },
+              ),
             ],
           )),
         ],
@@ -226,5 +242,34 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
     }
 
     return dummyData;
+  }
+
+  void _showEditFormPopup(
+    String dosen,
+    String mataKuliah,
+    String kode,
+    String ruang,
+    String noWhatsapp,
+    String tanggalPinjam,
+    String jamMulai,
+    String jamSelesai,
+    String keterangan,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return EditKuliahPengganti(
+          dosen: dosen,
+          mataKuliah: mataKuliah,
+          kode: kode,
+          ruang: ruang,
+          noWhatsapp: noWhatsapp,
+          tanggalPinjam: tanggalPinjam,
+          jamMulai: jamMulai,
+          jamSelesai: jamSelesai,
+          keterangan: keterangan,
+        );
+      },
+    );
   }
 }

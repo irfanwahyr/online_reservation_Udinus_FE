@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/admin/_buttonDelete.dart';
 import 'package:kp2024/models/admin/_buttonEdit.dart';
+import 'package:kp2024/pages/admin/editPage/addDataPengguna.dart';
+import 'package:kp2024/pages/admin/editPage/editDaftarPengguna.dart';
 
 class KontenDaftarPengguna extends StatefulWidget {
   static const nameRoute = "/KontenDaftarPengguna";
@@ -133,7 +135,12 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
           child: FloatingActionButton(
             backgroundColor: Color.fromARGB(161, 71, 203, 75),
             onPressed: () {
-              //ntar kasi fungsi buat add data user langsung dari admin
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AddDataPengguna();
+                },
+              );
             },
             child: Icon(Icons.add),
           ),
@@ -156,7 +163,15 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
             DataCell(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ButtonEdit(),
+                ButtonEdit(
+                  onPressed: () {
+                    _showEditFormPopup(
+                      'Nama Pengguna $i',
+                      'Email$i@gmail.com',
+                      'Password $i',
+                    );
+                  },
+                ),
                 SizedBox(
                   width: 5,
                 ),
@@ -171,5 +186,22 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
     }
 
     return dummyData;
+  }
+
+  void _showEditFormPopup(
+    String namaPengguna,
+    String email,
+    String password,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return EditDaftarPengguna(
+          namaPengguna: namaPengguna,
+          email: email,
+          password: password,
+        );
+      },
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/admin/_buttonDelete.dart';
 import 'package:kp2024/models/admin/_buttonEdit.dart';
+import 'package:kp2024/pages/admin/editPage/editDaftarMataKuliah.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JadwalHari extends StatefulWidget {
@@ -222,78 +223,114 @@ class _JadwalHariState extends State<JadwalHari> {
   }
 
   List<DataRow> _generateDummyData() {
-  List<DataRow> dummyData = [];
+    List<DataRow> dummyData = [];
 
-  for (int i = 0; i < WaktuMulai.length; i++) {
-    dummyData.add(
-      DataRow(
-        cells: <DataCell>[
-          DataCell(
-            Center(
-              child: Text(
-                'Laboratorium $namaLabAdmin $hariAdmin',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-          DataCell(
-            Center(
-              child: Text(
-                WaktuMulai[i],
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-          DataCell(
-            Center(
-              child: Text(
-                WaktuSelesai[i],
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-          DataCell(
-            Center(
-              child: Text(
-                'Nama Matkul $i',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-          DataCell(
-            Center(
-              child: Text(
-                'Kode Kelas $i',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-          DataCell(
-            Center(
-              child: Text(
-                'Dosen Pengampu $i',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-          const DataCell(
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonEdit(),
-                SizedBox(
-                  width: 5,
+    for (int i = 0; i < WaktuMulai.length; i++) {
+      dummyData.add(
+        DataRow(
+          cells: <DataCell>[
+            DataCell(
+              Center(
+                child: Text(
+                  'Laboratorium $namaLabAdmin $hariAdmin',
+                  style: TextStyle(fontSize: 10),
                 ),
-                ButtonDelete(),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+            DataCell(
+              Center(
+                child: Text(
+                  WaktuMulai[i],
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Center(
+                child: Text(
+                  WaktuSelesai[i],
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Center(
+                child: Text(
+                  'Nama Matkul $i',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Center(
+                child: Text(
+                  'Kode Kelas $i',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Center(
+                child: Text(
+                  'Dosen Pengampu $i',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ButtonEdit(
+                    onPressed: () {
+                      _showEditFormPopup(
+                        '$hariAdmin',
+                        '$namaLabAdmin',
+                        WaktuMulai[i],
+                        WaktuSelesai[i],
+                        'Nama Matkul $i',
+                        'Kode Kelas $i',
+                        'Dosen Pengampu $i',
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  ButtonDelete(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return dummyData;
   }
 
-  return dummyData;
-}
-
+  void _showEditFormPopup(
+    String hari,
+    String namaLab,
+    String waktuMulai,
+    String waktuSelesai,
+    String namaMatkul,
+    String kodeKelas,
+    String dosenPengampu,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return EditDaftarMataKuliah(
+          hari: hari,
+          namaLab: namaLab,
+          waktuMulai: waktuMulai,
+          waktuSelesai: waktuSelesai,
+          namaMatkul: namaMatkul,
+          kodeKelas: kodeKelas,
+          dosenPengampu: dosenPengampu,
+        );
+      },
+    );
+  }
 }
