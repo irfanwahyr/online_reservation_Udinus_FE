@@ -10,7 +10,7 @@ import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LabStatistik extends StatefulWidget {
-  static const nameRoute = 'LogStatistik';
+  static const nameRoute = 'LabStatistik';
   const LabStatistik({Key? key}) : super(key: key);
 
   @override
@@ -46,7 +46,7 @@ class _LabStatistikState extends State<LabStatistik> {
                     children: [
                       CardLab(
                           imageAsset: "images/gambar.jpg",
-                          nama: "LAB C",
+                          nama: "LAB G",
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
@@ -54,7 +54,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "C");
+                          await prefs.setString('dataNamaLab', "G");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -65,7 +65,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "C");
+                          await prefs.setString('dataNamaLab', "G");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -80,7 +80,7 @@ class _LabStatistikState extends State<LabStatistik> {
                     children: [
                       CardLab(
                           imageAsset: "images/gambar.jpg",
-                          nama: "LAB E",
+                          nama: "LAB H",
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
@@ -88,7 +88,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "E");
+                          await prefs.setString('dataNamaLab', "H");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -99,7 +99,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "E");
+                          await prefs.setString('dataNamaLab', "H");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -134,80 +134,6 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "L");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CardLab(
-                          imageAsset: "images/gambar.jpg",
-                          nama: "LAB M",
-                          onTap: () {}),
-                      const SizedBox(height: 5),
-                      ButtonSecondary(
-                        text: "detail",
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "M");
-                          Navigator.pushNamed(
-                              context, DetailLaboratorium.nameRoute);
-                        },
-                      ),
-                      const SizedBox(height: 5),
-                      HoverButtonPrimary(
-                        text: "Reservasi",
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "M");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CardLab(
-                          imageAsset: "images/gambar.jpg",
-                          nama: "LAB N",
-                          onTap: () {}),
-                      const SizedBox(height: 5),
-                      ButtonSecondary(
-                        text: "detail",
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "N");
-                          Navigator.pushNamed(
-                              context, DetailLaboratorium.nameRoute);
-                        },
-                      ),
-                      const SizedBox(height: 5),
-                      HoverButtonPrimary(
-                        text: "Reservasi",
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "N");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),

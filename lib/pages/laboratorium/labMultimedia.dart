@@ -39,7 +39,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -108,18 +108,50 @@ class _LabMultimediaState extends State<LabMultimedia> {
                     children: [
                       CardLab(
                           imageAsset: "images/gambar.jpg",
+                          nama: "LAB C",
+                          onTap: () {}),
+                      const SizedBox(height: 5),
+                      ButtonSecondary(
+                        text: "detail",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "C");
+                          Navigator.pushNamed(
+                              context, DetailLaboratorium.nameRoute);
+                        },
+                      ),
+                      const SizedBox(height: 5),
+                      HoverButtonPrimary(
+                        text: "Reservasi",
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString('dataNamaLab', "C");
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CardLab(
+                          imageAsset: "images/gambar.jpg",
                           nama: "LAB D",
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed:  () async {
+                        text: "detail",
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "D");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
-                        },),
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -142,14 +174,15 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed:  () async {
+                        text: "detail",
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "I");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
-                        },),
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -166,7 +199,6 @@ class _LabMultimediaState extends State<LabMultimedia> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
             Footer().buildContainer(),
           ],
         ),

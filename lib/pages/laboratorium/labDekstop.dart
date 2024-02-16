@@ -50,14 +50,15 @@ class _LabDekstopState extends State<LabDekstop> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed:  () async {
+                        text: "detail",
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "J");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
-                        },),
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
@@ -83,14 +84,15 @@ class _LabDekstopState extends State<LabDekstop> {
                           onTap: () {}),
                       const SizedBox(height: 5),
                       ButtonSecondary(
-                          text: "detail",
-                          onPressed:  () async {
+                        text: "detail",
+                        onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "K");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
-                        },),
+                        },
+                      ),
                       const SizedBox(height: 5),
                       HoverButtonPrimary(
                         text: "Reservasi",
