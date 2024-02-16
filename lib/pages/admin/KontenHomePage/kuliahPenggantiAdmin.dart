@@ -13,12 +13,13 @@ class KuliahPenggantiAdmin extends StatefulWidget {
 
 class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
   int _no = 1; // Nomor yang akan diincrement otomatis
+  final ScrollController controller = ScrollController();
+  final ScrollController controller_2 = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.73,
         width: MediaQuery.of(context).size.width * 0.95,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -26,172 +27,180 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Center(
-              child: DataTable(
-                columns: const <DataColumn>[
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "No",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+          child: Scrollbar(
+            controller: controller_2,
+            thumbVisibility: true,
+            child: SingleChildScrollView(
+              controller: controller_2,
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(
+                controller: controller,
+                child: Center(
+                  child: DataTable(
+                    columns: const <DataColumn>[
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "No",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Nama Dosen",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Nama Dosen",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Mata Kuliah",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Mata Kuliah",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Kode",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Kode",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Ruang",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Ruang",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "No Whatsapp",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "No Whatsapp",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Tanggal Pinjam",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Tanggal Pinjam",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Jam Mulai",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Jam Mulai",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Jam Selesai",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Jam Selesai",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Keterangan",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Keterangan",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  DataColumn(
-                    label: Expanded(
-                      child: Center(
-                        child: Text(
-                          "Opsi",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Opsi",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
+                    rows: _generateDummyData(),
                   ),
-                ],
-                rows: _generateDummyData(),
+                  ),
+                ),
               ),
             ),
-          ),
         ),
-      ),
+      )
     );
   }
 

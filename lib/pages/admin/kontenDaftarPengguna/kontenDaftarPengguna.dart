@@ -14,138 +14,116 @@ class KontenDaftarPengguna extends StatefulWidget {
 
 class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
   int _no = 1; // Nomor yang akan diincrement otomatis
+  final ScrollController controller = ScrollController();
+  final ScrollController controller_2 = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-            color: Colors.green[50],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
+    return Center(
+      child: Container(
+        width: MediaQuery.of(context).size.width >= 1300
+      ? MediaQuery.of(context).size.width * 0.6
+      : MediaQuery.of(context).size.width * 0.95,
+        height: MediaQuery.of(context).size.height * 0.75,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          color: Colors.green[50],
+        ),
+        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Scrollbar(
+            controller: controller_2,
+            thumbVisibility: true,
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15)),
-                      color: Colors.green[50],
-                    ),
-                    child: Center(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Center(
-                          child: DataTable(
-                            headingRowHeight: 50,
-                            columns: const <DataColumn>[
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "No",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+              controller: controller_2,
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(
+                controller: controller,
+                child: Center(
+                  child: DataTable(
+                    headingRowHeight: 50,
+                    columns: const <DataColumn>[
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "No",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
                               ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Nama Lengkap",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Email",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Password",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Action",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                            rows: _generateDummyData(),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Nama Lengkap",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Email",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Password",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Expanded(
+                          child: Center(
+                            child: Text(
+                              "Action",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    rows: _generateDummyData(),
                   ),
-                ],
+                ),
               ),
             ),
           ),
         ),
-        Positioned(
-          bottom: 50,
-          right: 50,
-          child: FloatingActionButton(
-            backgroundColor: Color.fromARGB(161, 71, 203, 75),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AddDataPengguna();
-                },
-              );
-            },
-            child: Icon(Icons.add),
-          ),
-        ),
-      ],
+      ),
+      ),
     );
   }
 

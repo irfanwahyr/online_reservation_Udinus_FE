@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kp2024/models/_heading1.dart';
+import 'package:kp2024/models/_heading7.dart';
 
 class ContainerLab extends StatefulWidget {
   final String nama;
@@ -22,7 +22,7 @@ class _ContainerLabState extends State<ContainerLab> {
   Widget build(BuildContext context) {
     return Container(
       width: double.maxFinite,
-      height: 500,
+      height: 400,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(widget.imageAsset), // Menggunakan widget.imageAsset
@@ -34,7 +34,7 @@ class _ContainerLabState extends State<ContainerLab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Heading1(text: widget.nama, color: Colors.white),
+            Heading7(text: widget.nama, color: Colors.white),
             const SizedBox(
               height: 10,
             ),

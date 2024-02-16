@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
+
 class ContainerDetailLab extends StatefulWidget {
   final String laboratorium;
   final String namaLab;
@@ -34,7 +35,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 1200) {
-              // Saat lebar lebih dari 900, tata letaknya menjadi kolom
+              // Saat lebar lebih dari 1200, tata letaknya menjadi row
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,13 +44,16 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        widget.laboratorium,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontFamily: "Archivo",
-                          color: Colors.white,
-                          fontSize: 80,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          widget.laboratorium,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontFamily: "Archivo",
+                            color: Colors.white,
+                            fontSize: 80,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -73,18 +77,21 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                 ],
               );
             } else {
-              // Saat lebar kurang dari atau sama dengan 900
+              // Saat lebar kurang dari atau sama dengan 1200
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    widget.laboratorium,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontFamily: "Archivo",
-                      color: Colors.white,
-                      fontSize: 50,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      widget.laboratorium,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: "Archivo",
+                        color: Colors.white,
+                        fontSize: 50,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),

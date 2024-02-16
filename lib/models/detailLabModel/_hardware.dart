@@ -46,18 +46,22 @@ class _HardwareState extends State<Hardware> {
                 ),
               ),
               const SizedBox(height: 30),
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
-                  children: [
-                    const TextSpan(
-                      text: "Processor: ",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(text: widget.processor),
-                  ],
+              Center(
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
+                    children: [
+                      const TextSpan(
+                        text: "Processor: ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(text: widget.processor),
+                    ],
+                  ),
                 ),
               ),
+
               const SizedBox(height: 15),
               RichText(
                 text: TextSpan(
