@@ -21,6 +21,8 @@ class Reservasi extends StatefulWidget {
 }
 
 class _ReservasiState extends State<Reservasi> {
+  final ScrollController controller = ScrollController();
+  final ScrollController controller_2 = ScrollController();
   DateTime today = DateTime.now();
   DateTime?
       _selectedDate; // tambahkan variabel untuk menyimpan tanggal yang dipilih
@@ -245,96 +247,104 @@ class _ReservasiState extends State<Reservasi> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            width: _calculateSizedBoxWidth(
-                                context), // Set the desired width for the DataTable
-                            child: DataTable(
-                              columns: const <DataColumn>[
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        "Waktu",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        "Keterangan",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        "Pesan",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              rows: List.generate(listReservasi.Waktu_mulai.length, (index) {
-                                String waktuText = "${listReservasi.Waktu_mulai[index]} - ${listReservasi.Waktu_selesai[index]}";
-                                return DataRow(
-                                  cells: <DataCell>[
-                                    DataCell(
-                                      Center(
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
+                    child: Scrollbar(
+                      controller: controller_2,
+                      thumbVisibility: true,
+                        child: SingleChildScrollView(
+                          controller: controller_2,
+                          scrollDirection: Axis.horizontal,
+                          child: SingleChildScrollView(
+                            controller: controller,
+                            child: Column(
+                            children: [
+                              SizedBox(
+                                width: _calculateSizedBoxWidth(
+                                    context), // Set the desired width for the DataTable
+                                child: DataTable(
+                                  columns: const <DataColumn>[
+                                    DataColumn(
+                                      label: Expanded(
+                                        child: Center(
                                           child: Text(
-                                            waktuText,
+                                            "Waktu",
                                             textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    DataCell(
-                                      Center(
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
+                                    DataColumn(
+                                      label: Expanded(
+                                        child: Center(
                                           child: Text(
-                                            listReservasi.Keterangan[index],
-                                            textAlign: TextAlign.center,
+                                            "Keterangan",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    DataCell(
-                                      Center(
-                                        child: pesan[index],
+                                    DataColumn(
+                                      label: Expanded(
+                                        child: Center(
+                                          child: Text(
+                                            "Pesan",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
-                                );
-                              }),
+                                  rows: List.generate(listReservasi.Waktu_mulai.length, (index) {
+                                    String waktuText = "${listReservasi.Waktu_mulai[index]} - ${listReservasi.Waktu_selesai[index]}";
+                                    return DataRow(
+                                      cells: <DataCell>[
+                                        DataCell(
+                                          Center(
+                                            child: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                waktuText,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                listReservasi.Keterangan[index],
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: pesan[index],
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
 
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    )
                   ),
                 ),
               ],

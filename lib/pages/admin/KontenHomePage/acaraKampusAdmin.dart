@@ -15,33 +15,29 @@ class AcaraKampusAdmin extends StatefulWidget {
 
 class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
   int _no = 1; // Nomor yang akan diincrement otomatis
+  final ScrollController controller = ScrollController();
+  final ScrollController controller_2 = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return Center(
+      child: Container(
+      width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-        color: Colors.green[50],
-      ),
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          color: Colors.green[50],
+        ),
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15)),
-                  color: Colors.green[50],
-                ),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Center(
+        padding: const EdgeInsets.all(20.0),
+        child: Scrollbar(
+          controller: controller_2,
+          thumbVisibility: true,
+          child: SingleChildScrollView(
+            controller: controller_2,
+            scrollDirection: Axis.horizontal,
+            child: SingleChildScrollView(
+              controller: controller,
+                child: Center(
                     child: DataTable(
                       columns: const <DataColumn>[
                         DataColumn(
@@ -203,14 +199,13 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
                       ],
                       rows: _generateDummyData(),
                     ),
-                  ),
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
-    );
+      );
   }
 
   List<DataRow> _generateDummyData() {

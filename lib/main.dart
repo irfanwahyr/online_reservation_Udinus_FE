@@ -37,8 +37,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       // home: HomePage(),
       // initialRoute: HomePage.nameRoute,
-      home: HomePageAdmin(),
-      initialRoute: HomePageAdmin.nameRoute,
+      home: HomePage(),
+      initialRoute: HomePage.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),

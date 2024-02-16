@@ -70,6 +70,8 @@ class _JadwalHariState extends State<JadwalHari> {
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController controller = ScrollController();
+    final ScrollController controller_2 = ScrollController();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -77,144 +79,135 @@ class _JadwalHariState extends State<JadwalHari> {
             text: "Jadwal Laboratorium $namaLabAdmin $hariAdmin",
             color: Colors.black),
       ),
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width >= 1300
+              ? MediaQuery.of(context).size.width * 0.75
+              : MediaQuery.of(context).size.width * 0.95,
+          height: MediaQuery.of(context).size.height * 0.75,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            color: Colors.green[50],
           ),
-          color: Colors.green[50],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                    color: Colors.green[50],
-                  ),
-                  child: Center(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Center(
-                        child: DataTable(
-                          columns: const <DataColumn>[
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Laboratorium",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Scrollbar(
+                controller: controller_2,
+                thumbVisibility: true,
+                child: SingleChildScrollView(
+                  controller: controller_2,
+                  scrollDirection: Axis.horizontal,
+                  child: SingleChildScrollView(
+                    controller: controller,
+                    child: Center(
+                      child: DataTable(
+                        columns: const <DataColumn>[
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Laboratorium",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Jam Mulai",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+                          ),
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Jam Mulai",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Jam Selesai",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+                          ),
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Jam Selesai",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Nama Matkul",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+                          ),
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Nama Matkul",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Kode Kelas",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+                          ),
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Kode Kelas",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Dosen Pengampu",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+                          ),
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Dosen Pengampu",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                            DataColumn(
-                              label: Expanded(
-                                child: Center(
-                                  child: Text(
-                                    "Opsi",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                    ),
+                          ),
+                          DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: Text(
+                                  "Opsi",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                          rows: _generateDummyData(),
-                        ),
+                          ),
+                        ],
+                        rows: _generateDummyData(),
                       ),
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),
