@@ -3,11 +3,13 @@ import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
+import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
 
 class Lapisan1 {
-  Container buildContainer() {
+  Container buildContainer(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Color.fromARGB(190, 129, 129, 129)),
+      decoration:
+          const BoxDecoration(color: Color.fromARGB(190, 129, 129, 129)),
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -61,8 +63,11 @@ class Lapisan1 {
             const SizedBox(height: 80),
             Center(
               child: HoverButtonPrimary(
-                text: "Reservasi Ruangan",
-                onPressed: () {},
+                text: "Riwayat Reservasi Ruangan",
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                      context, RiwayatReservasi.nameRoute);
+                },
               ),
             ),
             const SizedBox(height: 10),

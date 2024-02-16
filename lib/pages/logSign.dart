@@ -4,6 +4,7 @@ import 'package:kp2024/models/_btnSubmit.dart';
 import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/homePage.dart';
 
 class LogSign extends StatefulWidget {
   static const nameRoute = 'LogSign';
@@ -17,7 +18,7 @@ class _LogSignState extends State<LogSign> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack().buildAppBar(context),
+      appBar: AppBarBack(onPressed: (){Navigator.pushReplacementNamed(context, HomePage.nameRoute);}).buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
           children: [

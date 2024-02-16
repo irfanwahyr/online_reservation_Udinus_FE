@@ -6,6 +6,7 @@ import 'package:kp2024/models/reservasiModel/_fieldJam.dart';
 import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
+import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class KuliahPengganti extends StatefulWidget {
@@ -46,7 +47,9 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack().buildAppBar(context),
+      appBar: AppBarBack(onPressed: () {
+        Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
+      }).buildAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(

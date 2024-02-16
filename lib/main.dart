@@ -18,6 +18,7 @@ import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
+import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -58,6 +59,7 @@ class _MyAppState extends State<MyApp> {
         DaftarMataKuliah.nameRoute: (context) => DaftarMataKuliah(),
         DaftarLaboratorium.nameRoute: (context) => DaftarLaboratorium(),
         JadwalHari.nameRoute: (context) => JadwalHari(),
+        RiwayatReservasi.nameRoute: (context) => RiwayatReservasi(),
       },
       // onGenerateRoute: ,
     );

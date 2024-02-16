@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lapisan1().buildContainer(),
+              Lapisan1().buildContainer(context),
               Lapisan2().buildContainer(),
               Lapisan3().buildContainer(),
               Lapisan4().buildContainer(),

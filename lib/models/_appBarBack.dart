@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AppBarBack {
+  final VoidCallback? onPressed;
+
+  AppBarBack({required this.onPressed});
+
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text("Back"),
+      iconTheme: IconThemeData(color: Colors.white),
+      backgroundColor: const Color.fromARGB(255, 1, 24, 50),
+      title: Text(
+        "Back",
+        style: TextStyle(color: Colors.white),
+      ),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        onPressed: onPressed,
       ),
       toolbarHeight: 50,
     );

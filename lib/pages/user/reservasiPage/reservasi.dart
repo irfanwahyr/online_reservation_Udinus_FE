@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kp2024/models/_heading5.dart';
 import 'package:kp2024/models/_heading6.dart';
 import 'package:kp2024/models/reservasiModel/_buttonBatalkan.dart';
@@ -8,7 +9,6 @@ import 'package:kp2024/models/reservasiModel/_buttonDiproses.dart';
 import 'package:kp2024/models/reservasiModel/_buttonReservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Reservasi extends StatefulWidget {
@@ -24,12 +24,11 @@ class _ReservasiState extends State<Reservasi> {
   final ScrollController controller = ScrollController();
   final ScrollController controller_2 = ScrollController();
   DateTime today = DateTime.now();
-  DateTime?
-      _selectedDate; // tambahkan variabel untuk menyimpan tanggal yang dipilih
+  DateTime? _selectedDate;
   ListReservasi listReservasi = ListReservasi();
   String? dataLab;
-  String? dataTanggal;
-  String? dataJam;
+  String selectedDateText = "";
+
   List<String> Status = [
     "1",
     "0",
@@ -43,7 +42,7 @@ class _ReservasiState extends State<Reservasi> {
     "0",
     "3",
     "1",
-    "2",  
+    "2",
     "0",
   ];
 
@@ -51,6 +50,7 @@ class _ReservasiState extends State<Reservasi> {
   void initState() {
     super.initState();
     getData();
+    setSelectedDateText(today);
   }
 
   void getData() async {
@@ -59,6 +59,13 @@ class _ReservasiState extends State<Reservasi> {
 
     setState(() {
       this.dataLab = dataLab;
+    });
+  }
+
+  void setSelectedDateText(DateTime date) {
+    setState(() {
+      selectedDateText =
+          "Anda memilih hari: ${listReservasi.getHari(date.weekday)}, ${date.day} ${listReservasi.getBulan(date.month)} ${date.year}";
     });
   }
 
@@ -73,82 +80,13 @@ class _ReservasiState extends State<Reservasi> {
     if (pickedDate != null && pickedDate != today) {
       setState(() {
         _selectedDate = pickedDate;
+        setSelectedDateText(pickedDate);
       });
     }
   }
-  List<Widget> getPesanButtons() {
-    List<Widget> buttons = [];
-    
-    for (int i = 0; i < Status.length; i++) { 
-      String status = Status[i];
-      
-      // Tentukan tindakan berdasarkan nilai status
-      switch (status) {
-        case "0":
-          buttons.add(
-            const ButtonDipakai(),
-          );
-          break;
-        case "1":
-          buttons.add(
-            ButtonReservasi(
-              onPressed: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString('dataNamaLab', dataLab.toString());
-                String dataTanggal = _selectedDate != null
-                    ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
-                    : DateFormat('dd-MM-yyyy').format(today);
-                await prefs.setString('dataTanggal', dataTanggal.toString());
-                String dataJamMulai = listReservasi.Waktu_mulai[i].toString();
-                String dataJamSelesai = listReservasi.Waktu_selesai[i].toString();
-                await prefs.setString('dataJamMulai', dataJamMulai.toString());
-                await prefs.setString('dataJamSelesai', dataJamSelesai.toString());
-
-
-                Navigator.pushNamed(context, Keperluan.nameRoute);
-              },
-            ),
-          );
-          break;
-        case "2":
-          buttons.add(
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const ButtonDipesan(),
-                const SizedBox(width: 5),
-                ButtonBatalkan(
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          );
-          break;
-        case "3":
-          buttons.add(
-            const ButtonDiproses(),
-          );
-          break;
-        default:
-          // Tindakan default jika diperlukan
-          break;
-      }
-    }
-    
-    return buttons;
-  }
-
 
   @override
   Widget build(BuildContext context) {
-    var pesan = getPesanButtons();
-    String pilihanTanggal =
-        "Anda memilih hari: ${listReservasi.getHari(today.weekday)}, ${today.day} ${listReservasi.getBulan(today.month)} ${today.year}";
-    // gunakan _selectedDate jika ada, jika tidak gunakan today
-    String dataTanggal = _selectedDate != null
-        ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
-        : DateFormat('dd-MM-yyyy').format(today);
-
     return Scaffold(
       body: Center(
         child: Padding(
@@ -211,7 +149,10 @@ class _ReservasiState extends State<Reservasi> {
                           ),
                           child: Center(
                             child: Text(
-                              dataTanggal,
+                              _selectedDate != null
+                                  ? DateFormat('dd-MM-yyyy')
+                                      .format(_selectedDate!)
+                                  : DateFormat('dd-MM-yyyy').format(today),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: fontSize,
@@ -231,16 +172,16 @@ class _ReservasiState extends State<Reservasi> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    pilihanTanggal,
+                    selectedDateText,
                     style: const TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 255, 255, 255)),
+                      fontSize: 16,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  width: MediaQuery.of(context).size.width *
-                      0.8, // Set the desired width for the container
+                  width: MediaQuery.of(context).size.width * 0.8,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     color: Colors.green[50],
@@ -250,16 +191,15 @@ class _ReservasiState extends State<Reservasi> {
                     child: Scrollbar(
                       controller: controller_2,
                       thumbVisibility: true,
+                      child: SingleChildScrollView(
+                        controller: controller_2,
+                        scrollDirection: Axis.horizontal,
                         child: SingleChildScrollView(
-                          controller: controller_2,
-                          scrollDirection: Axis.horizontal,
-                          child: SingleChildScrollView(
-                            controller: controller,
-                            child: Column(
+                          controller: controller,
+                          child: Column(
                             children: [
                               SizedBox(
-                                width: _calculateSizedBoxWidth(
-                                    context), // Set the desired width for the DataTable
+                                width: _calculateSizedBoxWidth(context),
                                 child: DataTable(
                                   columns: const <DataColumn>[
                                     DataColumn(
@@ -303,48 +243,52 @@ class _ReservasiState extends State<Reservasi> {
                                       ),
                                     ),
                                   ],
-                                  rows: List.generate(listReservasi.Waktu_mulai.length, (index) {
-                                    String waktuText = "${listReservasi.Waktu_mulai[index]} - ${listReservasi.Waktu_selesai[index]}";
-                                    return DataRow(
-                                      cells: <DataCell>[
-                                        DataCell(
-                                          Center(
-                                            child: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Text(
-                                                waktuText,
-                                                textAlign: TextAlign.center,
+                                  rows: List.generate(
+                                    listReservasi.Waktu_mulai.length,
+                                    (index) {
+                                      String waktuText =
+                                          "${listReservasi.Waktu_mulai[index]} - ${listReservasi.Waktu_selesai[index]}";
+                                      return DataRow(
+                                        cells: <DataCell>[
+                                          DataCell(
+                                            Center(
+                                              child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  waktuText,
+                                                  textAlign: TextAlign.center,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        DataCell(
-                                          Center(
-                                            child: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Text(
-                                                listReservasi.Keterangan[index],
-                                                textAlign: TextAlign.center,
+                                          DataCell(
+                                            Center(
+                                              child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  listReservasi
+                                                      .Keterangan[index],
+                                                  textAlign: TextAlign.center,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        DataCell(
-                                          Center(
-                                            child: pesan[index],
+                                          DataCell(
+                                            Center(
+                                              child: getPesanButtons()[index],
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ),
                 ),
               ],
@@ -358,13 +302,71 @@ class _ReservasiState extends State<Reservasi> {
   double _calculateSizedBoxWidth(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
-    // Set different widths based on screen size conditions
     if (screenWidth >= 900) {
-      return screenWidth *
-          0.8; // Set to 75% of the screen width for larger screens
+      return screenWidth * 0.8;
     } else {
-      return screenWidth *
-          1.5; // Set to 90% of the screen width for smaller screens
+      return screenWidth * 1.5;
     }
+  }
+
+  List<Widget> getPesanButtons() {
+    List<Widget> buttons = [];
+
+    for (int i = 0; i < Status.length; i++) {
+      String status = Status[i];
+
+      switch (status) {
+        case "0":
+          buttons.add(
+            const ButtonDipakai(),
+          );
+          break;
+        case "1":
+          buttons.add(
+            ButtonReservasi(
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('dataNamaLab', dataLab.toString());
+                String dataTanggal = _selectedDate != null
+                    ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
+                    : DateFormat('dd-MM-yyyy').format(today);
+                await prefs.setString('dataTanggal', dataTanggal.toString());
+                String dataJamMulai = listReservasi.Waktu_mulai[i].toString();
+                String dataJamSelesai =
+                    listReservasi.Waktu_selesai[i].toString();
+                await prefs.setString('dataJamMulai', dataJamMulai.toString());
+                await prefs.setString(
+                    'dataJamSelesai', dataJamSelesai.toString());
+
+                Navigator.pushNamed(context, Keperluan.nameRoute);
+              },
+            ),
+          );
+          break;
+        case "2":
+          buttons.add(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const ButtonDipesan(),
+                const SizedBox(width: 5),
+                ButtonBatalkan(
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          );
+          break;
+        case "3":
+          buttons.add(
+            const ButtonDiproses(),
+          );
+          break;
+        default:
+          break;
+      }
+    }
+
+    return buttons;
   }
 }
