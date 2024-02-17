@@ -55,7 +55,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "A");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -66,7 +66,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "A");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -86,7 +86,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "B");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -97,7 +97,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "B");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -117,7 +117,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "C");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -128,7 +128,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "C");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -148,7 +148,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "D");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -159,7 +159,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "D");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -179,7 +179,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "I");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -190,7 +190,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "I");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),

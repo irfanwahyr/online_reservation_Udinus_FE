@@ -21,7 +21,7 @@ class BerhasilSubmit extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset('images/BerhasilDiBooked.png'),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Flexible(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +50,7 @@ class BerhasilSubmit extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
-                      "Untuk Konfirmasi atau Pertanyaan silahkan Kontak ke admnin di whatsapp",
+                      "Untuk Konfirmasi atau Pertanyaan silahkan Kontak ke admin di whatsapp",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
@@ -76,7 +76,7 @@ class BerhasilSubmit extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, HomePage.nameRoute);
+                Navigator.pushReplacementNamed(context, HomePage.nameRoute);
               },
               style: ElevatedButton.styleFrom(
                 // Set the background color to green

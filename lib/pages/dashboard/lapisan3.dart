@@ -41,7 +41,7 @@ class Lapisan3 {
                     title: "Multimedia",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.pushNamed(context, LabMultimedia.nameRoute);
+                      Navigator.pushReplacementNamed(context, LabMultimedia.nameRoute);
                     },
                   ),
                 ),
@@ -52,7 +52,7 @@ class Lapisan3 {
                     title: "Dekstop",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.pushNamed(context, LabDekstop.nameRoute);
+                      Navigator.pushReplacementNamed(context, LabDekstop.nameRoute);
                     },
                   ),
                 ),
@@ -63,7 +63,7 @@ class Lapisan3 {
                     title: "Pemrograman",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.pushNamed(context, LabProgramming.nameRoute);
+                      Navigator.pushReplacementNamed(context, LabProgramming.nameRoute);
                     },
                   ),
                 ),
@@ -74,7 +74,7 @@ class Lapisan3 {
                     title: "Statistik",
                     onTap: () {
                       // Pindah ke halaman lain atau lakukan navigasi di sini
-                      Navigator.pushNamed(context, LabStatistik.nameRoute);
+                      Navigator.pushReplacementNamed(context, LabStatistik.nameRoute);
                     },
                   ),
                 ),

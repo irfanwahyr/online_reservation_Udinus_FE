@@ -34,28 +34,28 @@ class _SideBarAdminState extends State<SideBarAdmin> {
             leading: Icon(Icons.public_outlined),
             title: Text("Peminjaman"),
             onTap: () {
-              Navigator.pushNamed(context, HomePageAdmin.nameRoute);
+              Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
             },
           ),
           ListTile(
             leading: Icon(Icons.supervised_user_circle_sharp),
             title: Text("Daftar Pengguna"),
             onTap: () {
-              Navigator.pushNamed(context, DaftarPengguna.nameRoute);
+              Navigator.pushReplacementNamed(context, DaftarPengguna.nameRoute);
             },
           ),
           ListTile(
             leading: Icon(Icons.book_rounded),
             title: Text("Daftar Matkul"),
             onTap: () {
-              Navigator.pushNamed(context, DaftarMataKuliah.nameRoute);
+              Navigator.pushReplacementNamed(context, DaftarMataKuliah.nameRoute);
             },
           ),
           ListTile(
             leading: Icon(Icons.computer),
             title: Text("Daftar Laboratorium"),
             onTap: () {
-              Navigator.pushNamed(context, DaftarLaboratorium.nameRoute);
+              Navigator.pushReplacementNamed(context, DaftarLaboratorium.nameRoute);
             },
           ),
         ],

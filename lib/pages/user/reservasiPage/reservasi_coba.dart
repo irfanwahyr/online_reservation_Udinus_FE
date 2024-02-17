@@ -70,7 +70,7 @@ class _ReservasiCobaState extends State<ReservasiCoba> {
                                   _index = newIndex;
                                 });
                                 // Handle navigation or other actions here
-                                Navigator.pushNamed(context, '/hari/$newIndex');
+                                Navigator.pushReplacementNamed(context, '/hari/$newIndex');
                               },
                               child: Container(
                                 width: 100,

@@ -55,7 +55,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "J");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -66,7 +66,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "J");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -89,7 +89,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "K");
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -100,7 +100,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('dataNamaLab', "K");
-                          Navigator.pushNamed(context, Reservasi.nameRoute);
+                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),

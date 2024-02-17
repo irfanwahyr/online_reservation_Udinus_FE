@@ -173,7 +173,7 @@ class _AcaraKampusState extends State<AcaraKampus> {
               child: HoverButtonPrimary(
                   text: "Submit",
                   onPressed: () {
-                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                    Navigator.pushReplacementNamed(context, BerhasilSubmit.nameRoute);
                   }),
             ),
           ),

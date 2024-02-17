@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                                       //     builder: (context) => const LogSign(),
                                       //   ),
                                       // );
-                                      Navigator.pushNamed(
+                                      Navigator.pushReplacementNamed(
                                           context, LogSign.nameRoute);
                                     },
                                     child: const Padding(
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                             //     builder: (context) => const LogSign(),
                             //   ),
                             // );
-                            Navigator.pushNamed(context, LogSign.nameRoute);
+                            Navigator.pushReplacementNamed(context, LogSign.nameRoute);
                           },
                         ),
                 ],

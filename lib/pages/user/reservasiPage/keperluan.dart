@@ -67,7 +67,7 @@ class _KeperluanState extends State<Keperluan> {
         nama: "Kuliah Pengganti",
         imageAsset: "images/gambar.jpg",
         onTap: () {
-          Navigator.pushNamed(context, KuliahPengganti.nameRoute);
+          Navigator.pushReplacementNamed(context, KuliahPengganti.nameRoute);
         },
       ),
       SizedBox(height: 10),
@@ -75,7 +75,7 @@ class _KeperluanState extends State<Keperluan> {
         nama: "Acara Organisasi",
         imageAsset: "images/gambar.jpg",
         onTap: () {
-          Navigator.pushNamed(context, AcaraOrganisasi.nameRoute);
+          Navigator.pushReplacementNamed(context, AcaraOrganisasi.nameRoute);
         },
       ),
       SizedBox(height: 10),
@@ -83,7 +83,7 @@ class _KeperluanState extends State<Keperluan> {
         nama: "Acara Kampus",
         imageAsset: "images/gambar.jpg",
         onTap: () {
-          Navigator.pushNamed(context, AcaraKampus.nameRoute);
+          Navigator.pushReplacementNamed(context, AcaraKampus.nameRoute);
         },
       )
     ];

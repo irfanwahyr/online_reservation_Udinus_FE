@@ -338,7 +338,7 @@ class _ReservasiState extends State<Reservasi> {
                 await prefs.setString(
                     'dataJamSelesai', dataJamSelesai.toString());
 
-                Navigator.pushNamed(context, Keperluan.nameRoute);
+                Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
               },
             ),
           );

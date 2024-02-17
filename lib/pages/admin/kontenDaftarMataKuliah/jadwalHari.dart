@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/admin/_buttonDelete.dart';
 import 'package:kp2024/models/admin/_buttonEdit.dart';
+import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/editPage/editDaftarMataKuliah.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -74,10 +75,18 @@ class _JadwalHariState extends State<JadwalHari> {
     final ScrollController controller_2 = ScrollController();
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 1, 24, 50),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(
+                  context, DaftarMataKuliah.nameRoute);
+            },
+            icon: Icon(Icons.arrow_back)),
         centerTitle: true,
         title: Heading1(
             text: "Jadwal Laboratorium $namaLabAdmin $hariAdmin",
-            color: Colors.black),
+            color: const Color.fromARGB(255, 255, 255, 255)),
       ),
       body: Center(
         child: Container(
