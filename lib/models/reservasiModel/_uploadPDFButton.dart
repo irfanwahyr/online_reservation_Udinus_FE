@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
-class UploadPDFButton extends StatelessWidget {
+class UploadPDFButton extends StatefulWidget {
   final String judul;
-  const UploadPDFButton({super.key, 
+
+  const UploadPDFButton({
+    Key? key,
     required this.judul,
-  });
+  }) : super(key: key);
+
+  @override
+  _UploadPDFButtonState createState() => _UploadPDFButtonState();
+}
+
+class _UploadPDFButtonState extends State<UploadPDFButton> {
+  Future<FilePickerResult?>? _filePickerFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +25,17 @@ class UploadPDFButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            judul,
+            widget.judul,
             textAlign: TextAlign.start,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           const SizedBox(height: 15),
           GestureDetector(
-            onTap: () => _pickPDFFile(context),
+            onTap: () {
+              setState(() {
+                _filePickerFuture = _pickPDFFile();
+              });
+            },
             child: Container(
               width: 300,
               height: 50,
@@ -30,25 +43,38 @@ class UploadPDFButton extends StatelessWidget {
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Text(
-                      "Upload PDF max 2MB",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Icon(
-                    Icons.picture_as_pdf,
-                    color: Colors.white,
-                  ),
-                ],
+              child: FutureBuilder<FilePickerResult?>(
+                future: _filePickerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    );
+                  } else {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Upload PDF max 2MB",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 5),
+                        Icon(
+                          Icons.picture_as_pdf,
+                          color: Colors.white,
+                        ),
+                      ],
+                    );
+                  }
+                },
               ),
             ),
           )
@@ -57,20 +83,10 @@ class UploadPDFButton extends StatelessWidget {
     );
   }
 
-  Future<void> _pickPDFFile(BuildContext context) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+  Future<FilePickerResult?> _pickPDFFile() async {
+    return FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
-
-    if (result != null && result.files.isNotEmpty) {
-      // Handle the selected PDF file
-      String filePath = result.files.first.path ?? '';
-      print("Selected PDF file path: $filePath");
-
-      // You can implement further logic based on the selected file
-      // For example, you may want to check the file size and display an error
-      // if it exceeds 2MB.
-    }
   }
 }
