@@ -10,66 +10,77 @@ class EditKuliahPengganti extends StatelessWidget {
   final String jamMulai;
   final String jamSelesai;
   final String keterangan;
+  final Future? futureDataEditKuliahPengganti;
 
-  EditKuliahPengganti({
-    required this.dosen,
-    required this.mataKuliah,
-    required this.kode,
-    required this.ruang,
-    required this.noWhatsapp,
-    required this.tanggalPinjam,
-    required this.jamMulai,
-    required this.jamSelesai,
-    required this.keterangan,
-  });
+  EditKuliahPengganti(
+      {required this.dosen,
+      required this.mataKuliah,
+      required this.kode,
+      required this.ruang,
+      required this.noWhatsapp,
+      required this.tanggalPinjam,
+      required this.jamMulai,
+      required this.jamSelesai,
+      required this.keterangan,
+      this.futureDataEditKuliahPengganti});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Edit Data'),
       content: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextFormField(
-              initialValue: dosen,
-              decoration: InputDecoration(labelText: 'Nama Dosen'),
-            ),
-            TextFormField(
-              initialValue: mataKuliah,
-              decoration: InputDecoration(labelText: 'Mata Kuliah'),
-            ),
-            TextFormField(
-              initialValue: kode,
-              decoration: InputDecoration(labelText: 'Kode'),
-            ),
-            TextFormField(
-              initialValue: ruang,
-              decoration: InputDecoration(labelText: 'Ruang'),
-            ),
-            TextFormField(
-              initialValue: noWhatsapp,
-              decoration: InputDecoration(labelText: 'No Whatsapp'),
-            ),
-            TextFormField(
-              initialValue: tanggalPinjam,
-              decoration: InputDecoration(labelText: 'Tanggal Pinjam'),
-            ),
-            TextFormField(
-              initialValue: jamMulai,
-              decoration: InputDecoration(labelText: 'Jam Mulai'),
-            ),
-            TextFormField(
-              initialValue: jamSelesai,
-              decoration: InputDecoration(labelText: 'Jam Selesai'),
-            ),
-            TextFormField(
-              initialValue: keterangan,
-              decoration: InputDecoration(labelText: 'Keterangan'),
-            ),
-          ],
-        ),
-      ),
+          child: FutureBuilder(
+        future: futureDataEditKuliahPengganti,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextFormField(
+                  initialValue: dosen,
+                  decoration: InputDecoration(labelText: 'Nama Dosen'),
+                ),
+                TextFormField(
+                  initialValue: mataKuliah,
+                  decoration: InputDecoration(labelText: 'Mata Kuliah'),
+                ),
+                TextFormField(
+                  initialValue: kode,
+                  decoration: InputDecoration(labelText: 'Kode'),
+                ),
+                TextFormField(
+                  initialValue: ruang,
+                  decoration: InputDecoration(labelText: 'Ruang'),
+                ),
+                TextFormField(
+                  initialValue: noWhatsapp,
+                  decoration: InputDecoration(labelText: 'No Whatsapp'),
+                ),
+                TextFormField(
+                  initialValue: tanggalPinjam,
+                  decoration: InputDecoration(labelText: 'Tanggal Pinjam'),
+                ),
+                TextFormField(
+                  initialValue: jamMulai,
+                  decoration: InputDecoration(labelText: 'Jam Mulai'),
+                ),
+                TextFormField(
+                  initialValue: jamSelesai,
+                  decoration: InputDecoration(labelText: 'Jam Selesai'),
+                ),
+                TextFormField(
+                  initialValue: keterangan,
+                  decoration: InputDecoration(labelText: 'Keterangan'),
+                ),
+              ],
+            );
+          }
+        },
+      )),
       actions: [
         ElevatedButton(
           onPressed: () {
