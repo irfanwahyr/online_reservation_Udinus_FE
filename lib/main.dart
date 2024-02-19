@@ -20,7 +20,7 @@ import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
   runApp(MyApp());
 }
 
@@ -36,10 +36,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
-      // initialRoute: HomePage.nameRoute,
-      home: HomePageAdmin(),
-      initialRoute: HomePageAdmin.nameRoute,
+      home: HomePage(),
+      initialRoute: HomePage.nameRoute,
+      // home: HomePageAdmin(),
+      // initialRoute: HomePageAdmin.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),

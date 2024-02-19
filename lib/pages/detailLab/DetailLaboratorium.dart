@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/detail_lab/detail_lab.dart';
 import 'package:kp2024/models/detailLabModel/_containerDetailLab.dart';
 import 'package:kp2024/models/detailLabModel/_hardware.dart';
 import 'package:kp2024/models/detailLabModel/_software.dart';
@@ -16,21 +17,13 @@ class DetailLaboratorium extends StatefulWidget {
 }
 
 class _DetailLaboratoriumState extends State<DetailLaboratorium> {
-  String? dataNamaLab;
+
+  late Future<DetailLab> labData;
 
   @override
   void initState() {
     super.initState();
-    getData();
-  }
-
-  void getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataNamaLab = prefs.getString('dataNamaLab');
-
-    setState(() {
-      this.dataNamaLab = dataNamaLab;
-    });
+    labData = fetchdata();
   }
 
   @override
@@ -38,28 +31,43 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
     bool isScreenWide = MediaQuery.of(context).size.width > 1200;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ContainerDetailLab(
-              laboratorium: "LABORATORIUM \nMULTIMEDIA",
-              namaLab: dataNamaLab.toString(), // Gunakan dataNamaLab dari state
-              imageAsset: "images/gambar.jpg",
-              onpressed: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString('data', dataNamaLab.toString());
-                Navigator.pushNamed(context, Reservasi.nameRoute);
-              },
-            ),
-            SpesifikasiDetailLab(
-              namaLab: dataNamaLab.toString(), // Gunakan dataNamaLab dari state
-              jumlahPc: "40",
-            ),
-            isScreenWide
-                ? const Row(
+      body: FutureBuilder<DetailLab>(
+        future: labData,
+        builder: (context, snapshot){
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            String namaLab = snapshot.data!.nama;
+            String jml_pc = snapshot.data!.jml_PC.toString();
+            int id = snapshot.data!.id;
+            List<String> softwareNames = snapshot.data!.softwarePrimers
+              .map((software) => software['nama'] as String)
+              .toList();
+
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ContainerDetailLab(
+                    laboratorium: "LABORATORIUM \nMULTIMEDIA",
+                    namaLab: namaLab,
+                    imageAsset: "images/gambar.jpg",
+                    onpressed: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('data', id.toString());
+                      Navigator.pushNamed(context, Reservasi.nameRoute);
+                    },
+                  ),
+                  SpesifikasiDetailLab(
+                    namaLab: namaLab,
+                    jumlahPc: jml_pc,
+                  ),
+                  isScreenWide
+                ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Hardware(
+                      const Hardware(
                         processor: "Intel I7 7700F ",
                         ram: "16",
                         vga: "RTX 4090",
@@ -68,15 +76,13 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                         keyboard: "Logitech K490",
                       ),
                       Software(
-                        software_1: "Flutter",
-                        software_2: "Adobe Premiere",
-                        software_3: "Node Js",
+                        softwareNames: softwareNames,
                       ),
                     ],
                   )
-                : const Column(
+                : Column(
                     children: [
-                      Hardware(
+                      const Hardware(
                         processor: "Intel I7 7700F ",
                         ram: "16",
                         vga: "RTX 4090",
@@ -85,19 +91,21 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                         keyboard: "Logitech K490",
                       ),
                       Software(
-                        software_1: "Flutter",
-                        software_2: "Adobe Premiere",
-                        software_3: "Node Js",
+                        softwareNames: softwareNames,
                       ),
                     ],
                   ),
-            const SizedBox(
-              height: 30,
-            ),
-            Footer().buildContainer()
-          ],
-        ),
-      ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Footer().buildContainer()
+                ],
+              ),
+            );
+        } else {
+          return const Center(child: Text('No data available'));
+        }
+      }),
     );
   }
 }

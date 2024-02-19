@@ -7,6 +7,8 @@ import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+
 class DetailA extends StatefulWidget {
   static const nameRoute = 'detailA';
   const DetailA({super.key});
@@ -16,6 +18,7 @@ class DetailA extends StatefulWidget {
 }
 
 class _DetailAState extends State<DetailA> {
+
   @override
   Widget build(BuildContext context) {
     bool isScreenWide = MediaQuery.of(context).size.width > 1200;
@@ -26,52 +29,52 @@ class _DetailAState extends State<DetailA> {
           children: [
             ContainerDetailLab(
               laboratorium: "LABORATORIUM \nMULTIMEDIA",
-              namaLab: "A",
+              namaLab: "40",
               imageAsset: "images/gambar.jpg",
               onpressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('data', "A");
+                          await prefs.setString('data', "");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
             ),
-            const SpesifikasiDetailLab(
-              namaLab: "A",
-              jumlahPc: "40",
+            SpesifikasiDetailLab(
+              namaLab: '',
+              jumlahPc: '',
             ),
             isScreenWide
-                ? const Row(
+                ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Hardware(
-                        processor: "Intel I7 7700F ",
-                        ram: "16",
-                        vga: "RTX 4090",
-                        mouse: "Logitech K40",
-                        monitor: "LG K789H",
-                        keyboard: "Logitech K490",
+                        processor: "",
+                        ram: "",
+                        vga: "",
+                        mouse: "",
+                        monitor: "",
+                        keyboard: "",
                       ),
                       Software(
-                        software_1: "Flutter",
-                        software_2: "Adobe Premiere",
-                        software_3: "Node Js",
+                        software_1: "",
+                        software_2: "",
+                        software_3: "",
                       ),
                     ],
                   )
-                : const Column(
+                : Column(
                     children: [
                       Hardware(
-                        processor: "Intel I7 7700F ",
-                        ram: "16",
-                        vga: "RTX 4090",
-                        mouse: "Logitech K40",
-                        monitor: "LG K789H",
-                        keyboard: "Logitech K490",
+                        processor: "",
+                        ram: "",
+                        vga: "",
+                        mouse: "",
+                        monitor: "",
+                        keyboard: "",
                       ),
                       Software(
-                        software_1: "Flutter",
-                        software_2: "Adobe Premiere",
-                        software_3: "Node Js",
+                        software_1: "",
+                        software_2: "",
+                        software_3: "",
                       ),
                     ],
                   ),
