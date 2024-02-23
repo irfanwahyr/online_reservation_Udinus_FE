@@ -105,7 +105,7 @@ class _FieldJamState extends State<FieldJam> {
                             },
                             items: Waktu.map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
-                                value: value,
+                                value: widget.selesai,
                                 child: Text(value),
                               );
                             }).toList(),
@@ -151,7 +151,7 @@ class _FieldJamState extends State<FieldJam> {
                               },
                               items: Waktu.map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
-                                  value: value,
+                                  value: widget.selesai,
                                   child: Text(value),
                                 );
                               }).toList(),

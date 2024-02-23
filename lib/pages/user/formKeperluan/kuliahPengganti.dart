@@ -31,7 +31,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
 
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataNamaLab = prefs.getString('dataNamaLab');
+    String? dataNamaLab = prefs.getString('namaLab');
     String? dataTanggal = prefs.getString('dataTanggal');
     String? dataJamMulai = prefs.getString('dataJamMulai');
     String? dataJamSelesai = prefs.getString('dataJamSelesai');

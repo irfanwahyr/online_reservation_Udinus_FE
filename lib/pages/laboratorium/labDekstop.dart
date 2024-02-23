@@ -54,7 +54,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "J");
+                          await prefs.setString('dataNamaLab', "9");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -65,7 +65,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "J");
+                          await prefs.setString('dataNamaLab', "9");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -88,7 +88,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "K");
+                          await prefs.setString('dataNamaLab', "10");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -99,7 +99,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "K");
+                          await prefs.setString('dataNamaLab', "10");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),

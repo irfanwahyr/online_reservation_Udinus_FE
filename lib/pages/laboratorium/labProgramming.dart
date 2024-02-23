@@ -55,7 +55,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                           onPressed:  () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "E");
+                          await prefs.setString('dataNamaLab', "5");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },),
@@ -65,7 +65,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "E");
+                          await prefs.setString('dataNamaLab', "5");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -88,7 +88,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                           onPressed:  () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "M");
+                          await prefs.setString('dataNamaLab', "12");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },),
@@ -98,7 +98,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                         onPressed:() async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "M");
+                          await prefs.setString('dataNamaLab', "12");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -121,7 +121,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                           onPressed:  () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "N");
+                          await prefs.setString('dataNamaLab', "13");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },),
@@ -131,7 +131,7 @@ class _LabProgrammingState extends State<LabProgramming> {
                         onPressed:() async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "N");
+                          await prefs.setString('dataNamaLab', "13");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),

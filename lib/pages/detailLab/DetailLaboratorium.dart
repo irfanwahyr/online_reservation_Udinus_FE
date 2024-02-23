@@ -25,6 +25,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
     super.initState();
     labData = fetchdata();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +57,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                     onpressed: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       await prefs.setString('data', id.toString());
+                      await prefs.setString('namaLab', namaLab);
                       Navigator.pushNamed(context, Reservasi.nameRoute);
                     },
                   ),
