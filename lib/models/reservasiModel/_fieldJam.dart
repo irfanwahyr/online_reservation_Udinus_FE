@@ -176,7 +176,7 @@ class _FieldJamState extends State<FieldJam> {
 
   List<String> Waktu = [
     "07.00",
-    "07.40",
+    "07.50",
     "08.40",
     "09.30",
     "10.20",

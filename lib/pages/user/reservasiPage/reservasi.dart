@@ -255,6 +255,7 @@ class _ReservasiState extends State<Reservasi> {
                                             final jadwal_idx = jadwal[index];
                                             List<String> listJam = listReservasi.getJam(jadwal_idx.jam_mulai, jadwal_idx.jam_selesai);
                                             String jmulai = listJam[0], jselesai = listJam[1];
+                                            
                                             String waktuText =
                                                 "$jmulai - $jselesai";
                                             return DataRow(
@@ -283,7 +284,7 @@ class _ReservasiState extends State<Reservasi> {
                                                 ),
                                                 DataCell(
                                                   Center(
-                                                    child: getPesanButtons(jadwal_idx.nama_jadwal, jmulai, jselesai)[index],
+                                                    child: getPesanButtons(jadwal_idx.nama_jadwal, jmulai, jadwal_idx.jam_selesai)[index],
                                                   ),
                                                 ),
                                               ],
@@ -323,7 +324,7 @@ class _ReservasiState extends State<Reservasi> {
     }
   }
 
-  List<Widget> getPesanButtons(String namaJadwal, String jamMulai, String jamSelesai) {
+  List<Widget> getPesanButtons(String namaJadwal, String jamMulai, int jamSelesai) {
     List<Widget> buttons = [];
     String buttonStatus;
 
@@ -350,7 +351,7 @@ class _ReservasiState extends State<Reservasi> {
                     : DateFormat('dd-MM-yyyy').format(today);
                 await prefs.setString('dataTanggal', dataTanggal);
                 await prefs.setString('dataJamMulai', jamMulai);
-                await prefs.setString('dataJamSelesai', jamSelesai);
+                await prefs.setString('dataJamSelesai', jamSelesai.toString());
 
                 Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
               },

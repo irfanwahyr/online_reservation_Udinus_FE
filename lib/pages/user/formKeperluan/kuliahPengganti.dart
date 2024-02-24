@@ -73,14 +73,12 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
                 LayoutBuilder(
                   builder: (context, constraints) {
                     if (constraints.maxWidth > 900) {
-                      // Jika lebar layar lebih besar dari 700, tampilkan sebagai row
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: buildKuliahPengganti(context),
                       );
                     } else {
-                      // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
