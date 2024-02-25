@@ -38,13 +38,16 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RESERVASI'];
 
+    // Jika idHari adalah 7 (Minggu), kembalikan list kosong
+    if (idHari == "7") {
+      return [];
+    }
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? dataNamaLab = prefs.getString('dataNamaLab');
-
     final response = await http.get(Uri.parse("$env/$dataNamaLab/$idHari"));
 
     if (response.statusCode == 200) {
-
       try {
         final List body = json.decode(response.body);
         return body.map((e) => ShowJadwalMingguan.fromJson(e)).toList();

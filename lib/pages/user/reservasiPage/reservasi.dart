@@ -38,15 +38,21 @@ class _ReservasiState extends State<Reservasi> {
   @override
   void initState() {
     super.initState();
-    setSelectedDateText(today);
+    // Cek apakah hari ini adalah Minggu
+    if (today.weekday == DateTime.sunday) {
+      // Jika ya, atur _selectedDate ke hari Minggu
+      _selectedDate = today;
+      setSelectedDateText(today);
+      jadwalFuture = fetchdata(today.weekday.toString());
+    }
     getData();
   }
 
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? dataLab = prefs.getString('dataNamaLab');
-    ConvertDataNamaLab convertHari = ConvertDataNamaLab();
-    String lab = convertHari.convertData(dataLab!);
+    ConvertDataNamaLab convertLab = ConvertDataNamaLab();
+    String lab = convertLab.convertData(dataLab!);
 
     setState(() {
       jadwalFuture = fetchdata(today.weekday.toString());
@@ -81,238 +87,257 @@ class _ReservasiState extends State<Reservasi> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: jadwalFuture,
-        builder:(context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if(snapshot.hasError){
-            return Text("${snapshot.error}");
-          } else if (snapshot.hasData){
-            final jadwal = snapshot.data!;
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Heading5(
-                          text:
-                              "Reservasi Ruangan Laboratorium ${labName.toString()}",
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Heading6(
-                        text: "JADWAL LABORATORIUM",
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: FutureBuilder(
+      future: jadwalFuture,
+      builder:(context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if(snapshot.hasError){
+          return Text("${snapshot.error}");
+        } else if (snapshot.hasData){
+          final jadwal = snapshot.data!;
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Heading5(
+                        text:
+                            "Reservasi Ruangan Laboratorium ${labName.toString()}",
                         color: Colors.black,
                       ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          LayoutBuilder(
-                            builder: (context, constraints) {
-                              double screenWidth = MediaQuery.of(context).size.width;
-                              double buttonWidth = screenWidth > 900 ? 200.0 : 150.0;
-                              double buttonHeight = screenWidth > 900 ? 80.0 : 60.0;
-                              double fontSize = screenWidth > 900 ? 20.0 : 16.0;
+                    ),
+                    const SizedBox(height: 10),
+                    const Heading6(
+                      text: "JADWAL LABORATORIUM",
+                      color: Colors.black,
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            double screenWidth = MediaQuery.of(context).size.width;
+                            double buttonWidth = screenWidth > 900 ? 200.0 : 150.0;
+                            double buttonHeight = screenWidth > 900 ? 80.0 : 60.0;
+                            double fontSize = screenWidth > 900 ? 20.0 : 16.0;
 
-                              return ElevatedButton.icon(
-                                onPressed: () {
-                                  _selectDate(context);
-                                },
-                                icon: const Icon(Icons.calendar_today),
-                                label: Text(
-                                  "Pilih Tanggal",
-                                  style: TextStyle(fontSize: fontSize),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(buttonWidth, buttonHeight),
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(width: 20),
-                          LayoutBuilder(
-                            builder: (context, constraints) {
-                              double screenWidth = MediaQuery.of(context).size.width;
-                              double buttonWidth = screenWidth > 900 ? 200.0 : 150.0;
-                              double buttonHeight = screenWidth > 900 ? 72.0 : 53.0;
-                              double fontSize = screenWidth > 900 ? 20.0 : 16.0;
+                            return ElevatedButton.icon(
+                              onPressed: () {
+                                _selectDate(context);
+                              },
+                              icon: const Icon(Icons.calendar_today),
+                              label: Text(
+                                "Pilih Tanggal",
+                                style: TextStyle(fontSize: fontSize),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(buttonWidth, buttonHeight),
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 20),
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            double screenWidth = MediaQuery.of(context).size.width;
+                            double buttonWidth = screenWidth > 900 ? 200.0 : 150.0;
+                            double buttonHeight = screenWidth > 900 ? 72.0 : 53.0;
+                            double fontSize = screenWidth > 900 ? 20.0 : 16.0;
 
-                              return Container(
-                                width: buttonWidth,
-                                height: buttonHeight,
-                                decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 255, 168, 7),
-                                  borderRadius: BorderRadius.circular(40),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _selectedDate != null
-                                        ? DateFormat('dd-MM-yyyy')
-                                            .format(_selectedDate!)
-                                        : DateFormat('dd-MM-yyyy').format(today),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: fontSize,
-                                    ),
+                            return Container(
+                              width: buttonWidth,
+                              height: buttonHeight,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 255, 168, 7),
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  _selectedDate != null
+                                      ? DateFormat('dd-MM-yyyy')
+                                          .format(_selectedDate!)
+                                      : DateFormat('dd-MM-yyyy').format(today),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: fontSize,
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        ],
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(213, 6, 6, 146),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(213, 6, 6, 146),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          selectedDateText,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
+                      child: Text(
+                        selectedDateText,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
-                          color: Colors.green[50],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Scrollbar(
-                            controller: controller_2,
-                            thumbVisibility: true,
-                            child: SingleChildScrollView(
-                              controller: controller_2,
-                              scrollDirection: Axis.horizontal,
-                              child: SingleChildScrollView(
-                                controller: controller,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      width: _calculateSizedBoxWidth(context),
-                                      child: DataTable(
-                                        columns: const <DataColumn>[
-                                          DataColumn(
-                                            label: Expanded(
-                                              child: Center(
-                                                child: Text(
-                                                  "Waktu",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          DataColumn(
-                                            label: Expanded(
-                                              child: Center(
-                                                child: Text(
-                                                  "Keterangan",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          DataColumn(
-                                            label: Expanded(
-                                              child: Center(
-                                                child: Text(
-                                                  "Pesan",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                        rows: List.generate(
-                                          jadwal.length,
-                                          (index) {
-                                            final jadwal_idx = jadwal[index];
-                                            List<String> listJam = listReservasi.getJam(jadwal_idx.jam_mulai, jadwal_idx.jam_selesai);
-                                            String jmulai = listJam[0], jselesai = listJam[1];
-                                            
-                                            String waktuText =
-                                                "$jmulai - $jselesai";
-                                            return DataRow(
-                                              cells: <DataCell>[
-                                                DataCell(
-                                                  Center(
-                                                    child: FittedBox(
-                                                      fit: BoxFit.scaleDown,
-                                                      child: Text(
-                                                        waktuText,
-                                                        textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    _selectedDate != null && _selectedDate!.weekday == DateTime.sunday
+                        ? Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              color: Colors.green[50],
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Center(
+                                child: Text(
+                                  'Hari Minggu tidak ada jadwal',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              color: Colors.green[50],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Scrollbar(
+                                controller: controller_2,
+                                thumbVisibility: true,
+                                child: SingleChildScrollView(
+                                  controller: controller_2,
+                                  scrollDirection: Axis.horizontal,
+                                  child: SingleChildScrollView(
+                                    controller: controller,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          width: _calculateSizedBoxWidth(context),
+                                          child: DataTable(
+                                            columns: const <DataColumn>[
+                                              DataColumn(
+                                                label: Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Waktu",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 20,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                DataCell(
-                                                  Center(
-                                                    child: FittedBox(
-                                                      fit: BoxFit.scaleDown,
-                                                      child: Text(
-                                                        "${jadwal_idx.nama_jadwal}",
-                                                        textAlign: TextAlign.center,
+                                              ),
+                                              DataColumn(
+                                                label: Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Keterangan",
+                                                      style: TextStyle(
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 20,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                DataCell(
-                                                  Center(
-                                                    child: getPesanButtons(jadwal_idx.nama_jadwal, jmulai, jadwal_idx.jam_selesai)[index],
+                                              ),
+                                              DataColumn(
+                                                label: Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Pesan",
+                                                      style: TextStyle(
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ],
-                                            );
-                                          },
-                                          growable: true,
+                                              ),
+                                            ],
+                                            rows: List.generate(
+                                              jadwal.length,
+                                              (index) {
+                                                final jadwal_idx = jadwal[index];
+                                                List<String> listJam = listReservasi.getJam(jadwal_idx.jam_mulai, jadwal_idx.jam_selesai);
+                                                String jmulai = listJam[0]; 
+                                                String jselesai = listJam[1];
+                                                String waktuText = "$jmulai - $jselesai";
+                                                return DataRow(
+                                                  cells: <DataCell>[
+                                                    DataCell(
+                                                      Center(
+                                                        child: FittedBox(
+                                                          fit: BoxFit.scaleDown,
+                                                          child: Text(
+                                                            waktuText,
+                                                            textAlign: TextAlign.center,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    DataCell(
+                                                      Center(
+                                                        child: FittedBox(
+                                                          fit: BoxFit.scaleDown,
+                                                          child: Text(
+                                                            "${jadwal_idx.nama_jadwal}",
+                                                            textAlign: TextAlign.center,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    DataCell(
+                                                      Center(
+                                                        child: getPesanButtons(jadwal_idx.nama_jadwal, jmulai, jselesai)[index],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                              growable: true,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            );
-          } else {
-            return const Text("No data");
-          }
-        },
-      )
-    );
-  }
+            ),
+          );
+        } else {
+          return const Text("No data");
+        }
+      },
+    )
+  );
+}
 
   double _calculateSizedBoxWidth(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -324,7 +349,7 @@ class _ReservasiState extends State<Reservasi> {
     }
   }
 
-  List<Widget> getPesanButtons(String namaJadwal, String jamMulai, int jamSelesai) {
+  List<Widget> getPesanButtons(String namaJadwal, String jamMulai, String jamSelesai) {
     List<Widget> buttons = [];
     String buttonStatus;
 
@@ -351,7 +376,7 @@ class _ReservasiState extends State<Reservasi> {
                     : DateFormat('dd-MM-yyyy').format(today);
                 await prefs.setString('dataTanggal', dataTanggal);
                 await prefs.setString('dataJamMulai', jamMulai);
-                await prefs.setString('dataJamSelesai', jamSelesai.toString());
+                await prefs.setString('dataJamSelesai', jamSelesai);
 
                 Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
               },

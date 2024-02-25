@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class FieldJam extends StatefulWidget {
   final String judul;
   final String mulai;
@@ -18,6 +17,31 @@ class FieldJam extends StatefulWidget {
 }
 
 class _FieldJamState extends State<FieldJam> {
+  List<String> waktuDropdown = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _generateDropdownItems();
+  }
+
+  @override
+  void didUpdateWidget(FieldJam oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.mulai != widget.mulai) {
+      _generateDropdownItems();
+    }
+  }
+
+  void _generateDropdownItems() {
+    int indexMulai = Waktu.indexOf(widget.mulai);
+    if (indexMulai != -1) {
+      waktuDropdown = Waktu.sublist(indexMulai + 1);
+    } else {
+      waktuDropdown = List.from(Waktu); // Jika waktu mulai tidak ditemukan, tampilkan semua waktu
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -103,9 +127,9 @@ class _FieldJamState extends State<FieldJam> {
                             onChanged: (String? value) {
                               _selectedTime(value ?? '');
                             },
-                            items: Waktu.map<DropdownMenuItem<String>>((String value) {
+                            items: waktuDropdown.map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
-                                value: widget.selesai,
+                                value: value,
                                 child: Text(value),
                               );
                             }).toList(),
@@ -149,9 +173,9 @@ class _FieldJamState extends State<FieldJam> {
                               onChanged: (String? value) {
                                 _selectedTime(value ?? '');
                               },
-                              items: Waktu.map<DropdownMenuItem<String>>((String value) {
+                              items: waktuDropdown.map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
-                                  value: widget.selesai,
+                                  value: value,
                                   child: Text(value),
                                 );
                               }).toList(),
