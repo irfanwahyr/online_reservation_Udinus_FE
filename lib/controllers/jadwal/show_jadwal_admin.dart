@@ -3,37 +3,37 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ShowJadwalMingguan {
+class ShowJadwalMingguanAdmin {
   int id;
   final int id_hari;
   final String kelompok;
-  final String matkul;
+  final String nama_jadwal;
   final int jam_mulai;
   final int jam_selesai;
 
-  ShowJadwalMingguan({
+  ShowJadwalMingguanAdmin({
     required this.id,
     required this.id_hari,
     required this.kelompok,
-    required this.matkul,
+    required this.nama_jadwal,
     required this.jam_mulai,
     required this.jam_selesai,
 
   });
 
-  factory ShowJadwalMingguan.fromJson(Map<String, dynamic> json) {
-    return ShowJadwalMingguan(
+  factory ShowJadwalMingguanAdmin.fromJson(Map<String, dynamic> json) {
+    return ShowJadwalMingguanAdmin(
       id: json['id']?? 0,
       id_hari: json['id_hari'] ?? 0,
       kelompok: json['kelompok'] ?? "kosong",
-      matkul: json['matkul'] ?? "kosong",
+      nama_jadwal: json['nama_jadwal'] ?? "kosong",
       jam_mulai: json['jam_mulai'] ?? 0,
       jam_selesai: json['jam_selesai'] ?? 0,
     );
   }
 }
 
-Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
+Future<List<ShowJadwalMingguanAdmin>> fetchdata(String idHari) async {
   try {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RESERVASI'];
@@ -50,7 +50,7 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
     if (response.statusCode == 200) {
       try {
         final List body = json.decode(response.body);
-        return body.map((e) => ShowJadwalMingguan.fromJson(e)).toList();
+        return body.map((e) => ShowJadwalMingguanAdmin.fromJson(e)).toList();
       } catch (e) {
         throw Exception('failed');
       }

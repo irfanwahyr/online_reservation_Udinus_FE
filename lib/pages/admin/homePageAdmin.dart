@@ -6,7 +6,7 @@ import 'package:kp2024/pages/admin/KontenHomePage/kuliahPenggantiAdmin.dart';
 import 'package:kp2024/pages/admin/sidebarAdmin.dart';
 
 class HomePageAdmin extends StatefulWidget {
-  static const nameRoute = "HomePageAdmin";
+  static const nameRoute = "/HomePageAdmin";
   const HomePageAdmin({Key? key}) : super(key: key);
 
   @override

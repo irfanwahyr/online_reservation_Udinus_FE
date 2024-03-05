@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class JadwalHari extends StatefulWidget {
   static const nameRoute = "/JadwalHari";
-
   const JadwalHari({Key? key}) : super(key: key);
 
   @override
@@ -112,20 +111,20 @@ class _JadwalHariState extends State<JadwalHari> {
                     child: Center(
                       child: DataTable(
                         columns: const <DataColumn>[
-                          DataColumn(
-                            label: Expanded(
-                              child: Center(
-                                child: Text(
-                                  "Laboratorium",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                          // DataColumn(
+                          //   label: Expanded(
+                          //     child: Center(
+                          //       child: Text(
+                          //         "Laboratorium",
+                          //         textAlign: TextAlign.center,
+                          //         style: TextStyle(
+                          //           fontWeight: FontWeight.bold,
+                          //           fontSize: 10,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           DataColumn(
                             label: Expanded(
                               child: Center(
@@ -172,7 +171,7 @@ class _JadwalHariState extends State<JadwalHari> {
                             label: Expanded(
                               child: Center(
                                 child: Text(
-                                  "Kode Kelas",
+                                  "Kelompok",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -182,20 +181,7 @@ class _JadwalHariState extends State<JadwalHari> {
                               ),
                             ),
                           ),
-                          DataColumn(
-                            label: Expanded(
-                              child: Center(
-                                child: Text(
-                                  "Dosen Pengampu",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                          
                           DataColumn(
                             label: Expanded(
                               child: Center(
@@ -231,14 +217,14 @@ class _JadwalHariState extends State<JadwalHari> {
       dummyData.add(
         DataRow(
           cells: <DataCell>[
-            DataCell(
-              Center(
-                child: Text(
-                  'Laboratorium $namaLabAdmin $hariAdmin',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
-            ),
+            // DataCell(
+            //   Center(
+            //     child: Text(
+            //       'Laboratorium $namaLabAdmin $hariAdmin',
+            //       style: TextStyle(fontSize: 10),
+            //     ),
+            //   ),
+            // ),
             DataCell(
               Center(
                 child: Text(
@@ -266,19 +252,12 @@ class _JadwalHariState extends State<JadwalHari> {
             DataCell(
               Center(
                 child: Text(
-                  'Kode Kelas $i',
+                  'Kelompok $i',
                   style: TextStyle(fontSize: 10),
                 ),
               ),
             ),
-            DataCell(
-              Center(
-                child: Text(
-                  'Dosen Pengampu $i',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
-            ),
+            
             DataCell(
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -291,7 +270,7 @@ class _JadwalHariState extends State<JadwalHari> {
                         WaktuMulai[i],
                         WaktuSelesai[i],
                         'Nama Matkul $i',
-                        'Kode Kelas $i',
+                        'Kelompok $i',
                         'Dosen Pengampu $i',
                       );
                     },
