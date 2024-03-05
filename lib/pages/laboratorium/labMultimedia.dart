@@ -29,9 +29,9 @@ class _LabMultimediaState extends State<LabMultimedia> {
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const ContainerLab(
-              nama: "Laboratorium Multimedia",
+              jenis_lab: "Laboratorium Multimedia",
               imageAsset: "images/gambar.jpg",
-              deskripsi:
+              deskripsi_lab:
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             ),
             const SizedBox(
@@ -55,7 +55,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "1");
+                          await prefs.setString('nama_lab', "1");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -66,7 +66,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "1");
+                          await prefs.setString('nama_lab', "1");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -86,7 +86,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "2");
+                          await prefs.setString('nama_lab', "2");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -97,7 +97,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "2");
+                          await prefs.setString('nama_lab', "2");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -117,7 +117,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "3");
+                          await prefs.setString('nama_lab', "3");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -128,7 +128,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "3");
+                          await prefs.setString('nama_lab', "3");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -148,7 +148,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "4");
+                          await prefs.setString('nama_lab', "4");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -159,7 +159,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "4");
+                          await prefs.setString('nama_lab', "4");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -179,7 +179,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "8");
+                          await prefs.setString('nama_lab', "8");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -190,7 +190,7 @@ class _LabMultimediaState extends State<LabMultimedia> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "8");
+                          await prefs.setString('nama_lab', "8");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),

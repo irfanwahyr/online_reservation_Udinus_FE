@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading7.dart';
 
 class ContainerLab extends StatefulWidget {
-  final String nama;
+  final String jenis_lab;
   final String imageAsset;
-  final String deskripsi;
+  final String deskripsi_lab;
 
   const ContainerLab({
     Key? key,
-    required this.nama,
+    required this.jenis_lab,
     required this.imageAsset,
-    required this.deskripsi,
+    required this.deskripsi_lab,
   }) : super(key: key);
 
   @override
@@ -34,18 +34,18 @@ class _ContainerLabState extends State<ContainerLab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Heading7(text: widget.nama, color: Colors.white),
+            Heading7(text: widget.jenis_lab, color: Colors.white),
             const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                widget.deskripsi,
+                widget.deskripsi_lab,
                 style: const TextStyle(fontSize: 12, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
-            ) // Menggunakan widget.nama
+            ) // Menggunakan widget.jenis_lab
           ],
         ),
       ),

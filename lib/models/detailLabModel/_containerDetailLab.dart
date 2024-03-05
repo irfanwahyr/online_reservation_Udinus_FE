@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 
 class ContainerDetailLab extends StatefulWidget {
-  final String laboratorium;
-  final String namaLab;
+  final String jenis_lab;
+  final String nama_lab;
   final String imageAsset;
   final VoidCallback onpressed;
 
   const ContainerDetailLab({
     Key? key,
-    required this.namaLab,
-    required this.laboratorium,
+    required this.nama_lab,
+    required this.jenis_lab,
     required this.imageAsset,
     required this.onpressed,
   }) : super(key: key);
@@ -47,7 +47,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          widget.laboratorium,
+                          widget.jenis_lab,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontFamily: "Archivo",
@@ -67,7 +67,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                   ),
                   const SizedBox(width: 20),
                   Text(
-                    widget.namaLab,
+                    widget.nama_lab,
                     style: const TextStyle(
                       color: Color.fromARGB(190, 111, 215, 208),
                       fontFamily: "Archivo",
@@ -85,7 +85,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      widget.laboratorium,
+                      widget.jenis_lab,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontFamily: "Archivo",
@@ -100,7 +100,7 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                     onPressed: widget.onpressed,
                   ),
                   Text(
-                    widget.namaLab,
+                    widget.nama_lab,
                     style: const TextStyle(
                       color: Color.fromARGB(190, 111, 215, 208),
                       fontFamily: "Archivo",

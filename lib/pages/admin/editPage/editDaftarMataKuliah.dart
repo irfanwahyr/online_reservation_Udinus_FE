@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 class EditDaftarMataKuliah extends StatelessWidget {
   final String hari;
-  final String namaLab;
-  final String waktuMulai;
-  final String waktuSelesai;
-  final String namaMatkul;
-  final String kodeKelas;
-  final String dosenPengampu;
+  final String nama_lab;
+  final String waktu_mulai;
+  final String waktu_selesai;
+  final String mata_kuliah;
+  final String kelompok;
+  final String nama_dosen;
   final Future? futureDataDaftarMataKuliah;
 
   EditDaftarMataKuliah(
       {required this.hari,
-      required this.namaLab,
-      required this.waktuMulai,
-      required this.waktuSelesai,
-      required this.namaMatkul,
-      required this.kodeKelas,
-      required this.dosenPengampu,
+      required this.nama_lab,
+      required this.waktu_mulai,
+      required this.waktu_selesai,
+      required this.mata_kuliah,
+      required this.kelompok,
+      required this.nama_dosen,
       this.futureDataDaftarMataKuliah});
 
   @override
@@ -41,28 +41,28 @@ class EditDaftarMataKuliah extends StatelessWidget {
                   decoration: InputDecoration(labelText: 'Hari'),
                 ),
                 TextFormField(
-                  initialValue: namaLab,
+                  initialValue: nama_lab,
                   decoration: InputDecoration(labelText: 'Nama Lab'),
                 ),
                 TextFormField(
-                  initialValue: waktuMulai,
+                  initialValue: waktu_mulai,
                   decoration: InputDecoration(labelText: 'Waktu Mulai'),
                 ),
                 TextFormField(
-                  initialValue: waktuSelesai,
+                  initialValue: waktu_selesai,
                   decoration: InputDecoration(labelText: 'Waktu Selesai'),
                 ),
                 TextFormField(
-                  initialValue: namaMatkul,
+                  initialValue: mata_kuliah,
                   decoration: InputDecoration(labelText: 'Nama Matkul'),
                 ),
                 TextFormField(
-                  initialValue: kodeKelas,
+                  initialValue: kelompok,
                   decoration: InputDecoration(labelText: 'Kode Kelas'),
                 ),
                 TextFormField(
-                  initialValue: dosenPengampu,
-                  decoration: InputDecoration(labelText: 'dosen Pengampu'),
+                  initialValue: nama_dosen,
+                  decoration: InputDecoration(labelText: 'Nama Dosen'),
                 ),
               ],
             );

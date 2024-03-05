@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SpesifikasiDetailLab extends StatefulWidget {
-  final String namaLab;
-  final String jumlahPc;
+  final String nama_lab;
+  final String jumlah_pc;
 
   const SpesifikasiDetailLab({
     Key? key,
-    required this.namaLab,
-    required this.jumlahPc,
+    required this.nama_lab,
+    required this.jumlah_pc,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
             children: [
               const SizedBox(height: 40),
               Text(
-                "SPESIFIKASI LAB ${widget.namaLab}",
+                "SPESIFIKASI LAB ${widget.nama_lab}",
                 style: const TextStyle(fontFamily: "Archivo", fontSize: 30),
               ),
               const SizedBox(height: 30),
@@ -54,7 +54,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            widget.jumlahPc,
+                            widget.jumlah_pc,
                             style:
                                 const TextStyle(fontFamily: "Archivo", fontSize: 90),
                           ),

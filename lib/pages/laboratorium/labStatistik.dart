@@ -28,9 +28,9 @@ class _LabStatistikState extends State<LabStatistik> {
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const ContainerLab(
-              nama: "Laboratorium Statistik",
+              jenis_lab: "Laboratorium Statistik",
               imageAsset: "images/gambar.jpg",
-              deskripsi:
+              deskripsi_lab:
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             ),
             const SizedBox(
@@ -54,7 +54,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "6");
+                          await prefs.setString('nama_lab', "6");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -65,7 +65,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "6");
+                          await prefs.setString('nama_lab', "6");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -88,7 +88,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "7");
+                          await prefs.setString('nama_lab', "7");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -99,7 +99,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "7");
+                          await prefs.setString('nama_lab', "7");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -122,7 +122,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "11");
+                          await prefs.setString('nama_lab', "11");
                           Navigator.pushReplacementNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -133,7 +133,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('dataNamaLab', "11");
+                          await prefs.setString('nama_lab', "11");
                           Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                         },
                       ),

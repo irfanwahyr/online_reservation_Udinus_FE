@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class EditKuliahPengganti extends StatelessWidget {
-  final String dosen;
-  final String mataKuliah;
-  final String kode;
-  final String ruang;
-  final String noWhatsapp;
-  final String tanggalPinjam;
-  final String jamMulai;
-  final String jamSelesai;
+  final String nama_dosen;
+  final String mata_kuliah;
+  final String kelompok;
+  final String nama_lab;
+  final String no_whatsapp;
+  final String tanggal_pinjam;
+  final String jam_mulai;
+  final String jam_selesai;
   final String keterangan;
   final Future? futureDataEditKuliahPengganti;
 
   EditKuliahPengganti(
-      {required this.dosen,
-      required this.mataKuliah,
-      required this.kode,
-      required this.ruang,
-      required this.noWhatsapp,
-      required this.tanggalPinjam,
-      required this.jamMulai,
-      required this.jamSelesai,
+      {required this.nama_dosen,
+      required this.mata_kuliah,
+      required this.kelompok,
+      required this.nama_lab,
+      required this.no_whatsapp,
+      required this.tanggal_pinjam,
+      required this.jam_mulai,
+      required this.jam_selesai,
       required this.keterangan,
       this.futureDataEditKuliahPengganti});
 
@@ -41,35 +41,35 @@ class EditKuliahPengganti extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
-                  initialValue: dosen,
-                  decoration: InputDecoration(labelText: 'Nama Dosen'),
+                  initialValue: nama_dosen,
+                  decoration: InputDecoration(labelText: 'Nama nama_dosen'),
                 ),
                 TextFormField(
-                  initialValue: mataKuliah,
+                  initialValue: mata_kuliah,
                   decoration: InputDecoration(labelText: 'Mata Kuliah'),
                 ),
                 TextFormField(
-                  initialValue: kode,
-                  decoration: InputDecoration(labelText: 'Kode'),
+                  initialValue: kelompok,
+                  decoration: InputDecoration(labelText: 'kelompok'),
                 ),
                 TextFormField(
-                  initialValue: ruang,
-                  decoration: InputDecoration(labelText: 'Ruang'),
+                  initialValue: nama_lab,
+                  decoration: InputDecoration(labelText: 'nama_lab'),
                 ),
                 TextFormField(
-                  initialValue: noWhatsapp,
+                  initialValue: no_whatsapp,
                   decoration: InputDecoration(labelText: 'No Whatsapp'),
                 ),
                 TextFormField(
-                  initialValue: tanggalPinjam,
+                  initialValue: tanggal_pinjam,
                   decoration: InputDecoration(labelText: 'Tanggal Pinjam'),
                 ),
                 TextFormField(
-                  initialValue: jamMulai,
+                  initialValue: jam_mulai,
                   decoration: InputDecoration(labelText: 'Jam Mulai'),
                 ),
                 TextFormField(
-                  initialValue: jamSelesai,
+                  initialValue: jam_selesai,
                   decoration: InputDecoration(labelText: 'Jam Selesai'),
                 ),
                 TextFormField(

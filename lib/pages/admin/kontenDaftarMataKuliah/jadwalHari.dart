@@ -15,9 +15,9 @@ class JadwalHari extends StatefulWidget {
 }
 
 class _JadwalHariState extends State<JadwalHari> {
-  String? namaLabAdmin;
-  String? hariAdmin;
-  List<String> WaktuMulai = [
+  String? nama_lab;
+  String? hari;
+  List<String> waktu_mulai = [
     "07.00",
     "07.40",
     "08.40",
@@ -34,7 +34,7 @@ class _JadwalHariState extends State<JadwalHari> {
     "20.10",
   ];
 
-  List<String> WaktuSelesai = [
+  List<String> waktu_selesai = [
     "07.40",
     "08.40",
     "09.30",
@@ -59,12 +59,12 @@ class _JadwalHariState extends State<JadwalHari> {
 
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? namaLabAdmin = prefs.getString('namaLabAdmin');
-    String? hariAdmin = prefs.getString('hariAdmin');
+    String? nama_lab = prefs.getString('nama_lab');
+    String? hari = prefs.getString('hari');
 
     setState(() {
-      this.namaLabAdmin = namaLabAdmin;
-      this.hariAdmin = hariAdmin;
+      this.nama_lab = nama_lab;
+      this.hari = hari;
     });
   }
 
@@ -84,7 +84,7 @@ class _JadwalHariState extends State<JadwalHari> {
             icon: Icon(Icons.arrow_back)),
         centerTitle: true,
         title: Heading1(
-            text: "Jadwal Laboratorium $namaLabAdmin $hariAdmin",
+            text: "Jadwal Laboratorium $nama_lab $hari",
             color: const Color.fromARGB(255, 255, 255, 255)),
       ),
       body: Center(
@@ -213,14 +213,14 @@ class _JadwalHariState extends State<JadwalHari> {
   List<DataRow> _generateDummyData() {
     List<DataRow> dummyData = [];
 
-    for (int i = 0; i < WaktuMulai.length; i++) {
+    for (int i = 0; i < waktu_mulai.length; i++) {
       dummyData.add(
         DataRow(
           cells: <DataCell>[
             // DataCell(
             //   Center(
             //     child: Text(
-            //       'Laboratorium $namaLabAdmin $hariAdmin',
+            //       'Laboratorium $nama_lab $hari',
             //       style: TextStyle(fontSize: 10),
             //     ),
             //   ),
@@ -228,7 +228,7 @@ class _JadwalHariState extends State<JadwalHari> {
             DataCell(
               Center(
                 child: Text(
-                  WaktuMulai[i],
+                  waktu_mulai[i],
                   style: TextStyle(fontSize: 10),
                 ),
               ),
@@ -236,7 +236,7 @@ class _JadwalHariState extends State<JadwalHari> {
             DataCell(
               Center(
                 child: Text(
-                  WaktuSelesai[i],
+                  waktu_selesai[i],
                   style: TextStyle(fontSize: 10),
                 ),
               ),
@@ -265,10 +265,10 @@ class _JadwalHariState extends State<JadwalHari> {
                   ButtonEdit(
                     onPressed: () {
                       _showEditFormPopup(
-                        '$hariAdmin',
-                        '$namaLabAdmin',
-                        WaktuMulai[i],
-                        WaktuSelesai[i],
+                        '$hari',
+                        '$nama_lab',
+                        waktu_mulai[i],
+                        waktu_selesai[i],
                         'Nama Matkul $i',
                         'Kelompok $i',
                         'Dosen Pengampu $i',
@@ -292,24 +292,24 @@ class _JadwalHariState extends State<JadwalHari> {
 
   void _showEditFormPopup(
     String hari,
-    String namaLab,
-    String waktuMulai,
-    String waktuSelesai,
-    String namaMatkul,
-    String kodeKelas,
-    String dosenPengampu,
+    String nama_lab,
+    String waktu_mulai,
+    String waktu_selesai,
+    String mata_kuliah,
+    String kelompok,
+    String nama_dosen,
   ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return EditDaftarMataKuliah(
           hari: hari,
-          namaLab: namaLab,
-          waktuMulai: waktuMulai,
-          waktuSelesai: waktuSelesai,
-          namaMatkul: namaMatkul,
-          kodeKelas: kodeKelas,
-          dosenPengampu: dosenPengampu,
+          nama_lab: nama_lab,
+          waktu_mulai: waktu_mulai,
+          waktu_selesai: waktu_selesai,
+          mata_kuliah: mata_kuliah,
+          kelompok: kelompok,
+          nama_dosen: nama_dosen,
         );
       },
     );

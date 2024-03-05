@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 class Hardware extends StatefulWidget {
   final String processor;
   final String ram;
-  final String vga;
+  final String gpu;
   final String monitor;
   final String keyboard;
   final String mouse;
+  final String storage;
 
   const Hardware({super.key, 
     required this.processor,
     required this.ram,
-    required this.vga,
+    required this.gpu,
     required this.mouse,
     required this.keyboard,
     required this.monitor,
+    required this.storage
   });
 
   @override
@@ -81,10 +83,24 @@ class _HardwareState extends State<Hardware> {
                   style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                   children: [
                     const TextSpan(
-                      text: "VGA: ",
+                      text: "gpu: ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    TextSpan(text: widget.vga),
+                    TextSpan(text: widget.gpu),
+                  ],
+                ),
+              ),
+              // Add more hardware details or icons as needed
+              const SizedBox(height: 10),
+              RichText(
+                text: TextSpan(
+                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
+                  children: [
+                    const TextSpan(
+                      text: "storage: ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(text: widget.storage),
                   ],
                 ),
               ),

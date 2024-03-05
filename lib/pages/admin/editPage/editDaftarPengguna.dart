@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class EditDaftarPengguna extends StatelessWidget {
-  final String namaPengguna;
+  final String username;
   final String email;
   final String password;
   final Future? futureDataDaftarPengguna;
 
   EditDaftarPengguna(
-      {required this.namaPengguna,
+      {required this.username,
       required this.email,
       required this.password,
       this.futureDataDaftarPengguna});
@@ -29,7 +29,7 @@ class EditDaftarPengguna extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField(
-                    initialValue: namaPengguna,
+                    initialValue: username,
                     decoration: InputDecoration(labelText: 'Nama Pengguna'),
                   ),
                   TextFormField(

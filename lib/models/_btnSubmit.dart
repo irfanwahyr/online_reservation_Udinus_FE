@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ButtonSubmit {
   ElevatedButton buildButtonSubmit({
-    required String nama,
+    required String text,
     required VoidCallback onPressed,
   }) {
     return ElevatedButton(
@@ -12,7 +12,7 @@ class ButtonSubmit {
             255, 43, 204, 48), // Set button background color to green
       ),
       child: Text(
-        nama,
+        text,
         style: const TextStyle(
           color: Colors.white, // Set text color to white
         ),

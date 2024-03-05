@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class FieldTanggal extends StatefulWidget {
   final String judul;
-  String tanggalMulai;
-  DateTime? tanggalSelesai;
+  String tanggal_Mulai;
+  DateTime? tanggal_Selesai;
 
   FieldTanggal({
     Key? key,
     required this.judul,
-    required this.tanggalMulai,
-    this.tanggalSelesai,
+    required this.tanggal_Mulai,
+    this.tanggal_Selesai,
   }) : super(key: key);
 
   @override
@@ -21,8 +21,8 @@ class _FieldTanggalState extends State<FieldTanggal> {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: isStartDate
-          ? DateTime.parse(widget.tanggalMulai)
-          : widget.tanggalSelesai ?? DateTime.now(),
+          ? DateTime.parse(widget.tanggal_Mulai)
+          : widget.tanggal_Selesai ?? DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.utc(2040, 3, 14),
     );
@@ -30,9 +30,9 @@ class _FieldTanggalState extends State<FieldTanggal> {
     if (pickedDate != null) {
       setState(() {
         if (isStartDate) {
-          widget.tanggalMulai = pickedDate.toString();
+          widget.tanggal_Mulai = pickedDate.toString();
         } else {
-          widget.tanggalSelesai = pickedDate;
+          widget.tanggal_Selesai = pickedDate;
         }
       });
     }
@@ -71,7 +71,7 @@ class _FieldTanggalState extends State<FieldTanggal> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            widget.tanggalMulai,
+                            widget.tanggal_Mulai,
                             style: const TextStyle(fontSize: 20),
                           ),
                         ],
@@ -92,7 +92,7 @@ class _FieldTanggalState extends State<FieldTanggal> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              widget.tanggalMulai,
+                              widget.tanggal_Mulai,
                               style: const TextStyle(fontSize: 20),
                             ),
                           ],
@@ -116,8 +116,8 @@ class _FieldTanggalState extends State<FieldTanggal> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            widget.tanggalSelesai != null
-                                ? "${widget.tanggalSelesai!.day.toString().padLeft(2, '0')}-${widget.tanggalSelesai!.month.toString().padLeft(2, '0')}-${widget.tanggalSelesai!.year}"
+                            widget.tanggal_Selesai != null
+                                ? "${widget.tanggal_Selesai!.day.toString().padLeft(2, '0')}-${widget.tanggal_Selesai!.month.toString().padLeft(2, '0')}-${widget.tanggal_Selesai!.year}"
                                 : "Selesai",
                             style: const TextStyle(
                                 fontSize: 20, color: Colors.white),
@@ -147,8 +147,8 @@ class _FieldTanggalState extends State<FieldTanggal> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              widget.tanggalSelesai != null
-                                  ? "${widget.tanggalSelesai!.day.toString().padLeft(2, '0')}-${widget.tanggalSelesai!.month.toString().padLeft(2, '0')}-${widget.tanggalSelesai!.year}"
+                              widget.tanggal_Selesai != null
+                                  ? "${widget.tanggal_Selesai!.day.toString().padLeft(2, '0')}-${widget.tanggal_Selesai!.month.toString().padLeft(2, '0')}-${widget.tanggal_Selesai!.year}"
                                   : "Selesai",
                               style: const TextStyle(
                                   fontSize: 20, color: Colors.white),

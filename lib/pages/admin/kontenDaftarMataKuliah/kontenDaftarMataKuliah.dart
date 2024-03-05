@@ -5,8 +5,8 @@ import 'package:kp2024/pages/admin/kontenDaftarMataKuliah/jadwalHari.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class KontenDaftarMataKuliah extends StatefulWidget {
-  final String namaLab;
-  const KontenDaftarMataKuliah({Key? key, required this.namaLab}) : super(key: key);
+  final String nama_lab;
+  const KontenDaftarMataKuliah({Key? key, required this.nama_lab}) : super(key: key);
 
   @override
   State<KontenDaftarMataKuliah> createState() => _KontenDaftarMataKuliahState();
@@ -21,7 +21,7 @@ class _KontenDaftarMataKuliahState extends State<KontenDaftarMataKuliah> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Heading1(
-              text: "Jadwal Matkul Lab ${widget.namaLab}", color: Colors.black),
+              text: "Jadwal Matkul Lab ${widget.nama_lab}", color: Colors.black),
           LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth > 600) {
@@ -92,7 +92,7 @@ class _KontenDaftarMataKuliahState extends State<KontenDaftarMataKuliah> {
         text: day,
         onTap: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('namaLabAdmin', "${widget.namaLab}");
+          await prefs.setString('nama_labAdmin', "${widget.nama_lab}");
           await prefs.setString('hariAdmin', day);
           Navigator.pushReplacementNamed(
             context,

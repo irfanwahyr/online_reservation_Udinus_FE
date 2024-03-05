@@ -105,7 +105,7 @@ class _LogSignState extends State<LogSign> {
             const SizedBox(height: 20),
             Center(
               child: ButtonSubmit().buildButtonSubmit(
-                  nama: "Masuk",
+                  text: "Masuk",
                   onPressed: () {
                     //fungsi mu wer
                   }),
@@ -178,7 +178,7 @@ class _LogSignState extends State<LogSign> {
             const SizedBox(height: 20),
             Center(
               child: ButtonSubmit().buildButtonSubmit(
-                  nama: "Daftar",
+                  text: "Daftar",
                   onPressed: () {
                     //fungsi mu wer
                   }),

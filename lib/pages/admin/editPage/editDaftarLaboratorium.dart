@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class EditDaftarLaboratorium extends StatelessWidget {
-  final String laboratorium;
-  final String jumlahPc;
+  final String nama_lab;
+  final String jumlah_pc;
   final String ram;
   final String memori;
-  final String vga;
+  final String gpu;
+  final String monitor;
+  final String storage;
   final String software1;
   final String software2;
   final String software3;
@@ -19,11 +21,13 @@ class EditDaftarLaboratorium extends StatelessWidget {
   final Future? futureDataDaftarLaboratorium;
 
   EditDaftarLaboratorium(
-      {required this.laboratorium,
-      required this.jumlahPc,
+      {required this.nama_lab,
+      required this.jumlah_pc,
       required this.ram,
       required this.memori,
-      required this.vga,
+      required this.gpu,
+      required this.monitor,
+      required this.storage,
       required this.software1,
       required this.software2,
       required this.software3,
@@ -53,11 +57,11 @@ class EditDaftarLaboratorium extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
-                  initialValue: laboratorium,
+                  initialValue: nama_lab,
                   decoration: InputDecoration(labelText: 'Laboratorium'),
                 ),
                 TextFormField(
-                  initialValue: jumlahPc,
+                  initialValue: jumlah_pc,
                   decoration: InputDecoration(labelText: 'Jumlah PC'),
                 ),
                 TextFormField(
@@ -69,8 +73,16 @@ class EditDaftarLaboratorium extends StatelessWidget {
                   decoration: InputDecoration(labelText: 'memori'),
                 ),
                 TextFormField(
-                  initialValue: vga,
-                  decoration: InputDecoration(labelText: 'vga'),
+                  initialValue: gpu,
+                  decoration: InputDecoration(labelText: 'gpu'),
+                ),
+                TextFormField(
+                  initialValue: gpu,
+                  decoration: InputDecoration(labelText: 'monitor'),
+                ),
+                TextFormField(
+                  initialValue: gpu,
+                  decoration: InputDecoration(labelText: 'storage'),
                 ),
                 TextFormField(
                   initialValue: software1,

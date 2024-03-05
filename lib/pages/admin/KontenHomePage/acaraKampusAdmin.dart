@@ -309,14 +309,14 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
 
   void _showEditFormPopup(
     String fakultas,
-    String penanggungJawab,
-    String noWhatsapp,
-    String namaAcara,
-    String ruang,
-    String tanggalMulai,
-    String tanggalSelesai,
-    String jamMulai,
-    String jamSelesai,
+    String penanggung_jawab,
+    String no_whatsapp,
+    String nama_acara,
+    String nama_lab,
+    String tanggal_mulai,
+    String tanggal_selesai,
+    String jam_mulai,
+    String jam_selesai,
     String keterangan,
   ) {
     showDialog(
@@ -324,14 +324,14 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
       builder: (BuildContext context) {
         return EditAcaraKampus(
           fakultas: fakultas,
-          penanggungJawab: penanggungJawab,
-          noWhatsapp: noWhatsapp,
-          namaAcara: namaAcara,
-          ruang: ruang,
-          tanggalMulai: tanggalMulai,
-          tanggalSelesai: tanggalSelesai,
-          jamMulai: jamMulai,
-          jamSelesai: jamSelesai,
+          penanggung_jawab: penanggung_jawab,
+          no_whatsapp: no_whatsapp,
+          nama_acara: nama_acara,
+          nama_lab: nama_lab,
+          tanggal_mulai: tanggal_mulai,
+          tanggal_selesai: tanggal_selesai,
+          jam_mulai: jam_mulai,
+          jam_selesai: jam_selesai,
           keterangan: keterangan,
         );
       },

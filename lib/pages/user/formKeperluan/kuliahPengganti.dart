@@ -18,10 +18,10 @@ class KuliahPengganti extends StatefulWidget {
 }
 
 class _KuliahPenggantiState extends State<KuliahPengganti> {
-  String? dataNamaLab;
-  String? dataTanggal;
-  String? dataJamMulai;
-  String? dataJamSelesai;
+  String? nama_lab;
+  String? tanggal_mulai;
+  String? jam_mulai;
+  String? jam_selesai;
 
   @override
   void initState() {
@@ -31,16 +31,16 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
 
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataNamaLab = prefs.getString('namaLab');
-    String? dataTanggal = prefs.getString('dataTanggal');
-    String? dataJamMulai = prefs.getString('dataJamMulai');
-    String? dataJamSelesai = prefs.getString('dataJamSelesai');
+    String? nama_lab = prefs.getString('nama_lab');
+    String? tanggal_mulai = prefs.getString('tanggal_mulai');
+    String? jam_mulai = prefs.getString('jam_mulai');
+    String? jam_selesai = prefs.getString('jam_selesai');
 
     setState(() {
-      this.dataNamaLab = dataNamaLab;
-      this.dataTanggal = dataTanggal;
-      this.dataJamMulai = dataJamMulai;
-      this.dataJamSelesai = dataJamSelesai;
+      this.nama_lab = nama_lab;
+      this.tanggal_mulai = tanggal_mulai;
+      this.jam_mulai = jam_mulai;
+      this.jam_selesai = jam_selesai;
     });
   }
 
@@ -135,11 +135,11 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             },
           ),
           FieldContainer(
-              judul: "Ruangan Dipilih", dataDikirim: dataNamaLab.toString()),
+              judul: "Ruangan Dipilih", dataDikirim: nama_lab.toString()),
           const SizedBox(height: 10), //dataDikirim di ganti dari database wer
           FieldContainer(
             judul: "Tanggal Dipilih",
-            dataDikirim: dataTanggal.toString(),
+            dataDikirim: tanggal_mulai.toString(),
           ), //dataDikirim di ganti dari database wer
         ],
       ),
@@ -153,8 +153,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
         children: [
           FieldJam(
             judul: "Jam Dipilih",
-            mulai: dataJamMulai.toString(),
-            selesai: dataJamSelesai.toString(),
+            jam_mulai: jam_mulai.toString(),
+            jam_selesai: jam_selesai.toString(),
           ),
           const SizedBox(height: 15),
           const FieldKeterangan(

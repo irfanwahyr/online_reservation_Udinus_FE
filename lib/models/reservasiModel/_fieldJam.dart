@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class FieldJam extends StatefulWidget {
   final String judul;
-  final String mulai;
-  String? selesai;
+  final String jam_mulai;
+  String? jam_selesai;
 
   FieldJam({
     Key? key,
     required this.judul,
-    required this.mulai,
-    this.selesai,
+    required this.jam_mulai,
+    this.jam_selesai,
   }) : super(key: key);
 
   @override
@@ -28,17 +28,17 @@ class _FieldJamState extends State<FieldJam> {
   @override
   void didUpdateWidget(FieldJam oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.mulai != widget.mulai) {
+    if (oldWidget.jam_mulai != widget.jam_mulai) {
       _generateDropdownItems();
     }
   }
 
   void _generateDropdownItems() {
-    int indexMulai = Waktu.indexOf(widget.mulai);
-    if (indexMulai != -1) {
-      waktuDropdown = Waktu.sublist(indexMulai + 1);
+    int indexjam_mulai = Waktu.indexOf(widget.jam_mulai);
+    if (indexjam_mulai != -1) {
+      waktuDropdown = Waktu.sublist(indexjam_mulai + 1);
     } else {
-      waktuDropdown = List.from(Waktu); // Jika waktu mulai tidak ditemukan, tampilkan semua waktu
+      waktuDropdown = List.from(Waktu); // Jika waktu jam_mulai tidak ditemukan, tampilkan semua waktu
     }
   }
 
@@ -70,7 +70,7 @@ class _FieldJamState extends State<FieldJam> {
                     ),
                     child: Center(
                       child: Text(
-                        widget.mulai,
+                        widget.jam_mulai,
                         style: const TextStyle(fontSize: 20),
                       ),
                     ),
@@ -84,7 +84,7 @@ class _FieldJamState extends State<FieldJam> {
                       ),
                       child: Center(
                         child: Text(
-                          widget.mulai,
+                          widget.jam_mulai,
                           style: const TextStyle(fontSize: 20),
                         ),
                       ),
@@ -106,7 +106,7 @@ class _FieldJamState extends State<FieldJam> {
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Center(
                             child: Text(
-                              widget.selesai ?? '',
+                              widget.jam_selesai ?? '',
                               style: const TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ),
@@ -152,7 +152,7 @@ class _FieldJamState extends State<FieldJam> {
                             padding: const EdgeInsets.only(left: 10.0),
                             child: Center(
                               child: Text(
-                                widget.selesai ?? '',
+                                widget.jam_selesai ?? '',
                                 style: const TextStyle(fontSize: 20, color: Colors.white),
                               ),
                             ),
@@ -193,7 +193,7 @@ class _FieldJamState extends State<FieldJam> {
 
   void _selectedTime(String selectedTime) {
     setState(() {
-      widget.selesai = selectedTime;
+      widget.jam_selesai = selectedTime;
     });
     // Navigator.pop(context);
   }

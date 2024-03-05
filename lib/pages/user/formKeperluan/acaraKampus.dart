@@ -22,10 +22,11 @@ class AcaraKampus extends StatefulWidget {
 }
 
 class _AcaraKampusState extends State<AcaraKampus> {
-  String? dataNamaLab;
-  String? dataTanggal;
-  String? dataJamMulai;
-  String? dataJamSelesai;
+  String? nama_lab;
+  String? tanggal_mulai;
+  // String? tanggal_selesai;
+  String? jam_mulai;
+  String? jam_selesai;
 
   @override
   void initState() {
@@ -35,16 +36,18 @@ class _AcaraKampusState extends State<AcaraKampus> {
 
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataNamaLab = prefs.getString('dataNamaLab');
-    String? dataTanggal = prefs.getString('dataTanggal');
-    String? dataJamMulai = prefs.getString('dataJamMulai');
-    String? dataJamSelesai = prefs.getString('dataJamSelesai');
+    String? nama_lab = prefs.getString('nama_lab');
+    String? tanggal_mulai = prefs.getString('tanggal_mulai');
+    // String? tanggal_selesai = prefs.getString('tanggal_selesai');
+    String? jam_mulai = prefs.getString('jam_mulai');
+    String? jam_selesai = prefs.getString('jam_selesai');
 
     setState(() {
-      this.dataNamaLab = dataNamaLab;
-      this.dataTanggal = dataTanggal;
-      this.dataJamMulai = dataJamMulai;
-      this.dataJamSelesai = dataJamSelesai;
+      this.nama_lab = nama_lab;
+      this.tanggal_mulai = tanggal_mulai;
+      // this.tanggal_selesai = tanggal_selesai;
+      this.jam_mulai = jam_mulai;
+      this.jam_selesai = jam_selesai;
     });
   }
 
@@ -139,10 +142,10 @@ class _AcaraKampusState extends State<AcaraKampus> {
             },
           ),
           FieldContainer(
-              judul: "Ruangan Dipilih", dataDikirim: dataNamaLab.toString()),
+              judul: "Ruangan Dipilih", dataDikirim: nama_lab.toString()),
           const SizedBox(height: 10),
           FieldTanggal(
-              judul: "Masukkan Tanggal", tanggalMulai: dataTanggal.toString()),
+              judul: "Masukkan Tanggal", tanggal_Mulai: tanggal_mulai.toString()),
         ],
       ),
       const SizedBox(
@@ -155,8 +158,8 @@ class _AcaraKampusState extends State<AcaraKampus> {
         children: [
           FieldJam(
             judul: "Jam Dipilih",
-            mulai: dataJamMulai.toString(),
-            selesai: dataJamSelesai.toString(),
+            jam_mulai: jam_mulai.toString(),
+            jam_selesai: jam_selesai.toString(),
           ),
           const SizedBox(height: 15),
           const FieldKeterangan(

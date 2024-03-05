@@ -28,7 +28,7 @@ class _ReservasiState extends State<Reservasi> {
   DateTime today = DateTime.now();
   DateTime? _selectedDate;
   ListReservasi listReservasi = ListReservasi();
-  String? dataLab;
+  String? nama_lab;
   String? labName;
   int? datePilihan;
   String selectedDateText = "";
@@ -50,14 +50,14 @@ class _ReservasiState extends State<Reservasi> {
 
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataLab = prefs.getString('dataNamaLab');
+    String? nama_lab = prefs.getString('nama_lab');
     ConvertDataNamaLab convertLab = ConvertDataNamaLab();
-    String lab = convertLab.convertData(dataLab!);
+    String lab = convertLab.convertData(nama_lab!);
 
     setState(() {
       jadwalFuture = fetchdata(today.weekday.toString());
       labName = lab;
-      this.dataLab = dataLab;
+      this.nama_lab = nama_lab;
     });
   }
 
@@ -309,7 +309,8 @@ Widget build(BuildContext context) {
                                                     ),
                                                     DataCell(
                                                       Center(
-                                                        child: getPesanButtons(jadwal_idx.matkul, jmulai, jselesai)[index],
+                                                        child: 
+                                                        getPesanButtons(jadwal_idx.matkul, jmulai, jselesai)[index],
                                                       ),
                                                     ),
                                                   ],
@@ -349,7 +350,7 @@ Widget build(BuildContext context) {
     }
   }
 
-  List<Widget> getPesanButtons(String namaJadwal, String jamMulai, String jamSelesai) {
+  List<Widget> getPesanButtons(String namaJadwal, String jam_mulai, String jam_selesai) {
     List<Widget> buttons = [];
     String buttonStatus;
 
@@ -370,13 +371,13 @@ Widget build(BuildContext context) {
             ButtonReservasi(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString('dataNamaLab', dataLab.toString());
-                String dataTanggal = _selectedDate != null
+                await prefs.setString('nama_lab', nama_lab.toString());
+                String tanggal_mulai = _selectedDate != null
                     ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
                     : DateFormat('dd-MM-yyyy').format(today);
-                await prefs.setString('dataTanggal', dataTanggal);
-                await prefs.setString('dataJamMulai', jamMulai);
-                await prefs.setString('dataJamSelesai', jamSelesai);
+                await prefs.setString('tanggal_mulai', tanggal_mulai);
+                await prefs.setString('jam_mulai', jam_mulai);
+                await prefs.setString('jam_selesai', jam_selesai);
 
                 Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
               },

@@ -84,7 +84,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                         label: Expanded(
                           child: Center(
                             child: Text(
-                              "Kode",
+                              "kelompok",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -213,7 +213,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
           DataCell(Text(_no.toString())),
           DataCell(Text('Dosen $i')),
           DataCell(Text('Mata Kuliah $i')),
-          DataCell(Text('Kode $i')),
+          DataCell(Text('kelompok $i')),
           DataCell(Text('Ruang $i')),
           DataCell(Text('No Whatsapp $i')),
           DataCell(Text('Tanggal Pinjam $i')),
@@ -232,7 +232,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                   _showEditFormPopup(
                     'Dosen $i',
                     'Mata Kuliah $i',
-                    'Kode $i',
+                    'kelompok $i',
                     'Ruang $i',
                     'No Whatsapp $i',
                     'Tanggal Pinjam $i',
@@ -254,28 +254,28 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
   }
 
   void _showEditFormPopup(
-    String dosen,
-    String mataKuliah,
-    String kode,
-    String ruang,
-    String noWhatsapp,
-    String tanggalPinjam,
-    String jamMulai,
-    String jamSelesai,
+    String nama_dosen,
+    String mata_kuliah,
+    String kelompok,
+    String nama_lab,
+    String no_whatsapp,
+    String tanggal_pinjam,
+    String jam_mulai,
+    String jam_selesai,
     String keterangan,
   ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return EditKuliahPengganti(
-          dosen: dosen,
-          mataKuliah: mataKuliah,
-          kode: kode,
-          ruang: ruang,
-          noWhatsapp: noWhatsapp,
-          tanggalPinjam: tanggalPinjam,
-          jamMulai: jamMulai,
-          jamSelesai: jamSelesai,
+          nama_dosen: nama_dosen,
+          mata_kuliah: mata_kuliah,
+          kelompok: kelompok,
+          nama_lab: nama_lab,
+          no_whatsapp: no_whatsapp,
+          tanggal_pinjam: tanggal_pinjam,
+          jam_mulai: jam_mulai,
+          jam_selesai: jam_selesai,
           keterangan: keterangan,
         );
       },

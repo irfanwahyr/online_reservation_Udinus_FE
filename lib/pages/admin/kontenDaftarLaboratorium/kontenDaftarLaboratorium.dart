@@ -130,7 +130,7 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
                         label: Expanded(
                           child: Center(
                             child: Text(
-                              "VGA",
+                              "gpu",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -358,7 +358,23 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
             DataCell(
               Center(
                 child: Text(
-                  'VGA $i',
+                  'gpu $i',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Center(
+                child: Text(
+                  'monitor $i',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+            DataCell(
+              Center(
+                child: Text(
+                  'storage $i',
                   style: TextStyle(fontSize: 10),
                 ),
               ),
@@ -455,7 +471,9 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
                             'Jumlah PC $i',
                             'Jumlah RAM $i',
                             'Jumlah Memori $i',
-                            'Jumlah VGA $i',
+                            'Jumlah gpu $i',
+                            'Jumlah monitor $i',
+                            'Jumlah storage $i',
                             'Software1 $i',
                             'Software2 $i',
                             'Software3 $i',
@@ -487,11 +505,13 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
   }
 
   void _showEditFormPopup(
-    String laboratorium,
+    String nama_lab,
     String jumlahPc,
     String ram,
     String memori,
-    String vga,
+    String gpu,
+    String monitor,
+    String storage,
     String software1,
     String software2,
     String software3,
@@ -507,11 +527,13 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
       context: context,
       builder: (BuildContext context) {
         return EditDaftarLaboratorium(
-          laboratorium: laboratorium,
-          jumlahPc: jumlahPc,
+          nama_lab: nama_lab,
+          jumlah_pc: jumlahPc,
           ram: ram,
           memori: memori,
-          vga: vga,
+          gpu: gpu,
+          monitor: monitor,
+          storage: storage,
           software1: software1,
           software2: software2,
           software3: software3,

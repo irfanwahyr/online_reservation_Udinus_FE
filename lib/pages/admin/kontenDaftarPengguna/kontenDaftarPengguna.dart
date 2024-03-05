@@ -166,7 +166,7 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
   }
 
   void _showEditFormPopup(
-    String namaPengguna,
+    String username,
     String email,
     String password,
   ) {
@@ -174,7 +174,7 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
       context: context,
       builder: (BuildContext context) {
         return EditDaftarPengguna(
-          namaPengguna: namaPengguna,
+          username: username,
           email: email,
           password: password,
         );

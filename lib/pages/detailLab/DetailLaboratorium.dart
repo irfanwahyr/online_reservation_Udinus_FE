@@ -40,7 +40,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            String namaLab = snapshot.data!.nama;
+            String nama_lab = snapshot.data!.nama;
             String jml_pc = snapshot.data!.jml_PC.toString();
             int id = snapshot.data!.id;
             List<String> softwareNames = snapshot.data!.softwarePrimers
@@ -51,19 +51,19 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
               child: Column(
                 children: [
                   ContainerDetailLab(
-                    laboratorium: "LABORATORIUM \nMULTIMEDIA",
-                    namaLab: namaLab,
+                    jenis_lab: "LABORATORIUM \nMULTIMEDIA",
+                    nama_lab: nama_lab,
                     imageAsset: "images/gambar.jpg",
                     onpressed: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       await prefs.setString('data', id.toString());
-                      await prefs.setString('namaLab', namaLab);
+                      await prefs.setString('nama_lab', nama_lab);
                       Navigator.pushNamed(context, Reservasi.nameRoute);
                     },
                   ),
                   SpesifikasiDetailLab(
-                    namaLab: namaLab,
-                    jumlahPc: jml_pc,
+                    nama_lab: nama_lab,
+                    jumlah_pc: jml_pc,
                   ),
                   isScreenWide
                 ? Row(
@@ -72,9 +72,10 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                       const Hardware(
                         processor: "Intel I7 7700F ",
                         ram: "16",
-                        vga: "RTX 4090",
+                        gpu: "RTX 4090",
                         mouse: "Logitech K40",
                         monitor: "LG K789H",
+                        storage: "500 GB NVME",
                         keyboard: "Logitech K490",
                       ),
                       Software(
@@ -87,9 +88,10 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                       const Hardware(
                         processor: "Intel I7 7700F ",
                         ram: "16",
-                        vga: "RTX 4090",
+                        gpu: "RTX 4090",
                         mouse: "Logitech K40",
                         monitor: "LG K789H",
+                        storage: "500 GB NVME",
                         keyboard: "Logitech K490",
                       ),
                       Software(

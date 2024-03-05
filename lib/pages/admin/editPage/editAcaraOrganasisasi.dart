@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 
 class EditAcaraOrganisasi extends StatelessWidget {
   final String organisasi;
-  final String penanggungJawab;
-  final String noWhatsapp;
-  final String namaAcara;
-  final String ruang;
-  final String tanggalMulai;
-  final String tanggalSelesai;
-  final String jamMulai;
-  final String jamSelesai;
+  final String penanggung_jawab;
+  final String no_whatsapp;
+  final String nama_acara;
+  final String nama_lab;
+  final String tanggal_mulai;
+  final String tanggal_selesai;
+  final String jam_mulai;
+  final String jam_selesai;
   final String keterangan;
   final Future? futureDataAcaraOrganisasi;
 
   EditAcaraOrganisasi(
       {required this.organisasi,
-      required this.penanggungJawab,
-      required this.noWhatsapp,
-      required this.namaAcara,
-      required this.ruang,
-      required this.tanggalMulai,
-      required this.tanggalSelesai,
-      required this.jamMulai,
-      required this.jamSelesai,
+      required this.penanggung_jawab,
+      required this.no_whatsapp,
+      required this.nama_acara,
+      required this.nama_lab,
+      required this.tanggal_mulai,
+      required this.tanggal_selesai,
+      required this.jam_mulai,
+      required this.jam_selesai,
       required this.keterangan,
       this.futureDataAcaraOrganisasi});
 
@@ -47,35 +47,35 @@ class EditAcaraOrganisasi extends StatelessWidget {
                   decoration: InputDecoration(labelText: 'Nama Organisasi'),
                 ),
                 TextFormField(
-                  initialValue: penanggungJawab,
+                  initialValue: penanggung_jawab,
                   decoration: InputDecoration(labelText: 'Penanggung Jawab'),
                 ),
                 TextFormField(
-                  initialValue: noWhatsapp,
+                  initialValue: no_whatsapp,
                   decoration: InputDecoration(labelText: 'No Whatsapp'),
                 ),
                 TextFormField(
-                  initialValue: namaAcara,
-                  decoration: InputDecoration(labelText: 'namaAcara'),
+                  initialValue: nama_acara,
+                  decoration: InputDecoration(labelText: 'nama_acara'),
                 ),
                 TextFormField(
-                  initialValue: ruang,
-                  decoration: InputDecoration(labelText: 'Ruang'),
+                  initialValue: nama_lab,
+                  decoration: InputDecoration(labelText: 'nama_lab'),
                 ),
                 TextFormField(
-                  initialValue: tanggalMulai,
+                  initialValue: tanggal_mulai,
                   decoration: InputDecoration(labelText: 'Tanggal Mulai'),
                 ),
                 TextFormField(
-                  initialValue: tanggalSelesai,
+                  initialValue: tanggal_selesai,
                   decoration: InputDecoration(labelText: 'Tanggal Selesai'),
                 ),
                 TextFormField(
-                  initialValue: jamMulai,
+                  initialValue: jam_mulai,
                   decoration: InputDecoration(labelText: 'Jam Mulai'),
                 ),
                 TextFormField(
-                  initialValue: jamSelesai,
+                  initialValue: jam_selesai,
                   decoration: InputDecoration(labelText: 'Jam Selesai'),
                 ),
                 TextFormField(
