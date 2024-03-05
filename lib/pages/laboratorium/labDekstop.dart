@@ -55,7 +55,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "9");
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -66,7 +66,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "9");
-                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -89,7 +89,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "10");
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -100,7 +100,7 @@ class _LabDekstopState extends State<LabDekstop> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "10");
-                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),

@@ -55,7 +55,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "6");
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -66,7 +66,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "6");
-                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -89,7 +89,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "7");
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -100,7 +100,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "7");
-                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),
@@ -123,7 +123,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "11");
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
                       ),
@@ -134,7 +134,7 @@ class _LabStatistikState extends State<LabStatistik> {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.setString('nama_lab', "11");
-                          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                          Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
                       const SizedBox(height: 10),

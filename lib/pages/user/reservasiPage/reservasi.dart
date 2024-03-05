@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kp2024/controllers/jadwal/convert_datanamalab.dart';
 import 'package:kp2024/controllers/jadwal/show_jadwal.dart';
+import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_heading5.dart';
 import 'package:kp2024/models/_heading6.dart';
 import 'package:kp2024/models/reservasiModel/_buttonBatalkan.dart';
@@ -34,7 +35,6 @@ class _ReservasiState extends State<Reservasi> {
   String selectedDateText = "";
   Future<List<ShowJadwalMingguan>> jadwalFuture = fetchdata("");
 
-
   @override
   void initState() {
     super.initState();
@@ -45,6 +45,7 @@ class _ReservasiState extends State<Reservasi> {
       setSelectedDateText(today);
       jadwalFuture = fetchdata(today.weekday.toString());
     }
+    setSelectedDateText(today);
     getData();
   }
 
@@ -70,33 +71,32 @@ class _ReservasiState extends State<Reservasi> {
 
   Future<void> _selectDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: today,
-      firstDate: DateTime.utc(2024, 01, 01),
-      lastDate: DateTime.utc(2040, 3, 14)
-    );
+        context: context,
+        initialDate: today,
+        firstDate: DateTime.utc(2024, 01, 01),
+        lastDate: DateTime.utc(2040, 3, 14));
 
     if (pickedDate != null && pickedDate != today) {
       setState(() {
         _selectedDate = pickedDate;
         setSelectedDateText(pickedDate);
         jadwalFuture = fetchdata(pickedDate.weekday.toString());
-
       });
     }
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: FutureBuilder(
+  Widget build(BuildContext context) {
+    return Scaffold(
+        // appBar: AppBarBack(onPressed: Navigator.pushNamed(context,  )).buildAppBar(context),
+        body: FutureBuilder(
       future: jadwalFuture,
-      builder:(context, snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
-        } else if(snapshot.hasError){
+        } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
-        } else if (snapshot.hasData){
+        } else if (snapshot.hasData) {
           final jadwal = snapshot.data!;
           return Center(
             child: Padding(
@@ -124,9 +124,12 @@ Widget build(BuildContext context) {
                       children: [
                         LayoutBuilder(
                           builder: (context, constraints) {
-                            double screenWidth = MediaQuery.of(context).size.width;
-                            double buttonWidth = screenWidth > 900 ? 200.0 : 150.0;
-                            double buttonHeight = screenWidth > 900 ? 80.0 : 60.0;
+                            double screenWidth =
+                                MediaQuery.of(context).size.width;
+                            double buttonWidth =
+                                screenWidth > 900 ? 200.0 : 150.0;
+                            double buttonHeight =
+                                screenWidth > 900 ? 80.0 : 60.0;
                             double fontSize = screenWidth > 900 ? 20.0 : 16.0;
 
                             return ElevatedButton.icon(
@@ -147,9 +150,12 @@ Widget build(BuildContext context) {
                         const SizedBox(width: 20),
                         LayoutBuilder(
                           builder: (context, constraints) {
-                            double screenWidth = MediaQuery.of(context).size.width;
-                            double buttonWidth = screenWidth > 900 ? 200.0 : 150.0;
-                            double buttonHeight = screenWidth > 900 ? 72.0 : 53.0;
+                            double screenWidth =
+                                MediaQuery.of(context).size.width;
+                            double buttonWidth =
+                                screenWidth > 900 ? 200.0 : 150.0;
+                            double buttonHeight =
+                                screenWidth > 900 ? 72.0 : 53.0;
                             double fontSize = screenWidth > 900 ? 20.0 : 16.0;
 
                             return Container(
@@ -192,11 +198,13 @@ Widget build(BuildContext context) {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    _selectedDate != null && _selectedDate!.weekday == DateTime.sunday
+                    _selectedDate != null &&
+                            _selectedDate!.weekday == DateTime.sunday
                         ? Container(
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
                               color: Colors.green[50],
                             ),
                             child: const Padding(
@@ -215,7 +223,8 @@ Widget build(BuildContext context) {
                         : Container(
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
                               color: Colors.green[50],
                             ),
                             child: Padding(
@@ -231,7 +240,8 @@ Widget build(BuildContext context) {
                                     child: Column(
                                       children: [
                                         SizedBox(
-                                          width: _calculateSizedBoxWidth(context),
+                                          width:
+                                              _calculateSizedBoxWidth(context),
                                           child: DataTable(
                                             columns: const <DataColumn>[
                                               DataColumn(
@@ -239,9 +249,11 @@ Widget build(BuildContext context) {
                                                   child: Center(
                                                     child: Text(
                                                       "Waktu",
-                                                      textAlign: TextAlign.center,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontSize: 20,
                                                       ),
                                                     ),
@@ -254,7 +266,8 @@ Widget build(BuildContext context) {
                                                     child: Text(
                                                       "Keterangan",
                                                       style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontSize: 20,
                                                       ),
                                                     ),
@@ -267,7 +280,8 @@ Widget build(BuildContext context) {
                                                     child: Text(
                                                       "Pesan",
                                                       style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontSize: 20,
                                                       ),
                                                     ),
@@ -278,11 +292,16 @@ Widget build(BuildContext context) {
                                             rows: List.generate(
                                               jadwal.length,
                                               (index) {
-                                                final jadwal_idx = jadwal[index];
-                                                List<String> listJam = listReservasi.getJam(jadwal_idx.jam_mulai, jadwal_idx.jam_selesai);
-                                                String jmulai = listJam[0]; 
+                                                final jadwal_idx =
+                                                    jadwal[index];
+                                                List<String> listJam =
+                                                    listReservasi.getJam(
+                                                        jadwal_idx.jam_mulai,
+                                                        jadwal_idx.jam_selesai);
+                                                String jmulai = listJam[0];
                                                 String jselesai = listJam[1];
-                                                String waktuText = "$jmulai - $jselesai";
+                                                String waktuText =
+                                                    "$jmulai - $jselesai";
                                                 return DataRow(
                                                   cells: <DataCell>[
                                                     DataCell(
@@ -291,7 +310,8 @@ Widget build(BuildContext context) {
                                                           fit: BoxFit.scaleDown,
                                                           child: Text(
                                                             waktuText,
-                                                            textAlign: TextAlign.center,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                           ),
                                                         ),
                                                       ),
@@ -302,15 +322,18 @@ Widget build(BuildContext context) {
                                                           fit: BoxFit.scaleDown,
                                                           child: Text(
                                                             "${jadwal_idx.matkul}",
-                                                            textAlign: TextAlign.center,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                     DataCell(
                                                       Center(
-                                                        child: 
-                                                        getPesanButtons(jadwal_idx.matkul, jmulai, jselesai)[index],
+                                                        child: getPesanButtons(
+                                                            jadwal_idx.matkul,
+                                                            jmulai,
+                                                            jselesai)[index],
                                                       ),
                                                     ),
                                                   ],
@@ -336,9 +359,8 @@ Widget build(BuildContext context) {
           return const Text("No data");
         }
       },
-    )
-  );
-}
+    ));
+  }
 
   double _calculateSizedBoxWidth(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -350,12 +372,13 @@ Widget build(BuildContext context) {
     }
   }
 
-  List<Widget> getPesanButtons(String namaJadwal, String jam_mulai, String jam_selesai) {
+  List<Widget> getPesanButtons(
+      String namaJadwal, String jam_mulai, String jam_selesai) {
     List<Widget> buttons = [];
     String buttonStatus;
 
     for (int i = 0; i < 15; i++) {
-      if(namaJadwal == "kosong"){
+      if (namaJadwal == "kosong") {
         buttonStatus = "1";
       } else {
         buttonStatus = "0";
