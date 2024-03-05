@@ -119,8 +119,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             },
           ),
           TextFieldReservasi(
-            judul: "Nama Kode Mata Kuliah",
-            hintText: "Masukkan Kode Matkul",
+            judul: "Kelompok",
+            hintText: "Masukkan Kelompok",
             keyboardType: TextInputType.text,
             onSubmitted: (value) {
               //fungsi disini wer

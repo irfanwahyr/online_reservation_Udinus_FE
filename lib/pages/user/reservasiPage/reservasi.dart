@@ -301,7 +301,7 @@ Widget build(BuildContext context) {
                                                         child: FittedBox(
                                                           fit: BoxFit.scaleDown,
                                                           child: Text(
-                                                            "${jadwal_idx.nama_jadwal}",
+                                                            "${jadwal_idx.matkul}",
                                                             textAlign: TextAlign.center,
                                                           ),
                                                         ),
@@ -309,7 +309,7 @@ Widget build(BuildContext context) {
                                                     ),
                                                     DataCell(
                                                       Center(
-                                                        child: getPesanButtons(jadwal_idx.nama_jadwal, jmulai, jselesai)[index],
+                                                        child: getPesanButtons(jadwal_idx.matkul, jmulai, jselesai)[index],
                                                       ),
                                                     ),
                                                   ],
