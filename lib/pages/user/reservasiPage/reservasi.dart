@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kp2024/controllers/jadwal/convert_datanamalab.dart';
+// import 'package:kp2024/controllers/jadwal/convert_datanamalab.dart';
 import 'package:kp2024/controllers/jadwal/show_jadwal.dart';
 import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_heading5.dart';
@@ -33,7 +33,7 @@ class _ReservasiState extends State<Reservasi> {
   String? labName;
   int? datePilihan;
   String selectedDateText = "";
-  Future<List<ShowJadwalMingguan>> jadwalFuture = fetchdata("");
+  Future<List<ShowJadwalMingguan>> listJadwal = fetchdata("");
 
   @override
   void initState() {
@@ -43,8 +43,8 @@ class _ReservasiState extends State<Reservasi> {
       // Jika ya, atur _selectedDate ke hari Minggu
       _selectedDate = today;
       setSelectedDateText(today);
-      jadwalFuture = fetchdata(today.weekday.toString());
     }
+    listJadwal = fetchdata(today.weekday.toString());
     setSelectedDateText(today);
     getData();
   }
@@ -52,12 +52,12 @@ class _ReservasiState extends State<Reservasi> {
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? nama_lab = prefs.getString('nama_lab');
-    ConvertDataNamaLab convertLab = ConvertDataNamaLab();
-    String lab = convertLab.convertData(nama_lab!);
+    // ConvertDataNamaLab convertLab = ConvertDataNamaLab();
+    // String lab = convertLab.convertData(nama_lab!);
 
     setState(() {
-      jadwalFuture = fetchdata(today.weekday.toString());
-      labName = lab;
+      listJadwal = fetchdata(today.weekday.toString());
+      // labName = lab;
       this.nama_lab = nama_lab;
     });
   }
@@ -72,7 +72,7 @@ class _ReservasiState extends State<Reservasi> {
   Future<void> _selectDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
         context: context,
-        initialDate: today,
+        initialDate: _selectedDate,
         firstDate: DateTime.utc(2024, 01, 01),
         lastDate: DateTime.utc(2040, 3, 14));
 
@@ -80,7 +80,7 @@ class _ReservasiState extends State<Reservasi> {
       setState(() {
         _selectedDate = pickedDate;
         setSelectedDateText(pickedDate);
-        jadwalFuture = fetchdata(pickedDate.weekday.toString());
+        listJadwal = fetchdata(pickedDate.weekday.toString());
       });
     }
   }
@@ -90,7 +90,7 @@ class _ReservasiState extends State<Reservasi> {
     return Scaffold(
         // appBar: AppBarBack(onPressed: Navigator.pushNamed(context,  )).buildAppBar(context),
         body: FutureBuilder(
-      future: jadwalFuture,
+      future: listJadwal,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -109,7 +109,7 @@ class _ReservasiState extends State<Reservasi> {
                     Center(
                       child: Heading5(
                         text:
-                            "Reservasi Ruangan Laboratorium ${labName.toString()}",
+                            "Reservasi Ruangan Laboratorium $nama_lab",
                         color: Colors.black,
                       ),
                     ),
@@ -198,8 +198,7 @@ class _ReservasiState extends State<Reservasi> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    _selectedDate != null &&
-                            _selectedDate!.weekday == DateTime.sunday
+                    _selectedDate != null && _selectedDate!.weekday == DateTime.sunday
                         ? Container(
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
@@ -292,16 +291,10 @@ class _ReservasiState extends State<Reservasi> {
                                             rows: List.generate(
                                               jadwal.length,
                                               (index) {
-                                                final jadwal_idx =
-                                                    jadwal[index];
-                                                List<String> listJam =
-                                                    listReservasi.getJam(
-                                                        jadwal_idx.jam_mulai,
-                                                        jadwal_idx.jam_selesai);
-                                                String jmulai = listJam[0];
-                                                String jselesai = listJam[1];
-                                                String waktuText =
-                                                    "$jmulai - $jselesai";
+                                                final jadwal_idx = jadwal[index];
+                                                String jamMulai = jadwal_idx.jam_mulai;
+                                                String jamSelesai = jadwal_idx.jam_mulai;
+                                                String waktuText = "$jamMulai - $jamSelesai";
                                                 return DataRow(
                                                   cells: <DataCell>[
                                                     DataCell(
@@ -321,19 +314,16 @@ class _ReservasiState extends State<Reservasi> {
                                                         child: FittedBox(
                                                           fit: BoxFit.scaleDown,
                                                           child: Text(
-                                                            "${jadwal_idx.matkul}",
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                            "${jadwal_idx.mata_kuliah}",
+                                                            textAlign: TextAlign.center,
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                     DataCell(
                                                       Center(
-                                                        child: getPesanButtons(
-                                                            jadwal_idx.matkul,
-                                                            jmulai,
-                                                            jselesai)[index],
+                                                        child: 
+                                                        getPesanButtons(jadwal_idx.mata_kuliah, jamMulai, jamSelesai)[index],
                                                       ),
                                                     ),
                                                   ],

@@ -40,10 +40,10 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            String nama_lab = snapshot.data!.nama;
-            String jml_pc = snapshot.data!.jml_PC.toString();
+            String nama_lab = snapshot.data!.nama_lab;
+            String jumlah_pc = snapshot.data!.jumlah_pc.toString();
             int id = snapshot.data!.id;
-            List<String> softwareNames = snapshot.data!.softwarePrimers
+            List<String> software = snapshot.data!.software
               .map((software) => software['nama'] as String)
               .toList();
 
@@ -63,7 +63,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                   ),
                   SpesifikasiDetailLab(
                     nama_lab: nama_lab,
-                    jumlah_pc: jml_pc,
+                    jumlah_pc: jumlah_pc,
                   ),
                   isScreenWide
                 ? Row(
@@ -79,7 +79,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                         keyboard: "Logitech K490",
                       ),
                       Software(
-                        softwareNames: softwareNames,
+                        softwareNames: software,
                       ),
                     ],
                   )
@@ -95,7 +95,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                         keyboard: "Logitech K490",
                       ),
                       Software(
-                        softwareNames: softwareNames,
+                        softwareNames: software,
                       ),
                     ],
                   ),

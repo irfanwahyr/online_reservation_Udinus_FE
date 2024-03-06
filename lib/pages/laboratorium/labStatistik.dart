@@ -54,7 +54,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "6");
+                          await prefs.setString('nama_lab', "G");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -65,7 +65,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "6");
+                          await prefs.setString('nama_lab', "G");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -88,7 +88,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "7");
+                          await prefs.setString('nama_lab', "H");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -99,7 +99,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "7");
+                          await prefs.setString('nama_lab', "H");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -122,7 +122,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "11");
+                          await prefs.setString('nama_lab', "L");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -133,7 +133,7 @@ class _LabStatistikState extends State<LabStatistik> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "11");
+                          await prefs.setString('nama_lab', "L");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
