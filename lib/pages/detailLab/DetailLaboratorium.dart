@@ -44,7 +44,7 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
             String jumlah_pc = snapshot.data!.jumlah_pc.toString();
             int id = snapshot.data!.id;
             List<String> software = snapshot.data!.software
-              .map((software) => software['nama'] as String)
+              .map((software) => software['nama_software'] as String)
               .toList();
 
             return SingleChildScrollView(

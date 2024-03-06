@@ -22,22 +22,15 @@ class DetailLab {
 
   factory DetailLab.fromJson(Map<String, dynamic> json) {
     return DetailLab(
-      id: json['id'] as int,
-      nama_lab: json['nama_lab'] as String,
-      jumlah_pc: json['jumlah_pc'] as int,
-      jenis_lab: json['jenis_lab'] as String,
-      deskripsi_lab: json['deskripsi_lab'] as String,
+      id: json['id'] ?? 0,
+      nama_lab: json['nama_lab'] ?? "kosong",
+      jumlah_pc: json['jumlah_pc'] ?? "kosong",
+      jenis_lab: json['jenis_lab'] ?? "kosong",
+      deskripsi_lab: json['deskripsi_lab'] ?? "kosong",
       software: List<Map<String, dynamic>>.from(
         json['software']?.map((softwares) => softwares as Map<String, dynamic>) ?? [],
       ),
     );
-  }
-
-  String getSoftwareName(int index) {
-    if (index < software.length) {
-      return software[index]['id'] ?? '';
-    }
-    return '';
   }
 }
 
@@ -45,10 +38,12 @@ Future<DetailLab> fetchdata() async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['DETAIL_LAB'];
 
-  String? idLab;
+  // String? idLab;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? nama_lab = prefs.getString('nama_lab');
-
+  if (nama_lab == "A") {
+    nama_lab = "1";
+  }
   final response = await http.get(Uri.parse("$env/$nama_lab"));
 
   if (response.statusCode == 200) {
