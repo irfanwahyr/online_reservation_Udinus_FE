@@ -54,7 +54,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "9");
+                          await prefs.setString('nama_lab', "J");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -65,7 +65,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "9");
+                          await prefs.setString('nama_lab', "J");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),
@@ -88,7 +88,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "10");
+                          await prefs.setString('nama_lab', "K");
                           Navigator.pushNamed(
                               context, DetailLaboratorium.nameRoute);
                         },
@@ -99,7 +99,7 @@ class _LabDekstopState extends State<LabDekstop> {
                         onPressed: () async {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('nama_lab', "10");
+                          await prefs.setString('nama_lab', "K");
                           Navigator.pushNamed(context, Reservasi.nameRoute);
                         },
                       ),

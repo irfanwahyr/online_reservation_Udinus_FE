@@ -5,34 +5,37 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailLab {
   final int id;
-  final String nama;
-  final int jml_PC;
+  final String nama_lab;
+  final int jumlah_pc;
   final String jenis_lab;
-  final List<Map<String, dynamic>> softwarePrimers;
+  final String deskripsi_lab;
+  final List<Map<String, dynamic>> software;
 
   const DetailLab({
     required this.id,
-    required this.nama,
-    required this.jml_PC,
+    required this.nama_lab,
+    required this.jumlah_pc,
     required this.jenis_lab,
-    required this.softwarePrimers,
+    required this.deskripsi_lab,
+    required this.software,
   });
 
   factory DetailLab.fromJson(Map<String, dynamic> json) {
     return DetailLab(
       id: json['id'] as int,
-      nama: json['nama'] as String,
-      jml_PC: json['jml_PC'] as int,
+      nama_lab: json['nama_lab'] as String,
+      jumlah_pc: json['jumlah_pc'] as int,
       jenis_lab: json['jenis_lab'] as String,
-      softwarePrimers: List<Map<String, dynamic>>.from(
-        json['software_primers']?.map((software) => software as Map<String, dynamic>) ?? [],
+      deskripsi_lab: json['deskripsi_lab'] as String,
+      software: List<Map<String, dynamic>>.from(
+        json['software']?.map((softwares) => softwares as Map<String, dynamic>) ?? [],
       ),
     );
   }
 
   String getSoftwareName(int index) {
-    if (index < softwarePrimers.length) {
-      return softwarePrimers[index]['nama'] ?? '';
+    if (index < software.length) {
+      return software[index]['id'] ?? '';
     }
     return '';
   }
@@ -41,11 +44,12 @@ class DetailLab {
 Future<DetailLab> fetchdata() async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['DETAIL_LAB'];
-  
+
+  String? idLab;
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? dataNamaLab = prefs.getString('dataNamaLab');
-  
-  final response = await http.get(Uri.parse("$env/$dataNamaLab"));
+  String? nama_lab = prefs.getString('nama_lab');
+
+  final response = await http.get(Uri.parse("$env/$nama_lab"));
 
   if (response.statusCode == 200) {
     return DetailLab.fromJson(jsonDecode(response.body) as Map<String, dynamic>);

@@ -7,15 +7,15 @@ class ShowJadwalMingguan {
   int id;
   final int id_hari;
   final String kelompok;
-  final String matkul;
-  final int jam_mulai;
-  final int jam_selesai;
+  final String mata_kuliah;
+  final String jam_mulai;
+  final String jam_selesai;
 
   ShowJadwalMingguan({
     required this.id,
     required this.id_hari,
     required this.kelompok,
-    required this.matkul,
+    required this.mata_kuliah,
     required this.jam_mulai,
     required this.jam_selesai,
 
@@ -26,9 +26,9 @@ class ShowJadwalMingguan {
       id: json['id']?? 0,
       id_hari: json['id_hari'] ?? 0,
       kelompok: json['kelompok'] ?? "kosong",
-      matkul: json['matkul'] ?? "kosong",
-      jam_mulai: json['jam_mulai'] ?? 0,
-      jam_selesai: json['jam_selesai'] ?? 0,
+      mata_kuliah: json['mata_kuliah'] ?? "kosong",
+      jam_mulai: json['jam_mulai'] ?? "kosong",
+      jam_selesai: json['jam_selesai'] ?? "kosong",
     );
   }
 }
@@ -44,18 +44,20 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
     }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataNamaLab = prefs.getString('dataNamaLab');
-    final response = await http.get(Uri.parse("$env/$dataNamaLab/$idHari"));
+    String? nama_lab = prefs.getString('nama_lab');
+    final response = await http.get(Uri.parse("$env/$nama_lab/$idHari"));
 
     if (response.statusCode == 200) {
       try {
         final List body = json.decode(response.body);
         return body.map((e) => ShowJadwalMingguan.fromJson(e)).toList();
       } catch (e) {
+        print(e);
         throw Exception('failed');
       }
     }
   } catch (error) {
+    print(error);
     throw Exception('Failed to load');
   }
 
