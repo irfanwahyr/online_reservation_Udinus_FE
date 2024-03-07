@@ -52,12 +52,9 @@ class _ReservasiState extends State<Reservasi> {
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? nama_lab = prefs.getString('nama_lab');
-    // ConvertDataNamaLab convertLab = ConvertDataNamaLab();
-    // String lab = convertLab.convertData(nama_lab!);
 
     setState(() {
       listJadwal = fetchdata(today.weekday.toString());
-      // labName = lab;
       this.nama_lab = nama_lab;
     });
   }
@@ -322,7 +319,7 @@ class _ReservasiState extends State<Reservasi> {
                                                     ),
                                                     DataCell(
                                                       Center(
-                                                        child: 
+                                                        child:
                                                         getPesanButtons(jadwal_idx.mata_kuliah, jamMulai, jamSelesai)[index],
                                                       ),
                                                     ),

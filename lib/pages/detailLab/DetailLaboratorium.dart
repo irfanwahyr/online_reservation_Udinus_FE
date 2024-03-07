@@ -25,7 +25,6 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
     super.initState();
     labData = fetchdata();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +45,32 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
             List<String> software = snapshot.data!.software
               .map((software) => software['nama_software'] as String)
               .toList();
+            List<String> hardware = snapshot.data!.hardware
+              .map((hardware) =>
+                'Processor: ${hardware['processor']}\nram: ${hardware['ram']}\ngpu: ${hardware['gpu']}\nmonitor: ${hardware['monitor']}\nstorage: ${hardware['storage']}\n'
+              )
+              .toList();
+
+            // List<Map<String, dynamic>> hardwareList = List.generate(snapshot.data!.hardware.length, (index) {
+            //   String processor = snapshot.data!.hardware[index]['processor'] ?? "";
+            //   int ram = snapshot.data!.hardware[index]['ram'] ?? 0;
+            //   String gpu = snapshot.data!.hardware[index]['gpu'] ?? "";
+            //   int monitor = snapshot.data!.hardware[index]['monitor'] ?? 0;
+            //   String storage = snapshot.data!.hardware[index]['storage'] ?? "";
+            //   return {
+            //     'processor': processor,
+            //     'ram': ram,
+            //     'gpu': gpu,
+            //     'monitor': monitor,
+            //     'storage': storage,
+            //   };
+            // });
+
+            // String gpu = hardwareList[0]['gpu'] ?? "tidak ada";
+            // String processor = hardwareList[0]['processor'] ?? "tidak ada";
+            // int ram = hardwareList[0]['ram'] ?? 0;
+            // int monitor = hardwareList[0]['monitor'] ?? 0;
+            // String storage = hardwareList[0]['storage'] ?? "tidak ada";
 
             return SingleChildScrollView(
               child: Column(
@@ -69,14 +94,8 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Hardware(
-                        processor: "Intel I7 7700F ",
-                        ram: "16",
-                        gpu: "RTX 4090",
-                        mouse: "Logitech K40",
-                        monitor: "LG K789H",
-                        storage: "500 GB NVME",
-                        keyboard: "Logitech K490",
+                      Hardware(
+                        hardwareNames: hardware,
                       ),
                       Software(
                         softwareNames: software,
@@ -85,14 +104,8 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                   )
                 : Column(
                     children: [
-                      const Hardware(
-                        processor: "Intel I7 7700F ",
-                        ram: "16",
-                        gpu: "RTX 4090",
-                        mouse: "Logitech K40",
-                        monitor: "LG K789H",
-                        storage: "500 GB NVME",
-                        keyboard: "Logitech K490",
+                      Hardware(
+                        hardwareNames: hardware,
                       ),
                       Software(
                         softwareNames: software,

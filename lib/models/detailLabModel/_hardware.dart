@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Hardware extends StatefulWidget {
-  final String processor;
-  final String ram;
-  final String gpu;
-  final String monitor;
-  final String keyboard;
-  final String mouse;
-  final String storage;
+  final List<String> hardwareNames;
 
-  const Hardware({super.key, 
-    required this.processor,
-    required this.ram,
-    required this.gpu,
-    required this.mouse,
-    required this.keyboard,
-    required this.monitor,
-    required this.storage
+  const Hardware({super.key,
+    required this.hardwareNames,
   });
 
   @override
@@ -32,15 +20,16 @@ class _HardwareState extends State<Hardware> {
         width: 550,
         height: 550,
         decoration: BoxDecoration(
-            color: const Color.fromARGB(97, 45, 125, 76),
-            borderRadius: BorderRadius.circular(20)),
+          color: const Color.fromARGB(97, 45, 125, 76),
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                "HARDWARE",
+                "SOFTWARE",
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
@@ -48,87 +37,17 @@ class _HardwareState extends State<Hardware> {
                 ),
               ),
               const SizedBox(height: 30),
-              Center(
-                child: RichText(
-                  textAlign: TextAlign.center,
+              // Membuat loop untuk menampilkan semua softwareNames
+              for (String hardwareName in widget.hardwareNames)
+                RichText(
                   text: TextSpan(
                     style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
                     children: [
-                      const TextSpan(
-                        text: "Processor: ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(text: widget.processor),
+                      TextSpan(text: hardwareName),
                     ],
                   ),
                 ),
-              ),
-
               const SizedBox(height: 15),
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
-                  children: [
-                    const TextSpan(
-                      text: "RAM: ",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(text: "${widget.ram}GB"),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 15),
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
-                  children: [
-                    const TextSpan(
-                      text: "gpu: ",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(text: widget.gpu),
-                  ],
-                ),
-              ),
-              // Add more hardware details or icons as needed
-              const SizedBox(height: 10),
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
-                  children: [
-                    const TextSpan(
-                      text: "storage: ",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(text: widget.storage),
-                  ],
-                ),
-              ),
-              // Add more hardware details or icons as needed
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.mouse),
-                  const SizedBox(width: 10),
-                  Text(
-                    widget.mouse,
-                    style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.keyboard),
-                  const SizedBox(width: 10),
-                  Text(
-                    widget.keyboard,
-                    style: const TextStyle(fontFamily: "Lexend", fontSize: 30),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
