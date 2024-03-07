@@ -290,7 +290,7 @@ class _ReservasiState extends State<Reservasi> {
                                               (index) {
                                                 final jadwal_idx = jadwal[index];
                                                 String jamMulai = jadwal_idx.jam_mulai;
-                                                String jamSelesai = jadwal_idx.jam_mulai;
+                                                String jamSelesai = jadwal_idx.jam_selesai;
                                                 String waktuText = "$jamMulai - $jamSelesai";
                                                 return DataRow(
                                                   cells: <DataCell>[
