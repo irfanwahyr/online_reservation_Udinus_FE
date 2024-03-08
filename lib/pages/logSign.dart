@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_btnSubmit.dart';
 import 'package:kp2024/models/_heading1.dart';
@@ -15,6 +16,12 @@ class LogSign extends StatefulWidget {
 }
 
 class _LogSignState extends State<LogSign> {
+  final TextEditingController emailControllersignin = TextEditingController();
+  final TextEditingController passwordControllersignin = TextEditingController();
+  final TextEditingController usernameControllersignin = TextEditingController();
+  final TextEditingController emailControllerlogin = TextEditingController();
+  final TextEditingController passwordControllerlogin = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +38,11 @@ class _LogSignState extends State<LogSign> {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     if (constraints.maxWidth > 700) {
-                      // Jika lebar layar lebih besar dari 700, tampilkan sebagai row
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: buildLoginSignup(),
                       );
                     } else {
-                      // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -80,6 +85,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.done,
+              controller: emailControllerlogin,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -98,6 +104,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
+              controller: passwordControllerlogin,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -107,7 +114,10 @@ class _LogSignState extends State<LogSign> {
               child: ButtonSubmit().buildButtonSubmit(
                   text: "Masuk",
                   onPressed: () {
-                    //fungsi mu wer
+                    String email = emailControllerlogin.text;
+                    String password = passwordControllerlogin.text;
+
+                    login(email, password);
                   }),
             )
           ],
@@ -135,6 +145,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.done,
+              controller: emailControllersignin,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -153,6 +164,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
+              controller: passwordControllersignin,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -171,8 +183,8 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.done,
+              controller: usernameControllersignin,
               onSubmitted: (value) {
-                // masukkan fungsi
               },
             ),
             const SizedBox(height: 20),
@@ -180,7 +192,16 @@ class _LogSignState extends State<LogSign> {
               child: ButtonSubmit().buildButtonSubmit(
                   text: "Daftar",
                   onPressed: () {
-                    //fungsi mu wer
+                    String email = emailControllersignin.text;
+                    String password = emailControllersignin.text;
+                    String username = usernameControllersignin.text;
+
+                    create(
+                      email,
+                      password,
+                      username,
+                      0
+                    );
                   }),
             )
           ],
