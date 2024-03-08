@@ -92,8 +92,8 @@ class _KontenDaftarMataKuliahState extends State<KontenDaftarMataKuliah> {
         text: day,
         onTap: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('nama_labAdmin', "${widget.nama_lab}");
-          await prefs.setString('hariAdmin', day);
+          await prefs.setString('nama_lab', "${widget.nama_lab}");
+          await prefs.setString('hari', day);
           Navigator.pushReplacementNamed(
             context,
             JadwalHari.nameRoute,

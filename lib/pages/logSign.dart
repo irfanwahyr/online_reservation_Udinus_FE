@@ -4,8 +4,10 @@ import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_btnSubmit.dart';
 import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/_heading2.dart';
+import 'package:kp2024/pages/admin/homePageAdmin.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
 import 'package:kp2024/pages/homePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogSign extends StatefulWidget {
   static const nameRoute = 'LogSign';
@@ -16,9 +18,9 @@ class LogSign extends StatefulWidget {
 }
 
 class _LogSignState extends State<LogSign> {
-  final TextEditingController emailControllersignin = TextEditingController();
-  final TextEditingController passwordControllersignin = TextEditingController();
-  final TextEditingController usernameControllersignin = TextEditingController();
+  final TextEditingController emailControllersignup = TextEditingController();
+  final TextEditingController passwordControllersignup = TextEditingController();
+  final TextEditingController usernameControllersignup = TextEditingController();
   final TextEditingController emailControllerlogin = TextEditingController();
   final TextEditingController passwordControllerlogin = TextEditingController();
 
@@ -113,11 +115,21 @@ class _LogSignState extends State<LogSign> {
             Center(
               child: ButtonSubmit().buildButtonSubmit(
                   text: "Masuk",
-                  onPressed: () {
+                  onPressed: () async{
                     String email = emailControllerlogin.text;
                     String password = passwordControllerlogin.text;
+                    await login(email, password).then((value) async {
+                      SharedPreferences srf = await SharedPreferences.getInstance();
+                      srf.setString('token', value.token);
+                      srf.setBool('role', value.role as bool);
+                      if(srf.getBool('role') == false){
+                        Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+                      }
+                      else{
+                        Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
+                      }
+                    });
 
-                    login(email, password);
                   }),
             )
           ],
@@ -145,7 +157,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.done,
-              controller: emailControllersignin,
+              controller: emailControllersignup,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -164,7 +176,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
-              controller: passwordControllersignin,
+              controller: passwordControllersignup,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -183,7 +195,7 @@ class _LogSignState extends State<LogSign> {
               ),
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.done,
-              controller: usernameControllersignin,
+              controller: usernameControllersignup,
               onSubmitted: (value) {
               },
             ),
@@ -192,16 +204,20 @@ class _LogSignState extends State<LogSign> {
               child: ButtonSubmit().buildButtonSubmit(
                   text: "Daftar",
                   onPressed: () {
-                    String email = emailControllersignin.text;
-                    String password = emailControllersignin.text;
-                    String username = usernameControllersignin.text;
+                    setState(() {
+                      
+                      String email = emailControllersignup.text;
+                      String password = passwordControllersignup.text;
+                      String username = usernameControllersignup.text;
 
-                    create(
-                      email,
-                      password,
-                      username,
-                      0
-                    );
+                      create(
+                        email,
+                        password,
+                        username,
+                        0
+                      );
+                      
+                    });
                   }),
             )
           ],
