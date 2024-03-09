@@ -3,15 +3,37 @@ import 'package:kp2024/pages/admin/daftarLaboratorium.dart';
 import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/daftarPengguna.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SideBarAdmin extends StatefulWidget {
-  const SideBarAdmin({Key? key}) : super(key: key);
+  const SideBarAdmin({
+    Key? key,
+    required this.username,
+    required this.email
+  }) : super(key: key);
+
+  final String username;
+  final String email;
 
   @override
   State<SideBarAdmin> createState() => _SideBarAdminState();
 }
 
+String? username, email;
+
+
 class _SideBarAdminState extends State<SideBarAdmin> {
+  @override
+  void initState(){
+    super.initState();
+    SharedPreferences.getInstance().then((SharedPreferences srf) {
+      setState(() {
+        email = srf.getString('email');
+        username = srf.getString('username');
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -19,8 +41,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("Nama Admin"),
-            accountEmail: Text("AkunEmailAdmin@gmail.com"),
+            accountName: Text(username.toString()),
+            accountEmail: Text(email.toString()),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.asset('images/anis.png'),

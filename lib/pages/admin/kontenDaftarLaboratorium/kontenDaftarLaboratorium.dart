@@ -28,7 +28,7 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
     "N",
   ];
 
-  int _no = 1; // Nomor yang akan diincrement otomatis
+  int _no = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -460,37 +460,39 @@ class _KontenDaftarLaboratoriumState extends State<KontenDaftarLaboratorium> {
               ),
             ),
             DataCell(
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ButtonEdit(
-                      onPressed: () {
-                        _showEditFormPopup(
-                            'Laboratorium ${Laboratorium[i]}',
-                            'Jumlah PC $i',
-                            'Jumlah RAM $i',
-                            'Jumlah Memori $i',
-                            'Jumlah gpu $i',
-                            'Jumlah monitor $i',
-                            'Jumlah storage $i',
-                            'Software1 $i',
-                            'Software2 $i',
-                            'Software3 $i',
-                            'Software4 $i',
-                            'Software5 $i',
-                            'Software6 $i',
-                            'Software7 $i',
-                            'Software8 $i',
-                            'Software9 $i',
-                            'Software10 $i');
-                      },
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ButtonDelete(),
-                  ],
+              Container(
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ButtonEdit(
+                        onPressed: () {
+                          _showEditFormPopup(
+                              'Laboratorium ${Laboratorium[i]}',
+                              'Jumlah PC $i',
+                              'Jumlah RAM $i',
+                              'Jumlah Memori $i',
+                              'Jumlah gpu $i',
+                              'Jumlah monitor $i',
+                              'Jumlah storage $i',
+                              'Software1 $i',
+                              'Software2 $i',
+                              'Software3 $i',
+                              'Software4 $i',
+                              'Software5 $i',
+                              'Software6 $i',
+                              'Software7 $i',
+                              'Software8 $i',
+                              'Software9 $i',
+                              'Software10 $i');
+                        },
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      ButtonDelete(),
+                    ],
+                  ),
                 ),
               ),
             ),

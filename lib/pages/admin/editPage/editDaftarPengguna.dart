@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class EditDaftarPengguna extends StatelessWidget {
   final String username;
   final String email;
-  final String password;
   final Future? futureDataDaftarPengguna;
 
   EditDaftarPengguna(
       {required this.username,
       required this.email,
-      required this.password,
       this.futureDataDaftarPengguna});
 
   @override
@@ -35,10 +33,6 @@ class EditDaftarPengguna extends StatelessWidget {
                   TextFormField(
                     initialValue: email,
                     decoration: InputDecoration(labelText: 'Email'),
-                  ),
-                  TextFormField(
-                    initialValue: password,
-                    decoration: InputDecoration(labelText: 'Password'),
                   ),
                 ],
               );

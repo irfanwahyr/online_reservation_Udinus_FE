@@ -3,7 +3,7 @@ import 'package:kp2024/models/admin/_appBarDaftarLaboratorium.dart';
 
 import 'package:kp2024/pages/admin/kontenDaftarLaboratorium/kontenDaftarLaboratorium.dart';
 import 'package:kp2024/pages/admin/sidebarAdmin.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class DaftarLaboratorium extends StatefulWidget {
   static const nameRoute = "/DaftarLaboratorium";
   const DaftarLaboratorium({super.key});
@@ -20,6 +20,11 @@ class _DaftarLaboratoriumState extends State<DaftarLaboratorium>
   void initState() {
     super.initState();
     _tabController = TabController(length: 1, vsync: this);
+    SharedPreferences.getInstance().then((SharedPreferences srf) {
+      setState(() {
+        username = srf.getString('username');
+      });
+    });
   }
 
   @override
@@ -27,10 +32,9 @@ class _DaftarLaboratoriumState extends State<DaftarLaboratorium>
     return DefaultTabController(
       length: 1,
       child: Scaffold(
-        drawer:
-            const SideBarAdmin(), // Pastikan file sudah diimpor dengan benar
+        drawer: SideBarAdmin(email: email.toString(), username: username.toString()),
         appBar: AppbarDaftarLaboratorium(
-          namaAdmin: "Nama Admin",
+          namaAdmin: username.toString(),
           imageAsset: 'images/gambar.jpg',
           tabController: _tabController,
         ),

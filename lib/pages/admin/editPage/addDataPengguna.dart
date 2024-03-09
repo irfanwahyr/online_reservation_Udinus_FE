@@ -17,21 +17,16 @@ class AddDataPengguna extends StatelessWidget {
             TextFormField(
               decoration: InputDecoration(labelText: 'Email'),
             ),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Password'),
-            ),
           ],
         ),
       ),
       actions: [
         ElevatedButton(
           onPressed: () {
-            // Aksi yang dilakukan saat tombol "Simpan" ditekan
-            // Lakukan sesuatu dengan data yang diubah, misalnya kirim ke database
 
             Navigator.of(context).pop();
           },
-          child: Text('Simpan'),
+          child: const Text('Simpan'),
         ),
       ],
     );

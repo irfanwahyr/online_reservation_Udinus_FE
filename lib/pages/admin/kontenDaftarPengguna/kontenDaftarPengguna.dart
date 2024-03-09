@@ -89,20 +89,6 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                         label: Expanded(
                           child: Center(
                             child: Text(
-                              "Password",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Expanded(
-                          child: Center(
-                            child: Text(
                               "Action",
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -136,7 +122,6 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
             DataCell(Text(_no.toString())),
             DataCell(Text('Nama Pengguna $i')),
             DataCell(Text('Email$i@gmail.com')),
-            DataCell(Text('Password $i')),
             DataCell(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -145,7 +130,6 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                     _showEditFormPopup(
                       'Nama Pengguna $i',
                       'Email$i@gmail.com',
-                      'Password $i',
                     );
                   },
                 ),
@@ -168,7 +152,6 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
   void _showEditFormPopup(
     String username,
     String email,
-    String password,
   ) {
     showDialog(
       context: context,
@@ -176,7 +159,6 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
         return EditDaftarPengguna(
           username: username,
           email: email,
-          password: password,
         );
       },
     );

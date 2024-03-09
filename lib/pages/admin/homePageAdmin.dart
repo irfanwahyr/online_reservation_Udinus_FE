@@ -4,6 +4,7 @@ import 'package:kp2024/pages/admin/KontenHomePage/acaraKampusAdmin.dart';
 import 'package:kp2024/pages/admin/KontenHomePage/acaraOrganisasiAdmin.dart';
 import 'package:kp2024/pages/admin/KontenHomePage/kuliahPenggantiAdmin.dart';
 import 'package:kp2024/pages/admin/sidebarAdmin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageAdmin extends StatefulWidget {
   static const nameRoute = "/HomePageAdmin";
@@ -13,14 +14,23 @@ class HomePageAdmin extends StatefulWidget {
   State<HomePageAdmin> createState() => _HomePageAdminState();
 }
 
+String? email, username;
+
 class _HomePageAdminState extends State<HomePageAdmin>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  with SingleTickerProviderStateMixin {
+    late TabController _tabController;
+
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    SharedPreferences.getInstance().then((SharedPreferences srf) {
+      setState(() {
+        email = srf.getString('email');
+        username = srf.getString('username');
+      });
+    });
   }
 
   @override
@@ -28,10 +38,9 @@ class _HomePageAdminState extends State<HomePageAdmin>
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        drawer:
-            const SideBarAdmin(), // Pastikan file sudah diimpor dengan benar
+        drawer: SideBarAdmin(username: username.toString(), email: email.toString(),),
         appBar: AppBarAdmin(
-          namaAdmin: "Nama Admin",
+          namaAdmin: username.toString(),
           imageAsset: 'images/gambar.jpg',
           tabController: _tabController,
           

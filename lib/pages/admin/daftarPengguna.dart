@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/admin/_appBarDaftarPengguna.dart';
 import 'package:kp2024/pages/admin/kontenDaftarPengguna/kontenDaftarPengguna.dart';
 import 'package:kp2024/pages/admin/sidebarAdmin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DaftarPengguna extends StatefulWidget {
   static const nameRoute = "/DaftarPengguna";
@@ -19,6 +20,11 @@ class _DaftarPenggunaState extends State<DaftarPengguna>
   void initState() {
     super.initState();
     _tabController = TabController(length: 1, vsync: this);
+    SharedPreferences.getInstance().then((SharedPreferences srf) {
+      setState(() {
+        username = srf.getString('username');
+      });
+    });
   }
 
   @override
@@ -26,10 +32,9 @@ class _DaftarPenggunaState extends State<DaftarPengguna>
     return DefaultTabController(
       length: 1,
       child: Scaffold(
-        drawer:
-            const SideBarAdmin(), // Pastikan file sudah diimpor dengan benar
+        drawer: SideBarAdmin(email: email.toString(), username: username.toString(),),
         appBar: AppBarDaftarPengguna(
-          namaAdmin: "Nama Admin",
+          namaAdmin: username.toString(),
           imageAsset: 'images/gambar.jpg',
           tabController: _tabController,
         ),

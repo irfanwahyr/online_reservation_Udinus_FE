@@ -53,13 +53,22 @@ Future<Register> create(String email, String password, String username, int role
 
 class Login {
   final String token;
+  final String email;
+  final String username;
   final bool role;
 
-  Login({required this.token,required this.role});
+  Login({
+    required this.token,
+    required this.email,
+    required this.username,
+    required this.role,
+  });
 
   factory Login.fromJson(Map<String, dynamic> json) {
     return Login(
       token: json['token'],
+      email: json['email'],
+      username: json['username'],
       role: json['role'],
     );
   }
@@ -80,10 +89,8 @@ Future<Login> login(String email, String password) async {
     }),
   );
   if (response.statusCode == 200) {
-    print(response.body);
     return Login.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
-    print(response.statusCode);
     throw Exception('Failed to login');
   }
 }
