@@ -61,8 +61,7 @@ class _ReservasiState extends State<Reservasi> {
 
   void setSelectedDateText(DateTime date) {
     setState(() {
-      selectedDateText =
-          "Anda memilih hari: ${listReservasi.getHari(date.weekday)}, ${date.day} ${listReservasi.getBulan(date.month)} ${date.year}";
+      selectedDateText = "Anda memilih hari: ${listReservasi.getHari(date.weekday)}, ${date.day} ${listReservasi.getBulan(date.month)} ${date.year}";
     });
   }
 
@@ -86,7 +85,7 @@ class _ReservasiState extends State<Reservasi> {
   Widget build(BuildContext context) {
     return Scaffold(
         // appBar: AppBarBack(onPressed: Navigator.pushNamed(context,  )).buildAppBar(context),
-        body: FutureBuilder(
+      body: FutureBuilder(
       future: listJadwal,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
