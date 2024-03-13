@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class EditDaftarLaboratorium extends StatelessWidget {
   final String nama_lab;
-  final String jumlah_pc;
+  final int jumlah_pc;
+  final String jenis_lab;
+  final String processor;
   final String ram;
-  final String memori;
   final String gpu;
   final String monitor;
   final String storage;
@@ -13,18 +14,14 @@ class EditDaftarLaboratorium extends StatelessWidget {
   final String software3;
   final String software4;
   final String software5;
-  final String software6;
-  final String software7;
-  final String software8;
-  final String software9;
-  final String software10;
   final Future? futureDataDaftarLaboratorium;
 
   EditDaftarLaboratorium(
       {required this.nama_lab,
       required this.jumlah_pc,
+      required this.jenis_lab,
+      required this.processor,
       required this.ram,
-      required this.memori,
       required this.gpu,
       required this.monitor,
       required this.storage,
@@ -33,11 +30,6 @@ class EditDaftarLaboratorium extends StatelessWidget {
       required this.software3,
       required this.software4,
       required this.software5,
-      required this.software6,
-      required this.software7,
-      required this.software8,
-      required this.software9,
-      required this.software10,
       this.futureDataDaftarLaboratorium});
 
   @override
@@ -61,28 +53,32 @@ class EditDaftarLaboratorium extends StatelessWidget {
                   decoration: InputDecoration(labelText: 'Laboratorium'),
                 ),
                 TextFormField(
-                  initialValue: jumlah_pc,
+                  initialValue: jumlah_pc.toString(),
                   decoration: InputDecoration(labelText: 'Jumlah PC'),
                 ),
                 TextFormField(
+                  initialValue: jumlah_pc.toString(),
+                  decoration: InputDecoration(labelText: 'Jenis Lab'),
+                ),
+                TextFormField(
+                  initialValue: processor,
+                  decoration: InputDecoration(labelText: 'Processor'),
+                ),
+                TextFormField(
                   initialValue: ram,
-                  decoration: InputDecoration(labelText: 'ram'),
-                ),
-                TextFormField(
-                  initialValue: memori,
-                  decoration: InputDecoration(labelText: 'memori'),
+                  decoration: InputDecoration(labelText: 'RAM'),
                 ),
                 TextFormField(
                   initialValue: gpu,
-                  decoration: InputDecoration(labelText: 'gpu'),
+                  decoration: InputDecoration(labelText: 'GPU'),
                 ),
                 TextFormField(
-                  initialValue: gpu,
-                  decoration: InputDecoration(labelText: 'monitor'),
+                  initialValue: monitor,
+                  decoration: InputDecoration(labelText: 'Monitor'),
                 ),
                 TextFormField(
-                  initialValue: gpu,
-                  decoration: InputDecoration(labelText: 'storage'),
+                  initialValue: storage,
+                  decoration: InputDecoration(labelText: 'Storage'),
                 ),
                 TextFormField(
                   initialValue: software1,
@@ -103,26 +99,6 @@ class EditDaftarLaboratorium extends StatelessWidget {
                 TextFormField(
                   initialValue: software5,
                   decoration: InputDecoration(labelText: 'software 5'),
-                ),
-                TextFormField(
-                  initialValue: software6,
-                  decoration: InputDecoration(labelText: 'software 6'),
-                ),
-                TextFormField(
-                  initialValue: software7,
-                  decoration: InputDecoration(labelText: 'software 7'),
-                ),
-                TextFormField(
-                  initialValue: software8,
-                  decoration: InputDecoration(labelText: 'software 8'),
-                ),
-                TextFormField(
-                  initialValue: software9,
-                  decoration: InputDecoration(labelText: 'software9'),
-                ),
-                TextFormField(
-                  initialValue: software10,
-                  decoration: InputDecoration(labelText: 'software10'),
                 ),
               ],
             );
