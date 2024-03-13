@@ -29,7 +29,7 @@ class _HardwareState extends State<Hardware> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                "SOFTWARE",
+                "HARDWARE",
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,

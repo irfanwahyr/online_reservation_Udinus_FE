@@ -94,6 +94,9 @@ class _KontenDaftarMataKuliahState extends State<KontenDaftarMataKuliah> {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString('nama_lab', "${widget.nama_lab}");
           await prefs.setString('hari', day);
+          // Mendapatkan indeks dari elemen yang dipilih
+          int index = days.indexOf(day);
+          await prefs.setInt('id_hari', index+1);
           Navigator.pushReplacementNamed(
             context,
             JadwalHari.nameRoute,

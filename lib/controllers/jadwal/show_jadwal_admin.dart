@@ -7,15 +7,15 @@ class ShowJadwalMingguanAdmin {
   int id;
   final int id_hari;
   final String kelompok;
-  final String nama_jadwal;
-  final int jam_mulai;
-  final int jam_selesai;
+  final String mata_kuliah;
+  final String jam_mulai;
+  final String jam_selesai;
 
   ShowJadwalMingguanAdmin({
     required this.id,
     required this.id_hari,
     required this.kelompok,
-    required this.nama_jadwal,
+    required this.mata_kuliah,
     required this.jam_mulai,
     required this.jam_selesai,
 
@@ -26,7 +26,7 @@ class ShowJadwalMingguanAdmin {
       id: json['id']?? 0,
       id_hari: json['id_hari'] ?? 0,
       kelompok: json['kelompok'] ?? "kosong",
-      nama_jadwal: json['nama_jadwal'] ?? "kosong",
+      mata_kuliah: json['mata_kuliah'] ?? "kosong",
       jam_mulai: json['jam_mulai'] ?? 0,
       jam_selesai: json['jam_selesai'] ?? 0,
     );
@@ -44,12 +44,13 @@ Future<List<ShowJadwalMingguanAdmin>> fetchdata(String idHari) async {
     }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? dataNamaLab = prefs.getString('dataNamaLab');
+    String? dataNamaLab = prefs.getString('nama_lab');
     final response = await http.get(Uri.parse("$env/$dataNamaLab/$idHari"));
 
     if (response.statusCode == 200) {
       try {
         final List body = json.decode(response.body);
+        print(response.body);
         return body.map((e) => ShowJadwalMingguanAdmin.fromJson(e)).toList();
       } catch (e) {
         throw Exception('failed');

@@ -43,11 +43,11 @@ class _SideBarAdminState extends State<SideBarAdmin> {
           UserAccountsDrawerHeader(
             accountName: Text(username.toString()),
             accountEmail: Text(email.toString()),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.asset('images/anis.png'),
-              ),
-            ),
+            // currentAccountPicture: CircleAvatar(
+            //   child: ClipOval(
+            //     child: Image.asset('images/anis.png'),
+            //   ),
+            // ),
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 1, 24, 50),
             ),
