@@ -52,12 +52,10 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
         final List body = json.decode(response.body);
         return body.map((e) => ShowJadwalMingguan.fromJson(e)).toList();
       } catch (e) {
-        print(e);
         throw Exception('failed');
       }
     }
   } catch (error) {
-    print(error);
     throw Exception('Failed to load');
   }
 

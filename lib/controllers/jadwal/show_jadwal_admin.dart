@@ -50,7 +50,6 @@ Future<List<ShowJadwalMingguanAdmin>> fetchdata(String idHari) async {
     if (response.statusCode == 200) {
       try {
         final List body = json.decode(response.body);
-        print(response.body);
         return body.map((e) => ShowJadwalMingguanAdmin.fromJson(e)).toList();
       } catch (e) {
         throw Exception('failed');

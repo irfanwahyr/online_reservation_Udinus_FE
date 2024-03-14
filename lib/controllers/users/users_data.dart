@@ -17,8 +17,8 @@ class ShowDataUsers{
 
   factory ShowDataUsers.fromJson(Map<String, dynamic> json){
     return ShowDataUsers(id: json['id'] ?? 0,
-      username: json['username'] ?? 'kosong', 
-      email: json['email'] ?? 'kosong', 
+      username: json['username'] ?? 'kosong',
+      email: json['email'] ?? 'kosong',
       role: json['role'] ?? false
     );
   }
@@ -44,4 +44,20 @@ Future <List<ShowDataUsers>> fetchdata() async {
   }
 
   return [];
+}
+
+Future<void> deleteData(String id) async {
+  try {
+    await dotenv.load(fileName: "../.env");
+    final env = dotenv.env['AUTH'];
+
+    final response = await http.delete(Uri.parse("$env/$id"));
+    if (response.statusCode == 200) {
+      print('Data deleted successfully');
+    } else {
+      throw Exception('Failed to delete data');
+    }
+  } catch (error) {
+    throw Exception('Failed to delete data');
+  }
 }
