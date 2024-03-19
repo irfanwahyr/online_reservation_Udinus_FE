@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/reservasiModel/_fieldContainer.dart';
@@ -8,6 +9,7 @@ import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class KuliahPengganti extends StatefulWidget {
   static const nameRoute = 'KuliahPengganti';
@@ -22,6 +24,14 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   String? tanggal_mulai;
   String? jam_mulai;
   String? jam_selesai;
+  int? id_user;
+  String? token;
+
+  final TextEditingController nama_dosen = TextEditingController();
+  final TextEditingController mata_kuliah = TextEditingController();
+  final TextEditingController kelompok = TextEditingController();
+  final TextEditingController no_whatsapp = TextEditingController();
+  final TextEditingController keterangan = TextEditingController();
 
   @override
   void initState() {
@@ -32,15 +42,19 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? nama_lab = prefs.getString('nama_lab');
+    int? id_user = prefs.getInt('id_user');
     String? tanggal_mulai = prefs.getString('tanggal_mulai');
     String? jam_mulai = prefs.getString('jam_mulai');
     String? jam_selesai = prefs.getString('jam_selesai');
+    String? token = prefs.getString('token');
 
     setState(() {
       this.nama_lab = nama_lab;
+      this.id_user = id_user;
       this.tanggal_mulai = tanggal_mulai;
       this.jam_mulai = jam_mulai;
       this.jam_selesai = jam_selesai;
+      this.token = token;
     });
   }
 
@@ -103,22 +117,25 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           TextFieldReservasi(
+            controller: nama_dosen,
             judul: "Nama Dosen",
             hintText: "Masukkan Nama Lengkap",
             keyboardType: TextInputType.name,
             onSubmitted: (value) {
-              //fungsi disini wer
+          
             },
           ),
           TextFieldReservasi(
+            controller: mata_kuliah,
             judul: "Mata Kuliah",
             hintText: "Masukkan Nama Matkul",
             keyboardType: TextInputType.text,
             onSubmitted: (value) {
-              //fungsi disini wer
+              
             },
           ),
           TextFieldReservasi(
+            controller: kelompok,
             judul: "Kelompok",
             hintText: "Masukkan Kelompok",
             keyboardType: TextInputType.text,
@@ -127,6 +144,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             },
           ),
           TextFieldReservasi(
+            controller: no_whatsapp,
             judul: "Kontak Whatsapp",
             hintText: "Masukkan Nomor Aktif",
             keyboardType: TextInputType.text,
@@ -157,8 +175,10 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             jam_selesai: jam_selesai.toString(),
           ),
           const SizedBox(height: 15),
-          const FieldKeterangan(
-              judul: "Keterangan Tambahan", keyboardType: TextInputType.text),
+          FieldKeterangan(
+            controller: keterangan,
+            judul: "Keterangan Tambahan", 
+            keyboardType: TextInputType.text),
           const SizedBox(height: 15),
           SizedBox(
             height: 70,
@@ -167,7 +187,22 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
               child: HoverButtonPrimary(
                   text: "Submit",
                   onPressed: () {
-                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                    setState(() {
+                      create(
+                        nama_dosen.text,
+                        mata_kuliah.text,
+                        kelompok.text,
+                        no_whatsapp.text,
+                        nama_lab ?? "",
+                        tanggal_mulai ?? "",
+                        jam_mulai ?? "",
+                        jam_selesai ?? "",
+                        keterangan.text,
+                        id_user ?? 0,
+                        token ?? ""
+                      );
+                      
+                    });
                   }),
             ),
           ),

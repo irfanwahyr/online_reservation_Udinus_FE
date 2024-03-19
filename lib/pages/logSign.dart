@@ -121,6 +121,7 @@ class _LogSignState extends State<LogSign> {
                     await login(email, password).then((value) async {
                       SharedPreferences srf = await SharedPreferences.getInstance();
                       srf.setString('token', value.token);
+                      srf.setInt('id_user', value.id_user);
                       srf.setString('email', value.email);
                       srf.setString('username', value.username);
                       srf.setBool('role', value.role);
