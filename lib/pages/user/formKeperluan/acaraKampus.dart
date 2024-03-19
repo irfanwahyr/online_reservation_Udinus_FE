@@ -57,48 +57,48 @@ class _AcaraKampusState extends State<AcaraKampus> {
       appBar: AppBarBack(onPressed: (){Navigator.pushReplacementNamed(context, Keperluan.nameRoute);}).buildAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Center(
-                  child: Text(
-                    'Acara Kampus',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Archivo',
-                      fontSize: 40,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (constraints.maxWidth > 900) {
-                      // Jika lebar layar lebih besar dari 700, tampilkan sebagai row
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildAcaraKampus(context),
-                      );
-                    } else {
-                      // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildAcaraKampus(context),
-                      );
-                    }
-                  },
-                ),
-                const SizedBox(height: 30),
-              ],
-            ),
-          ),
-        ),
+        // child: SingleChildScrollView(
+        //   child: Center(
+        //     child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       crossAxisAlignment: CrossAxisAlignment.center,
+        //       children: [
+        //         const Center(
+        //           child: Text(
+        //             'Acara Kampus',
+        //             textAlign: TextAlign.center,
+        //             style: TextStyle(
+        //               fontFamily: 'Archivo',
+        //               fontSize: 40,
+        //               color: Colors.black,
+        //             ),
+        //           ),
+        //         ),
+        //         const SizedBox(height: 30),
+        //         LayoutBuilder(
+        //           builder: (context, constraints) {
+        //             if (constraints.maxWidth > 900) {
+        //               // Jika lebar layar lebih besar dari 700, tampilkan sebagai row
+        //               return Row(
+        //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //                 crossAxisAlignment: CrossAxisAlignment.start,
+        //                 children: buildAcaraKampus(context),
+        //               );
+        //             } else {
+        //               // Jika lebar layar kurang dari atau sama dengan 700, tampilkan sebagai column
+        //               return Column(
+        //                 mainAxisAlignment: MainAxisAlignment.start,
+        //                 crossAxisAlignment: CrossAxisAlignment.start,
+        //                 children: buildAcaraKampus(context),
+        //               );
+        //             }
+        //           },
+        //         ),
+        //         const SizedBox(height: 30),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
@@ -110,6 +110,7 @@ class _AcaraKampusState extends State<AcaraKampus> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           TextFieldReservasi(
+            
             judul: "Fakultas",
             hintText: "Masukkan Nama Fakultas",
             keyboardType: TextInputType.name,

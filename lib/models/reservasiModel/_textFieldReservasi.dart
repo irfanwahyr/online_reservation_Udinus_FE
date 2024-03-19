@@ -6,11 +6,13 @@ class TextFieldReservasi extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final TextInputType keyboardType;
   final Future? futureData;
+  final TextEditingController? controller;
   const TextFieldReservasi(
       {super.key,
       required this.judul,
       required this.hintText,
       this.onSubmitted,
+      this.controller,
       this.futureData,
       required this.keyboardType});
 
@@ -38,6 +40,7 @@ class TextFieldReservasi extends StatelessWidget {
                 return Text('Error: ${snapshot.error}');
               } else {
                 return TextField(
+                  controller: controller,
                   decoration: InputDecoration(
                     labelText: hintText,
                     border: OutlineInputBorder(

@@ -4,8 +4,14 @@ class FieldKeterangan extends StatelessWidget {
   final String judul;
   final ValueChanged<String>? onSubmitted;
   final TextInputType keyboardType;
-  const FieldKeterangan(
-      {super.key, required this.judul, this.onSubmitted, required this.keyboardType});
+  final TextEditingController? controller;
+  const FieldKeterangan({
+          super.key, 
+          required this.judul, 
+          this.onSubmitted,
+          this.controller,
+          required this.keyboardType
+        });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +29,7 @@ class FieldKeterangan extends StatelessWidget {
           width: 400,
           height: 200,
           child: TextField(
+            controller: controller,
             maxLines: null,
             expands: true,
             decoration: InputDecoration(
