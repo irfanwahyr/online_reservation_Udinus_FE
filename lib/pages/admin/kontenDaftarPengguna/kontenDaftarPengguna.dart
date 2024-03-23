@@ -13,7 +13,7 @@ class KontenDaftarPengguna extends StatefulWidget {
 }
 
 class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
-  int _no = 0; // Nomor yang akan diincrement otomatis
+  
   final ScrollController controller = ScrollController();
   final ScrollController controller_2 = ScrollController();
   Future<List<ShowDataUsers>> listUsers = fetchdata();
@@ -29,23 +29,10 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
       listUsers = fetchdata();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   iconTheme: IconThemeData(color: Colors.white),
-      //   backgroundColor: const Color.fromARGB(255, 1, 24, 50),
-      //   leading: IconButton(
-      //       onPressed: () {
-      //         Navigator.pushReplacementNamed(
-      //             context, HomePageAdmin.nameRoute);
-      //       },
-      //       icon: Icon(Icons.arrow_back)),
-      //   centerTitle: true,
-      //   title: Heading1(
-      //       text: "Daftar Pengguna",
-      //       color: const Color.fromARGB(255, 255, 255, 255)),
-      // ),
       body: FutureBuilder(
         future: listUsers,
         builder: (context, snapshot) {
@@ -55,6 +42,7 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
             return Text("${snapshot.error}");
           } else if (snapshot.hasData) {
             final listuser = snapshot.data!;
+            int _no = 0; // Nomor yang akan diincrement otomatis
             return Center(
               child: Container(
                 width: MediaQuery.of(context).size.width >= 1300
@@ -139,6 +127,7 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                                 ),
                               ],
                               rows: List.generate(listuser.length, (index) {
+                                
                                 final user = listuser[index];
                                 bool role = user.role;
                                 if(!role){
