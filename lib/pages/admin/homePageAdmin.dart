@@ -8,7 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageAdmin extends StatefulWidget {
   static const nameRoute = "/HomePageAdmin";
-  const HomePageAdmin({Key? key}) : super(key: key);
+  const HomePageAdmin({Key? key, required this.initialTabIndex}) : super(key: key);
+
+  final int initialTabIndex;
+
 
   @override
   State<HomePageAdmin> createState() => _HomePageAdminState();
@@ -28,22 +31,9 @@ class _HomePageAdminState extends State<HomePageAdmin>
       setState(() {
         email = srf.getString('email');
         username = srf.getString('username');
+        _tabController.index = widget.initialTabIndex;
       });
-      _tabController.addListener(
-          _refreshHomePage); // Tambahkan listener untuk memanggil _refreshHomePage saat tab berubah
     });
-  }
-
-  @override
-  void dispose() {
-    _tabController.removeListener(
-        _refreshHomePage); // Hapus listener saat widget di dispose untuk menghindari memory leak
-    super.dispose();
-  }
-
-  void _refreshHomePage() {
-    // Panggil setState untuk memicu refresh tampilan
-    setState(() {});
   }
 
   @override

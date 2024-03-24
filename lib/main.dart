@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         BerhasilSubmit.nameRoute: (context) => BerhasilSubmit(),
         Reservasi.nameRoute: (context) => Reservasi(),
         DetailLaboratorium.nameRoute: (context) => DetailLaboratorium(),
-        HomePageAdmin.nameRoute: (context) => HomePageAdmin(),
+        HomePageAdmin.nameRoute: (context) => HomePageAdmin(initialTabIndex: 0,),
         DaftarPengguna.nameRoute: (context) => DaftarPengguna(),
         DaftarMataKuliah.nameRoute: (context) => DaftarMataKuliah(),
         DaftarLaboratorium.nameRoute: (context) => DaftarLaboratorium(),

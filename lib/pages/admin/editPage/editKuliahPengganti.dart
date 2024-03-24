@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
+import 'package:kp2024/pages/admin/homePageAdmin.dart';
 
 class EditKuliahPengganti extends StatelessWidget {
   
@@ -135,6 +136,7 @@ class EditKuliahPengganti extends StatelessWidget {
             // Memperbarui data di KuliahPenggantiAdmin
             futureDataEditKuliahPengganti!.then((_) {
               Navigator.of(context).pop(); // Tutup dialog setelah update
+              Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute, arguments: 0);
             });
           },
           child: Text('Simpan'),

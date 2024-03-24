@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/admin/homePageAdmin.dart';
 
 class EditAcaraOrganisasi extends StatelessWidget {
   final String organisasi;
@@ -94,6 +95,7 @@ class EditAcaraOrganisasi extends StatelessWidget {
             // Lakukan sesuatu dengan data yang diubah, misalnya kirim ke database
 
             Navigator.of(context).pop();
+            Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute, arguments: 2);
           },
           child: Text('Simpan'),
         ),
