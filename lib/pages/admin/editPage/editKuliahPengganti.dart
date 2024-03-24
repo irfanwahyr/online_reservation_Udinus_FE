@@ -48,10 +48,8 @@ class EditKuliahPengganti extends StatelessWidget {
         jam_selesai_form = TextEditingController(text: jam_selesai),
         keterangan_form = TextEditingController(text: keterangan);
 
-  
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Edit Data'),
       content: SingleChildScrollView(
@@ -67,49 +65,50 @@ class EditKuliahPengganti extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
-              controller: nama_dosen_form,
-              decoration: InputDecoration(labelText: 'Nama Dosen'),
-            ),
-            TextFormField(
-              controller: mata_kuliah_form,
-              decoration: InputDecoration(labelText: 'Mata Kuliah'),
-            ),
-            TextFormField(
-              controller: kelompok_form,
-              decoration: InputDecoration(labelText: 'Kelompok'),
-            ),
-            TextFormField(
-              controller: nama_lab_form,
-              decoration: InputDecoration(labelText: 'Nama Lab'),
-            ),
-            TextFormField(
-              controller: no_whatsapp_form,
-              decoration: InputDecoration(labelText: 'No Whatsapp'),
-            ),
-            TextFormField(
-              controller: tanggal_pinjam_form,
-              decoration: InputDecoration(labelText: 'Tanggal Pinjam'),
-            ),
-            TextFormField(
-              controller: jam_mulai_form,
-              decoration: InputDecoration(labelText: 'Jam Mulai'),
-            ),
-            TextFormField(
-              controller: jam_selesai_form,
-              decoration: InputDecoration(labelText: 'Jam Selesai'),
-            ),
-            TextFormField(
-              controller: keterangan_form,
-              decoration: InputDecoration(labelText: 'Keterangan'),
-            ),
+                  controller: nama_dosen_form,
+                  decoration: InputDecoration(labelText: 'Nama Dosen'),
+                ),
+                TextFormField(
+                  controller: mata_kuliah_form,
+                  decoration: InputDecoration(labelText: 'Mata Kuliah'),
+                ),
+                TextFormField(
+                  controller: kelompok_form,
+                  decoration: InputDecoration(labelText: 'Kelompok'),
+                ),
+                TextFormField(
+                  controller: nama_lab_form,
+                  decoration: InputDecoration(labelText: 'Nama Lab'),
+                ),
+                TextFormField(
+                  controller: no_whatsapp_form,
+                  decoration: InputDecoration(labelText: 'No Whatsapp'),
+                ),
+                TextFormField(
+                  controller: tanggal_pinjam_form,
+                  decoration: InputDecoration(labelText: 'Tanggal Pinjam'),
+                ),
+                TextFormField(
+                  controller: jam_mulai_form,
+                  decoration: InputDecoration(labelText: 'Jam Mulai'),
+                ),
+                TextFormField(
+                  controller: jam_selesai_form,
+                  decoration: InputDecoration(labelText: 'Jam Selesai'),
+                ),
+                TextFormField(
+                  controller: keterangan_form,
+                  decoration: InputDecoration(labelText: 'Keterangan'),
+                ),
               ],
             );
           }
         },
       )),
       actions: [
+        // Pada EditKuliahPengganti.dart, di dalam onPressed ElevatedButton:
         ElevatedButton(
-          onPressed: () { 
+          onPressed: () {
             // Dapatkan nilai baru dari setiap TextFormField
             String nama_dosen_baru = nama_dosen_form.text;
             String mata_kuliah_baru = mata_kuliah_form.text;
@@ -120,10 +119,23 @@ class EditKuliahPengganti extends StatelessWidget {
             String jam_mulai_baru = jam_mulai_form.text;
             String jam_selesai_baru = jam_selesai_form.text;
             String keterangan_baru = keterangan_form.text;
-            update(token, id, nama_dosen_baru, mata_kuliah_baru, kelompok_baru, no_whatsapp_baru, nama_lab_baru, tanggal_pinjam_baru, jam_mulai_baru, jam_selesai_baru, keterangan_baru);
-            // Lakukan apa pun yang perlu dilakukan dengan nilai baru
-            
-            Navigator.of(context).pop();
+            update(
+                token,
+                id,
+                nama_dosen_baru,
+                mata_kuliah_baru,
+                kelompok_baru,
+                no_whatsapp_baru,
+                nama_lab_baru,
+                tanggal_pinjam_baru,
+                jam_mulai_baru,
+                jam_selesai_baru,
+                keterangan_baru);
+
+            // Memperbarui data di KuliahPenggantiAdmin
+            futureDataEditKuliahPengganti!.then((_) {
+              Navigator.of(context).pop(); // Tutup dialog setelah update
+            });
           },
           child: Text('Simpan'),
         ),

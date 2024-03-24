@@ -17,9 +17,8 @@ class HomePageAdmin extends StatefulWidget {
 String? email, username;
 
 class _HomePageAdminState extends State<HomePageAdmin>
-  with SingleTickerProviderStateMixin {
-    late TabController _tabController;
-
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -30,7 +29,21 @@ class _HomePageAdminState extends State<HomePageAdmin>
         email = srf.getString('email');
         username = srf.getString('username');
       });
+      _tabController.addListener(
+          _refreshHomePage); // Tambahkan listener untuk memanggil _refreshHomePage saat tab berubah
     });
+  }
+
+  @override
+  void dispose() {
+    _tabController.removeListener(
+        _refreshHomePage); // Hapus listener saat widget di dispose untuk menghindari memory leak
+    super.dispose();
+  }
+
+  void _refreshHomePage() {
+    // Panggil setState untuk memicu refresh tampilan
+    setState(() {});
   }
 
   @override
@@ -38,12 +51,14 @@ class _HomePageAdminState extends State<HomePageAdmin>
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        drawer: SideBarAdmin(username: username.toString(), email: email.toString(),),
+        drawer: SideBarAdmin(
+          username: username.toString(),
+          email: email.toString(),
+        ),
         appBar: AppBarAdmin(
           namaAdmin: username.toString(),
           imageAsset: 'images/gambar.jpg',
           tabController: _tabController,
-          
         ),
         body: TabBarView(controller: _tabController, children: [
           KuliahPenggantiAdmin(),

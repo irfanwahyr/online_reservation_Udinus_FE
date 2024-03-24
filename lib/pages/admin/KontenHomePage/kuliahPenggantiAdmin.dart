@@ -223,18 +223,27 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                 ),
                               ),
                             ],
-                            rows: List.generate(listkuliahPengganti.length, (index) {
-                              final data_kuliah_pengganti = listkuliahPengganti[index];
+                            rows: List.generate(listkuliahPengganti.length,
+                                (index) {
+                              final data_kuliah_pengganti =
+                                  listkuliahPengganti[index];
                               int id = data_kuliah_pengganti.id;
-                              String nama_dosen = data_kuliah_pengganti.nama_dosen;
-                              String mata_kuliah = data_kuliah_pengganti.mata_kuliah;
+                              String nama_dosen =
+                                  data_kuliah_pengganti.nama_dosen;
+                              String mata_kuliah =
+                                  data_kuliah_pengganti.mata_kuliah;
                               String kelompok = data_kuliah_pengganti.kelompok;
                               String nama_lab = data_kuliah_pengganti.nama_lab;
-                              String no_whatsapp = data_kuliah_pengganti.no_whatsapp;
-                              String tanggal_pinjam = data_kuliah_pengganti.tanggal_mulai;
-                              String jam_mulai = data_kuliah_pengganti.jam_mulai;
-                              String jam_selesai = data_kuliah_pengganti.jam_selesai;
-                              String keterangan = data_kuliah_pengganti.keterangan;
+                              String no_whatsapp =
+                                  data_kuliah_pengganti.no_whatsapp;
+                              String tanggal_pinjam =
+                                  data_kuliah_pengganti.tanggal_mulai;
+                              String jam_mulai =
+                                  data_kuliah_pengganti.jam_mulai;
+                              String jam_selesai =
+                                  data_kuliah_pengganti.jam_selesai;
+                              String keterangan =
+                                  data_kuliah_pengganti.keterangan;
                               _no++;
                               return DataRow(cells: <DataCell>[
                                 DataCell(
@@ -349,34 +358,33 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                 ),
                                 DataCell(
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       ButtonDenied(),
-                                       SizedBox(
+                                      SizedBox(
                                         width: 5,
                                       ),
                                       ButtonEditKecil(
                                         onTap: () {
                                           _showEditFormPopup(
-                                            token ?? "",
-                                            id,
-                                            nama_dosen,
-                                            mata_kuliah,
-                                            kelompok,
-                                            nama_lab,
-                                            no_whatsapp,
-                                            tanggal_pinjam,
-                                            jam_mulai,
-                                            jam_selesai,
-                                            keterangan
-                                          );
+                                              token ?? "",
+                                              id,
+                                              nama_dosen,
+                                              mata_kuliah,
+                                              kelompok,
+                                              nama_lab,
+                                              no_whatsapp,
+                                              tanggal_pinjam,
+                                              jam_mulai,
+                                              jam_selesai,
+                                              keterangan);
                                         },
                                       ),
-                                       SizedBox(
+                                      SizedBox(
                                         width: 5,
                                       ),
                                       ButtonAcc(),
-
                                     ],
                                   ),
                                 ),
@@ -425,7 +433,8 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
           jam_mulai: jam_mulai,
           jam_selesai: jam_selesai,
           keterangan: keterangan,
-          
+          // Tambahkan parameter futureDataEditKuliahPengganti untuk memperbarui data setelah edit
+          futureDataEditKuliahPengganti: fetchdata(),
         );
       },
     );
