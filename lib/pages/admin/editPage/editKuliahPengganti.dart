@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EditKuliahPengganti extends StatelessWidget {
   
@@ -134,9 +135,11 @@ class EditKuliahPengganti extends StatelessWidget {
                 keterangan_baru);
 
             // Memperbarui data di KuliahPenggantiAdmin
-            futureDataEditKuliahPengganti!.then((_) {
+            futureDataEditKuliahPengganti!.then((_) async {
               Navigator.of(context).pop(); // Tutup dialog setelah update
-              Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute, arguments: 0);
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setInt('page_admin', 0);
+              Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
             });
           },
           child: Text('Simpan'),

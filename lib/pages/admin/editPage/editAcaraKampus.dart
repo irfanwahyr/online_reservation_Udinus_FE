@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EditAcaraKampus extends StatelessWidget {
   final String fakultas;
@@ -91,10 +93,13 @@ class EditAcaraKampus extends StatelessWidget {
       ),
       actions: [
         ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             // fungsi taruh sini wer
 
             Navigator.of(context).pop();
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setInt('page_admin', 2);
+            Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
           },
           child: Text('Simpan'),
         ),

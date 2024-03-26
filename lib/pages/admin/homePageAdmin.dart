@@ -8,10 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageAdmin extends StatefulWidget {
   static const nameRoute = "/HomePageAdmin";
-  const HomePageAdmin({Key? key, required this.initialTabIndex}) : super(key: key);
-
-  final int initialTabIndex;
-
+  const HomePageAdmin({Key? key}) : super(key: key);
 
   @override
   State<HomePageAdmin> createState() => _HomePageAdminState();
@@ -31,7 +28,7 @@ class _HomePageAdminState extends State<HomePageAdmin>
       setState(() {
         email = srf.getString('email');
         username = srf.getString('username');
-        _tabController.index = widget.initialTabIndex;
+        _tabController.index = srf.getInt('page_admin')!;
       });
     });
   }

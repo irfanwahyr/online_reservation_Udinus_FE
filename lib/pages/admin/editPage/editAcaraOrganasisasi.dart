@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EditAcaraOrganisasi extends StatelessWidget {
   final String organisasi;
@@ -90,12 +91,12 @@ class EditAcaraOrganisasi extends StatelessWidget {
       )),
       actions: [
         ElevatedButton(
-          onPressed: () {
-            // Aksi yang dilakukan saat tombol "Simpan" ditekan
-            // Lakukan sesuatu dengan data yang diubah, misalnya kirim ke database
+          onPressed: () async {
 
-            Navigator.of(context).pop();
-            Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute, arguments: 2);
+              Navigator.of(context).pop();
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setInt('page_admin', 1);
+              Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
           },
           child: Text('Simpan'),
         ),
