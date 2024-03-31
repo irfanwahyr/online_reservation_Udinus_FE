@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
@@ -12,9 +13,31 @@ double collapsableHeight = 0.0;
 Color selected = const Color(0xffffffff);
 Color notSelected = const Color(0xafffffff);
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const nameRoute = 'homePage';
   HomePage({super.key});
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late String? _token;
+  late String? _username;
+
+  @override
+  void initState() {
+    super.initState();
+    _getToken();
+  }
+
+  Future<void> _getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _token = prefs.getString('token');
+      _username = prefs.getString('username');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,62 +57,65 @@ class HomePage extends StatelessWidget {
                     color: Colors.white,
                   ),
                   MediaQuery.of(context).size.width < 400
-                      ? PopupMenuButton<String>(
-                          itemBuilder: (context) {
-                            return [
-                              PopupMenuItem<String>(
-                                child: Container(
-                                  color: Colors.white,
-                                  child: InkWell(
-                                    onTap: () {
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) => const LogSign(),
-                                      //   ),
-                                      // );
-                                      Navigator.pushReplacementNamed(
-                                          context, LogSign.nameRoute);
-                                    },
-                                    child: const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            'Daftar / Login',
-                                            style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 1, 24, 50),
-                                            ),
+                      ? _token != null
+                          ? Text(
+                              "$_username", // Ganti 'Nama' dengan teks yang ingin ditampilkan saat pengguna terautentikasi
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )
+                          : PopupMenuButton<String>(
+                              itemBuilder: (context) {
+                                return [
+                                  PopupMenuItem<String>(
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pushReplacementNamed(
+                                              context, LogSign.nameRoute);
+                                        },
+                                        child: const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal: 20,
                                           ),
-                                        ],
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Daftar / Login',
+                                                style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 1, 24, 50),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                                ];
+                              },
+                              icon: const Icon(
+                                Icons.menu,
+                                color: Colors.white,
                               ),
-                            ];
-                          },
-                          icon: const Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                        )
-                      : HoverButtonPrimary(
-                          text: "Daftar/Login",
-                          onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => const LogSign(),
-                            //   ),
-                            // );
-                            Navigator.pushReplacementNamed(context, LogSign.nameRoute);
-                          },
-                        ),
+                            )
+                      : _token != null
+                          ? Text(
+                              '$_username', // Ganti 'Nama' dengan teks yang ingin ditampilkan saat pengguna terautentikasi
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )
+                          : HoverButtonPrimary(
+                              text: "Daftar/Login",
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(
+                                    context, LogSign.nameRoute);
+                              },
+                            ),
                 ],
               ),
             ),
