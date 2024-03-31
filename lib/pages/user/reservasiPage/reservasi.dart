@@ -66,11 +66,19 @@ class _ReservasiState extends State<Reservasi> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
+    // Menghitung tanggal pertama yang dapat dipilih
+    DateTime firstSelectableDate = DateTime.now();
+
     DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: _selectedDate,
-        firstDate: DateTime.utc(2024, 01, 01),
-        lastDate: DateTime.utc(2040, 3, 14));
+      context: context,
+      initialDate: _selectedDate ?? firstSelectableDate,
+      firstDate: firstSelectableDate,
+      lastDate: DateTime.utc(2040, 3, 14),
+      selectableDayPredicate: (DateTime date) {
+        // Mengembalikan true jika tanggal masih di masa depan dari tanggal hari ini
+        return date.isAfter(DateTime.now().subtract(Duration(days: 1)));
+      },
+    );
 
     if (pickedDate != null && pickedDate != today) {
       setState(() {
