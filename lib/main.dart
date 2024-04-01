@@ -22,7 +22,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main(List<String> args) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.clear();
+  if(prefs.getString('token') == null){
+    await prefs.clear();
+  }
   runApp(MyApp());
 }
 

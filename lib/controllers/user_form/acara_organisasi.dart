@@ -76,8 +76,8 @@ Future<AcaraOrganisasi> create(
 
   final request = http.MultipartRequest('POST', Uri.parse("$env/create"));
   request.headers['Authorization'] = 'Bearer $token';
-  request.headers['Accept'] = 'application/json';
-  request.headers['Content-Type'] = 'application/json; charset=UTF-8';
+  request.headers['Accept'] = 'application/pdf';
+  request.headers['Content-Type'] = 'application/pdf';
 
   // Add form fields
   request.fields['nama_organisasi'] = nama_organisasi;
