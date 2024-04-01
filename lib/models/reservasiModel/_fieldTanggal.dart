@@ -4,12 +4,14 @@ class FieldTanggal extends StatefulWidget {
   final String judul;
   String tanggal_Mulai;
   DateTime? tanggal_Selesai;
+  final ValueChanged<DateTime?>? onDateChanged;
 
   FieldTanggal({
     Key? key,
     required this.judul,
     required this.tanggal_Mulai,
     this.tanggal_Selesai,
+    this.onDateChanged,
   }) : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class _FieldTanggalState extends State<FieldTanggal> {
           widget.tanggal_Mulai = pickedDate.toString();
         } else {
           widget.tanggal_Selesai = pickedDate;
+          widget.onDateChanged?.call(pickedDate);
         }
       });
     }

@@ -16,9 +16,8 @@ class HomePageAdmin extends StatefulWidget {
 
 String? email, username;
 
-class _HomePageAdminState extends State<HomePageAdmin>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _HomePageAdminState extends State<HomePageAdmin>with SingleTickerProviderStateMixin {
+  late TabController? _tabController;
 
   @override
   void initState() {
@@ -28,7 +27,8 @@ class _HomePageAdminState extends State<HomePageAdmin>
       setState(() {
         email = srf.getString('email');
         username = srf.getString('username');
-        _tabController.index = srf.getInt('page_admin')!;
+        _tabController!.index = srf.getInt('page_admin') ?? 0;
+        print(_tabController!.index);
       });
     });
   }

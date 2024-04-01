@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,79 +54,75 @@ class AcaraOrganisasi {
       surat_peminjaman: json['surat_peminjaman'] ?? "kosong"
     );
   }
-
-
-  Future<AcaraOrganisasi> create(
-    String nama_organisasi,
-    String penanggung_jawab,
-    String no_whatssapp,
-    String nama_acara,
-    String nama_lab,
-    String tanggal_mulai,
-    String tanggal_selesai,
-    String jam_mulai,
-    String jam_selesai,
-    String keterangan,
-    int id_user,
-    File proposal_acara,
-    File surat_peminjaman,
-    String token
-  ) async {
-    await dotenv.load(fileName: "../.env");
-    final env = dotenv.env['ACARAORGANISASI'];
-    final response = await http.post(
-      Uri.parse("$env/create"),
-      headers: <String, String>{
-        'Authorization': 'Bearer $token',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, dynamic>{
-        'nama_organisasi': nama_organisasi,
-        'penanggung_jawab': penanggung_jawab,
-        'no_whatssapp': no_whatssapp,
-        'nama_acara': nama_acara,
-        'nama_lab': nama_lab,
-        'tanggal_mulai': tanggal_mulai,
-        'tanggal_selesai': tanggal_selesai,
-        'jam_mulai': jam_mulai,
-        'jam_selesai': jam_selesai,
-        'keterangan': keterangan,
-        'id_user': id_user
-      })
-    );
-
-    if (response.statusCode == 201){
-      var responseData = json.decode(response.body);
-      // Upload file proposal_acara
-      final proposalResponse = await uploadFile(proposal_acara, responseData['id'], 'proposal_acara', token);
-      // Upload file surat_peminjaman
-      final suratResponse = await uploadFile(surat_peminjaman, responseData['id'], 'surat_peminjaman', token);
-      if (proposalResponse.statusCode == 200 && suratResponse.statusCode == 200) {
-          return AcaraOrganisasi.fromJson(jsonDecode(response.body));
-        } else {
-          throw Exception('Failed to upload proposal or letter');
-        }
-    } else {
-      throw Exception('Failed to create event: ${response.body}');
-    }
-  }
 }
 
-Future<http.Response> uploadFile(File file, int eventId, String fieldName, String token) async {
+Future<AcaraOrganisasi> create(
+  String nama_organisasi,
+  String penanggung_jawab,
+  String no_whatssapp,
+  String nama_acara,
+  String nama_lab,
+  String tanggal_mulai,
+  String tanggal_selesai,
+  String jam_mulai,
+  String jam_selesai,
+  String keterangan,
+  int id_user,
+  PlatformFile? proposal_acara,
+  PlatformFile? surat_peminjaman,
+  String token) async {
+  await dotenv.load(fileName: "../.env");
   final env = dotenv.env['ACARAORGANISASI'];
-  final request = http.MultipartRequest('POST', Uri.parse("$env/upload-file"));
 
+  final request = http.MultipartRequest('POST', Uri.parse("$env/create"));
   request.headers['Authorization'] = 'Bearer $token';
-  request.fields['event_id'] = eventId.toString();
-  request.fields['field_name'] = fieldName;
+  request.headers['Accept'] = 'application/json';
+  request.headers['Content-Type'] = 'application/json; charset=UTF-8';
 
-  request.files.add(await http.MultipartFile.fromPath(
-    'file',
-    file.path,
-    filename: file.path.split('/').last,
-  ));
+  // Add form fields
+  request.fields['nama_organisasi'] = nama_organisasi;
+  request.fields['penanggung_jawab'] = penanggung_jawab;
+  request.fields['no_whatssapp'] = no_whatssapp;
+  request.fields['nama_acara'] = nama_acara;
+  request.fields['nama_lab'] = nama_lab;
+  request.fields['tanggal_mulai'] = tanggal_mulai;
+  request.fields['tanggal_selesai'] = tanggal_selesai;
+  request.fields['jam_mulai'] = jam_mulai;
+  request.fields['jam_selesai'] = jam_selesai;
+  request.fields['keterangan'] = keterangan;
+  request.fields['id_user'] = id_user.toString();
+
+  // Add files if available
+  if (proposal_acara != null) {
+    final fileBytes = kIsWeb
+        ? proposal_acara.bytes!
+        : File(proposal_acara.path!).readAsBytesSync();
+
+    request.files.add(http.MultipartFile.fromBytes(
+      'proposal_acara',
+      fileBytes,
+      filename: proposal_acara.name,
+    ));
+  }
+
+  if (surat_peminjaman != null) {
+    final fileBytes = kIsWeb
+        ? surat_peminjaman.bytes!
+        : File(surat_peminjaman.path!).readAsBytesSync();
+
+    request.files.add(http.MultipartFile.fromBytes(
+      'surat_peminjaman',
+      fileBytes,
+      filename: surat_peminjaman.name,
+    ));
+  }
 
   final streamedResponse = await request.send();
-  return http.Response.fromStream(streamedResponse);
+  final response = await http.Response.fromStream(streamedResponse);
+
+  if (response.statusCode == 201) {
+    return AcaraOrganisasi.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to create event: ${response.body}');
+  }
 }
