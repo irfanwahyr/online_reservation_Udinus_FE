@@ -22,8 +22,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late String? _token;
-  late String? _username;
+  late String? _token = '';
+  late String? _username = '';
 
   @override
   void initState() {

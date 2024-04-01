@@ -129,6 +129,8 @@ class _LogSignState extends State<LogSign> {
                         Navigator.pushReplacementNamed(context, HomePage.nameRoute);
                       }
                       else{
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        prefs.setInt('page_admin', 0);
                         Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
                       }
                     });

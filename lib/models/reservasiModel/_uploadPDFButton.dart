@@ -3,10 +3,12 @@ import 'package:file_picker/file_picker.dart';
 
 class UploadPDFButton extends StatefulWidget {
   final String judul;
+  final ValueChanged<PlatformFile?>? onFileSelected;
 
   const UploadPDFButton({
     Key? key,
     required this.judul,
+    this.onFileSelected,
   }) : super(key: key);
 
   @override
@@ -14,6 +16,9 @@ class UploadPDFButton extends StatefulWidget {
 }
 
 class _UploadPDFButtonState extends State<UploadPDFButton> {
+  late String? _fileName;
+  late String? _extension;
+
   Future<FilePickerResult?>? _filePickerFuture;
 
   @override
@@ -24,11 +29,7 @@ class _UploadPDFButtonState extends State<UploadPDFButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            widget.judul,
-            textAlign: TextAlign.start,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
+        
           const SizedBox(height: 15),
           GestureDetector(
             onTap: () {
@@ -37,44 +38,60 @@ class _UploadPDFButtonState extends State<UploadPDFButton> {
               });
             },
             child: Container(
-              width: 300,
+              width: 350,
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: FutureBuilder<FilePickerResult?>(
-                future: _filePickerFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Error: ${snapshot.error}'),
-                    );
-                  } else {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Upload PDF max 2MB",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+              child: Padding(
+                padding: EdgeInsets.only(right:15, left: 15),
+                child: FutureBuilder<FilePickerResult?>(
+                  future: _filePickerFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text('Error: ${snapshot.error}'),
+                      );
+                    } else {
+                      if (snapshot.data != null) {
+                        _fileName = snapshot.data!.files.single.name;
+                        _extension = _fileName!.split('.').last;
+                      } else {
+                        _fileName = null;
+                        _extension = null;
+                      }
+
+                      
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible( // Gunakan Flexible untuk menangani overflow
+                            child: Text(
+                              _fileName ?? widget.judul + " Max. 2MB",
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 5),
-                        Icon(
-                          Icons.picture_as_pdf,
-                          color: Colors.white,
-                        ),
-                      ],
-                    );
-                  }
-                },
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.picture_as_pdf,
+                            color: Colors.white,
+                          ),
+                        ],
+                      );
+                    }
+                    
+                  },
+                ),
               ),
             ),
           )
@@ -84,9 +101,15 @@ class _UploadPDFButtonState extends State<UploadPDFButton> {
   }
 
   Future<FilePickerResult?> _pickPDFFile() async {
-    return FilePicker.platform.pickFiles(
+    final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
+
+    if (result != null && result.files.isNotEmpty) {
+      widget.onFileSelected?.call(result.files.single);
+    }
+
+    return result;
   }
 }
