@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/acaraorganisasi_admin.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ButtonProposal extends StatefulWidget {
   final String proposal_acara;
@@ -9,35 +8,24 @@ class ButtonProposal extends StatefulWidget {
     Key? key,
     required this.proposal_acara,
   }) : super(key: key);
+
   @override
   State<ButtonProposal> createState() => _ButtonProposalState();
 }
 
 class _ButtonProposalState extends State<ButtonProposal> {
-
-  String? token;
+  String? proposal_acara;
   @override
   void initState() {
     super.initState();
-    getData();
-  }
-
-  void getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
-
-    setState(() {
-      this.token = token;
-    });
+    proposal_acara = widget.proposal_acara;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print(token);
-        showFile(token!, widget.proposal_acara);
-
+      onTap: () async {
+        showFile(proposal_acara!);
       },
       child: Container(
         width: 25.0,

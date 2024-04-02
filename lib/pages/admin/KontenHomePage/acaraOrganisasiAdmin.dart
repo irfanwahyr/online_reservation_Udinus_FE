@@ -228,7 +228,6 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                             ],
                             rows: List.generate(listacaraorganisasi.length, (index) {
                               final data_acara_organisasi = listacaraorganisasi[index];
-                              int id = data_acara_organisasi.id;
                               String nama_organisasi = data_acara_organisasi.nama_organisasi;
                               String penanggung_jawab = data_acara_organisasi.penanggung_jawab;
                               String no_whatssapp = data_acara_organisasi.no_whatsapp;
@@ -370,10 +369,10 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                                       message: 'Proposal',
                                       child: ButtonProposal(proposal_acara: proposal_acara),
                                     ),
-                                    Text(" | "),
+                                    const Text(" | "),
                                     Tooltip(
                                       message: 'Surat pinjam',
-                                      child: ButtonSuratPinjam(),
+                                      child: ButtonSuratPinjam(surat_peminjaman: surat_peminjaman),
                                     ),
                                   ],
                                 )),

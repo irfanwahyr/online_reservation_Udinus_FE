@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:html' as html;
-import 'package:universal_html/html.dart' as universal_html;
+
 
 class AdminAcaraOrganisasi {
   final int id;
@@ -18,6 +18,7 @@ class AdminAcaraOrganisasi {
   final String proposal_acara;
   final String surat_peminjaman;
   final String keterangan;
+  final int id_user;
 
   AdminAcaraOrganisasi({
     required this.id,
@@ -33,6 +34,7 @@ class AdminAcaraOrganisasi {
     required this.proposal_acara,
     required this.surat_peminjaman,
     required this.keterangan,
+    required this.id_user,
   });
 
   factory AdminAcaraOrganisasi.fromJson(Map<String, dynamic> json) {
@@ -50,6 +52,7 @@ class AdminAcaraOrganisasi {
       proposal_acara: json['proposal_acara'] ?? "kosong",
       surat_peminjaman: json['surat_peminjaman'] ?? "kosong",
       keterangan: json['keterangan'] ?? "kosong",
+      id_user: json['id_user'] ?? 0
     );
   }
 }
@@ -70,27 +73,10 @@ Future<List<AdminAcaraOrganisasi>> fetchdata() async {
   }
 }
 
-Future<void> showFile(String token, String namaFile) async {
-  try {
+Future<void> showFile(String namaFile) async {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['SHOWFILE'];
-    final response = await http.get(Uri.parse("$env/$namaFile"));
-    if (response.statusCode == 200) {
-      // Membuat objek Blob dari isi file
-      final blob = universal_html.Blob([response.bodyBytes]);
-
-      // Membuat URL untuk objek Blob
-      final url = html.Url.createObjectUrlFromBlob(blob);
-
-      // Membuka file dalam tab baru
-      html.window.open(url, "_blank");
-    } else {
-      throw Exception('Failed to load data');
-    }
-  } catch (error) {
-    print(error);
-    throw Exception('Failed to load data');
-  }
+    html.window.open("$env/$namaFile", "_blank");
 }
 
 // Future<AdminAcaraOrganisasi> update(String token, int id, String nama_organisasi, String penanggung_jawab, String nama_acara, 

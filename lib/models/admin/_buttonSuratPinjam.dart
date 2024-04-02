@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/peminjaman_admin/acaraorganisasi_admin.dart';
 
-class ButtonSuratPinjam extends StatelessWidget {
-  const ButtonSuratPinjam({super.key});
+class ButtonSuratPinjam extends StatefulWidget {
+  const ButtonSuratPinjam({super.key, required this.surat_peminjaman});
+  final String surat_peminjaman;
+
+  @override
+  State<ButtonSuratPinjam> createState() => _ButtonSuratPinjamState();
+}
+
+class _ButtonSuratPinjamState extends State<ButtonSuratPinjam> {
+  String? surat_peminjaman;
+  @override
+  void initState() {
+    super.initState();
+    surat_peminjaman = widget.surat_peminjaman;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // fungsi tolak disini wer
+        showFile(surat_peminjaman!);
       },
       child: Container(
         width: 25.0,

@@ -18,11 +18,8 @@ import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main(List<String> args) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.clear();
   runApp(MyApp());
 }
 
