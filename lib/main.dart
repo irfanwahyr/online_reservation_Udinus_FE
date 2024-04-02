@@ -39,8 +39,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: HomePage(),
       initialRoute: HomePage.nameRoute,
-      // home: HomePageAdmin(),
-      // initialRoute: HomePageAdmin.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),
@@ -62,7 +60,6 @@ class _MyAppState extends State<MyApp> {
         JadwalHari.nameRoute: (context) => JadwalHari(),
         RiwayatReservasi.nameRoute: (context) => RiwayatReservasi(),
       },
-      // onGenerateRoute: ,
     );
   }
 }

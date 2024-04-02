@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/_appBarBack.dart';
@@ -38,7 +36,6 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
   final TextEditingController jam_selesai_controller = TextEditingController();
   final TextEditingController keterangan_controller = TextEditingController();
 
-  String? uploadedFileName;
   String? nama_lab;
   String? tanggal_mulai;
   DateTime? tanggal_selesai;
@@ -248,7 +245,7 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
                         token ?? ""
                       );
                     });
-                    // Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
                   }),
             ),
           ),
