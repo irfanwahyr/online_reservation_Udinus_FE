@@ -15,7 +15,7 @@ class ButtonLogOut extends StatefulWidget {
 class _ButtonLogOutState extends State<ButtonLogOut> {
   bool isHovered = false;
   String? token;
-  
+
   @override
   void initState() {
     super.initState();
@@ -37,11 +37,14 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
       onEnter: (event) => onHover(true),
       onExit: (event) => onHover(false),
       child: ElevatedButton(
-       onPressed: () async {
-        await logout();
-        
-        Navigator.pushReplacementNamed(context, HomePage.nameRoute);
-      },
+        onPressed: () async {
+          // Tampilkan dialog konfirmasi
+          bool? logoutConfirmed = await _showLogoutConfirmationDialog(context);
+          if (logoutConfirmed ?? false) {
+            await logout();
+            Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+          }
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor:
               isHovered ? Colors.grey.shade300 : Color.fromARGB(255, 255, 7, 7),
@@ -64,5 +67,31 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
     setState(() {
       this.isHovered = isHovered;
     });
+  }
+
+  Future<bool?> _showLogoutConfirmationDialog(BuildContext context) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Konfirmasi'),
+          content: Text('Apakah Anda yakin ingin logout?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(false); // Tidak
+              },
+              child: Text('Tidak'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(true); // Ya
+              },
+              child: Text('Ya'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
