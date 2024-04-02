@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/models/_btn_Logout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_heading2.dart';
@@ -58,12 +59,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                   MediaQuery.of(context).size.width < 400
                       ? _token != null
-                          ? Text(
-                              "$_username", // Ganti 'Nama' dengan teks yang ingin ditampilkan saat pengguna terautentikasi
-                              style: TextStyle(
-                                color: Colors.white,
+                          ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                  "$_username", // Ganti 'Nama' dengan teks yang ingin ditampilkan saat pengguna terautentikasi
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
                               ),
-                            )
+                              
+                            ],
+                          )
                           : PopupMenuButton<String>(
                               itemBuilder: (context) {
                                 return [
@@ -103,17 +110,23 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )
                       : _token != null
-                          ? Text(
-                              '$_username', // Ganti 'Nama' dengan teks yang ingin ditampilkan saat pengguna terautentikasi
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            )
+                          ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                  '$_username', // Ganti 'Nama' dengan teks yang ingin ditampilkan saat pengguna terautentikasi
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                ButtonLogOut()
+                            ],
+                          )
                           : HoverButtonPrimary(
                               text: "Daftar/Login",
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, LogSign.nameRoute);
+                                Navigator.pushReplacementNamed(context, LogSign.nameRoute);
                               },
                             ),
                 ],
