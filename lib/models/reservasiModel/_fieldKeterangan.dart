@@ -6,8 +6,8 @@ class FieldKeterangan extends StatelessWidget {
   final TextInputType keyboardType;
   final TextEditingController? controller;
   const FieldKeterangan({
-          super.key, 
-          required this.judul, 
+          super.key,
+          required this.judul,
           this.onSubmitted,
           this.controller,
           required this.keyboardType

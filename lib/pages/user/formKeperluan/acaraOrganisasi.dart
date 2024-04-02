@@ -199,8 +199,11 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
             jam_selesai: jam_selesai.toString(),
           ),
           const SizedBox(height: 15),
-          const FieldKeterangan(
-              judul: "Keterangan Tambahan", keyboardType: TextInputType.text),
+          FieldKeterangan(
+              judul: "Keterangan Tambahan",
+              keyboardType: TextInputType.text,
+              controller: keterangan_controller,
+          ),
           const SizedBox(height: 10),
           UploadPDFButton(
             judul: "Upload Proposal Acara",
@@ -242,8 +245,8 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
                         id_user ?? 0,
                         proposalFile!,
                         suratPeminjamanFile!,
-                        token ?? "");
-                      
+                        token ?? ""
+                      );
                     });
                     // Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
                   }),

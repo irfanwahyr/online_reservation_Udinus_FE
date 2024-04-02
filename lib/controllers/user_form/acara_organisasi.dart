@@ -120,9 +120,13 @@ Future<AcaraOrganisasi> create(
   final streamedResponse = await request.send();
   final response = await http.Response.fromStream(streamedResponse);
 
+  if(proposal_acara!.name == surat_peminjaman!.name){
+    throw Exception('file tidfdak boleh sama');
+  }
+
   if (response.statusCode == 201) {
     return AcaraOrganisasi.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to create event: ${response.body}');
+    throw Exception('Failed to create event');
   }
 }
