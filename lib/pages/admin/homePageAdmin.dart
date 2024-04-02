@@ -28,7 +28,6 @@ class _HomePageAdminState extends State<HomePageAdmin>with SingleTickerProviderS
         email = srf.getString('email');
         username = srf.getString('username');
         _tabController!.index = srf.getInt('page_admin') ?? 0;
-        print(_tabController!.index);
       });
     });
   }

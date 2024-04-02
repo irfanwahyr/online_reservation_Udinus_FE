@@ -96,11 +96,11 @@ Future<Login> login(String email, String password) async {
     }),
   );
   if (response.statusCode == 200) {
-    const logoutTime = Duration(seconds: 30); // Ubah ke 30 detik
-    _logoutTimer = Timer(logoutTime, () async {
-      // Ketika timer mencapai 30 detik, panggil fungsi logout
-      await logout();
-    });
+    // const logoutTime = Duration(seconds: 30); // Ubah ke 30 detik
+    // _logoutTimer = Timer(logoutTime, () async {
+    //   // Ketika timer mencapai 30 detik, panggil fungsi logout
+    //   await logout();
+    // });
     return Login.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
     throw Exception('Failed to login');
