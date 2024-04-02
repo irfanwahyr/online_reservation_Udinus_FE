@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:kp2024/pages/homePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Register {
   final String email;
@@ -78,6 +81,7 @@ class Login {
 }
 
 Future<Login> login(String email, String password) async {
+  late Timer _logoutTimer;
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['AUTH'];
 
@@ -92,10 +96,29 @@ Future<Login> login(String email, String password) async {
     }),
   );
   if (response.statusCode == 200) {
+    const logoutTime = Duration(seconds: 30); // Ubah ke 30 detik
+    _logoutTimer = Timer(logoutTime, () async {
+      // Ketika timer mencapai 30 detik, panggil fungsi logout
+      await logout();
+    });
     return Login.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
     throw Exception('Failed to login');
   }
 }
 
+Future<void> logout() async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['AUTH'];
+  final response = await http.post(
+    Uri.parse("$env/logout"),
+  );
 
+  if (response.statusCode == 200) {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    
+  } else {
+    throw Exception('Failed to logout');
+  } 
+}
