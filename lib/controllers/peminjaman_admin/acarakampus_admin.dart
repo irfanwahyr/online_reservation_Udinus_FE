@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:html' as html;
 
 
-class AdminAcaraOrganisasi {
+class AdminAcaraKampus {
   final int id;
-  final String nama_organisasi;
+  final String fakultas;
   final String penanggung_jawab;
   final String nama_acara;
   final String nama_lab;
@@ -20,9 +20,9 @@ class AdminAcaraOrganisasi {
   final String keterangan;
   final int id_user;
 
-  AdminAcaraOrganisasi({
+  AdminAcaraKampus({
     required this.id,
-    required this.nama_organisasi,
+    required this.fakultas,
     required this.penanggung_jawab,
     required this.nama_acara,
     required this.nama_lab,
@@ -37,10 +37,10 @@ class AdminAcaraOrganisasi {
     required this.id_user,
   });
 
-  factory AdminAcaraOrganisasi.fromJson(Map<String, dynamic> json) {
-    return AdminAcaraOrganisasi(
+  factory AdminAcaraKampus.fromJson(Map<String, dynamic> json) {
+    return AdminAcaraKampus(
       id: json['id'] ?? 0,
-      nama_organisasi: json['nama_organisasi'] ?? "kosong",
+      fakultas: json['fakultas'] ?? "kosong",
       penanggung_jawab: json['penanggung_jawab'] ?? "kosong",
       no_whatsapp: json['no_whatssapp'] ?? "kosong",
       nama_acara: json['nama_acara'] ?? "kosong",
@@ -57,14 +57,14 @@ class AdminAcaraOrganisasi {
   }
 }
 
-Future<List<AdminAcaraOrganisasi>> fetchdata() async {
+Future<List<AdminAcaraKampus>> fetchdata() async {
   try {
     await dotenv.load(fileName: "../.env");
-    final env = dotenv.env['ACARAORGANISASI'];
+    final env = dotenv.env['ACARAKAMPUS'];
     final response = await http.get(Uri.parse("$env/"));
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = json.decode(response.body);
-      return jsonList.map((e) => AdminAcaraOrganisasi.fromJson(e)).toList();
+      return jsonList.map((e) => AdminAcaraKampus.fromJson(e)).toList();
     } else {
       throw Exception('Failed to load data');
     }
