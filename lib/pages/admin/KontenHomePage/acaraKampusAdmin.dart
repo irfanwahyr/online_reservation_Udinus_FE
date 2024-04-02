@@ -259,19 +259,19 @@ class _AcaraKampusAdminState extends State<AcaraKampusAdmin> {
               'Keterangan $i',
               style: TextStyle(fontSize: 10),
             )),
-            DataCell(Row(
-              children: [
-                Tooltip(
-                  message: 'Proposal',
-                  child: ButtonProposal(),
-                ),
-                Text(" | "),
-                Tooltip(
-                  message: 'Surat pinjam',
-                  child: ButtonSuratPinjam(),
-                ),
-              ],
-            )),
+            // DataCell(Row(
+            //   children: [
+            //     Tooltip(
+            //       message: 'Proposal',
+            //       child: ButtonProposal(),
+            //     ),
+            //     Text(" | "),
+            //     Tooltip(
+            //       message: 'Surat pinjam',
+            //       child: ButtonSuratPinjam(),
+            //     ),
+            //   ],
+            // )),
             DataCell(Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
