@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/jadwal/show_jadwal_admin.dart';
+import 'package:kp2024/pages/admin/kontenDaftarMataKuliah/jadwalHari.dart';
 
 class EditDaftarMataKuliah extends StatelessWidget {
-  final String waktu_mulai;
-  final String waktu_selesai;
   final String mata_kuliah;
   final String kelompok;
+  final String token;
+  final String jam_mulai;
+  final String jam_selesai;
+  final int id;
+  final int id_hari;
   final Future? futureDataDaftarMataKuliah;
 
   EditDaftarMataKuliah(
       {
-      required this.waktu_mulai,
-      required this.waktu_selesai,
       required this.mata_kuliah,
       required this.kelompok,
+      required this.token,
+      required this.jam_mulai,
+      required this.jam_selesai,
+      required this.id,
+      required this.id_hari,
       this.futureDataDaftarMataKuliah});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Edit Data'),
+      title: const Text('Edit Data'),
       content: SingleChildScrollView(
           child: FutureBuilder(
         future: futureDataDaftarMataKuliah,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
@@ -33,13 +41,12 @@ class EditDaftarMataKuliah extends StatelessWidget {
               children: [
                 TextFormField(
                   initialValue: mata_kuliah,
-                  decoration: InputDecoration(labelText: 'Nama Matkul'),
+                  decoration: const InputDecoration(labelText: 'Nama Matkul'),
                 ),
                 TextFormField(
                   initialValue: kelompok,
-                  decoration: InputDecoration(labelText: 'Kode Kelas'),
+                  decoration: const InputDecoration(labelText: 'Kode Kelas'),
                 ),
-                
               ],
             );
           }
@@ -47,13 +54,20 @@ class EditDaftarMataKuliah extends StatelessWidget {
       )),
       actions: [
         ElevatedButton(
-          onPressed: () {
-            // Aksi yang dilakukan saat tombol "Simpan" ditekan
-            // Lakukan sesuatu dengan data yang diubah, misalnya kirim ke database
-
+          onPressed: () async {
+            await update(
+              mata_kuliah,
+              kelompok,
+              token,
+              id,
+              id_hari,
+              jam_mulai,
+              jam_selesai
+            );
             Navigator.of(context).pop();
+            Navigator.popAndPushNamed(context, JadwalHari.nameRoute);
           },
-          child: Text('Simpan'),
+          child: const Text('Simpan'),
         ),
       ],
     );

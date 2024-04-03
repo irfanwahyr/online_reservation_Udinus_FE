@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/reservasiModel/_fieldContainer.dart';
@@ -235,7 +236,7 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
                         nama_acara_controller.text,
                         nama_lab ?? "",
                         tanggal_mulai ?? "",
-                        tanggal_selesai.toString(),
+                        tanggal_selesai!,
                         jam_mulai ?? "",
                         jam_selesai ?? "",
                         keterangan_controller.text,

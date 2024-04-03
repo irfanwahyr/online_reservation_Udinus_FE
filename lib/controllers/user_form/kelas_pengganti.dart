@@ -46,7 +46,7 @@ class KelasPengganti{
   }
 }
 
-Future<KelasPengganti> create(String nama_dosen, String mata_kuliah, String kelompok, String no_whatsapp, 
+Future<KelasPengganti> create(String nama_dosen, String mata_kuliah, String kelompok, String no_whatsapp,
                               String namaLab, String tanggalMulai, String jamMulai,String jamSelesai, String keterangan, int idUser, String token) async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['KELASPENGGANTI'];

@@ -61,3 +61,43 @@ Future<List<ShowJadwalMingguanAdmin>> fetchdata(String idHari) async {
 
   return [];
 }
+
+Future<ShowJadwalMingguanAdmin> update(
+  String mata_kuliah,
+  String kelompok,
+  String token,
+  int id,
+  int id_hari,
+  String jam_mulai,
+  String jam_selesai
+  ) async {
+  try {
+    await dotenv.load(fileName: "../.env");
+    final env = dotenv.env['RESERVASI'];
+    final url = Uri.parse("$env/update/$id");
+
+    final headers = <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    final body = jsonEncode(<String, dynamic>{
+      'id_hari': id_hari,
+      'mata_kuliah': mata_kuliah,
+      'kelompok': kelompok,
+      jam_mulai: jam_mulai,
+      jam_selesai: jam_selesai,
+    });
+
+    final response = await http.post(url, headers: headers, body: body);
+    if (response.statusCode == 200) {
+      return ShowJadwalMingguanAdmin.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+    } else {
+      print(response.statusCode);
+      throw Exception('Failed to update');
+    }
+  } catch (e) {
+    rethrow;
+  }
+}

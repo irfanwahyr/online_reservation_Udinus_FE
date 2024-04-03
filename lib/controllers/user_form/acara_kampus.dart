@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class AcaraKampus {
   final String fakultas;
@@ -63,7 +64,7 @@ Future<AcaraKampus> create(
   String nama_acara,
   String nama_lab,
   String tanggal_mulai,
-  String tanggal_selesai,
+  DateTime tanggal_selesai,
   String jam_mulai,
   String jam_selesai,
   String keterangan,
@@ -85,7 +86,7 @@ Future<AcaraKampus> create(
   request.fields['nama_acara'] = nama_acara;
   request.fields['nama_lab'] = nama_lab;
   request.fields['tanggal_mulai'] = tanggal_mulai;
-  request.fields['tanggal_selesai'] = tanggal_selesai;
+  request.fields['tanggal_selesai'] = DateFormat('dd-MM-yyyy').format(tanggal_selesai);
   request.fields['jam_mulai'] = jam_mulai;
   request.fields['jam_selesai'] = jam_selesai;
   request.fields['keterangan'] = keterangan;

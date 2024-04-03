@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading1.dart';
-import 'package:kp2024/models/admin/_buttonDelete.dart';
 import 'package:kp2024/models/admin/_buttonEdit.dart';
 import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/editPage/editDaftarMataKuliah.dart';
@@ -19,6 +18,7 @@ class JadwalHari extends StatefulWidget {
 class _JadwalHariState extends State<JadwalHari> {
   String? nama_lab;
   String? hari;
+  String? token;
   Future<List<ShowJadwalMingguanAdmin>> listJadwalAdmin = fetchdata("");
   DateTime today = DateTime.now();
 
@@ -33,11 +33,13 @@ class _JadwalHariState extends State<JadwalHari> {
     String? nama_lab = prefs.getString('nama_lab');
     String? hari = prefs.getString('hari');
     int? id_hari = prefs.getInt('id_hari');
+    String? token = prefs.getString('token');
 
     setState(() {
       listJadwalAdmin = fetchdata(id_hari.toString());
       this.nama_lab = nama_lab;
       this.hari = hari;
+      this.token = token;
     });
   }
 
@@ -167,10 +169,12 @@ class _JadwalHariState extends State<JadwalHari> {
                               ],
                               rows: List.generate(jadwal.length, (index) {
                                 final jadwal_idx = jadwal[index];
+                                int id = jadwal_idx.id;
                                 String jamMulai = jadwal_idx.jam_mulai;
                                 String jamSelesai = jadwal_idx.jam_selesai;
                                 String mata_kuliah = jadwal_idx.mata_kuliah;
                                 String kelompok = jadwal_idx.kelompok;
+                                int id_hari = jadwal_idx.id_hari;
                                 return DataRow(cells: <DataCell>[
                                   DataCell(
                                     Center(
@@ -223,10 +227,13 @@ class _JadwalHariState extends State<JadwalHari> {
                                         ButtonEdit(
                                           onPressed: () {
                                             _showEditFormPopup(
+                                              mata_kuliah,
+                                              kelompok,
+                                              token!,
                                               jamMulai,
                                               jamSelesai,
-                                              mata_kuliah,
-                                              kelompok
+                                              id,
+                                              id_hari
                                             );
                                           },
                                         ),
@@ -255,20 +262,25 @@ class _JadwalHariState extends State<JadwalHari> {
   }
 
   void _showEditFormPopup(
-    String waktu_mulai,
-    String waktu_selesai,
     String mata_kuliah,
     String kelompok,
-    
+    String token,
+    String jam_mulai,
+    String jam_selesai,
+    int id,
+    int id_hari
   ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return EditDaftarMataKuliah(
-          waktu_mulai: waktu_mulai,
-          waktu_selesai: waktu_selesai,
           mata_kuliah: mata_kuliah,
           kelompok: kelompok,
+          token: token,
+          id: id,
+          jam_mulai: jam_mulai,
+          jam_selesai: jam_selesai,
+          id_hari: id_hari,
         );
       },
     );

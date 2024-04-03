@@ -56,7 +56,6 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
       }
     }
   } catch (error) {
-    print(error);
     throw Exception('Failed to load');
   }
 
