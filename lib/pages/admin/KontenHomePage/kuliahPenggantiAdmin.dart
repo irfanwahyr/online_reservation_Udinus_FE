@@ -1,9 +1,8 @@
+// Hapus import yang tidak digunakan
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
-// import 'package:kp2024/models/admin/_buttonEdit.dart';
-import 'package:kp2024/models/admin/_buttonEditKecil.dart';
 import 'package:kp2024/pages/admin/editPage/editKuliahPengganti.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -68,334 +67,262 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                 ),
               );
             } else {
-            int _no = 0; // Nomor yang akan diincrement otomatis
-            return Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.95,
-                height: MediaQuery.of(context).size.height * 0.8,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  color: Colors.green[50],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Scrollbar(
-                    controller: controller_2,
-                    thumbVisibility: true,
-                    child: SingleChildScrollView(
+              int _no = 0; // Nomor yang akan diincrement otomatis
+              return Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    color: Colors.green[50],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Scrollbar(
                       controller: controller_2,
-                      scrollDirection: Axis.horizontal,
+                      thumbVisibility: true,
+                      child: Align(
+                        alignment: Alignment.topCenter,
                       child: SingleChildScrollView(
-                        controller: controller,
-                        child: Center(
-                          child: DataTable(
-                            columns: const <DataColumn>[
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "No",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                        controller: controller_2,
+                        scrollDirection: Axis.horizontal,
+                        child: SingleChildScrollView(
+                          controller: controller,
+                          child: Center(
+                            child: DataTable(
+                              columns: const <DataColumn>[
+                                DataColumn(
+                                  label: Text(
+                                    "No",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Nama Dosen",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Nama Dosen",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Mata Kuliah",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Mata Kuliah",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "kelompok",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "kelompok",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Ruang",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Ruang",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "No Whatsapp",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "No Whatsapp",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Tanggal Pinjam",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Tanggal Pinjam",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Jam Mulai",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Jam Mulai",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Jam Selesai",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Jam Selesai",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Keterangan",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Keterangan",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Opsi",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
+                                DataColumn(
+                                  label: Text(
+                                    "Opsi",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                            rows: List.generate(listkuliahPengganti.length,
-                                (index) {
-                              final data_kuliah_pengganti =
-                                  listkuliahPengganti[index];
-                              int id = data_kuliah_pengganti.id;
-                              String nama_dosen =
-                                  data_kuliah_pengganti.nama_dosen;
-                              String mata_kuliah =
-                                  data_kuliah_pengganti.mata_kuliah;
-                              String kelompok = data_kuliah_pengganti.kelompok;
-                              String nama_lab = data_kuliah_pengganti.nama_lab;
-                              String no_whatsapp =
-                                  data_kuliah_pengganti.no_whatsapp;
-                              String tanggal_pinjam =
-                                  data_kuliah_pengganti.tanggal_mulai;
-                              String jam_mulai =
-                                  data_kuliah_pengganti.jam_mulai;
-                              String jam_selesai =
-                                  data_kuliah_pengganti.jam_selesai;
-                              String keterangan =
-                                  data_kuliah_pengganti.keterangan;
-                              _no++;
-                              return DataRow(cells: <DataCell>[
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                              ],
+                              rows: List.generate(listkuliahPengganti.length,
+                                  (index) {
+                                final data_kuliah_pengganti =
+                                    listkuliahPengganti[index];
+                                int id = data_kuliah_pengganti.id;
+                                String nama_dosen =
+                                    data_kuliah_pengganti.nama_dosen;
+                                String mata_kuliah =
+                                    data_kuliah_pengganti.mata_kuliah;
+                                String kelompok =
+                                    data_kuliah_pengganti.kelompok;
+                                String nama_lab =
+                                    data_kuliah_pengganti.nama_lab;
+                                String no_whatsapp =
+                                    data_kuliah_pengganti.no_whatsapp;
+                                String tanggal_pinjam =
+                                    data_kuliah_pengganti.tanggal_mulai;
+                                String jam_mulai =
+                                    data_kuliah_pengganti.jam_mulai;
+                                String jam_selesai =
+                                    data_kuliah_pengganti.jam_selesai;
+                                String keterangan =
+                                    data_kuliah_pengganti.keterangan;
+                                _no++;
+                                return DataRow(cells: <DataCell>[
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         _no.toString(),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         nama_dosen,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         mata_kuliah,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         kelompok,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         nama_lab,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         no_whatsapp,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         tanggal_pinjam,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         jam_mulai,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         jam_selesai,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                DataCell(
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
+                                  DataCell(
+                                    Center(
                                       child: Text(
                                         keterangan,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                ),
-                                const DataCell(
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ButtonAcc(),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      ButtonDenied(),
-                                    ],
+                                  DataCell(
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ButtonAcc(),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ButtonDenied(),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ]);
-                            }),
+                                ]);
+                              }),
+                            ),
                           ),
                         ),
                       ),
@@ -403,8 +330,9 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                   ),
                 ),
               ),
-            );
-          }}
+              );
+            }
+          }
           return Container(); // Added a default return statement
         },
       ),
