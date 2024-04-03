@@ -46,10 +46,32 @@ class _AcaraOrganisasiAdminState extends State<AcaraKampusAdmin> {
             return Text("${snapshot.error}");
           } else if (snapshot.hasData) {
             final listacarakampus = snapshot.data!;
+            if (listacarakampus.isEmpty) {
+              return Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    color: Colors.green[50],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Text(
+                        "Data Acara Kampus Kosong",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            } else {
             int _no = 0;
             return Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.95,
+                height: MediaQuery.of(context).size.height * 0.8,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: Colors.green[50],
@@ -395,6 +417,7 @@ class _AcaraOrganisasiAdminState extends State<AcaraKampusAdmin> {
                 ),
               ),
             );
+          }
           }
           return Container(); // Added to handle all paths in the function
         },

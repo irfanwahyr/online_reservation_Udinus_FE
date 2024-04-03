@@ -47,10 +47,32 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
             return Text("${snapshot.error}");
           } else if (snapshot.hasData) {
             final listkuliahPengganti = snapshot.data!;
+            if (listkuliahPengganti.isEmpty) {
+              return Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    color: Colors.green[50],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Text(
+                        "Data Kelas Pengganti Kosong",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            } else {
             int _no = 0; // Nomor yang akan diincrement otomatis
             return Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.95,
+                height: MediaQuery.of(context).size.height * 0.8,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: Colors.green[50],
@@ -356,7 +378,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                     ),
                                   ),
                                 ),
-                                DataCell(
+                                const DataCell(
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -365,22 +387,6 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                       SizedBox(
                                         width: 5,
                                       ),
-                                      // ButtonEditKecil(
-                                      //   onTap: () {
-                                      //     _showEditFormPopup(
-                                      //         token ?? "",
-                                      //         id,
-                                      //         nama_dosen,
-                                      //         mata_kuliah,
-                                      //         kelompok,
-                                      //         nama_lab,
-                                      //         no_whatsapp,
-                                      //         tanggal_pinjam,
-                                      //         jam_mulai,
-                                      //         jam_selesai,
-                                      //         keterangan);
-                                      //   },
-                                      // ),
                                       SizedBox(
                                         width: 5,
                                       ),
@@ -398,7 +404,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                 ),
               ),
             );
-          }
+          }}
           return Container(); // Added a default return statement
         },
       ),

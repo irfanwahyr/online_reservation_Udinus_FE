@@ -49,8 +49,18 @@ Future<List<KelasPenggantiAdmin>> fetchdata() async {
     final env = dotenv.env['KELASPENGGANTI'];
     final response = await http.get(Uri.parse("$env/"));
     if (response.statusCode == 200) {
-      final List<dynamic> jsonList = json.decode(response.body);
-      return jsonList.map((e) => KelasPenggantiAdmin.fromJson(e)).toList();
+      final dynamic responseData = json.decode(response.body);
+      if (responseData is List) {
+        if (responseData.isEmpty) {
+          return []; // Kembalikan daftar kosong jika data kosong
+        }
+        return responseData.map((e) => KelasPenggantiAdmin.fromJson(e)).toList();
+      } else if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
+        // Kasus ketika server mengirim pesan bahwa tidak ada data
+        return [];
+      } else {
+        throw Exception('Invalid data format received');
+      }
     } else {
       throw Exception('Failed to load data');
     }
@@ -58,6 +68,8 @@ Future<List<KelasPenggantiAdmin>> fetchdata() async {
     throw Exception('Failed to load data');
   }
 }
+
+
 
 Future<KelasPenggantiAdmin> update(String token, int id, String nama_dosen, String mata_kuliah, String kelompok, 
                                         String no_whatsapp, String nama_lab, String tanggal_mulai, String jam_mulai, 
