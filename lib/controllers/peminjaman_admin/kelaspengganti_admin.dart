@@ -89,4 +89,3 @@ Future<KelasPenggantiAdmin> update(String token, int id, String nama_dosen, Stri
     throw Exception('Failed to load');
   }
 }
- 

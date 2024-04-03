@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
-import 'package:kp2024/models/admin/_buttonEdit.dart';
+// import 'package:kp2024/models/admin/_buttonEdit.dart';
 import 'package:kp2024/models/admin/_buttonEditKecil.dart';
 import 'package:kp2024/pages/admin/editPage/editKuliahPengganti.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -361,30 +361,30 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      ButtonDenied(),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      ButtonEditKecil(
-                                        onTap: () {
-                                          _showEditFormPopup(
-                                              token ?? "",
-                                              id,
-                                              nama_dosen,
-                                              mata_kuliah,
-                                              kelompok,
-                                              nama_lab,
-                                              no_whatsapp,
-                                              tanggal_pinjam,
-                                              jam_mulai,
-                                              jam_selesai,
-                                              keterangan);
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
                                       ButtonAcc(),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      // ButtonEditKecil(
+                                      //   onTap: () {
+                                      //     _showEditFormPopup(
+                                      //         token ?? "",
+                                      //         id,
+                                      //         nama_dosen,
+                                      //         mata_kuliah,
+                                      //         kelompok,
+                                      //         nama_lab,
+                                      //         no_whatsapp,
+                                      //         tanggal_pinjam,
+                                      //         jam_mulai,
+                                      //         jam_selesai,
+                                      //         keterangan);
+                                      //   },
+                                      // ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      ButtonDenied(),
                                     ],
                                   ),
                                 ),
