@@ -81,6 +81,8 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                   child: Scrollbar(
                     controller: controller_2,
                     thumbVisibility: true,
+                    child: Align(
+                        alignment: Alignment.topCenter,
                     child: SingleChildScrollView(
                       controller: controller_2,
                       scrollDirection: Axis.horizontal,
@@ -401,10 +403,9 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                                 DataCell(Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    ButtonDenied(),
-                                    SizedBox(width: 5),
                                     ButtonAcc(),
-                                    SizedBox(width: 5),
+                                    SizedBox(width: 10),
+                                    ButtonDenied(),
                                   ],
                                 )),
                               ]);
@@ -416,6 +417,7 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                   ),
                 ),
               ),
+            ),
             );
           }
           }
