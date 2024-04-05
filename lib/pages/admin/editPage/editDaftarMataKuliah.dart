@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/jadwal/show_jadwal_admin.dart';
 import 'package:kp2024/pages/admin/kontenDaftarMataKuliah/jadwalHari.dart';
 
-class EditDaftarMataKuliah extends StatelessWidget {
+class EditDaftarMataKuliah extends StatefulWidget {
   final String mata_kuliah;
   final String kelompok;
   final String token;
@@ -24,12 +24,27 @@ class EditDaftarMataKuliah extends StatelessWidget {
       this.futureDataDaftarMataKuliah});
 
   @override
+  State<EditDaftarMataKuliah> createState() => _EditDaftarMataKuliahState();
+}
+
+class _EditDaftarMataKuliahState extends State<EditDaftarMataKuliah> {
+  TextEditingController? mataKuliahController = TextEditingController();
+  TextEditingController? kelompokController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    mataKuliahController = TextEditingController(text: widget.mata_kuliah);
+    kelompokController = TextEditingController(text: widget.kelompok);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Edit Data'),
       content: SingleChildScrollView(
           child: FutureBuilder(
-        future: futureDataDaftarMataKuliah,
+        future: widget.futureDataDaftarMataKuliah,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
@@ -40,12 +55,12 @@ class EditDaftarMataKuliah extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
-                  initialValue: mata_kuliah,
-                  decoration: const InputDecoration(labelText: 'Nama Matkul'),
+                    controller: mataKuliahController,
+                    decoration: const InputDecoration(labelText: 'Nama Matkul'),
                 ),
                 TextFormField(
-                  initialValue: kelompok,
-                  decoration: const InputDecoration(labelText: 'Kode Kelas'),
+                    controller: kelompokController,
+                    decoration: const InputDecoration(labelText: 'Kode Kelas'),
                 ),
               ],
             );
@@ -56,16 +71,16 @@ class EditDaftarMataKuliah extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             await update(
-              mata_kuliah,
-              kelompok,
-              token,
-              id,
-              id_hari,
-              jam_mulai,
-              jam_selesai
+              mataKuliahController!.text,
+              kelompokController!.text,
+              widget.token,
+              widget.id,
+              widget.id_hari,
+              widget.jam_mulai,
+              widget.jam_selesai
             );
             Navigator.of(context).pop();
-            Navigator.popAndPushNamed(context, JadwalHari.nameRoute);
+            Navigator.pushNamed(context, JadwalHari.nameRoute);
           },
           child: const Text('Simpan'),
         ),

@@ -262,25 +262,25 @@ class _JadwalHariState extends State<JadwalHari> {
   }
 
   void _showEditFormPopup(
-    String mata_kuliah,
-    String kelompok,
-    String token,
-    String jam_mulai,
-    String jam_selesai,
-    int id,
-    int id_hari
+    String? mata_kuliah,
+    String? kelompok,
+    String? token,
+    String? jam_mulai,
+    String? jam_selesai,
+    int? id,
+    int? id_hari
   ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return EditDaftarMataKuliah(
-          mata_kuliah: mata_kuliah,
-          kelompok: kelompok,
-          token: token,
-          id: id,
-          jam_mulai: jam_mulai,
-          jam_selesai: jam_selesai,
-          id_hari: id_hari,
+          mata_kuliah: mata_kuliah!,
+          kelompok: kelompok!,
+          token: token!,
+          id: id!,
+          jam_mulai: jam_mulai!,
+          jam_selesai: jam_selesai!,
+          id_hari: id_hari!,
         );
       },
     );

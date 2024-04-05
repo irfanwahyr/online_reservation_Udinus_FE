@@ -27,8 +27,8 @@ class ShowJadwalMingguanAdmin {
       id_hari: json['id_hari'] ?? 0,
       kelompok: json['kelompok'] ?? "kosong",
       mata_kuliah: json['mata_kuliah'] ?? "kosong",
-      jam_mulai: json['jam_mulai'] ?? 0,
-      jam_selesai: json['jam_selesai'] ?? 0,
+      jam_mulai: json['jam_mulai'] ?? "kosong",
+      jam_selesai: json['jam_selesai'] ?? "kosong",
     );
   }
 }
@@ -82,19 +82,18 @@ Future<ShowJadwalMingguanAdmin> update(
       'Content-Type': 'application/json; charset=UTF-8',
     };
 
-    final body = jsonEncode(<String, dynamic>{
+    final body = jsonEncode({
       'id_hari': id_hari,
       'mata_kuliah': mata_kuliah,
       'kelompok': kelompok,
-      jam_mulai: jam_mulai,
-      jam_selesai: jam_selesai,
+      'jam_mulai': jam_mulai,
+      'jam_selesai': jam_selesai,
     });
 
     final response = await http.post(url, headers: headers, body: body);
     if (response.statusCode == 200) {
-      return ShowJadwalMingguanAdmin.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+      return ShowJadwalMingguanAdmin.fromJson(jsonDecode(response.body));
     } else {
-      print(response.statusCode);
       throw Exception('Failed to update');
     }
   } catch (e) {
