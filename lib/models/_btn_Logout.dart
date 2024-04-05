@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/login_signin/signinLogin.dart';
-import 'package:kp2024/pages/homePage.dart';
+import 'package:kp2024/pages/logSign.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ButtonLogOut extends StatefulWidget {
@@ -42,7 +42,9 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
           bool? logoutConfirmed = await _showLogoutConfirmationDialog(context);
           if (logoutConfirmed ?? false) {
             await logout();
-            Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+            SharedPreferences srf = await SharedPreferences.getInstance();
+            srf.setBool('isLoggedIn', false);
+            Navigator.pushReplacementNamed(context, LogSign.nameRoute);
           }
         },
         style: ElevatedButton.styleFrom(

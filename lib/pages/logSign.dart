@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/models/_appBarBack.dart';
@@ -125,6 +127,7 @@ class _LogSignState extends State<LogSign> {
                       srf.setString('email', value.email);
                       srf.setString('username', value.username);
                       srf.setBool('role', value.role);
+                      srf.setBool('isLoggedIn', true);
                       if(srf.getBool('role') == false){
                         Navigator.pushReplacementNamed(context, HomePage.nameRoute);
                       }
@@ -210,7 +213,6 @@ class _LogSignState extends State<LogSign> {
                   text: "Daftar",
                   onPressed: () {
                     setState(() {
-                      
                       String email = emailControllersignup.text;
                       String password = passwordControllersignup.text;
                       String username = usernameControllersignup.text;
@@ -221,7 +223,6 @@ class _LogSignState extends State<LogSign> {
                         username,
                         0
                       );
-                      
                     });
                   }),
             )

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:kp2024/pages/admin/daftarLaboratorium.dart';
 import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
@@ -18,8 +20,10 @@ import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main(List<String> args) async {
+
   runApp(MyApp());
 }
 
@@ -31,7 +35,33 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool? isLoggedIn;
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+    isLoggedIn = isLoggedIn;
+  }
 
+  Future<void> _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+    if(isLoggedIn == true){
+      if(prefs.getBool('role')!){
+        prefs.setInt('page_admin', 0);
+        Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
+      } else {
+        Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+      }
+    } else {
+      Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+      prefs.clear();
+    }
+    setState(() {
+      isLoggedIn = isLoggedIn;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
