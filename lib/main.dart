@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/pages/admin/daftarLaboratorium.dart';
 import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/daftarPengguna.dart';
@@ -23,7 +24,6 @@ import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main(List<String> args) async {
-
   runApp(MyApp());
 }
 
@@ -40,15 +40,38 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _checkLoginStatus();
+    checkSessionTimeout(context);
     isLoggedIn = isLoggedIn;
+  }
+
+  void checkSessionTimeout(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int loginTime = prefs.getInt('loginTime') ?? 0;
+    int currentTime = DateTime.now().millisecondsSinceEpoch;
+    int sessionTimeout = 30000; // 30 detik dalam milidetik
+    if(prefs.getBool('isLoggedIn')!){
+      Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+    } else {
+      if (currentTime - loginTime > sessionTimeout) {
+      await logout();
+      SharedPreferences srf = await SharedPreferences.getInstance();
+      srf.setBool('isLoggedIn', false);
+      srf.setString('token', '');
+      srf.setInt('id_user', 0);
+      srf.setString('username', 'username');
+      srf.setBool('role', false);
+      srf.setInt('loginTime', 0);
+      print('otomatis logout');
+    }
+    }
   }
 
   Future<void> _checkLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
-    if(isLoggedIn == true){
-      if(prefs.getBool('role')!){
+    if(isLoggedIn){
+      if(prefs.getBool('role')! == true){
         prefs.setInt('page_admin', 0);
         Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
       } else {

@@ -128,6 +128,7 @@ class _LogSignState extends State<LogSign> {
                       srf.setString('username', value.username);
                       srf.setBool('role', value.role);
                       srf.setBool('isLoggedIn', true);
+                      srf.setInt('loginTime', DateTime.now().millisecondsSinceEpoch);
                       if(srf.getBool('role') == false){
                         Navigator.pushReplacementNamed(context, HomePage.nameRoute);
                       }

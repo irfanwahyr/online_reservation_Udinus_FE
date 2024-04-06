@@ -44,6 +44,10 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
             await logout();
             SharedPreferences srf = await SharedPreferences.getInstance();
             srf.setBool('isLoggedIn', false);
+            srf.setString('token', '');
+            srf.setInt('id_user', 0);
+            srf.setString('username', 'username');
+            srf.setBool('role', false);
             Navigator.pushReplacementNamed(context, LogSign.nameRoute);
           }
         },

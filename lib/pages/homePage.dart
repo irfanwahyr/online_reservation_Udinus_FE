@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/_btn_Logout.dart';
+import 'package:kp2024/pages/admin/homePageAdmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kp2024/models/_buttonPrimary.dart';
 import 'package:kp2024/models/_heading2.dart';
@@ -29,7 +30,28 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _checkLoginStatus();
     _getToken();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+    if(isLoggedIn){
+      if(prefs.getBool('role')! == true){
+        prefs.setInt('page_admin', 0);
+        Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
+      } else {
+        // Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+      }
+    } else {
+      // Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+      prefs.clear();
+    }
+    setState(() {
+      isLoggedIn = isLoggedIn;
+    });
   }
 
   Future<void> _getToken() async {
@@ -68,7 +90,6 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white,
                                   ),
                               ),
-                              
                             ],
                           )
                           : PopupMenuButton<String>(
