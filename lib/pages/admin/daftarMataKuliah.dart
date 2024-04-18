@@ -33,7 +33,7 @@ class _DaftarMataKuliahState extends State<DaftarMataKuliah>
       length: 13,
       child: Scaffold(
         drawer:
-            SideBarAdmin(email: email.toString(), username: username.toString()), // Pastikan file sudah diimpor dengan benar
+            SideBarAdmin(email: email.toString(), username: username.toString()), 
         appBar: AppBarDaftarMataKuliah(
           namaAdmin: username.toString(),
           imageAsset: 'images/gambar.jpg',

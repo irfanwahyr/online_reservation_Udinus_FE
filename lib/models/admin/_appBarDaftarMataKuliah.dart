@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
 
-class AppBarDaftarMataKuliah extends StatefulWidget implements PreferredSizeWidget {
+class AppBarDaftarMataKuliah extends StatefulWidget
+    implements PreferredSizeWidget {
   final String namaAdmin;
   final String imageAsset;
   final TabController? tabController;
@@ -21,16 +22,32 @@ class AppBarDaftarMataKuliah extends StatefulWidget implements PreferredSizeWidg
   Size get preferredSize => Size.fromHeight(100);
 }
 
-class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah> with SingleTickerProviderStateMixin {
+class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _activeIndex = 0; // Menyimpan indeks tombol yang aktif
 
-  final List<String> listlab = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
+  final List<String> listlab = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N'
+  ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = widget.tabController ?? TabController(length: 3, vsync: this);
+    _tabController = widget.tabController ??
+        TabController(length: listlab.length, vsync: this);
   }
 
   void _changeTab(int index) {
@@ -78,46 +95,29 @@ class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah> with Si
         ),
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 1, 24, 50),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(48.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                SizedBox(width: 10), // Padding awal
-                for (int i = 0; i < listlab.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TextButton(
-                      onPressed: () {
-                        _changeTab(i);
-                      },
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0), // Atur sudut tombol di sini
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          i == _activeIndex
-                              ? Colors.grey // Warna tombol saat aktif
-                              : Colors.transparent, // Warna tombol saat tidak aktif
-                        ),
-                      ),
-                      child: Text(
-                        listlab[i],
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                SizedBox(width: 10), // Padding akhir
-              ],
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: List<Widget>.generate(
+            listlab.length,
+            (index) => Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                listlab[index],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
+          onTap: _changeTab,
+          indicator: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
         ),
       ),
     );
