@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/models/_btn_Logout.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,50 +30,28 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _checkLoginStatus();
     _getToken();
-    initializeState();
-  }
-
-  Future<void> initializeState() async {
-    await _getToken();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('token') != null) {
-      _checkLoginStatus();
-    }
   }
 
   Future<void> _checkLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-    int loginTime = prefs.getInt('loginTime') ?? 0;
-    int currentTime = DateTime.now().millisecondsSinceEpoch;
-    if(currentTime >= loginTime){
-      await logout();
-      SharedPreferences srf = await SharedPreferences.getInstance();
-      srf.setBool('isLoggedIn', false);
-      srf.setString('token', '');
-      srf.setInt('id_user', 0);
-      srf.setString('username', 'username');
-      srf.setBool('role', false);
-      print('otomatis logout');
 
-      Navigator.pushReplacementNamed(context, LogSign.nameRoute);
-    } else {
-      if(isLoggedIn){
-        if(prefs.getBool('role')! == true){
-          prefs.setInt('page_admin', 0);
-          Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
-        } else {
-          Navigator.pushReplacementNamed(context, HomePage.nameRoute);
-        }
+    if(isLoggedIn){
+      if(prefs.getBool('role')! == true){
+        prefs.setInt('page_admin', 0);
+        Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
       } else {
-        Navigator.pushReplacementNamed(context, HomePage.nameRoute);
-        prefs.clear();
+        // Navigator.pushReplacementNamed(context, HomePage.nameRoute);
       }
-      setState(() {
-        isLoggedIn = isLoggedIn;
-      });
+    } else {
+      // Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+      prefs.clear();
     }
+    setState(() {
+      isLoggedIn = isLoggedIn;
+    });
   }
 
   Future<void> _getToken() async {
