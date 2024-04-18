@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/models/_appBarBack.dart';
@@ -117,29 +115,30 @@ class _LogSignState extends State<LogSign> {
             Center(
               child: ButtonSubmit().buildButtonSubmit(
                   text: "Masuk",
-                  onPressed: () async{
-                    String email = emailControllerlogin.text;
-                    String password = passwordControllerlogin.text;
-                    await login(email, password).then((value) async {
-                      SharedPreferences srf = await SharedPreferences.getInstance();
-                      srf.setString('token', value.token);
-                      srf.setInt('id_user', value.id_user);
-                      srf.setString('email', value.email);
-                      srf.setString('username', value.username);
-                      srf.setBool('role', value.role);
-                      srf.setBool('isLoggedIn', true);
-                      srf.setInt('loginTime', DateTime.now().millisecondsSinceEpoch);
-                      if(srf.getBool('role') == false){
-                        Navigator.pushReplacementNamed(context, HomePage.nameRoute);
-                      }
-                      else{
-                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                        prefs.setInt('page_admin', 0);
-                        Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
-                      }
-                    });
+                  onPressed: () async {
+                SharedPreferences srf = await SharedPreferences.getInstance();
+                String email = emailControllerlogin.text;
+                String password = passwordControllerlogin.text;
 
-                  }),
+                try {
+                  var loginResult = await login(email, password);
+                  srf.setString('token', loginResult.token);
+                  srf.setInt('id_user', loginResult.id_user);
+                  srf.setString('email', loginResult.email);
+                  srf.setString('username', loginResult.username);
+                  srf.setBool('role', loginResult.role);
+                  srf.setBool('isLoggedIn', true);
+                  if (srf.getBool('role') == false) {
+                    Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+                  } else {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    prefs.setInt('page_admin', 0);
+                    Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
+                  }
+                } catch (error) {
+                  print('Error during login: $error');
+                }
+              }),
             )
           ],
         ),
