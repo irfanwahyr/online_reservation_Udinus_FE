@@ -4,6 +4,7 @@ import 'package:kp2024/pages/admin/KontenHomePage/acaraKampusAdmin.dart';
 import 'package:kp2024/pages/admin/KontenHomePage/acaraOrganisasiAdmin.dart';
 import 'package:kp2024/pages/admin/KontenHomePage/kuliahPenggantiAdmin.dart';
 import 'package:kp2024/pages/admin/sidebarAdmin.dart';
+import 'package:kp2024/pages/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageAdmin extends StatefulWidget {

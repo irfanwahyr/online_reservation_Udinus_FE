@@ -42,11 +42,8 @@ class _HomePageState extends State<HomePage> {
       if(prefs.getBool('role')! == true){
         prefs.setInt('page_admin', 0);
         Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
-      } else {
-        // Navigator.pushReplacementNamed(context, HomePage.nameRoute);
       }
     } else {
-      // Navigator.pushReplacementNamed(context, HomePage.nameRoute);
       prefs.clear();
     }
     setState(() {
