@@ -3,6 +3,7 @@ import 'package:kp2024/models/admin/_buttonDelete.dart';
 import 'package:kp2024/models/admin/_buttonEdit.dart';
 import 'package:kp2024/pages/admin/editPage/editDaftarLaboratorium.dart';
 import 'package:kp2024/controllers/lab_admin/data_lab_admin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class KontenDaftarLaboratorium extends StatefulWidget {
   const KontenDaftarLaboratorium({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _KontenDaftarLaboratoriumState
     extends State<KontenDaftarLaboratorium> {
   int _no = 0;
   Future<List<LabData>> listLabAdmin = fetchdata();
+  String? token;
 
   @override
   void initState() {
@@ -24,8 +26,11 @@ class _KontenDaftarLaboratoriumState
   }
 
   void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
     setState(() {
       listLabAdmin = fetchdata();
+      this.token = token;
     });
   }
 
@@ -289,8 +294,14 @@ class _KontenDaftarLaboratoriumState
                                 String gpu = hardware.isNotEmpty ? hardware[0]["gpu"] : "N/A";
                                 String monitor = hardware.isNotEmpty ? hardware[0]["monitor"].toString() : "N/A";
                                 String storage = hardware.isNotEmpty ? hardware[0]["storage"] : "N/A";
-                                String windows = software.isNotEmpty ? software[0]["nama_software"] : "N/A";
-                                String versi = software.isNotEmpty ? software[0]["versi"] : "N/A";
+                                String software_1 = software.isNotEmpty ? software[0]["software_1"] : "N/A";
+                                String software_2 = software.isNotEmpty ? software[0]["software_2"] : "N/A";
+                                String software_3 = software.isNotEmpty ? software[0]["software_3"] : "N/A";
+                                String software_4 = software.isNotEmpty ? software[0]["software_4"] : "N/A";
+                                String software_5 = software.isNotEmpty ? software[0]["software_5"] : "N/A";
+                                int id = software.isNotEmpty ? software[0]["id"] : 0;
+                                int id_lab = software.isNotEmpty ? software[0]["id_lab"] : 0;
+                                
                                 _no++;
                                 return DataRow(cells: <DataCell>[
                                   DataCell(
@@ -397,7 +408,7 @@ class _KontenDaftarLaboratoriumState
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          windows,
+                                          software_1,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -408,7 +419,7 @@ class _KontenDaftarLaboratoriumState
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          versi,
+                                          software_2,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -419,7 +430,7 @@ class _KontenDaftarLaboratoriumState
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          versi,
+                                          software_3,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -430,7 +441,7 @@ class _KontenDaftarLaboratoriumState
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          versi,
+                                          software_4,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -441,7 +452,7 @@ class _KontenDaftarLaboratoriumState
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          versi,
+                                          software_5,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -455,6 +466,9 @@ class _KontenDaftarLaboratoriumState
                                         ButtonEdit(
                                           onPressed: () {
                                             _showEditFormPopup(
+                                              id,
+                                              id_lab,
+                                              token,
                                               nama_lab,
                                               jumlah_pc,
                                               jenis_lab,
@@ -463,11 +477,11 @@ class _KontenDaftarLaboratoriumState
                                               gpu,
                                               monitor,
                                               storage,
-                                              windows,
-                                              versi,
-                                              versi,
-                                              versi,
-                                              versi,
+                                              software_1,
+                                              software_2,
+                                              software_3,
+                                              software_4,
+                                              software_5,
                                             );
                                           },
                                         ),
@@ -496,6 +510,9 @@ class _KontenDaftarLaboratoriumState
   }
 
   void _showEditFormPopup(
+    int id,
+    int id_lab,
+    String? token,
     String nama_lab,
     int jumlah_pc,
     String jenis_lab,
@@ -514,6 +531,9 @@ class _KontenDaftarLaboratoriumState
       context: context,
       builder: (BuildContext context) {
         return EditDaftarLaboratorium(
+          id: id,
+          id_lab: id_lab,
+          token: token!,
           nama_lab: nama_lab,
           jumlah_pc: jumlah_pc,
           jenis_lab: jenis_lab,
