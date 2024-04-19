@@ -30,6 +30,8 @@ Future <List<ShowDataUsers>> fetchdata() async {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['AUTH'];
 
+    
+
     final response = await http.get(Uri.parse("$env/"));
     if (response.statusCode == 200) {
         try {
@@ -46,12 +48,20 @@ Future <List<ShowDataUsers>> fetchdata() async {
   return [];
 }
 
-Future<void> deleteData(String id) async {
+Future<void> deleteData(String id, String token) async {
   try {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['AUTH'];
+    final url = Uri.parse("$env/delete/$id");
 
-    final response = await http.delete(Uri.parse("$env/$id"));
+    final headers = <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    final response = await http.post(url, headers: headers);
+    print(response.body);
     if (response.statusCode == 200) {
       print('Data deleted successfully');
     } else {

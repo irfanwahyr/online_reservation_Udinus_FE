@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/models/_btn_Logout.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
 
@@ -60,12 +61,8 @@ class _AppbarDaftarLaboratoriumState extends State<AppbarDaftarLaboratorium>
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Heading3(text: widget.namaAdmin, color: Colors.white),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: 30.0,
-                      height: 30.0,
-                      child: Image.asset(widget.imageAsset),
-                    )
+                    const SizedBox(width: 5),
+                    ButtonLogOut()
                   ],
                 )
               ],

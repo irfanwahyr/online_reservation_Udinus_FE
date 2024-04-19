@@ -115,7 +115,7 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                                   label: Expanded(
                                     child: Center(
                                       child: Text(
-                                        "Action",
+                                        "Role",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -127,10 +127,10 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                                 ),
                               ],
                               rows: List.generate(listuser.length, (index) {
-                                
                                 final user = listuser[index];
                                 bool role = user.role;
-                                if(!role){
+                                int id = user.id;
+                                String is_admin = role ? "Admin" : "User";
                                 String username = user.username;
                                 String email = user.email;
                                 _no++;
@@ -169,32 +169,18 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
                                     ),
                                   ),
                                   DataCell(
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        ButtonEdit(
-                                          onPressed: () {
-                                            _showEditFormPopup(
-                                              username,
-                                              email
-                                            );
-                                          },
+                                    Center(
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          is_admin,
+                                          textAlign: TextAlign.center,
                                         ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                 ]);
-                                }else {
-                                  return const DataRow(cells: [
-                                    DataCell(Text('')), // Empty cell for No
-                                    DataCell(Text('')), // Empty cell for Nama Lengkap
-                                    DataCell(Text('')), // Empty cell for Email
-                                    DataCell(Text('')), // Empty cell for Action
-                                  ]); // Return empty DataRow if role is true
-                                }
+                                
                               }, growable: true),
                             ),
                           ),
@@ -209,21 +195,6 @@ class _KontenDaftarPenggunaState extends State<KontenDaftarPengguna> {
           return Container(); // Add a default return if none of the conditions are met
         },
       ),
-    );
-  }
-
-  void _showEditFormPopup(
-    String username,
-    String email,
-  ) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return EditDaftarPengguna(
-          username: username,
-          email: email,
-        );
-      },
     );
   }
 }

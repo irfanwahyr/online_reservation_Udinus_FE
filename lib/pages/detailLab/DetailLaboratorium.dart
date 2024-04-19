@@ -43,34 +43,15 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
             String jumlah_pc = snapshot.data!.jumlah_pc.toString();
             int id = snapshot.data!.id;
             List<String> software = snapshot.data!.software
-              .map((software) => software['nama_software'] as String)
+              .map((software) => '-${software['software_1']}\n-${software['software_2']}\n-${software['software_3']}\n-${software['software_4']}\n-${software['software_5']}')
               .toList();
+
+              
             List<String> hardware = snapshot.data!.hardware
               .map((hardware) =>
-                'Processor: ${hardware['processor']}\nram: ${hardware['ram']}\ngpu: ${hardware['gpu']}\nmonitor: ${hardware['monitor']}\nstorage: ${hardware['storage']}\n'
-              )
+                'Processor: ${hardware['processor']}\nram: ${hardware['ram']}\ngpu: ${hardware['gpu']}\nmonitor: ${hardware['monitor']}\nstorage: ${hardware['storage']}\n')
               .toList();
 
-            // List<Map<String, dynamic>> hardwareList = List.generate(snapshot.data!.hardware.length, (index) {
-            //   String processor = snapshot.data!.hardware[index]['processor'] ?? "";
-            //   int ram = snapshot.data!.hardware[index]['ram'] ?? 0;
-            //   String gpu = snapshot.data!.hardware[index]['gpu'] ?? "";
-            //   int monitor = snapshot.data!.hardware[index]['monitor'] ?? 0;
-            //   String storage = snapshot.data!.hardware[index]['storage'] ?? "";
-            //   return {
-            //     'processor': processor,
-            //     'ram': ram,
-            //     'gpu': gpu,
-            //     'monitor': monitor,
-            //     'storage': storage,
-            //   };
-            // });
-
-            // String gpu = hardwareList[0]['gpu'] ?? "tidak ada";
-            // String processor = hardwareList[0]['processor'] ?? "tidak ada";
-            // int ram = hardwareList[0]['ram'] ?? 0;
-            // int monitor = hardwareList[0]['monitor'] ?? 0;
-            // String storage = hardwareList[0]['storage'] ?? "tidak ada";
 
             return SingleChildScrollView(
               child: Column(

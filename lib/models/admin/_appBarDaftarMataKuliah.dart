@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/models/_btn_Logout.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
 
@@ -81,12 +82,8 @@ class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah>
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Heading3(text: widget.namaAdmin, color: Colors.white),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: 30.0,
-                      height: 30.0,
-                      child: Image.asset(widget.imageAsset),
-                    )
+                    const SizedBox(width: 5),
+                    ButtonLogOut()
                   ],
                 )
               ],
@@ -100,7 +97,7 @@ class _AppBarDaftarMataKuliahState extends State<AppBarDaftarMataKuliah>
           tabs: List<Widget>.generate(
             listlab.length,
             (index) => Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(30, 5, 30, 0),
               child: Text(
                 listlab[index],
                 textAlign: TextAlign.center,
