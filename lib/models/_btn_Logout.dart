@@ -55,7 +55,9 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
           backgroundColor:
               isHovered ? Colors.grey.shade300 : Color.fromARGB(255, 255, 7, 7),
           minimumSize:
-              const Size(100, 50), // Sesuaikan dengan ukuran yang diinginkan
+              const Size(80, 40),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5)
+          
         ),
         child: Text(
           "Logout",
@@ -63,7 +65,7 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
               color: isHovered
                   ? const Color.fromARGB(255, 1, 24, 50)
                   : Colors.white,
-              fontSize: 18),
+              fontSize: 13),
         ),
       ),
     );

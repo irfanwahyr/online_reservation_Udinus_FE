@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/_heading3.dart';
+import 'package:kp2024/pages/homePage.dart';
 
 class AppBarLogin extends StatelessWidget implements PreferredSizeWidget {
   final String namaUser;
@@ -14,6 +15,16 @@ class AppBarLogin extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: true,
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
+        ), // Icon yang akan ditampilkan di sebelah kiri app bar
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+        },
+      ),
       title: Container(
         height: 50,
         color: const Color.fromARGB(255, 1, 24, 50),
