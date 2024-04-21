@@ -25,6 +25,9 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   String? jam_mulai;
   String? jam_selesai;
   int? id_user;
+  int? id_pesan;
+  int? id_hari;
+  int? id_matkul;
   String? token;
 
   final TextEditingController nama_dosen = TextEditingController();
@@ -43,6 +46,9 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? nama_lab = prefs.getString('nama_lab');
     int? id_user = prefs.getInt('id_user');
+    int? id_pesan = prefs.getInt('id_pesan');
+    int? id_hari = prefs.getInt('id_hari');
+    int? id_matkul = prefs.getInt('id_matkul');
     String? tanggal_mulai = prefs.getString('tanggal_mulai');
     String? jam_mulai = prefs.getString('jam_mulai');
     String? jam_selesai = prefs.getString('jam_selesai');
@@ -51,6 +57,9 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     setState(() {
       this.nama_lab = nama_lab;
       this.id_user = id_user;
+      this.id_pesan = id_pesan;
+      this.id_hari = id_hari;
+      this.id_matkul = id_matkul;
       this.tanggal_mulai = tanggal_mulai;
       this.jam_mulai = jam_mulai;
       this.jam_selesai = jam_selesai;
@@ -122,7 +131,6 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             hintText: "Masukkan Nama Lengkap",
             keyboardType: TextInputType.name,
             onSubmitted: (value) {
-          
             },
           ),
           TextFieldReservasi(
@@ -131,7 +139,6 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             hintText: "Masukkan Nama Matkul",
             keyboardType: TextInputType.text,
             onSubmitted: (value) {
-              
             },
           ),
           TextFieldReservasi(
@@ -177,7 +184,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
           const SizedBox(height: 15),
           FieldKeterangan(
             controller: keterangan,
-            judul: "Keterangan Tambahan", 
+            judul: "Keterangan Tambahan",
             keyboardType: TextInputType.text),
           const SizedBox(height: 15),
           SizedBox(
@@ -199,9 +206,11 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
                         jam_selesai ?? "",
                         keterangan.text,
                         id_user ?? 0,
-                        token ?? ""
+                        token ?? "",
+                        id_pesan ?? 3,
+                        id_hari ?? 0,
+                        id_matkul ?? 0,
                       );
-                      
                     });
                   }),
             ),

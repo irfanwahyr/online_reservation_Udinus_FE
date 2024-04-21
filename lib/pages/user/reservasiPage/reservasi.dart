@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-// import 'package:kp2024/controllers/jadwal/convert_datanamalab.dart';
 import 'package:kp2024/controllers/jadwal/show_jadwal.dart';
 import 'package:kp2024/models/_appBarBack.dart';
 import 'package:kp2024/models/_heading5.dart';
@@ -327,7 +326,7 @@ class _ReservasiState extends State<Reservasi> {
                                                     DataCell(
                                                       Center(
                                                         child:
-                                                        getPesanButtons(jadwal_idx.mata_kuliah, jamMulai, jamSelesai)[index],
+                                                        getPesanButtons(jadwal_idx.id_pesan, jadwal_idx.id, jadwal_idx.id_hari, jamMulai, jamSelesai)[index],
                                                       ),
                                                     ),
                                                   ],
@@ -367,23 +366,17 @@ class _ReservasiState extends State<Reservasi> {
   }
 
   List<Widget> getPesanButtons(
-      String namaJadwal, String jam_mulai, String jam_selesai) {
+      int id_pesan, int id, int id_hari, String jam_mulai, String jam_selesai) {
     List<Widget> buttons = [];
-    String buttonStatus;
 
     for (int i = 0; i < 15; i++) {
-      if (namaJadwal == "kosong") {
-        buttonStatus = "1";
-      } else {
-        buttonStatus = "0";
-      }
-      switch (buttonStatus) {
-        case "0":
+      switch (id_pesan.toString()) {
+        case "1":
           buttons.add(
             const ButtonDipakai(),
           );
           break;
-        case "1":
+        case "2":
           buttons.add(
             ButtonReservasi(
               onPressed: () async {
@@ -395,23 +388,12 @@ class _ReservasiState extends State<Reservasi> {
                 await prefs.setString('tanggal_mulai', tanggal_mulai);
                 await prefs.setString('jam_mulai', jam_mulai);
                 await prefs.setString('jam_selesai', jam_selesai);
+                await prefs.setInt('id_pesan', id_pesan);
+                await prefs.setInt('id_matkul', id);
+                await prefs.setInt('id_hari', id_hari);
 
                 Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
               },
-            ),
-          );
-          break;
-        case "2":
-          buttons.add(
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const ButtonDipesan(),
-                const SizedBox(width: 5),
-                ButtonBatalkan(
-                  onPressed: () {},
-                ),
-              ],
             ),
           );
           break;

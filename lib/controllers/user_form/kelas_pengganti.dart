@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:kp2024/controllers/jadwal/show_jadwal_admin.dart';
 
 class KelasPengganti{
   final String nama_dosen;
@@ -46,8 +45,22 @@ class KelasPengganti{
   }
 }
 
-Future<KelasPengganti> create(String nama_dosen, String mata_kuliah, String kelompok, String no_whatsapp,
-                              String namaLab, String tanggalMulai, String jamMulai,String jamSelesai, String keterangan, int idUser, String token) async {
+Future<KelasPengganti> create(
+    String nama_dosen,
+    String mata_kuliah,
+    String kelompok,
+    String no_whatsapp,
+    String namaLab,
+    String tanggalMulai,
+    String jamMulai,
+    String jamSelesai,
+    String keterangan,
+    int idUser,
+    String token,
+    int id_pesan,
+    int id_hari,
+    int id_matkul
+  ) async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['KELASPENGGANTI'];
   final response = await http.post(
@@ -71,6 +84,13 @@ Future<KelasPengganti> create(String nama_dosen, String mata_kuliah, String kelo
     })
   );
   if (response.statusCode == 201) {
+    if(id_pesan.toString() == '2') {
+      update(mata_kuliah, kelompok, token, id_matkul, id_hari, 3, jamMulai, jamSelesai);
+    } else if(id_pesan.toString() == '3') {
+      update(mata_kuliah, kelompok, token, id_matkul, id_hari, 1, jamMulai, jamSelesai);
+    } else {
+      update(mata_kuliah, kelompok, token, id_matkul, id_hari, 2, jamMulai, jamSelesai);
+    }
     return KelasPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
     throw Exception('Failed to load');

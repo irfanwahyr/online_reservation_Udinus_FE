@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ShowJadwalMingguan {
   int id;
   final int id_hari;
+  final int id_pesan;
   final String kelompok;
   final String mata_kuliah;
   final String jam_mulai;
@@ -14,6 +15,7 @@ class ShowJadwalMingguan {
   ShowJadwalMingguan({
     required this.id,
     required this.id_hari,
+    required this.id_pesan,
     required this.kelompok,
     required this.mata_kuliah,
     required this.jam_mulai,
@@ -25,6 +27,7 @@ class ShowJadwalMingguan {
     return ShowJadwalMingguan(
       id: json['id']?? 0,
       id_hari: json['id_hari'] ?? 0,
+      id_pesan: json['id_pesan'] ?? 1,
       kelompok: json['kelompok'] ?? "kosong",
       mata_kuliah: json['mata_kuliah'] ?? "kosong",
       jam_mulai: json['jam_mulai'] ?? "kosong",

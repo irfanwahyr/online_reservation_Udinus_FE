@@ -10,6 +10,7 @@ class EditDaftarMataKuliah extends StatefulWidget {
   final String jam_selesai;
   final int id;
   final int id_hari;
+  final int id_pesan;
   final Future? futureDataDaftarMataKuliah;
 
   EditDaftarMataKuliah(
@@ -21,6 +22,7 @@ class EditDaftarMataKuliah extends StatefulWidget {
       required this.jam_selesai,
       required this.id,
       required this.id_hari,
+      required this.id_pesan,
       this.futureDataDaftarMataKuliah});
 
   @override
@@ -76,6 +78,7 @@ class _EditDaftarMataKuliahState extends State<EditDaftarMataKuliah> {
               widget.token,
               widget.id,
               widget.id_hari,
+              widget.id_pesan,
               widget.jam_mulai,
               widget.jam_selesai
             );

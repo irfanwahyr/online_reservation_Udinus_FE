@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ShowJadwalMingguanAdmin {
   int id;
   final int id_hari;
+  final int id_pesan;
   final String kelompok;
   final String mata_kuliah;
   final String jam_mulai;
@@ -14,6 +15,7 @@ class ShowJadwalMingguanAdmin {
   ShowJadwalMingguanAdmin({
     required this.id,
     required this.id_hari,
+    required this.id_pesan,
     required this.kelompok,
     required this.mata_kuliah,
     required this.jam_mulai,
@@ -25,6 +27,7 @@ class ShowJadwalMingguanAdmin {
     return ShowJadwalMingguanAdmin(
       id: json['id']?? 0,
       id_hari: json['id_hari'] ?? 0,
+      id_pesan: json['id_pesan'] ?? 1,
       kelompok: json['kelompok'] ?? "kosong",
       mata_kuliah: json['mata_kuliah'] ?? "kosong",
       jam_mulai: json['jam_mulai'] ?? "kosong",
@@ -68,6 +71,7 @@ Future<ShowJadwalMingguanAdmin> update(
   String token,
   int id,
   int id_hari,
+  int id_pesan,
   String jam_mulai,
   String jam_selesai
   ) async {
@@ -84,6 +88,7 @@ Future<ShowJadwalMingguanAdmin> update(
 
     final body = jsonEncode({
       'id_hari': id_hari,
+      'id_pesan': id_pesan,
       'mata_kuliah': mata_kuliah,
       'kelompok': kelompok,
       'jam_mulai': jam_mulai,

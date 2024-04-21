@@ -175,6 +175,7 @@ class _JadwalHariState extends State<JadwalHari> {
                                 String mata_kuliah = jadwal_idx.mata_kuliah;
                                 String kelompok = jadwal_idx.kelompok;
                                 int id_hari = jadwal_idx.id_hari;
+                                int id_pesan = jadwal_idx.id_pesan;
                                 return DataRow(cells: <DataCell>[
                                   DataCell(
                                     Center(
@@ -233,7 +234,8 @@ class _JadwalHariState extends State<JadwalHari> {
                                               jamMulai,
                                               jamSelesai,
                                               id,
-                                              id_hari
+                                              id_hari,
+                                              id_pesan
                                             );
                                           },
                                         ),
@@ -268,7 +270,8 @@ class _JadwalHariState extends State<JadwalHari> {
     String? jam_mulai,
     String? jam_selesai,
     int? id,
-    int? id_hari
+    int? id_hari,
+    int? id_pesan,
   ) {
     showDialog(
       context: context,
@@ -281,6 +284,7 @@ class _JadwalHariState extends State<JadwalHari> {
           jam_mulai: jam_mulai!,
           jam_selesai: jam_selesai!,
           id_hari: id_hari!,
+          id_pesan: id_pesan!,
         );
       },
     );
