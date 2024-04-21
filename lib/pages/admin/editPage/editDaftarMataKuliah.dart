@@ -80,7 +80,8 @@ class _EditDaftarMataKuliahState extends State<EditDaftarMataKuliah> {
               widget.id_hari,
               widget.id_pesan,
               widget.jam_mulai,
-              widget.jam_selesai
+              widget.jam_selesai,
+              false
             );
             Navigator.of(context).pop();
             Navigator.pushNamed(context, JadwalHari.nameRoute);

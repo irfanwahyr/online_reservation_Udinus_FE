@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:kp2024/controllers/jadwal/show_jadwal_admin.dart';
@@ -59,7 +60,9 @@ Future<KelasPengganti> create(
     String token,
     int id_pesan,
     int id_hari,
-    int id_matkul
+    int id_matkul,
+    String default_mata_kuliah,
+    String default_kelompok
   ) async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['KELASPENGGANTI'];
@@ -84,12 +87,43 @@ Future<KelasPengganti> create(
     })
   );
   if (response.statusCode == 201) {
-    if(id_pesan.toString() == '2') {
-      update(mata_kuliah, kelompok, token, id_matkul, id_hari, 3, jamMulai, jamSelesai);
-    } else if(id_pesan.toString() == '3') {
-      update(mata_kuliah, kelompok, token, id_matkul, id_hari, 1, jamMulai, jamSelesai);
-    } else {
-      update(mata_kuliah, kelompok, token, id_matkul, id_hari, 2, jamMulai, jamSelesai);
+    List<String> jamList = [
+      "07.00",
+      "07.50",
+      "08.40",
+      "09.30",
+      "10.20",
+      "11.10",
+      "12.00",
+      "12.30",
+      "13.20",
+      "14.10",
+      "15.00",
+      "16.20",
+      "17.10",
+      "18.30",
+      "19.20",
+      "20.10",
+      "21.00"
+    ];
+
+    int a = 0, b = 0, c = 0;
+
+    for (var i = 0; i < jamList.length; i++) {
+      if(jamMulai == jamList[i]){
+        a = i;
+      }
+      if(jamSelesai == jamList[i]){
+        b = i;
+        break;
+      }
+    }
+    c = b - a;
+    print(c);
+    for (var i = 0; i < c; i++) {
+      update(default_mata_kuliah, default_kelompok, token, id_matkul, id_hari, 3, jamMulai, jamSelesai, true);
+      id_matkul++;
+      print("tes");
     }
     return KelasPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {

@@ -29,6 +29,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   int? id_hari;
   int? id_matkul;
   String? token;
+  String? default_mata_kuliah;
+  String? default_kelompok;
 
   final TextEditingController nama_dosen = TextEditingController();
   final TextEditingController mata_kuliah = TextEditingController();
@@ -53,6 +55,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     String? jam_mulai = prefs.getString('jam_mulai');
     String? jam_selesai = prefs.getString('jam_selesai');
     String? token = prefs.getString('token');
+    String? default_mata_kuliah = prefs.getString('default_mata_kuliah');
+    String? default_kelompok = prefs.getString('default_kelompok');
 
     setState(() {
       this.nama_lab = nama_lab;
@@ -64,6 +68,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
       this.jam_mulai = jam_mulai;
       this.jam_selesai = jam_selesai;
       this.token = token;
+      this.default_mata_kuliah = default_mata_kuliah;
+      this.default_kelompok = default_kelompok;
     });
   }
 
@@ -210,6 +216,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
                         id_pesan ?? 3,
                         id_hari ?? 0,
                         id_matkul ?? 0,
+                        default_mata_kuliah ?? "",
+                        default_kelompok ?? "",
                       );
                     });
                   }),

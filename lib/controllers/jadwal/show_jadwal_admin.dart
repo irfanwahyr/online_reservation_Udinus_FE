@@ -73,7 +73,8 @@ Future<ShowJadwalMingguanAdmin> update(
   int id_hari,
   int id_pesan,
   String jam_mulai,
-  String jam_selesai
+  String jam_selesai,
+  bool is_pinjam
   ) async {
   try {
     await dotenv.load(fileName: "../.env");

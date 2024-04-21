@@ -326,7 +326,15 @@ class _ReservasiState extends State<Reservasi> {
                                                     DataCell(
                                                       Center(
                                                         child:
-                                                        getPesanButtons(jadwal_idx.id_pesan, jadwal_idx.id, jadwal_idx.id_hari, jamMulai, jamSelesai)[index],
+                                                        getPesanButtons(
+                                                          jadwal_idx.id_pesan,
+                                                          jadwal_idx.id,
+                                                          jadwal_idx.id_hari,
+                                                          jamMulai,
+                                                          jamSelesai,
+                                                          jadwal_idx.mata_kuliah,
+                                                          jadwal_idx.kelompok,
+                                                          )[index],
                                                       ),
                                                     ),
                                                   ],
@@ -366,7 +374,14 @@ class _ReservasiState extends State<Reservasi> {
   }
 
   List<Widget> getPesanButtons(
-      int id_pesan, int id, int id_hari, String jam_mulai, String jam_selesai) {
+      int id_pesan,
+      int id,
+      int id_hari,
+      String jam_mulai,
+      String jam_selesai,
+      String mata_kuliah,
+      String kelompok,
+      ) {
     List<Widget> buttons = [];
 
     for (int i = 0; i < 15; i++) {
@@ -391,6 +406,8 @@ class _ReservasiState extends State<Reservasi> {
                 await prefs.setInt('id_pesan', id_pesan);
                 await prefs.setInt('id_matkul', id);
                 await prefs.setInt('id_hari', id_hari);
+                await prefs.setString('default_mata_kuliah', mata_kuliah);
+                await prefs.setString('default_kelompok', kelompok);
 
                 Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
               },
