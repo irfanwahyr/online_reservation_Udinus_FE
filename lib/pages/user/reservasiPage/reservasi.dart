@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kp2024/controllers/jadwal/show_jadwal.dart';
 import 'package:kp2024/models/_appBarBack.dart';
+import 'package:kp2024/models/_appBarLogin.dart';
 import 'package:kp2024/models/_heading5.dart';
 import 'package:kp2024/models/_heading6.dart';
 import 'package:kp2024/models/reservasiModel/_buttonBatalkan.dart';
@@ -91,7 +92,7 @@ class _ReservasiState extends State<Reservasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBarBack(onPressed: Navigator.pushNamed(context,  )).buildAppBar(context),
+      appBar : AppBarLogin(namaUser: "Biyu", imageAsset: "images/iconPerson.png"),
       body: FutureBuilder(
       future: listJadwal,
       builder: (context, snapshot) {
@@ -387,12 +388,7 @@ class _ReservasiState extends State<Reservasi> {
     for (int i = 0; i < 15; i++) {
       switch (id_pesan.toString()) {
         case "1":
-          buttons.add(
-            const ButtonDipakai(),
-          );
-          break;
-        case "2":
-          buttons.add(
+        buttons.add(
             ButtonReservasi(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -408,10 +404,15 @@ class _ReservasiState extends State<Reservasi> {
                 await prefs.setInt('id_hari', id_hari);
                 await prefs.setString('default_mata_kuliah', mata_kuliah);
                 await prefs.setString('default_kelompok', kelompok);
-
-                Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
+                Navigator.pushNamed(context, Keperluan.nameRoute);
               },
             ),
+          );
+          
+          break;
+        case "2":
+          buttons.add(
+            const ButtonDipakai(),
           );
           break;
         case "3":

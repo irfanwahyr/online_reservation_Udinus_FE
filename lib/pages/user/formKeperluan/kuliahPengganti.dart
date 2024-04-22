@@ -31,6 +31,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   String? token;
   String? default_mata_kuliah;
   String? default_kelompok;
+  String? default_jam_mulai;
+  String? default_jam_selesai;
 
   final TextEditingController nama_dosen = TextEditingController();
   final TextEditingController mata_kuliah = TextEditingController();
@@ -57,6 +59,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     String? token = prefs.getString('token');
     String? default_mata_kuliah = prefs.getString('default_mata_kuliah');
     String? default_kelompok = prefs.getString('default_kelompok');
+    String? default_jam_mulai = prefs.getString('jam_mulai');
+    String? default_jam_selesai = prefs.getString('jam_selesai');
 
     setState(() {
       this.nama_lab = nama_lab;
@@ -70,6 +74,8 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
       this.token = token;
       this.default_mata_kuliah = default_mata_kuliah;
       this.default_kelompok = default_kelompok;
+      this.default_jam_mulai = default_jam_mulai;
+      this.default_jam_selesai = default_jam_selesai;
     });
   }
 
@@ -186,6 +192,11 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             judul: "Jam Dipilih",
             jam_mulai: jam_mulai.toString(),
             jam_selesai: jam_selesai.toString(),
+            onJamSelesaiSelected: (String val) {
+              setState(() {
+                jam_selesai = val;
+              });
+            },
           ),
           const SizedBox(height: 15),
           FieldKeterangan(
@@ -213,11 +224,12 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
                         keterangan.text,
                         id_user ?? 0,
                         token ?? "",
-                        id_pesan ?? 3,
                         id_hari ?? 0,
                         id_matkul ?? 0,
                         default_mata_kuliah ?? "",
                         default_kelompok ?? "",
+                        default_jam_mulai ?? "",
+                        default_jam_selesai ?? ""
                       );
                     });
                   }),

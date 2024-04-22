@@ -22,7 +22,7 @@ class AppBarLogin extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.white,
         ), // Icon yang akan ditampilkan di sebelah kiri app bar
         onPressed: () {
-          Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+          Navigator.pop(context);
         },
       ),
       title: Container(
