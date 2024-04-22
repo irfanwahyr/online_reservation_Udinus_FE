@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/models/_appBarLogin.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/reservasiModel/_cardReservasi.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
@@ -18,6 +19,7 @@ class _KeperluanState extends State<Keperluan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar : AppBarLogin(namaUser: "Biyu", imageAsset: "images/iconPerson.png"),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

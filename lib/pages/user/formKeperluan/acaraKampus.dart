@@ -194,6 +194,11 @@ class _AcaraKampusState extends State<AcaraKampus> {
             judul: "Jam Dipilih",
             jam_mulai: jam_mulai.toString(),
             jam_selesai: jam_selesai.toString(),
+            onJamSelesaiSelected: (String val) {
+              setState(() {
+                jam_selesai = val;
+              });
+            },
           ),
           const SizedBox(height: 15),
           FieldKeterangan(

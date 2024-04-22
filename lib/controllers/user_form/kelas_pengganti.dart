@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:kp2024/controllers/jadwal/show_jadwal_admin.dart';
 
 class KelasPengganti{
   final String nama_dosen;
@@ -58,11 +57,12 @@ Future<KelasPengganti> create(
     String keterangan,
     int idUser,
     String token,
-    int id_pesan,
     int id_hari,
     int id_matkul,
     String default_mata_kuliah,
-    String default_kelompok
+    String default_kelompok,
+    String default_jamMulai,
+    String default_jamSelesai,
   ) async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['KELASPENGGANTI'];
@@ -119,12 +119,37 @@ Future<KelasPengganti> create(
       }
     }
     c = b - a;
-    print(c);
     for (var i = 0; i < c; i++) {
-      update(default_mata_kuliah, default_kelompok, token, id_matkul, id_hari, 3, jamMulai, jamSelesai, true);
+      update_pinjam(token, id_matkul, 3);
       id_matkul++;
-      print("tes");
     }
+    return KelasPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
+Future<KelasPengganti> update_pinjam(
+    String token,
+    int id,
+    int id_pesan,
+
+  ) async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['RESERVASI'];
+  final response = await http.patch(
+    Uri.parse("$env/update_pinjam/$id"),
+    headers: <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      'id_pesan': id_pesan,
+    })
+  );
+  print(response.statusCode);
+  if (response.statusCode == 200) {
     return KelasPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
     throw Exception('Failed to load');
