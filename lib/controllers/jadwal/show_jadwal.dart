@@ -35,7 +35,8 @@ class ShowJadwalMingguan {
   }
 }
 
-Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
+Future<List<ShowJadwalMingguan>> fetchdata(String idHari, String nama_lab) async {
+  print(idHari + nama_lab);
   try {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RESERVASI'];
@@ -45,9 +46,6 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
       return [];
     }
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? nama_lab = prefs.getString('nama_lab');
-    print(nama_lab);
     final response = await http.get(Uri.parse("$env/$nama_lab/$idHari"));
 
     if (response.statusCode == 200) {

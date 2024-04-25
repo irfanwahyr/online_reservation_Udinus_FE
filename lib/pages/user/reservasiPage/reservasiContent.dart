@@ -24,49 +24,29 @@ class _ReservasiContentState extends State<ReservasiContent> {
   // DateTime? tanggalYangDipilih;
   ListReservasi listReservasi = ListReservasi();
   String? nama_lab;
-  String? labName;
+  String labName = 'A';
   int? datePilihan;
   String selectedDate = "";
-  Future<List<ShowJadwalMingguan>> listJadwal = fetchdata("");
+  Future<List<ShowJadwalMingguan>> listJadwal = fetchdata("","");
 
   late DateTime tanggalYangDipilih;
-  late String laboratoriumYangDipilih;
 
   @override
   void initState() {
     tanggalYangDipilih = DateTime.now();
-    laboratoriumYangDipilih = 'A';
-
+    if (today.weekday == DateTime.sunday) {
+      tanggalYangDipilih = today;
+    }
+    listJadwal = fetchdata(today.weekday.toString(), labName.toString());
     super.initState();
     // Check if today is Sunday
-    if (today.weekday == DateTime.sunday) {
-      // If yes, set tanggalYangDipilih to Sunday
-      tanggalYangDipilih = today;
-      // _setDetailPilihan(today, labName.toString());
-    }
-    listJadwal = fetchdata(today.weekday.toString());
-    // setDetailPilihan(today, labName.toString());
-    // getData();
   }
 
-  // void getData() async {
-  //   // SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   String? nama_lab = laboratoriumYangDipilih;
-  //   print("print ke 1 " + nama_lab);
-
-  //   setState(() {
-  //     listJadwal = fetchdata(today.weekday.toString());
-  //     this.nama_lab = laboratoriumYangDipilih;
-  //   });
-  // }
-
   Future<void> _selectDate(BuildContext context) async {
-    // Calculate the first selectable date
     DateTime firstSelectableDate = DateTime.now();
 
     DateTime? pickedDate = await showDatePicker(
       context: context,
-      // initialDate: tanggalYangDipilih ?? firstSelectableDate,
       initialDate: tanggalYangDipilih,
       firstDate: firstSelectableDate,
       lastDate: DateTime.utc(2040, 3, 14),
@@ -79,12 +59,12 @@ class _ReservasiContentState extends State<ReservasiContent> {
     if (pickedDate != null && pickedDate != today) {
       setState(() {
         tanggalYangDipilih = pickedDate;
-        // setDetailPilihan(pickedDate, labName.toString());
-        listJadwal = fetchdata(pickedDate.weekday.toString());
-        tanggalYangDipilih = pickedDate;
+        // Memanggil fetchdata() saat tanggal diubah
+        listJadwal = fetchdata(pickedDate.weekday.toString(), labName.toString());
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -151,16 +131,14 @@ class _ReservasiContentState extends State<ReservasiContent> {
                                         value: labName,
                                         onChanged: (String? newValue) async {
                                           if (newValue != null) {
-                                            SharedPreferences prefs =
-                                                await SharedPreferences
-                                                    .getInstance();
-                                            await prefs.setString(
-                                                'nama_lab', newValue);
-                                            laboratoriumYangDipilih = newValue;
+                                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                                            await prefs.setString('nama_lab', newValue);
                                             labName = newValue;
                                             setState(() {
                                               labName = newValue;
                                             });
+                                            // Memanggil fetchdata() saat nama lab diubah
+                                            listJadwal = fetchdata(tanggalYangDipilih.weekday.toString(), labName.toString());
                                           }
                                         },
                                         icon: Icon(Icons
@@ -224,7 +202,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              "Anda Memilih Laboratorium $laboratoriumYangDipilih dengan tanggal ${listReservasi.getHari(tanggalYangDipilih.weekday)}, ${tanggalYangDipilih.day} ${listReservasi.getBulan(tanggalYangDipilih.month)} ${tanggalYangDipilih.year}",
+                              "Anda Memilih Laboratorium $labName dengan tanggal ${listReservasi.getHari(tanggalYangDipilih.weekday)}, ${tanggalYangDipilih.day} ${listReservasi.getBulan(tanggalYangDipilih.month)} ${tanggalYangDipilih.year}",
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Color.fromARGB(255, 255, 255, 255),
@@ -441,12 +419,19 @@ class _ReservasiContentState extends State<ReservasiContent> {
     for (int i = 0; i < 15; i++) {
       switch (id_pesan.toString()) {
         case "1":
-          buttons.add(
+        buttons.add(
+            const ButtonDipakai(),
+          );
+         
+
+          break;
+        case "2":
+         buttons.add(
             ButtonReservasi(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString(
-                    'nama_lab', laboratoriumYangDipilih.toString());
+                    'nama_lab', labName.toString());
                 String tanggal_mulai = tanggalYangDipilih != 0
                     ? DateFormat('dd-MM-yyyy').format(tanggalYangDipilih)
                     : DateFormat('dd-MM-yyyy').format(today);
@@ -462,12 +447,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
               },
             ),
           );
-
-          break;
-        case "2":
-          buttons.add(
-            const ButtonDipakai(),
-          );
+          
           break;
         case "3":
           buttons.add(
