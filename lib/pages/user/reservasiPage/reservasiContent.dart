@@ -6,6 +6,7 @@ import 'package:kp2024/models/reservasiModel/_buttonDipakai.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDiproses.dart';
 import 'package:kp2024/models/reservasiModel/_buttonReservasi.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/user/reservasiPage/detailLabPopUp.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,6 +65,10 @@ class _ReservasiContentState extends State<ReservasiContent> {
             fetchdata(pickedDate.weekday.toString(), labName.toString());
       });
     }
+  }
+
+  void _popUpDetailLab() async {
+    await DetailLabPopUp.show(context, labName);
   }
 
   @override
@@ -196,6 +201,23 @@ class _ReservasiContentState extends State<ReservasiContent> {
                                     ),
                                   );
                                 },
+                              ),
+                              SizedBox(width: 20),
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  _popUpDetailLab();
+                                },
+                                icon: Icon(Icons.computer),
+                                label: Text(
+                                  "Detail Lab $labName",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 107, 29, 196),
+                                    fontSize: fontSize,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: Size(buttonWidth, buttonHeight),
+                                ),
                               ),
                             ],
                           ),

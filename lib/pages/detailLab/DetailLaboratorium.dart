@@ -61,13 +61,6 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                       jenis_lab: "LABORATORIUM \nMULTIMEDIA",
                       nama_lab: nama_lab,
                       imageAsset: "images/gambar.jpg",
-                      onpressed: () async {
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        await prefs.setString('data', id.toString());
-                        await prefs.setString('nama_lab', nama_lab);
-                        Navigator.pushNamed(context, Reservasi.nameRoute);
-                      },
                     ),
                     SpesifikasiDetailLab(
                       nama_lab: nama_lab,

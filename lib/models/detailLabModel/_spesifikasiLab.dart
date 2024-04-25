@@ -18,99 +18,174 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Container(
-        width: double.infinity,
-        height: 450,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.grey,
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 40),
-              Text(
-                "SPESIFIKASI LAB ${widget.nama_lab}",
-                style: const TextStyle(fontFamily: "Archivo", fontSize: 30),
-              ),
-              const SizedBox(height: 30),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(146, 84, 221, 239),
-                          borderRadius: BorderRadius.circular(20)),
+      padding: const EdgeInsets.all(5),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: 15),
+            Text(
+              "SPESIFIKASI",
+              style: const TextStyle(fontFamily: "Archivo", fontSize: 30),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: 350,
+                    height: 500,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(146, 84, 221, 239),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            widget.jumlah_pc,
-                            style:
-                                const TextStyle(fontFamily: "Archivo", fontSize: 90),
+                            "Ruangan ",
+                            style: TextStyle(
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
-                          const Text(
-                            "PC",
-                            style: TextStyle(fontSize: 40),
-                          )
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.jumlah_pc,
+                                style: TextStyle(fontSize: 50),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "PC ",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "2",
+                                style: TextStyle(fontSize: 50),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Microphone",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "1",
+                                style: TextStyle(fontSize: 50),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Proyektor",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "30",
+                                style: TextStyle(fontSize: 50),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Mbps Internet",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "2",
+                                style: TextStyle(fontSize: 50),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Speaker",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 20),
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(146, 84, 221, 239),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                  ),
+                  SizedBox(width: 10),
+                  Container(
+                    width: 350,
+                    height: 500,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(146, 84, 221, 239),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Software",
+                          style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        // Loop untuk membuat widget Text berdasarkan daftar nama software
+                        for (int i = 1; i <= 5; i++)
                           Text(
-                            "Mic 2\n& \nSpeaker2",
-                            textAlign: TextAlign.center,
-                            style:
-                                TextStyle(fontFamily: "Archivo", fontSize: 40),
+                            "Software $i",
+                            style: TextStyle(fontSize: 50),
                           ),
-                        ],
-                      ),
+                      ],
                     ),
-                    const SizedBox(width: 20),
-                    Container(
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(146, 84, 221, 239),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                  ),
+                  SizedBox(width: 10),
+                  Container(
+                    width: 350,
+                    height: 500,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(146, 84, 221, 239),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hardware",
+                          style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        // Loop untuk membuat widget Text berdasarkan daftar nama software
+                        for (int i = 1; i <= 5; i++)
                           Text(
-                            "Proyektor",
-                            style:
-                                TextStyle(fontFamily: "Archivo", fontSize: 40),
+                            "Hardware $i",
+                            style: TextStyle(fontSize: 50),
                           ),
-                        ],
-                      ),
+                      ],
                     ),
-                    const SizedBox(width: 20),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 30,
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

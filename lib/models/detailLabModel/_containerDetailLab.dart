@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:kp2024/models/_buttonPrimary.dart';
 
 class ContainerDetailLab extends StatefulWidget {
   final String jenis_lab;
   final String nama_lab;
   final String imageAsset;
-  final VoidCallback onpressed;
 
   const ContainerDetailLab({
     Key? key,
     required this.nama_lab,
     required this.jenis_lab,
     required this.imageAsset,
-    required this.onpressed,
   }) : super(key: key);
 
   @override
@@ -24,10 +21,12 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
   Widget build(BuildContext context) {
     return Container(
       width: double.maxFinite,
-      height: 500,
+      height: 300,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         image: DecorationImage(
           image: AssetImage(widget.imageAsset),
+          
           fit: BoxFit.cover,
         ),
       ),
@@ -52,26 +51,20 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                           style: const TextStyle(
                             fontFamily: "Archivo",
                             color: Colors.white,
-                            fontSize: 80,
+                            fontSize: 50,
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      HoverButtonPrimary(
-                        text: "Reservasi",
-                        onPressed: widget.onpressed,
-                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 10),
                   Text(
                     widget.nama_lab,
                     style: const TextStyle(
                       color: Color.fromARGB(190, 111, 215, 208),
                       fontFamily: "Archivo",
-                      fontSize: 350,
+                      fontSize: 100,
                     ),
                   ),
                 ],
@@ -95,16 +88,12 @@ class _ContainerDetailLabState extends State<ContainerDetailLab> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  HoverButtonPrimary(
-                    text: "Reservasi",
-                    onPressed: widget.onpressed,
-                  ),
                   Text(
                     widget.nama_lab,
                     style: const TextStyle(
                       color: Color.fromARGB(190, 111, 215, 208),
                       fontFamily: "Archivo",
-                      fontSize: 200,
+                      fontSize: 100,
                     ),
                   ),
                 ],

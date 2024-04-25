@@ -36,7 +36,7 @@ class ShowJadwalMingguan {
 }
 
 Future<List<ShowJadwalMingguan>> fetchdata(String idHari, String nama_lab) async {
-  print(idHari + nama_lab);
+  // print(idHari + nama_lab);
   try {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RESERVASI'];
