@@ -20,12 +20,11 @@ class ShowJadwalMingguan {
     required this.mata_kuliah,
     required this.jam_mulai,
     required this.jam_selesai,
-
   });
 
   factory ShowJadwalMingguan.fromJson(Map<String, dynamic> json) {
     return ShowJadwalMingguan(
-      id: json['id']?? 0,
+      id: json['id'] ?? 0,
       id_hari: json['id_hari'] ?? 0,
       id_pesan: json['id_pesan'] ?? 1,
       kelompok: json['kelompok'] ?? "kosong",
@@ -48,6 +47,7 @@ Future<List<ShowJadwalMingguan>> fetchdata(String idHari) async {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? nama_lab = prefs.getString('nama_lab');
+    print(nama_lab);
     final response = await http.get(Uri.parse("$env/$nama_lab/$idHari"));
 
     if (response.statusCode == 200) {

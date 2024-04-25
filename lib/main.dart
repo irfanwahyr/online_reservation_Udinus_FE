@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/pages/admin/daftarLaboratorium.dart';
 import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/daftarPengguna.dart';
@@ -21,7 +19,6 @@ import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main(List<String> args) async {
   runApp(MyApp());
@@ -44,8 +41,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      initialRoute: HomePage.nameRoute,
+      // home: HomePage(),
+      // initialRoute: HomePage.nameRoute,
+      home: Reservasi(),
+      initialRoute: Reservasi.nameRoute,
       routes: {
         HomePage.nameRoute: (context) => HomePage(),
         LogSign.nameRoute: (context) => LogSign(),

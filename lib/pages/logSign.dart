@@ -8,7 +8,7 @@ import 'package:kp2024/models/_heading1.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
-import 'package:kp2024/pages/homePage.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogSign extends StatefulWidget {
@@ -29,7 +29,7 @@ class _LogSignState extends State<LogSign> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack(onPressed: (){Navigator.pushReplacementNamed(context, HomePage.nameRoute);}).buildAppBar(context),
+      appBar: AppBarBack(onPressed: (){Navigator.pushReplacementNamed(context, Reservasi.nameRoute);}).buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -130,7 +130,7 @@ class _LogSignState extends State<LogSign> {
                       srf.setBool('isLoggedIn', true);
                       srf.setInt('loginTime', DateTime.now().millisecondsSinceEpoch);
                       if(srf.getBool('role') == false){
-                        Navigator.pushReplacementNamed(context, HomePage.nameRoute);
+                        Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                       }
                       else{
                         SharedPreferences prefs = await SharedPreferences.getInstance();

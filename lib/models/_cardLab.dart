@@ -25,7 +25,7 @@ class _CardLabState extends State<CardLab> with SingleTickerProviderStateMixin {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 200),
     );
 
     _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
@@ -63,8 +63,8 @@ class _CardLabState extends State<CardLab> with SingleTickerProviderStateMixin {
         child: Card(
           elevation: 5.0,
           child: Container(
-            width: 250,
-            height: 250,
+            width: 150,
+            height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
@@ -75,7 +75,7 @@ class _CardLabState extends State<CardLab> with SingleTickerProviderStateMixin {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Center(
-                child: Heading1(text: widget.nama, color: Colors.white),
+                child: Text(widget.nama, style: TextStyle(color: Colors.white, fontSize: 20), ),
               ),
             ),
           ),
