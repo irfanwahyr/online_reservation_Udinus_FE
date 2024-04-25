@@ -27,7 +27,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
   String labName = 'A';
   int? datePilihan;
   String selectedDate = "";
-  Future<List<ShowJadwalMingguan>> listJadwal = fetchdata("","");
+  Future<List<ShowJadwalMingguan>> listJadwal = fetchdata("", "");
 
   late DateTime tanggalYangDipilih;
 
@@ -60,11 +60,11 @@ class _ReservasiContentState extends State<ReservasiContent> {
       setState(() {
         tanggalYangDipilih = pickedDate;
         // Memanggil fetchdata() saat tanggal diubah
-        listJadwal = fetchdata(pickedDate.weekday.toString(), labName.toString());
+        listJadwal =
+            fetchdata(pickedDate.weekday.toString(), labName.toString());
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -80,13 +80,13 @@ class _ReservasiContentState extends State<ReservasiContent> {
               future: listJadwal,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  print("Masuk error menunggu koneksi");
+                  // print("Masuk error menunggu koneksi");
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  print("Masuk error snapshot");
+                  // print("Masuk error snapshot");
                   return Text("${snapshot.error}");
                 } else if (snapshot.hasData) {
-                  print("Masuk snapshot punya data");
+                  // print("Masuk snapshot punya data");
                   final jadwal = snapshot.data!;
                   return Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -105,72 +105,74 @@ class _ReservasiContentState extends State<ReservasiContent> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  if (labName != null) {
-                                    print('Nilai yang dipilih: $labName');
-                                  } else {
-                                    print('Tidak ada nilai yang dipilih!');
-                                  }
+                                  // if (labName != null) {
+                                  //   print('Nilai yang dipilih: $labName');
+                                  // } else {
+                                  //   print('Tidak ada nilai yang dipilih!');
+                                  // }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(buttonWidth, buttonHeight),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      "Pilih Laboratorium",
-                                      style: TextStyle(fontSize: fontSize),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<String>(
+                                    dropdownColor:
+                                        Color.fromARGB(211, 255, 255, 255),
+                                    // value: labName,
+                                    onChanged: (String? newValue) async {
+                                      if (newValue != null) {
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+                                        await prefs.setString(
+                                            'nama_lab', newValue);
+                                        labName = newValue;
+                                        setState(() {
+                                          labName = newValue;
+                                        });
+                                        listJadwal = fetchdata(
+                                            tanggalYangDipilih.weekday
+                                                .toString(),
+                                            labName.toString());
+                                      }
+                                    },
+                                    icon: Icon(
+                                        Icons.arrow_drop_down_circle_outlined),
+                                    style: TextStyle(
+                                      fontSize: fontSize,
+                                      color: Color.fromARGB(211, 0, 0, 0),
                                     ),
-                                    SizedBox(width: 5),
-                                    DropdownButtonHideUnderline(
-                                      // Menghilangkan underline
-                                      child: DropdownButton<String>(
-                                        dropdownColor:
-                                            Color.fromARGB(211, 255, 255, 255),
-                                        value: labName,
-                                        onChanged: (String? newValue) async {
-                                          if (newValue != null) {
-                                            SharedPreferences prefs = await SharedPreferences.getInstance();
-                                            await prefs.setString('nama_lab', newValue);
-                                            labName = newValue;
-                                            setState(() {
-                                              labName = newValue;
-                                            });
-                                            // Memanggil fetchdata() saat nama lab diubah
-                                            listJadwal = fetchdata(tanggalYangDipilih.weekday.toString(), labName.toString());
-                                          }
-                                        },
-                                        icon: Icon(Icons
-                                            .arrow_drop_down_circle_outlined),
-                                        style: TextStyle(
-                                          fontSize: fontSize,
-                                          color: Color.fromARGB(211, 0, 0, 0),
-                                        ),
-                                        items: <String>[
-                                          'A',
-                                          'B',
-                                          'C',
-                                          'D',
-                                          'E',
-                                          'G',
-                                          'H',
-                                          'I',
-                                          'J',
-                                          'K',
-                                          'L',
-                                          'M',
-                                          'N'
-                                        ].map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
+                                    items: <String>[
+                                      'A',
+                                      'B',
+                                      'C',
+                                      'D',
+                                      'E',
+                                      'G',
+                                      'H',
+                                      'I',
+                                      'J',
+                                      'K',
+                                      'L',
+                                      'M',
+                                      'N'
+                                    ].map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      },
+                                    ).toList(),
+                                    hint: Text(
+                                      "Laboratorium $labName ",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 107, 29, 196),
+                                        fontSize: fontSize,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 20),
@@ -183,7 +185,10 @@ class _ReservasiContentState extends State<ReservasiContent> {
                                     icon: const Icon(Icons.calendar_today),
                                     label: Text(
                                       "Pilih Tanggal",
-                                      style: TextStyle(fontSize: fontSize),
+                                      style: TextStyle(
+                                          fontSize: fontSize,
+                                          color: Color.fromARGB(
+                                              255, 107, 29, 196)),
                                     ),
                                     style: ElevatedButton.styleFrom(
                                       minimumSize:
@@ -202,7 +207,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              "Anda Memilih Laboratorium $labName dengan tanggal ${listReservasi.getHari(tanggalYangDipilih.weekday)}, ${tanggalYangDipilih.day} ${listReservasi.getBulan(tanggalYangDipilih.month)} ${tanggalYangDipilih.year}",
+                              "Anda Memilih Laboratorium $labName Pada ${listReservasi.getHari(tanggalYangDipilih.weekday)}, ${tanggalYangDipilih.day} ${listReservasi.getBulan(tanggalYangDipilih.month)} ${tanggalYangDipilih.year}",
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Color.fromARGB(255, 255, 255, 255),
@@ -419,19 +424,17 @@ class _ReservasiContentState extends State<ReservasiContent> {
     for (int i = 0; i < 15; i++) {
       switch (id_pesan.toString()) {
         case "1":
-        buttons.add(
+          buttons.add(
             const ButtonDipakai(),
           );
-         
 
           break;
         case "2":
-         buttons.add(
+          buttons.add(
             ButtonReservasi(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString(
-                    'nama_lab', labName.toString());
+                await prefs.setString('nama_lab', labName.toString());
                 String tanggal_mulai = tanggalYangDipilih != 0
                     ? DateFormat('dd-MM-yyyy').format(tanggalYangDipilih)
                     : DateFormat('dd-MM-yyyy').format(today);
@@ -447,7 +450,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
               },
             ),
           );
-          
+
           break;
         case "3":
           buttons.add(

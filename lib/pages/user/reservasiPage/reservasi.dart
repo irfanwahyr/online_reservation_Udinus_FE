@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/appBarUniversal.dart';
 import 'package:kp2024/pages/logSign.dart';
+import 'package:kp2024/pages/user/reservasiPage/pesanan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasiContent.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -98,7 +99,7 @@ class _ReservasiState extends State<Reservasi>
               controller: _tabController, // Connect TabBarView to TabController
               children: [
                 ReservasiContent(),
-                Center(child: Text('Pesanan Content')),
+                Pesanan(),
               ],
             ),
           ),
