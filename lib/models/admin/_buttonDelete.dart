@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ButtonDelete extends StatelessWidget {
-  const ButtonDelete({super.key});
+  final VoidCallback? onPressed;
+  const ButtonDelete({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: () {},
+      onPressed: onPressed,
       icon: Icon(
         Icons.delete,
         color: Colors.white,

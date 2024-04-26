@@ -40,21 +40,20 @@ class DetailLabPopUp {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else if (snapshot.hasData) {
                   List<String> software = snapshot.data!.software
-                  .map((software) =>
-                      '-${software['software_1']}\n-${software['software_2']}\n-${software['software_3']}\n-${software['software_4']}\n-${software['software_5']}')
-                  .toList();
+                      .map((software) =>
+                          '-${software['software_1']}\n-${software['software_2']}\n-${software['software_3']}\n-${software['software_4']}\n-${software['software_5']}')
+                      .toList();
 
-              List<String> hardware = snapshot.data!.hardware
-                  .map((hardware) =>
-                      'Processor: ${hardware['processor']}\nram: ${hardware['ram']}\ngpu: ${hardware['gpu']}\nmonitor: ${hardware['monitor']}\nstorage: ${hardware['storage']}\n')
-                  .toList();
+                  List<String> hardware = snapshot.data!.hardware
+                      .map((hardware) =>
+                          'Processor: ${hardware['processor']}\nram: ${hardware['ram']}\ngpu: ${hardware['gpu']}\nmonitor: ${hardware['monitor']}\nstorage: ${hardware['storage']}\n')
+                      .toList();
                   return SpesifikasiDetailLab(
-                    nama_lab: snapshot.data!.nama_lab,
-                    jumlah_pc: snapshot.data!.jumlah_pc.toString(),
-                    jenis_lab: snapshot.data!.jenis_lab.toString(),
-                    software: software,
-                    hardware: hardware
-                  );
+                      nama_lab: snapshot.data!.nama_lab,
+                      jumlah_pc: snapshot.data!.jumlah_pc.toString(),
+                      jenis_lab: snapshot.data!.jenis_lab.toString(),
+                      software: software,
+                      hardware: hardware);
                 } else {
                   return const Center(child: Text('No data available'));
                 }

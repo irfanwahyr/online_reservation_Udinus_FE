@@ -116,11 +116,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  // if (labName != null) {
-                                  //   print('Nilai yang dipilih: $labName');
-                                  // } else {
-                                  //   print('Tidak ada nilai yang dipilih!');
-                                  // }
+                                 
                                 },
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(buttonWidth, buttonHeight),

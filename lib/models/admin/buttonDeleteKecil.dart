@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ButtonEditKecil extends StatelessWidget {
+class ButtonDeletedKecil extends StatelessWidget {
   final VoidCallback? onTap;
 
-  const ButtonEditKecil({Key? key, required this.onTap})
+  ButtonDeletedKecil({Key? key, required this.onTap})
       : super(key: key);
 
   @override
@@ -14,12 +14,12 @@ class ButtonEditKecil extends StatelessWidget {
         width: 25.0,
         height: 25.0,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 244, 168, 54),
+          color: Color.fromARGB(255, 244, 54, 54),
           shape: BoxShape.circle,
         ),
         child: Center(
           child: Icon(
-            Icons.edit_outlined,
+            Icons.delete,
             size: 18,
             color: Color.fromARGB(255, 255, 255, 255),
           ),
