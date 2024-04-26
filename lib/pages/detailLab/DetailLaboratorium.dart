@@ -63,8 +63,11 @@ class _DetailLaboratoriumState extends State<DetailLaboratorium> {
                       imageAsset: "images/gambar.jpg",
                     ),
                     SpesifikasiDetailLab(
-                      nama_lab: nama_lab,
-                      jumlah_pc: jumlah_pc,
+                      nama_lab: snapshot.data!.nama_lab,
+                    jumlah_pc: snapshot.data!.jumlah_pc.toString(),
+                    jenis_lab: snapshot.data!.jenis_lab.toString(),
+                    software: snapshot.data!.software.map((item) => item['name'] as String).toList(),
+                    hardware: snapshot.data!.hardware.map((item) => item['name'] as String).toList(),
                     ),
                     isScreenWide
                         ? Row(
