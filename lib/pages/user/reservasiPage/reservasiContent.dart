@@ -40,7 +40,13 @@ class _ReservasiContentState extends State<ReservasiContent> {
     }
     listJadwal = fetchdata(today.weekday.toString(), labName.toString());
     super.initState();
+    _renderLabAwal(labName);
     // Check if today is Sunday
+  }
+
+  void _renderLabAwal(String labName) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('nama_lab', labName);
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -67,7 +73,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
     }
   }
 
-  void _popUpDetailLab() async {
+  void _popUpDetailLab(String labName) async {
     await DetailLabPopUp.show(context, labName);
   }
 
@@ -205,7 +211,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                               SizedBox(width: 20),
                               ElevatedButton.icon(
                                 onPressed: () {
-                                  _popUpDetailLab();
+                                  _popUpDetailLab(labName);
                                 },
                                 icon: Icon(Icons.computer),
                                 label: Text(

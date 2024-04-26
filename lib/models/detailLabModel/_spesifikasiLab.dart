@@ -26,7 +26,8 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
             SizedBox(height: 15),
             Text(
               "SPESIFIKASI",
-              style: const TextStyle(fontFamily: "Archivo", fontSize: 30),
+              style: const TextStyle(
+                  fontFamily: "Archivo", fontSize: 25, color: Colors.white),
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
@@ -34,20 +35,20 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: 350,
-                    height: 500,
+                    width: 250,
+                    height: 250,
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(146, 84, 221, 239),
                         borderRadius: BorderRadius.circular(20)),
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             "Ruangan ",
                             style: TextStyle(
-                                fontSize: 50,
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
@@ -56,7 +57,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                             children: [
                               Text(
                                 widget.jumlah_pc,
-                                style: TextStyle(fontSize: 50),
+                                style: TextStyle(fontSize: 25),
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -71,7 +72,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                             children: [
                               Text(
                                 "2",
-                                style: TextStyle(fontSize: 50),
+                                style: TextStyle(fontSize: 25),
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -86,7 +87,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                             children: [
                               Text(
                                 "1",
-                                style: TextStyle(fontSize: 50),
+                                style: TextStyle(fontSize: 25),
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -101,7 +102,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                             children: [
                               Text(
                                 "30",
-                                style: TextStyle(fontSize: 50),
+                                style: TextStyle(fontSize: 25),
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -116,7 +117,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                             children: [
                               Text(
                                 "2",
-                                style: TextStyle(fontSize: 50),
+                                style: TextStyle(fontSize: 25),
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -132,8 +133,8 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                   ),
                   SizedBox(width: 10),
                   Container(
-                    width: 350,
-                    height: 500,
+                    width: 250,
+                    height: 250,
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(146, 84, 221, 239),
                         borderRadius: BorderRadius.circular(20)),
@@ -143,7 +144,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         Text(
                           "Software",
                           style: TextStyle(
-                              fontSize: 50,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
@@ -151,15 +152,15 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         for (int i = 1; i <= 5; i++)
                           Text(
                             "Software $i",
-                            style: TextStyle(fontSize: 50),
+                            style: TextStyle(fontSize: 25),
                           ),
                       ],
                     ),
                   ),
                   SizedBox(width: 10),
                   Container(
-                    width: 350,
-                    height: 500,
+                    width: 250,
+                    height: 250,
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(146, 84, 221, 239),
                         borderRadius: BorderRadius.circular(20)),
@@ -169,7 +170,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         Text(
                           "Hardware",
                           style: TextStyle(
-                              fontSize: 50,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
@@ -177,7 +178,7 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         for (int i = 1; i <= 5; i++)
                           Text(
                             "Hardware $i",
-                            style: TextStyle(fontSize: 50),
+                            style: TextStyle(fontSize: 25),
                           ),
                       ],
                     ),

@@ -11,6 +11,7 @@ import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/models/reservasiModel/_uploadPDFButton.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kp2024/controllers/user_form/acara_organisasi.dart';
 
@@ -251,7 +252,7 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
                         token ?? ""
                       );
                     });
-                    Navigator.pushNamed(context, BerhasilSubmit.nameRoute);
+                    Navigator.pushNamed(context, Reservasi.nameRoute);
                   }),
             ),
           ),

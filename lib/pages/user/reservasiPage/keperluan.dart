@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/models/_appBarLogin.dart';
 import 'package:kp2024/models/_heading2.dart';
+import 'package:kp2024/models/appBarUniversal.dart';
 import 'package:kp2024/models/reservasiModel/_cardReservasi.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/logSign.dart';
 import 'package:kp2024/pages/user/formKeperluan/acaraKampus.dart';
 import 'package:kp2024/pages/user/formKeperluan/acaraOrganisasi.dart';
 import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Keperluan extends StatefulWidget {
   static const nameRoute = 'Keperluan';
@@ -16,10 +19,65 @@ class Keperluan extends StatefulWidget {
 }
 
 class _KeperluanState extends State<Keperluan> {
+  late String? _username = '';
+  @override
+  void initState() {
+    super.initState();
+    _getToken();
+  }
+
+    Future<void> _getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _username = prefs.getString('username');
+    });
+  }
+
+  void _logout() async {
+    // Tampilkan dialog konfirmasi
+    bool? logoutConfirmed = await _showLogoutConfirmationDialog(context);
+    if (logoutConfirmed ?? false) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+      Navigator.pushReplacementNamed(context, LogSign.nameRoute);
+    }
+  }
+
+    Future<bool?> _showLogoutConfirmationDialog(BuildContext context) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Konfirmasi'),
+          content: Text('Apakah Anda yakin ingin logout?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(false); // Tidak
+              },
+              child: Text('Tidak'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(true); // Ya
+              },
+              child: Text('Ya'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar : AppBarLogin(namaUser: "Biyu", imageAsset: "images/iconPerson.png"),
+      appBar :  AppBarUniversal(
+        username: _username ?? "", // Pass the username
+        logoutCallback: () {
+          _logout(); // Logout callback
+        },
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

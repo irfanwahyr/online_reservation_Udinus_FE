@@ -54,7 +54,7 @@ class AppBarUniversal extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 1, 24, 50),
-      toolbarHeight: 50, // Mengurangi tinggi AppBar
+      toolbarHeight: 50, 
     );
   }
 

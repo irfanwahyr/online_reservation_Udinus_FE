@@ -8,8 +8,8 @@ import 'package:kp2024/models/reservasiModel/_fieldKeterangan.dart';
 import 'package:kp2024/models/reservasiModel/_textFieldReservasi.dart';
 import 'package:kp2024/pages/user/reservasiPage/berhasilSubmit.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class KuliahPengganti extends StatefulWidget {
   static const nameRoute = 'KuliahPengganti';
@@ -142,16 +142,14 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             judul: "Nama Dosen",
             hintText: "Masukkan Nama Lengkap",
             keyboardType: TextInputType.name,
-            onSubmitted: (value) {
-            },
+            onSubmitted: (value) {},
           ),
           TextFieldReservasi(
             controller: mata_kuliah,
             judul: "Mata Kuliah",
             hintText: "Masukkan Nama Matkul",
             keyboardType: TextInputType.text,
-            onSubmitted: (value) {
-            },
+            onSubmitted: (value) {},
           ),
           TextFieldReservasi(
             controller: kelompok,
@@ -200,9 +198,9 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
           ),
           const SizedBox(height: 15),
           FieldKeterangan(
-            controller: keterangan,
-            judul: "Keterangan Tambahan",
-            keyboardType: TextInputType.text),
+              controller: keterangan,
+              judul: "Keterangan Tambahan",
+              keyboardType: TextInputType.text),
           const SizedBox(height: 15),
           SizedBox(
             height: 70,
@@ -213,25 +211,26 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
                   onPressed: () {
                     setState(() {
                       create(
-                        nama_dosen.text,
-                        mata_kuliah.text,
-                        kelompok.text,
-                        no_whatsapp.text,
-                        nama_lab ?? "",
-                        tanggal_mulai ?? "",
-                        jam_mulai ?? "",
-                        jam_selesai ?? "",
-                        keterangan.text,
-                        id_user ?? 0,
-                        token ?? "",
-                        id_hari ?? 0,
-                        id_matkul ?? 0,
-                        default_mata_kuliah ?? "",
-                        default_kelompok ?? "",
-                        default_jam_mulai ?? "",
-                        default_jam_selesai ?? ""
-                      );
+                          nama_dosen.text,
+                          mata_kuliah.text,
+                          kelompok.text,
+                          no_whatsapp.text,
+                          nama_lab ?? "",
+                          tanggal_mulai ?? "",
+                          jam_mulai ?? "",
+                          jam_selesai ?? "",
+                          keterangan.text,
+                          id_user ?? 0,
+                          token ?? "",
+                          id_hari ?? 0,
+                          id_matkul ?? 0,
+                          default_mata_kuliah ?? "",
+                          default_kelompok ?? "",
+                          default_jam_mulai ?? "",
+                          default_jam_selesai ?? "");
                     });
+                    Navigator.pushReplacementNamed(
+                        context, Reservasi.nameRoute);
                   }),
             ),
           ),
