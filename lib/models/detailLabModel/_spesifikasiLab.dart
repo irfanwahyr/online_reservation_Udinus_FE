@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 class SpesifikasiDetailLab extends StatefulWidget {
   final String nama_lab;
   final String jumlah_pc;
+  final String jenis_lab;
+  final List<String> software;
+  final List<String> hardware;
 
   const SpesifikasiDetailLab({
     Key? key,
     required this.nama_lab,
     required this.jumlah_pc,
+    required this.jenis_lab,
+    required this.software,
+    required this.hardware,
   }) : super(key: key);
 
   @override
@@ -56,74 +62,30 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
+                                "Jumlah PC :",
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
                                 widget.jumlah_pc,
-                                style: TextStyle(fontSize: 25),
+                                style: TextStyle(fontSize: 15),
                               ),
-                              SizedBox(width: 10),
-                              Text(
-                                "PC ",
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
+                              
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "2",
-                                style: TextStyle(fontSize: 25),
+                                "Jenis Lab : ",
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white),
                               ),
                               SizedBox(width: 10),
                               Text(
-                                "Microphone",
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "1",
-                                style: TextStyle(fontSize: 25),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Proyektor",
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "30",
-                                style: TextStyle(fontSize: 25),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Mbps Internet",
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "2",
-                                style: TextStyle(fontSize: 25),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Speaker",
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
+                                widget.jenis_lab,
+                                style: TextStyle(fontSize: 15),
                               ),
                             ],
                           ),
@@ -144,15 +106,15 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         Text(
                           "Software",
                           style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        // Loop untuk membuat widget Text berdasarkan daftar nama software
-                        for (int i = 1; i <= 5; i++)
+                        // Loop untuk membuat widget Text berdasarkan daftar software
+                        for (String software in widget.software)
                           Text(
-                            "Software $i",
-                            style: TextStyle(fontSize: 25),
+                            software,
+                            style: TextStyle(fontSize: 15, color: Colors.white),
                           ),
                       ],
                     ),
@@ -170,25 +132,25 @@ class _SpesifikasiDetailLabState extends State<SpesifikasiDetailLab> {
                         Text(
                           "Hardware",
                           style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        // Loop untuk membuat widget Text berdasarkan daftar nama software
-                        for (int i = 1; i <= 5; i++)
+                        // Loop untuk membuat widget Text berdasarkan daftar hardware
+                        for (String hardware in widget.hardware)
                           Text(
-                            "Hardware $i",
-                            style: TextStyle(fontSize: 25),
+                            hardware,
+                            style: TextStyle(fontSize: 15, color: Colors.white),
                           ),
                       ],
                     ),
                   ),
                 ],
+                  ),
+            ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+          );
+        }
+      }
