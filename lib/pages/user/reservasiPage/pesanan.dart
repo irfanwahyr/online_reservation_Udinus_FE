@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/pesanan_user/pesananAcaraKampus.dart';
+import 'package:kp2024/controllers/pesanan_user/pesananAcaraOrganisasi.dart';
+import 'package:kp2024/controllers/pesanan_user/pesananKuliahPengganti.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
@@ -8,6 +11,7 @@ import 'package:kp2024/models/reservasiModel/_buttonDiterima.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDitolak.dart';
 import 'package:kp2024/models/reservasiModel/_buttonSelesai.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Pesanan extends StatefulWidget {
   static const nameRoute = "/Pesanan";
@@ -18,6 +22,31 @@ class Pesanan extends StatefulWidget {
 }
 
 class _PesananState extends State<Pesanan> {
+
+  Future<List<PesananKuliahPengganti>> pesanan_kuliah_pengganti = getDataKuliahPengganti("");
+  Future<List<PesananAcaraOrganisasi>> pesanan_acara_organisasi = getDataAcaraOrganisasi("");
+  Future<List<PesananAcaraKampus>> pesanan_acara_kampus = getDataAcaraKampus("");
+  String? user_id = "";
+  String? token;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? user_id = prefs.getInt('id_user').toString();
+    String? token = prefs.getString('token');
+    setState(() {
+      this.user_id = user_id;
+      this.token = token;
+    });
+    pesanan_kuliah_pengganti = getDataKuliahPengganti(user_id!);
+    pesanan_acara_organisasi = getDataAcaraOrganisasi(user_id!);
+    pesanan_acara_kampus = getDataAcaraKampus(user_id!);
+  }
   List<String> status = [
     "0",
     "0",
@@ -31,14 +60,41 @@ class _PesananState extends State<Pesanan> {
     "1",
     "1",
   ];
-  int _no = 1; // Nomor yang akan diincrement otomatis
+   // Nomor yang akan diincrement otomatis
   final ScrollController controller = ScrollController();
   final ScrollController controller_2 = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: FutureBuilder(
+        future: Future.wait([
+          pesanan_kuliah_pengganti,
+          pesanan_acara_organisasi,
+          pesanan_acara_kampus
+        ]),
+        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError){
+            return Center(
+              child: Text("Error: ${snapshot.error}"),
+            );
+          } else if (snapshot.hasData){
+            int _no = 0;
+            final listkuliah_pengganti = snapshot.data![0];
+            final listacara_organisasi = snapshot.data![1];
+            final listacara_kampus = snapshot.data![2];
+
+            final jumlahKuliahPengganti = (listkuliah_pengganti as List).length;
+            final jumlahAcaraOrganisasi = (listacara_organisasi as List).length;
+            final jumlahAcaraKampus = (listacara_kampus as List).length;
+
+            final maxRows = jumlahAcaraKampus + jumlahAcaraOrganisasi + jumlahKuliahPengganti;
+
+            return  SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -128,20 +184,6 @@ class _PesananState extends State<Pesanan> {
                                   label: Expanded(
                                     child: Center(
                                       child: Text(
-                                        "Acara",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Center(
-                                      child: Text(
                                         "Tanggal Mulai",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -209,7 +251,246 @@ class _PesananState extends State<Pesanan> {
                                   ),
                                 ),
                               ],
-                              rows: _generateDummyData(),
+                              rows: List<DataRow>.generate(maxRows, (index) {
+                                _no++;
+                                if(index < jumlahKuliahPengganti){
+                                    final datakuliahpengganti = listkuliah_pengganti[index];
+                                    return DataRow(cells: <DataCell>[
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          _no.toString(),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          "Kuliah Pengganti",
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          datakuliahpengganti.nama_lab,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          datakuliahpengganti.tanggal_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          datakuliahpengganti.tanggal_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          datakuliahpengganti.jam_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          datakuliahpengganti.jam_selesai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ButtonEditKecil(onTap: () {
+                                            print("di edit");
+                                          }),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          ButtonDeletedKecil(onTap: (){
+                                            deletePesananKuliahPengganti((index+1).toString(), token!);
+                                          }),
+                                        ],
+                                      ),
+                                    ),
+                                  ]);
+                                }
+                                else if (index < jumlahKuliahPengganti + jumlahAcaraOrganisasi){
+                                  final dataIndex = index - jumlahKuliahPengganti;
+                                  final dataacaraorganisasi = listacara_organisasi[dataIndex];
+                                  return DataRow(cells: <DataCell>[
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          _no.toString(),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacaraorganisasi.nama_acara,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacaraorganisasi.nama_lab,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacaraorganisasi.tanggal_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacaraorganisasi.tanggal_selesai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacaraorganisasi.jam_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacaraorganisasi.jam_selesai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ButtonEditKecil(onTap: () {
+                                            print("di edit");
+                                          }),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          ButtonDeletedKecil(onTap: (){
+                                            deletePesananAcaraOrganisasi(index.toString());
+                                          }),
+                                        ],
+                                      ),
+                                    ),
+                                  ]);
+                                }
+                                else{
+                                  final dataIndex = index - (jumlahKuliahPengganti + jumlahAcaraOrganisasi);
+                                  final dataacarakampus = listacara_kampus[dataIndex];
+                                  return DataRow(cells: <DataCell>[
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          _no.toString(),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacarakampus.nama_acara,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacarakampus.nama_lab,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacarakampus.tanggal_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacarakampus.tanggal_selesai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacarakampus.jam_mulai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Center(
+                                        child: Text(
+                                          dataacarakampus.jam_selesai,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    DataCell(
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ButtonEditKecil(onTap: () {
+                                            print("di edit");
+                                          }),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          ButtonDeletedKecil(onTap: (){
+                                            deletePesananAcaraKampus(index.toString());
+                                          }),
+                                        ],
+                                      ),
+                                    ),
+                                  ]);
+                                }
+                                
+                              }),
                             ),
                           ),
                         ),
@@ -400,6 +681,12 @@ class _PesananState extends State<Pesanan> {
             Footer().buildContainer()
           ],
         ),
+      );
+          }
+          return const Center(
+            child: Text("Tidak ada data"),
+          );
+        },
       ),
     );
   }
