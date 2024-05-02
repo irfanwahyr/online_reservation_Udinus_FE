@@ -73,23 +73,24 @@ Future<List<PesananKuliahPengganti>> getDataKuliahPengganti(String user_id) asyn
 Future<void> deletePesananKuliahPengganti(String id, String token) async {
   try {
     await dotenv.load(fileName: "../.env");
-    final env = dotenv.env['KELASPENGGANTI'];
-    final response = await http.delete(Uri.parse("$env/delete/$id"));
-    print(response.statusCode);
-    print(id);
+    final env = dotenv.env['KULIAHPENGGANTI'];
+    final url = Uri.parse("$env/delete/$id");
+
+    final headers = <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    final response = await http.post(url, headers: headers);
+    update_pinjam(token, id, 2);
+    print(response.body);
     if (response.statusCode == 200) {
-      final dynamic responseData = json.decode(response.body);
-      if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
-        update_pinjam(token, id, 2);
-        return;
-      } else {
-        throw Exception('Invalid data format received');
-      }
+      print('Data deleted successfully');
     } else {
       throw Exception('Failed to delete data');
     }
   } catch (error) {
-    print(error);
     throw Exception('Failed to delete data');
   }
 }
