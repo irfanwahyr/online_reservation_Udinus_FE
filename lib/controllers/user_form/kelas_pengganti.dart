@@ -83,6 +83,7 @@ Future<KelasPengganti> create(
       'jam_selesai': jamSelesai,
       'keterangan': keterangan,
       'id_user': idUser,
+      'id_jadwal': id_matkul
     })
   );
   if (response.statusCode == 201) {

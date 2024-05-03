@@ -324,7 +324,7 @@ class _PesananState extends State<Pesanan> {
                                             width: 10,
                                           ),
                                           ButtonDeletedKecil(onTap: (){
-                                            deletePesananKuliahPengganti((index+1).toString(), token!);
+                                            deletePesananKuliahPengganti(datakuliahpengganti.id, datakuliahpengganti.id_jadwal, token!, datakuliahpengganti.jam_mulai, datakuliahpengganti.jam_selesai);
                                           }),
                                         ],
                                       ),
@@ -403,7 +403,7 @@ class _PesananState extends State<Pesanan> {
                                             width: 10,
                                           ),
                                           ButtonDeletedKecil(onTap: (){
-                                            deletePesananAcaraOrganisasi(index.toString());
+                                            deletePesananAcaraOrganisasi(index.toString(), token!);
                                           }),
                                         ],
                                       ),
@@ -482,7 +482,7 @@ class _PesananState extends State<Pesanan> {
                                             width: 10,
                                           ),
                                           ButtonDeletedKecil(onTap: (){
-                                            deletePesananAcaraKampus(index.toString());
+                                            deletePesananAcaraKampus(index.toString(), token!);
                                           }),
                                         ],
                                       ),
