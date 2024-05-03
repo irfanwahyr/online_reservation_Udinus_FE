@@ -62,12 +62,12 @@ Future<List<PesananAcaraOrganisasi>> getDataAcaraOrganisasi(String user_id) asyn
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['ACARAORGANISASI'];
     final response = await http.get(Uri.parse("$env/$user_id"));
-    if (response.statusCode == 200) {
+    if (response.statusCode == 404) {
+      return []; // Kembalikan daftar kosong jika data kosong
+    }
+    else if (response.statusCode == 200) {
       final dynamic responseData = json.decode(response.body);
       if (responseData is List) {
-        if (responseData.isEmpty) {
-          return []; // Kembalikan daftar kosong jika data kosong
-        }
         return responseData.map((e) => PesananAcaraOrganisasi.fromJson(e)).toList();
       } else if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
         // Kasus ketika server mengirim pesan bahwa tidak ada data
@@ -89,26 +89,49 @@ Future<void> showFile(String namaFile) async {
     html.window.open("$env/$namaFile", "_blank");
 }
 
-Future<void> deletePesananAcaraOrganisasi(String id) async {
-  try {
+Future<void> deletePesananAcaraOrganisasi(String id, String token) async {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['ACARAORGANISASI'];
-    final response = await http.delete(Uri.parse("$env/delete/$id"));
+    final url = Uri.parse("$env/delete/$id");
+
+    final headers = <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    final response = await http.post(url, headers: headers);
     if (response.statusCode == 200) {
-      final dynamic responseData = json.decode(response.body);
-      if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
-        if (responseData['message'] == 'success') {
-          return;
-        } else {
-          throw Exception('Failed to delete data');
-        }
-      } else {
-        throw Exception('Invalid data format received');
-      }
+      update_pinjam(token, id, 2);
+      print('Data deleted successfully');
     } else {
       throw Exception('Failed to delete data');
     }
-  } catch (error) {
-    throw Exception('Failed to delete data');
+}
+
+Future<PesananAcaraOrganisasi> update_pinjam(
+    String token,
+    String id,
+    int id_pesan,
+
+  ) async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['RESERVASI'];
+  final response = await http.patch(
+    Uri.parse("$env/update_pinjam/$id"),
+    headers: <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      'id_pesan': id_pesan,
+    })
+  );
+  print(response.statusCode);
+  if (response.statusCode == 200) {
+    return PesananAcaraOrganisasi.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load');
   }
 }

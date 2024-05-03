@@ -14,6 +14,7 @@ class PesananKuliahPengganti {
   final String jam_mulai;
   final String jam_selesai;
   final String keterangan;
+  final int id_jadwal;
 
   PesananKuliahPengganti({
     required this.id,
@@ -26,6 +27,7 @@ class PesananKuliahPengganti {
     required this.jam_mulai,
     required this.jam_selesai,
     required this.keterangan,
+    required this.id_jadwal,
   });
 
   factory PesananKuliahPengganti.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,8 @@ class PesananKuliahPengganti {
       jam_mulai: json['jam_mulai'] ?? "kosong",
       jam_selesai: json['jam_selesai'] ?? "kosong",
       keterangan: json['keterangan'] ?? "kosong",
+      id_jadwal: json['id_jadwal'] ?? 0,
+
     );
   }
 }
@@ -49,12 +53,15 @@ Future<List<PesananKuliahPengganti>> getDataKuliahPengganti(String user_id) asyn
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['KELASPENGGANTI'];
     final response = await http.get(Uri.parse("$env/$user_id"));
-    if (response.statusCode == 200) {
+    print(response.statusCode);
+    print(response.body);
+    if (response.statusCode == 404) {
+      return []; // Kembalikan daftar kosong jika data kosong
+    }
+    else if (response.statusCode == 200) {
       final dynamic responseData = json.decode(response.body);
       if (responseData is List) {
-        if (responseData.isEmpty) {
-          return []; // Kembalikan daftar kosong jika data kosong
-        }
+        
         return responseData.map((e) => PesananKuliahPengganti.fromJson(e)).toList();
       } else if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
         // Kasus ketika server mengirim pesan bahwa tidak ada data
@@ -70,10 +77,10 @@ Future<List<PesananKuliahPengganti>> getDataKuliahPengganti(String user_id) asyn
   }
 }
 
-Future<void> deletePesananKuliahPengganti(String id, String token) async {
+Future<void> deletePesananKuliahPengganti(int id, int id_jadwal, String token, String jamMulai, String jamSelesai) async {
   try {
     await dotenv.load(fileName: "../.env");
-    final env = dotenv.env['KULIAHPENGGANTI'];
+    final env = dotenv.env['KELASPENGGANTI'];
     final url = Uri.parse("$env/delete/$id");
 
     final headers = <String, String>{
@@ -83,9 +90,46 @@ Future<void> deletePesananKuliahPengganti(String id, String token) async {
     };
 
     final response = await http.post(url, headers: headers);
-    update_pinjam(token, id, 2);
-    print(response.body);
+    print(response.statusCode);
     if (response.statusCode == 200) {
+      List<String> jamList = [
+      "07.00",
+      "07.50",
+      "08.40",
+      "09.30",
+      "10.20",
+      "11.10",
+      "12.00",
+      "12.30",
+      "13.20",
+      "14.10",
+      "15.00",
+      "16.20",
+      "17.10",
+      "18.30",
+      "19.20",
+      "20.10",
+      "21.00"
+    ];
+
+    int a = 0, b = 0, c = 0;
+
+    for (var i = 0; i < jamList.length; i++) {
+      if(jamMulai == jamList[i]){
+        a = i;
+      }
+      if(jamSelesai == jamList[i]){
+        b = i;
+        break;
+      }
+    }
+    c = b - a;
+    for (var i = 0; i < c; i++) {
+      
+      print("test");
+      update_pinjam(token, id_jadwal, 2);
+      id_jadwal++;
+    }
       print('Data deleted successfully');
     } else {
       throw Exception('Failed to delete data');
@@ -97,7 +141,7 @@ Future<void> deletePesananKuliahPengganti(String id, String token) async {
 
 Future<PesananKuliahPengganti> update_pinjam(
     String token,
-    String id,
+    int id,
     int id_pesan,
 
   ) async {

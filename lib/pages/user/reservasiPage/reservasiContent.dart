@@ -99,6 +99,17 @@ class _ReservasiContentState extends State<ReservasiContent> {
                 } else if (snapshot.hasData) {
                   // print("Masuk snapshot punya data");
                   final jadwal = snapshot.data!;
+                  List<int> idList = []; // List untuk menyimpan ID
+                  List<int> idPesanList = []; // List untuk menyimpan ID pesan
+                  // Pembentukan list idList dan idPesanList
+                  for (final jadwal_idx in jadwal) {
+                    idList.add(jadwal_idx.id);
+                    idPesanList.add(jadwal_idx.id_pesan);
+                  }
+
+                  // Memanggil fungsi list_id
+                  list_id(idList, idPesanList);
+                  
                   return Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: SingleChildScrollView(
@@ -448,13 +459,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
     for (int i = 0; i < 15; i++) {
       switch (id_pesan.toString()) {
         case "1":
-          buttons.add(
-            const ButtonDipakai(),
-          );
-
-          break;
-        case "2":
-          buttons.add(
+        buttons.add(
             ButtonReservasi(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -474,6 +479,14 @@ class _ReservasiContentState extends State<ReservasiContent> {
               },
             ),
           );
+          
+          break;
+        case "2":
+        buttons.add(
+            const ButtonDipakai(),
+          );
+
+          
 
           break;
         case "3":
@@ -488,4 +501,14 @@ class _ReservasiContentState extends State<ReservasiContent> {
 
     return buttons;
   }
+}
+
+void list_id(List<int> idList, List<int> idPesanList) async {
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+// Menyimpan list ID ke dalam SharedPreferences
+  await prefs.setStringList('idList', idList.map((e) => e.toString()).toList());
+
+  // Menyimpan list ID pesan ke dalam SharedPreferences
+  await prefs.setStringList('idPesanList', idPesanList.map((e) => e.toString()).toList());
 }
