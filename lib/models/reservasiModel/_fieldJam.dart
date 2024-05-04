@@ -238,12 +238,21 @@ import 'package:shared_preferences/shared_preferences.dart';
       );
     }
 
-    void _selectedTime(String selectedTime) {
-      setState(() {
-        widget.jam_selesai = selectedTime;
-      });
-      // Navigator.pop(context);
+    Future<void> _selectedTime(String selectedTime) async {
+    for (int i = waktuDropdown.indexOf(selectedTime) - 1; i >= 0; i--) {
+      if (waktuDropdown[i] == 'Booked') {
+        SharedPreferences srf = await SharedPreferences.getInstance();
+        srf.setBool('booked', true);
+        break;
+      }
     }
+
+    // Set jam_selesai sesuai dengan selectedTime
+    setState(() {
+      widget.jam_selesai = selectedTime;
+    });
+  }
+
 
     List<String> Waktu = [
       "07.00",

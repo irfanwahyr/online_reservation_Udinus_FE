@@ -33,6 +33,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   String? default_kelompok;
   String? default_jam_mulai;
   String? default_jam_selesai;
+  bool isBooked = false;
 
   final TextEditingController nama_dosen = TextEditingController();
   final TextEditingController mata_kuliah = TextEditingController();
@@ -61,6 +62,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     String? default_kelompok = prefs.getString('default_kelompok');
     String? default_jam_mulai = prefs.getString('jam_mulai');
     String? default_jam_selesai = prefs.getString('jam_selesai');
+    bool isBooked = prefs.getBool('booked') ?? false;
 
     setState(() {
       this.nama_lab = nama_lab;
@@ -76,6 +78,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
       this.default_kelompok = default_kelompok;
       this.default_jam_mulai = default_jam_mulai;
       this.default_jam_selesai = default_jam_selesai;
+      this.isBooked = isBooked;
     });
   }
 
@@ -171,11 +174,11 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
           ),
           FieldContainer(
               judul: "Ruangan Dipilih", dataDikirim: nama_lab.toString()),
-          const SizedBox(height: 10), //dataDikirim di ganti dari database wer
+          const SizedBox(height: 10),
           FieldContainer(
             judul: "Tanggal Dipilih",
             dataDikirim: tanggal_mulai.toString(),
-          ), //dataDikirim di ganti dari database wer
+          ),
         ],
       ),
       const SizedBox(
@@ -190,10 +193,10 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             judul: "Jam Dipilih",
             jam_mulai: jam_mulai.toString(),
             jam_selesai: jam_selesai.toString(),
-            onJamSelesaiSelected: (String val) {
-              setState(() {
-                jam_selesai = val;
-              });
+            onJamSelesaiSelected: (String val){
+                setState(() {
+                  jam_selesai = val;
+                });
             },
           ),
           const SizedBox(height: 15),
@@ -207,10 +210,17 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             width: 400,
             child: Center(
               child: HoverButtonPrimary(
-                  text: "Submit",
-                  onPressed: () {
-                    setState(() {
-                      create(
+                text: "Submit",
+                onPressed: isBooked
+                  ? null
+                  : () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      bool isBooked = prefs.getBool('booked') ?? false;
+                      if (isBooked) {
+                        return;
+                      }
+                      setState(() {
+                        create(
                           nama_dosen.text,
                           mata_kuliah.text,
                           kelompok.text,
@@ -227,11 +237,13 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
                           default_mata_kuliah ?? "",
                           default_kelompok ?? "",
                           default_jam_mulai ?? "",
-                          default_jam_selesai ?? "");
-                    });
-                    Navigator.pushReplacementNamed(
-                        context, Reservasi.nameRoute);
-                  }),
+                          default_jam_selesai ?? ""
+                        );
+                      });
+                      Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                    },
+              ),
+
             ),
           ),
         ],

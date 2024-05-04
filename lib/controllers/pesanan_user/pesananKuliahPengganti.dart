@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class PesananKuliahPengganti {
   final int id;
@@ -53,8 +52,6 @@ Future<List<PesananKuliahPengganti>> getDataKuliahPengganti(String user_id) asyn
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['KELASPENGGANTI'];
     final response = await http.get(Uri.parse("$env/$user_id"));
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 404) {
       return []; // Kembalikan daftar kosong jika data kosong
     }
@@ -90,7 +87,6 @@ Future<void> deletePesananKuliahPengganti(int id, int id_jadwal, String token, S
     };
 
     final response = await http.post(url, headers: headers);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       List<String> jamList = [
       "07.00",
@@ -125,12 +121,9 @@ Future<void> deletePesananKuliahPengganti(int id, int id_jadwal, String token, S
     }
     c = b - a;
     for (var i = 0; i < c; i++) {
-      
-      print("test");
-      update_pinjam(token, id_jadwal, 2);
+      update_pinjam(token, id_jadwal, 1);
       id_jadwal++;
     }
-      print('Data deleted successfully');
     } else {
       throw Exception('Failed to delete data');
     }
@@ -158,7 +151,6 @@ Future<PesananKuliahPengganti> update_pinjam(
       'id_pesan': id_pesan,
     })
   );
-  print(response.statusCode);
   if (response.statusCode == 200) {
     return PesananKuliahPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
