@@ -55,20 +55,20 @@ class _ReservasiState extends State<Reservasi>
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Konfirmasi'),
-          content: Text('Apakah Anda yakin ingin logout?'),
+          title: const Text('Konfirmasi'),
+          content: const Text('Apakah Anda yakin ingin logout?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(false); // Tidak
               },
-              child: Text('Tidak'),
+              child: const Text('Tidak'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(true); // Ya
               },
-              child: Text('Ya'),
+              child: const Text('Ya'),
             ),
           ],
         );
@@ -89,7 +89,7 @@ class _ReservasiState extends State<Reservasi>
         children: [
           TabBar(
             controller: _tabController, // Connect TabBar to TabController
-            tabs: [
+            tabs: const [
               Tab(text: 'Reservasi'),
               Tab(text: 'Pesanan'),
             ],
@@ -97,7 +97,7 @@ class _ReservasiState extends State<Reservasi>
           Expanded(
             child: TabBarView(
               controller: _tabController, // Connect TabBarView to TabController
-              children: [
+              children: const [
                 ReservasiContent(),
                 Pesanan(),
               ],

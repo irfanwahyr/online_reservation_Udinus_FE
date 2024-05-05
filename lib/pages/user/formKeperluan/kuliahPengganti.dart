@@ -62,7 +62,6 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
     String? default_kelompok = prefs.getString('default_kelompok');
     String? default_jam_mulai = prefs.getString('jam_mulai');
     String? default_jam_selesai = prefs.getString('jam_selesai');
-    bool isBooked = prefs.getBool('booked') ?? false;
 
     setState(() {
       this.nama_lab = nama_lab;
@@ -78,7 +77,6 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
       this.default_kelompok = default_kelompok;
       this.default_jam_mulai = default_jam_mulai;
       this.default_jam_selesai = default_jam_selesai;
-      this.isBooked = isBooked;
     });
   }
 
@@ -193,7 +191,14 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             judul: "Jam Dipilih",
             jam_mulai: jam_mulai.toString(),
             jam_selesai: jam_selesai.toString(),
-            onJamSelesaiSelected: (String val){
+            onJamSelesaiSelected: (String val) async {
+              SharedPreferences srf = await SharedPreferences.getInstance();
+              bool? booked = srf.getBool('booked') ?? false;
+                if (booked) {
+                  _showConfirmationDialog(context);
+                } else {
+                  srf.setBool('booked', false);
+                }
                 setState(() {
                   jam_selesai = val;
                 });
@@ -211,14 +216,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             child: Center(
               child: HoverButtonPrimary(
                 text: "Submit",
-                onPressed: isBooked
-                  ? null
-                  : () async {
-                      SharedPreferences prefs = await SharedPreferences.getInstance();
-                      bool isBooked = prefs.getBool('booked') ?? false;
-                      if (isBooked) {
-                        return;
-                      }
+                onPressed: () {
                       setState(() {
                         create(
                           nama_dosen.text,
@@ -249,5 +247,27 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
         ],
       ),
     ];
+  }
+
+  Future<bool?> _showConfirmationDialog(BuildContext context) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Maaf'),
+          content: Text('Jadwal dengan jam yang anda pilih tidak bisa'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () async {
+                SharedPreferences srf = await SharedPreferences.getInstance();
+                srf.setBool('booked', false);
+                  Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+              },
+              child: Text('Tutup'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

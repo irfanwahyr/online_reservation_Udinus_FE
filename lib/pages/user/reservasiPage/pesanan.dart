@@ -11,6 +11,7 @@ import 'package:kp2024/models/reservasiModel/_buttonDiterima.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDitolak.dart';
 import 'package:kp2024/models/reservasiModel/_buttonSelesai.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Pesanan extends StatefulWidget {
@@ -43,9 +44,9 @@ class _PesananState extends State<Pesanan> {
       this.user_id = user_id;
       this.token = token;
     });
-    pesanan_kuliah_pengganti = getDataKuliahPengganti(user_id!);
-    pesanan_acara_organisasi = getDataAcaraOrganisasi(user_id!);
-    pesanan_acara_kampus = getDataAcaraKampus(user_id!);
+    pesanan_kuliah_pengganti = getDataKuliahPengganti(user_id);
+    pesanan_acara_organisasi = getDataAcaraOrganisasi(user_id);
+    pesanan_acara_kampus = getDataAcaraKampus(user_id);
   }
   List<String> status = [
     "0",
@@ -318,12 +319,13 @@ class _PesananState extends State<Pesanan> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           ButtonEditKecil(onTap: () {
-                                            print("di edit");
+                                            // print("di edit");
                                           }),
                                           SizedBox(
                                             width: 10,
                                           ),
                                           ButtonDeletedKecil(onTap: (){
+
                                             deletePesananKuliahPengganti(datakuliahpengganti.id, datakuliahpengganti.id_jadwal, token!, datakuliahpengganti.jam_mulai, datakuliahpengganti.jam_selesai);
                                           }),
                                         ],
@@ -481,15 +483,15 @@ class _PesananState extends State<Pesanan> {
                                           SizedBox(
                                             width: 10,
                                           ),
-                                          ButtonDeletedKecil(onTap: (){
-                                            deletePesananAcaraKampus(index.toString(), token!);
+                                          ButtonDeletedKecil(onTap: () async {
+                                            await deletePesananAcaraKampus(index.toString(), token!);
+                                            Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                                           }),
                                         ],
                                       ),
                                     ),
                                   ]);
                                 }
-                                
                               }),
                             ),
                           ),
@@ -677,7 +679,7 @@ class _PesananState extends State<Pesanan> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Footer().buildContainer()
           ],
         ),

@@ -58,7 +58,6 @@ Future<List<PesananKuliahPengganti>> getDataKuliahPengganti(String user_id) asyn
     else if (response.statusCode == 200) {
       final dynamic responseData = json.decode(response.body);
       if (responseData is List) {
-        
         return responseData.map((e) => PesananKuliahPengganti.fromJson(e)).toList();
       } else if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
         // Kasus ketika server mengirim pesan bahwa tidak ada data
