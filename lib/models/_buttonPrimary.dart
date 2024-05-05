@@ -23,17 +23,46 @@ class _HoverButtonPrimaryState extends State<HoverButtonPrimary> {
       onEnter: (event) => onHover(true),
       onExit: (event) => onHover(false),
       child: ElevatedButton(
-        onPressed: widget.onPressed,
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Konfirmasi"),
+                content: Text("Apakah data yang Anda input sudah benar?"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Tutup dialog
+                    },
+                    child: Text("Edit"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Tutup dialog
+                      widget.onPressed
+                          ?.call(); // Panggil onPressed jika tombol Submit ditekan
+                    },
+                    child: Text("Submit"),
+                  ),
+                ],
+              );
+            },
+          );
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: isHovered
               ? Colors.grey.shade300
               : const Color.fromARGB(255, 255, 168, 7),
-          minimumSize: const Size(100, 50), // Sesuaikan dengan ukuran yang diinginkan
+          minimumSize:
+              const Size(100, 50), // Sesuaikan dengan ukuran yang diinginkan
         ),
         child: Text(
           widget.text,
           style: TextStyle(
-              color: isHovered ? const Color.fromARGB(255, 1, 24, 50) : Colors.white,
+              color: isHovered
+                  ? const Color.fromARGB(255, 1, 24, 50)
+                  : Colors.white,
               fontSize: 18),
         ),
       ),
