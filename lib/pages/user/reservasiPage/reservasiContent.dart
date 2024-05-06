@@ -12,6 +12,7 @@ import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReservasiContent extends StatefulWidget {
+  static const nameRoute = 'ReservasiContent';
   const ReservasiContent({Key? key}) : super(key: key);
 
   @override
@@ -58,7 +59,6 @@ class _ReservasiContentState extends State<ReservasiContent> {
       firstDate: firstSelectableDate,
       lastDate: DateTime.utc(2040, 3, 14),
       selectableDayPredicate: (DateTime date) {
-        // Return true if the date is in the future from today
         return date.isAfter(DateTime.now().subtract(Duration(days: 1)));
       },
     );

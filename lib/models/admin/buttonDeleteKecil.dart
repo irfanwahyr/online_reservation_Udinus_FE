@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class ButtonDeletedKecil extends StatelessWidget {
   final VoidCallback? onTap;
@@ -14,24 +15,24 @@ class ButtonDeletedKecil extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Konfirmasi"),
-              content: Text("Apakah Anda yakin ingin membatalkan pesanan?"),
+              title: const Text("Konfirmasi"),
+              content: const Text("Apakah Anda yakin ingin membatalkan pesanan?"),
               actions: [
                 // Tombol Tidak
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Tutup pop-up
                   },
-                  child: Text("Tidak"),
+                  child: const Text("Tidak"),
                 ),
                 // Tombol Ya
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Tutup pop-up
-                    // Panggil fungsi deletePesananKuliahPengganti jika Ya ditekan
                     onTap?.call();
+                    Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                   },
-                  child: Text("Ya"),
+                  child: const Text("Ya"),
                 ),
               ],
             );
@@ -41,11 +42,11 @@ class ButtonDeletedKecil extends StatelessWidget {
       child: Container(
         width: 25.0,
         height: 25.0,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 244, 54, 54),
           shape: BoxShape.circle,
         ),
-        child: Center(
+        child: const Center(
           child: Icon(
             Icons.delete,
             size: 18,

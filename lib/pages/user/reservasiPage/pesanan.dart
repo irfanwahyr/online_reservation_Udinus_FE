@@ -399,7 +399,7 @@ class _PesananState extends State<Pesanan> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           ButtonEditKecil(onTap: () {
-                                            print("di edit");
+                                            // print("di edit");
                                           }),
                                           SizedBox(
                                             width: 10,
@@ -485,7 +485,6 @@ class _PesananState extends State<Pesanan> {
                                           ),
                                           ButtonDeletedKecil(onTap: () async {
                                             await deletePesananAcaraKampus(index.toString(), token!);
-                                            Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                                           }),
                                         ],
                                       ),
@@ -721,7 +720,6 @@ class _PesananState extends State<Pesanan> {
                 ),
                 ButtonDeletedKecil(
                   onTap: () {
-                    print("Hapus");
                   },
                 )
               ],

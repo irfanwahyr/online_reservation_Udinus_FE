@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasiContent.dart';
 
 class HoverButtonPrimary extends StatefulWidget {
   final String text;
@@ -28,22 +30,23 @@ class _HoverButtonPrimaryState extends State<HoverButtonPrimary> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Konfirmasi"),
-                content: Text("Apakah data yang Anda input sudah benar?"),
+                title: const Text("Konfirmasi"),
+                content: const Text("Apakah data yang Anda input sudah benar?"),
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop(); // Tutup dialog
+                      Navigator.of(context).pop();
                     },
-                    child: Text("Edit"),
+                    child: const Text("Edit"),
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop(); // Tutup dialog
+                      Navigator.of(context).pop();
                       widget.onPressed
-                          ?.call(); // Panggil onPressed jika tombol Submit ditekan
+                          ?.call();
+                      Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
                     },
-                    child: Text("Submit"),
+                    child: const Text("Submit"),
                   ),
                 ],
               );
@@ -55,7 +58,7 @@ class _HoverButtonPrimaryState extends State<HoverButtonPrimary> {
               ? Colors.grey.shade300
               : const Color.fromARGB(255, 255, 168, 7),
           minimumSize:
-              const Size(100, 50), // Sesuaikan dengan ukuran yang diinginkan
+              const Size(100, 50),
         ),
         child: Text(
           widget.text,
