@@ -68,268 +68,557 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
               );
             } else {
               int _no = 0; // Nomor yang akan diincrement otomatis
-              return Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.95,
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    color: Colors.green[50],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Scrollbar(
-                      controller: controller_2,
-                      thumbVisibility: true,
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                      child: SingleChildScrollView(
-                        controller: controller_2,
-                        scrollDirection: Axis.horizontal,
-                        child: SingleChildScrollView(
-                          controller: controller,
-                          child: Center(
-                            child: DataTable(
-                              columns: const <DataColumn>[
-                                DataColumn(
-                                  label: Text(
-                                    "No",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Nama Dosen",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Mata Kuliah",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "kelompok",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Ruang",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "No Whatsapp",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Tanggal Pinjam",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Jam Mulai",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Jam Selesai",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Keterangan",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Text(
-                                    "Opsi",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              rows: List.generate(listkuliahPengganti.length,
-                                  (index) {
-                                final data_kuliah_pengganti =
-                                    listkuliahPengganti[index];
-                                int id = data_kuliah_pengganti.id;
-                                String nama_dosen =
-                                    data_kuliah_pengganti.nama_dosen;
-                                String mata_kuliah =
-                                    data_kuliah_pengganti.mata_kuliah;
-                                String kelompok =
-                                    data_kuliah_pengganti.kelompok;
-                                String nama_lab =
-                                    data_kuliah_pengganti.nama_lab;
-                                String no_whatsapp =
-                                    data_kuliah_pengganti.no_whatsapp;
-                                String tanggal_pinjam =
-                                    data_kuliah_pengganti.tanggal_mulai;
-                                String jam_mulai =
-                                    data_kuliah_pengganti.jam_mulai;
-                                String jam_selesai =
-                                    data_kuliah_pengganti.jam_selesai;
-                                String keterangan =
-                                    data_kuliah_pengganti.keterangan;
-                                _no++;
-                                return DataRow(cells: <DataCell>[
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        _no.toString(),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        nama_dosen,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        mata_kuliah,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        kelompok,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        nama_lab,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        no_whatsapp,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        tanggal_pinjam,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        jam_mulai,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        jam_selesai,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Center(
-                                      child: Text(
-                                        keterangan,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        ButtonAcc(),
-                                        SizedBox(
-                                          width: 10,
+              return SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        "DI PROSES",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.95,
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
+                          color: Colors.green[50],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Scrollbar(
+                            controller: controller_2,
+                            thumbVisibility: true,
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: SingleChildScrollView(
+                                controller: controller_2,
+                                scrollDirection: Axis.horizontal,
+                                child: SingleChildScrollView(
+                                  controller: controller,
+                                  child: Center(
+                                    child: DataTable(
+                                      columns: const <DataColumn>[
+                                        DataColumn(
+                                          label: Text(
+                                            "No",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
                                         ),
-                                        ButtonDenied(),
+                                        DataColumn(
+                                          label: Text(
+                                            "Nama Dosen",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Mata Kuliah",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "kelompok",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Ruang",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "No Whatsapp",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Tanggal Pinjam",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Jam Mulai",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Jam Selesai",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Keterangan",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Opsi",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
                                       ],
+                                      rows: List.generate(
+                                          listkuliahPengganti.length, (index) {
+                                        final data_kuliah_pengganti =
+                                            listkuliahPengganti[index];
+                                        int id = data_kuliah_pengganti.id;
+                                        String nama_dosen =
+                                            data_kuliah_pengganti.nama_dosen;
+                                        String mata_kuliah =
+                                            data_kuliah_pengganti.mata_kuliah;
+                                        String kelompok =
+                                            data_kuliah_pengganti.kelompok;
+                                        String nama_lab =
+                                            data_kuliah_pengganti.nama_lab;
+                                        String no_whatsapp =
+                                            data_kuliah_pengganti.no_whatsapp;
+                                        String tanggal_pinjam =
+                                            data_kuliah_pengganti.tanggal_mulai;
+                                        String jam_mulai =
+                                            data_kuliah_pengganti.jam_mulai;
+                                        String jam_selesai =
+                                            data_kuliah_pengganti.jam_selesai;
+                                        String keterangan =
+                                            data_kuliah_pengganti.keterangan;
+                                        _no++;
+                                        return DataRow(cells: <DataCell>[
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                _no.toString(),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                nama_dosen,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                mata_kuliah,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                kelompok,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                nama_lab,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                no_whatsapp,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                tanggal_pinjam,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                jam_mulai,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                jam_selesai,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                keterangan,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                ButtonAcc(),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                ButtonDenied(),
+                                              ],
+                                            ),
+                                          ),
+                                        ]);
+                                      }),
                                     ),
                                   ),
-                                ]);
-                              }),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                      SizedBox(height: 20),
+                      Text(
+                        "SELESAI",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.95,
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
+                          color: Colors.green[50],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Scrollbar(
+                            controller: controller_2,
+                            thumbVisibility: true,
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: SingleChildScrollView(
+                                controller: controller_2,
+                                scrollDirection: Axis.horizontal,
+                                child: SingleChildScrollView(
+                                  controller: controller,
+                                  child: Center(
+                                    child: DataTable(
+                                      columns: const <DataColumn>[
+                                        DataColumn(
+                                          label: Text(
+                                            "No",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Nama Dosen",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Mata Kuliah",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "kelompok",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Ruang",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "No Whatsapp",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Tanggal Pinjam",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Jam Mulai",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Jam Selesai",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Keterangan",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Status",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        DataColumn(
+                                          label: Text(
+                                            "Alasan",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                      rows: List.generate(
+                                          listkuliahPengganti.length, (index) {
+                                        final data_kuliah_pengganti =
+                                            listkuliahPengganti[index];
+                                        int id = data_kuliah_pengganti.id;
+                                        String nama_dosen =
+                                            data_kuliah_pengganti.nama_dosen;
+                                        String mata_kuliah =
+                                            data_kuliah_pengganti.mata_kuliah;
+                                        String kelompok =
+                                            data_kuliah_pengganti.kelompok;
+                                        String nama_lab =
+                                            data_kuliah_pengganti.nama_lab;
+                                        String no_whatsapp =
+                                            data_kuliah_pengganti.no_whatsapp;
+                                        String tanggal_pinjam =
+                                            data_kuliah_pengganti.tanggal_mulai;
+                                        String jam_mulai =
+                                            data_kuliah_pengganti.jam_mulai;
+                                        String jam_selesai =
+                                            data_kuliah_pengganti.jam_selesai;
+                                        String keterangan =
+                                            data_kuliah_pengganti.keterangan;
+                                        _no++;
+                                        return DataRow(cells: <DataCell>[
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                _no.toString(),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                nama_dosen,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                mata_kuliah,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                kelompok,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                nama_lab,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                no_whatsapp,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                tanggal_pinjam,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                jam_mulai,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                jam_selesai,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text(
+                                                keterangan,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text("Diterima"),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Center(
+                                              child: Text("Alasan"),
+                                            ),
+                                          ),
+                                        ]);
+                                      }),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
               );
             }
           }

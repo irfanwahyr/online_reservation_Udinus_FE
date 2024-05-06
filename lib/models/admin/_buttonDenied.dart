@@ -27,29 +27,44 @@ class ButtonDenied extends StatelessWidget {
   }
 }
 
-Future<bool?> _showConfirmationDialog(BuildContext context, bool pilihan) async {
-    return showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Konfirmasi'),
-          content: pilihan ? const Text('Apakah Anda Ingin Konfirmasi Peminjaman?') : const Text('Apakah Anda Ingin Menolak Peminjaman?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false); // Tidak
-              },
-              child: const Text('Tidak'),
+Future<bool?> _showConfirmationDialog(
+    BuildContext context, bool pilihan) async {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Apakah anda yakin untuk menolak pesanan ini ?'),
+        content: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.purple),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Berikan alasan',
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
             ),
-            TextButton(
-              onPressed: () {
-                
-                Navigator.of(context).pop(true); // Ya
-              },
-              child: const Text('Ya'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+            style: TextStyle(color: Colors.black),
+            maxLines: null, // Memungkinkan multiple lines
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(false); // Tidak
+            },
+            child: const Text('Tidak'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(true); // Ya
+            },
+            child: const Text('Ya'),
+          ),
+        ],
+      );
+    },
+  );
+}
