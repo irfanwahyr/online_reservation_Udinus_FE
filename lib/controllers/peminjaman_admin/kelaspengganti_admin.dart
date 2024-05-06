@@ -13,6 +13,7 @@ class KelasPenggantiAdmin {
   final String jam_mulai;
   final String jam_selesai;
   final String keterangan;
+  final int id_user;
 
   KelasPenggantiAdmin({
     required this.id,
@@ -25,6 +26,7 @@ class KelasPenggantiAdmin {
     required this.jam_mulai,
     required this.jam_selesai,
     required this.keterangan,
+    required this.id_user,
   });
 
   factory KelasPenggantiAdmin.fromJson(Map<String, dynamic> json) {
@@ -39,6 +41,7 @@ class KelasPenggantiAdmin {
       jam_mulai: json['jam_mulai'] ?? "kosong",
       jam_selesai: json['jam_selesai'] ?? "kosong",
       keterangan: json['keterangan'] ?? "kosong",
+      id_user: json['id_user'] ?? 0,
     );
   }
 }
