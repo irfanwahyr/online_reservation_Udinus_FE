@@ -444,7 +444,7 @@ class _AcaraOrganisasiAdminState extends State<AcaraKampusAdmin> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              ButtonAcc(),
+                                              // ButtonAcc(),
                                               SizedBox(width: 10),
                                               ButtonDenied(),
                                             ],

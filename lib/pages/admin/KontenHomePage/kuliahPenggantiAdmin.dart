@@ -235,6 +235,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                             data_kuliah_pengganti.jam_selesai;
                                         String keterangan =
                                             data_kuliah_pengganti.keterangan;
+                                            int id_user = data_kuliah_pengganti.id_user;
                                         _no++;
                                         return DataRow(cells: <DataCell>[
                                           DataCell(
@@ -322,7 +323,17 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
-                                                ButtonAcc(),
+                                                ButtonAcc(
+                                                  token: token!, 
+                                                  nama_acara: "Kuliah Pengganti",
+                                                  nama_lab: nama_lab,
+                                                  tanggal_mulai: tanggal_pinjam, 
+                                                  tanggal_selesai: tanggal_pinjam, 
+                                                  jam_mulai: jam_mulai, 
+                                                  jam_selesai: 
+                                                  jam_selesai, 
+                                                  alasan: "Diterima",
+                                                  id_user: id_user),
                                                 SizedBox(
                                                   width: 10,
                                                 ),
@@ -628,36 +639,30 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
     );
   }
 
-  void _showEditFormPopup(
+  void _showConfirmPopUp(
     String token,
-    int id,
-    String nama_dosen,
-    String mata_kuliah,
-    String kelompok,
+    String nama_acara,
     String nama_lab,
-    String no_whatsapp,
-    String tanggal_pinjam,
+    String tanggal_mulai,
+    String tanggal_selesai,
     String jam_mulai,
     String jam_selesai,
-    String keterangan,
+    String alasan,
+    int id_user,
   ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return EditKuliahPengganti(
+        return ButtonAcc(
           token: token,
-          id: id,
-          nama_dosen: nama_dosen,
-          mata_kuliah: mata_kuliah,
-          kelompok: kelompok,
+          nama_acara: nama_acara,
           nama_lab: nama_lab,
-          no_whatsapp: no_whatsapp,
-          tanggal_pinjam: tanggal_pinjam,
+          tanggal_mulai: tanggal_mulai,
+          tanggal_selesai: tanggal_selesai,
           jam_mulai: jam_mulai,
           jam_selesai: jam_selesai,
-          keterangan: keterangan,
-          // Tambahkan parameter futureDataEditKuliahPengganti untuk memperbarui data setelah edit
-          futureDataEditKuliahPengganti: fetchdata(),
+          alasan: alasan,
+          id_user: id_user,
         );
       },
     );
