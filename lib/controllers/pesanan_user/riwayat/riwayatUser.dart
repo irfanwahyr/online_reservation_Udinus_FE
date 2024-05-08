@@ -11,6 +11,7 @@ class RiwayatUser {
   final String jam_mulai;
   final String jam_selesai;
   final bool status;
+  final String alasan;
   final int id_user;
 
   RiwayatUser({
@@ -22,6 +23,7 @@ class RiwayatUser {
     required this.jam_mulai,
     required this.jam_selesai,
     required this.status,
+    required this.alasan,
     required this.id_user,
   });
 
@@ -36,6 +38,7 @@ class RiwayatUser {
       jam_selesai: json['jam_selesai'] ?? 'kosong',
       status: json['status'] ?? false,
       id_user: json['id_user'] ?? 0,
+      alasan: json['alasan'] ?? 'kosong',
     );
   }
 }
@@ -85,16 +88,58 @@ Future<RiwayatUser> create(
   }
 
 
-  Future<RiwayatUser> getDataRiwayatByid(int id) async {
+  Future<List<RiwayatUser>> getDataRiwayatUser(String user_id) async {
+  try {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RIWAYAT'];
-    final response = await http.post(
-      Uri.parse("$env/$id"),
-    );
-
-    if (response.statusCode == 201){
-      return RiwayatUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-    } else {
-      throw Exception('Failed to load');
+    final response = await http.get(Uri.parse("$env/$user_id"));
+    print(response.body);
+    // print(response.statusCode);
+    if (response.statusCode == 404) {
+      return []; // Kembalikan daftar kosong jika data kosong
     }
+    else if (response.statusCode == 200) {
+      final dynamic responseData = json.decode(response.body);
+      if (responseData is List) {
+        return responseData.map((e) => RiwayatUser.fromJson(e)).toList();
+      } else if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
+        // Kasus ketika server mengirim pesan bahwa tidak ada data
+        return [];
+      } else {
+        throw Exception('Invalid data format received');
+      }
+    } else {
+      throw Exception('Failed to load data');
+    }
+  } catch (error) {
+    throw Exception('Failed to load data');
   }
+}
+
+Future<List<RiwayatUser>> getDataAll() async {
+  try {
+    await dotenv.load(fileName: "../.env");
+    final env = dotenv.env['RIWAYAT'];
+    final response = await http.get(Uri.parse("$env"));
+    print(response.body);
+    // print(response.statusCode);
+    if (response.statusCode == 404) {
+      return []; // Kembalikan daftar kosong jika data kosong
+    }
+    else if (response.statusCode == 200) {
+      final dynamic responseData = json.decode(response.body);
+      if (responseData is List) {
+        return responseData.map((e) => RiwayatUser.fromJson(e)).toList();
+      } else if (responseData is Map<String, dynamic> && responseData.containsKey('message')) {
+        // Kasus ketika server mengirim pesan bahwa tidak ada data
+        return [];
+      } else {
+        throw Exception('Invalid data format received');
+      }
+    } else {
+      throw Exception('Failed to load data');
+    }
+  } catch (error) {
+    throw Exception('Failed to load data');
+  }
+}

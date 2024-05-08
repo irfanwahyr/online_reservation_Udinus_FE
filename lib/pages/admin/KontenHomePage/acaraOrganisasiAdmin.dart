@@ -451,7 +451,7 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                                             children: [
                                               // ButtonAcc(),
                                               SizedBox(width: 10),
-                                              ButtonDenied(),
+                                              // ButtonDenied(),
                                             ],
                                           )),
                                         ]);

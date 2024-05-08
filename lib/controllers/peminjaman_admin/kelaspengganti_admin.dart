@@ -72,8 +72,6 @@ Future<List<KelasPenggantiAdmin>> fetchdata() async {
   }
 }
 
-
-
 Future<KelasPenggantiAdmin> update(String token, int id, String nama_dosen, String mata_kuliah, String kelompok, 
                                         String no_whatsapp, String nama_lab, String tanggal_mulai, String jam_mulai, 
                                         String jam_selesai, String keterangan) async {
@@ -102,5 +100,29 @@ Future<KelasPenggantiAdmin> update(String token, int id, String nama_dosen, Stri
     return KelasPenggantiAdmin.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
     throw Exception('Failed to load');
+  }
+}
+
+Future<void> deleteDataKelasPengganti(String id, String token) async {
+  try {
+    await dotenv.load(fileName: "../.env");
+    final env = dotenv.env['KELASPENGGANTI'];
+    final url = Uri.parse("$env/delete/$id");
+
+    final headers = <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    final response = await http.post(url, headers: headers);
+    print(response.body);
+    if (response.statusCode == 200) {
+      print('Data deleted successfully');
+    } else {
+      throw Exception('Failed to delete data');
+    }
+  } catch (error) {
+    throw Exception('Failed to delete data');
   }
 }

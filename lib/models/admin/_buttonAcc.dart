@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 
 class ButtonAcc extends StatefulWidget {
-  const ButtonAcc({super.key, 
-  required this.token, 
-  required this.nama_acara, 
-  required this.nama_lab, 
-  required this.tanggal_mulai, 
-  required this.tanggal_selesai, 
-  required this.jam_mulai, 
-  required this.jam_selesai, 
-  required this.alasan, 
-  required this.id_user});
-
+  final int id;
   final String token;
   final String nama_acara;
   final String nama_lab;
@@ -23,6 +14,19 @@ class ButtonAcc extends StatefulWidget {
   final String alasan;
   final int id_user;
 
+  const ButtonAcc({super.key, 
+  required this.id,
+  required this.token, 
+  required this.nama_acara, 
+  required this.nama_lab, 
+  required this.tanggal_mulai, 
+  required this.tanggal_selesai, 
+  required this.jam_mulai, 
+  required this.jam_selesai, 
+  required this.alasan, 
+  required this.id_user});
+
+  
   @override
   State<ButtonAcc> createState() => _ButtonAccState();
 }
@@ -67,6 +71,7 @@ class _ButtonAccState extends State<ButtonAcc> {
             ),
             TextButton(
               onPressed: () {
+                deleteDataKelasPengganti(widget.id.toString(), widget.token);
                 _isAcc = true;
                 create(widget.token, widget.id_user, widget.nama_lab, widget.nama_acara, widget.tanggal_mulai, widget.tanggal_selesai, widget.jam_mulai, widget.jam_selesai, _isAcc, widget.alasan);
                 Navigator.of(context).pop(true); // Ya

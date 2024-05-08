@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ButtonAlasan extends StatelessWidget {
+class ButtonAlasan extends StatefulWidget {
   final String alasan;
   ButtonAlasan({Key? key, required this.alasan}) : super(key: key);
 
+  @override
+  State<ButtonAlasan> createState() => _ButtonAlasanState();
+}
+
+class _ButtonAlasanState extends State<ButtonAlasan> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -13,8 +18,8 @@ class ButtonAlasan extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text("Alasan"),
-              content: Text(alasan),
+              title: const Text("Alasan di Tolak"),
+              content: Text(widget.alasan),
               actions: [
                 TextButton(
                   onPressed: () {

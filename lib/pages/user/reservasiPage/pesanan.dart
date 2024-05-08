@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/pesanan_user/pesananAcaraKampus.dart';
 import 'package:kp2024/controllers/pesanan_user/pesananAcaraOrganisasi.dart';
 import 'package:kp2024/controllers/pesanan_user/pesananKuliahPengganti.dart';
+import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 import 'package:kp2024/models/_heading2.dart';
 import 'package:kp2024/models/admin/_buttonAcc.dart';
 import 'package:kp2024/models/admin/_buttonDenied.dart';
 import 'package:kp2024/models/admin/_buttonEditKecil.dart';
 import 'package:kp2024/models/admin/buttonDeleteKecil.dart';
+import 'package:kp2024/models/buttonAlasan.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDiterima.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDitolak.dart';
 import 'package:kp2024/models/reservasiModel/_buttonSelesai.dart';
@@ -27,6 +29,8 @@ class _PesananState extends State<Pesanan> {
   Future<List<PesananKuliahPengganti>> pesanan_kuliah_pengganti = getDataKuliahPengganti("");
   Future<List<PesananAcaraOrganisasi>> pesanan_acara_organisasi = getDataAcaraOrganisasi("");
   Future<List<PesananAcaraKampus>> pesanan_acara_kampus = getDataAcaraKampus("");
+  Future<List<RiwayatUser>> riwayat_user = getDataRiwayatUser("");
+
   String? user_id = "";
   String? token;
 
@@ -47,6 +51,7 @@ class _PesananState extends State<Pesanan> {
     pesanan_kuliah_pengganti = getDataKuliahPengganti(user_id);
     pesanan_acara_organisasi = getDataAcaraOrganisasi(user_id);
     pesanan_acara_kampus = getDataAcaraKampus(user_id);
+    riwayat_user = getDataRiwayatUser(user_id);
   }
   List<String> status = [
     "0",
@@ -72,7 +77,8 @@ class _PesananState extends State<Pesanan> {
         future: Future.wait([
           pesanan_kuliah_pengganti,
           pesanan_acara_organisasi,
-          pesanan_acara_kampus
+          pesanan_acara_kampus,
+          riwayat_user,
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -88,6 +94,7 @@ class _PesananState extends State<Pesanan> {
             final listkuliah_pengganti = snapshot.data![0];
             final listacara_organisasi = snapshot.data![1];
             final listacara_kampus = snapshot.data![2];
+            final listriwayat_user = snapshot.data![3];
 
             final jumlahKuliahPengganti = (listkuliah_pengganti as List).length;
             final jumlahAcaraOrganisasi = (listacara_organisasi as List).length;
@@ -318,12 +325,12 @@ class _PesananState extends State<Pesanan> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          ButtonEditKecil(onTap: () {
-                                            // print("di edit");
-                                          }),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
+                                          // ButtonEditKecil(onTap: () {
+                                          //   // print("di edit");
+                                          // }),
+                                          // SizedBox(
+                                          //   width: 10,
+                                          // ),
                                           ButtonDeletedKecil(onTap: (){
 
                                             deletePesananKuliahPengganti(datakuliahpengganti.id, datakuliahpengganti.id_jadwal, token!, datakuliahpengganti.jam_mulai, datakuliahpengganti.jam_selesai);
@@ -477,12 +484,12 @@ class _PesananState extends State<Pesanan> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          ButtonEditKecil(onTap: () {
-                                            print("di edit");
-                                          }),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
+                                          // ButtonEditKecil(onTap: () {
+                                          //   print("di edit");
+                                          // }),
+                                          // SizedBox(
+                                          //   width: 10,
+                                          // ),
                                           ButtonDeletedKecil(onTap: () async {
                                             await deletePesananAcaraKampus(index.toString(), token!);
                                           }),
@@ -587,20 +594,6 @@ class _PesananState extends State<Pesanan> {
                                   label: Expanded(
                                     child: Center(
                                       child: Text(
-                                        "Acara",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn(
-                                  label: Expanded(
-                                    child: Center(
-                                      child: Text(
                                         "Tanggal Mulai",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -667,8 +660,99 @@ class _PesananState extends State<Pesanan> {
                                     ),
                                   ),
                                 ),
+                                DataColumn(
+                                  label: Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        "Alasan",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
-                              rows: _generateDummyData2(),
+                              rows: List.generate(listriwayat_user.length, (index) {
+                                final data_riwayat_user = listriwayat_user[index];
+                                String keperluan = data_riwayat_user.nama_acara;
+                                String nama_lab = data_riwayat_user.nama_lab;
+                                String tanggal_mulai = data_riwayat_user.tanggal_mulai;
+                                String tanggal_selesai = data_riwayat_user.tanggal_selesai;
+                                String jam_mulai = data_riwayat_user.jam_mulai;
+                                String jam_selesai = data_riwayat_user.jam_selesai;
+                                String alasan = data_riwayat_user.alasan;
+                                return DataRow(cells: <DataCell>[
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              _no.toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              keperluan,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              nama_lab,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              tanggal_mulai,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              tanggal_selesai,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              jam_mulai,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(
+                                          Center(
+                                            child: Text(
+                                              jam_selesai,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                        DataCell(Row(
+                                          children: [
+                                            data_riwayat_user.status == true ? ButtonDiterima() : ButtonDitolak(),
+                                          ],
+                                        )),
+                                        DataCell(
+                                          Center(
+                                            child: ButtonAlasan(alasan: alasan),
+                                          ),
+                                        )
+                                ]);
+                              })
                             ),
                           ),
                         ),
@@ -690,78 +774,5 @@ class _PesananState extends State<Pesanan> {
         },
       ),
     );
-  }
-
-  List<DataRow> _generateDummyData() {
-    int _no = 1;
-    List<DataRow> dummyData = [];
-
-    for (int i = 0; i < 5; i++) {
-      dummyData.add(
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text(_no.toString())),
-            DataCell(Text('Keperluan $i')),
-            DataCell(Text('Acara $i')),
-            DataCell(Text('Nama Lab $i')),
-            DataCell(Text('Tgl Mulai $i')),
-            DataCell(Text('Tgl Selesai $i')),
-            DataCell(Text('Jam Mulai $i')),
-            DataCell(Text('Jam Selesai $i')),
-            DataCell(Row(
-              children: [
-                ButtonEditKecil(
-                  onTap: () {
-                    print("di edit");
-                  },
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                ButtonDeletedKecil(
-                  onTap: () {
-                  },
-                )
-              ],
-            )),
-          ],
-        ),
-      );
-
-      _no++;
-    }
-
-    return dummyData;
-  }
-
-  List<DataRow> _generateDummyData2() {
-    int _no = 1;
-    List<DataRow> dummyData = [];
-
-    for (int j = 0; j < 5; j++) {
-      dummyData.add(
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text(_no.toString())),
-            DataCell(Text('Keperluan $j')),
-            DataCell(Text('Acara $j')),
-            DataCell(Text('Nama Lab $j')),
-            DataCell(Text('Tgl Mulai $j')),
-            DataCell(Text('Tgl Selesai $j')),
-            DataCell(Text('Jam Mulai $j')),
-            DataCell(Text('Jam Selesai $j')),
-            DataCell(Row(
-              children: [
-                status[j] == "0" ? ButtonDiterima() : ButtonDitolak(),
-              ],
-            )),
-          ],
-        ),
-      );
-
-      _no++;
-    }
-
-    return dummyData;
   }
 }
