@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
+import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 
-class ButtonDenied extends StatelessWidget {
-  const ButtonDenied({super.key});
+class ButtonDenied extends StatefulWidget {
+  final int id;
+  final String token;
+  final String nama_acara;
+  final String nama_lab;
+  final String tanggal_mulai;
+  final String tanggal_selesai;
+  final String jam_mulai;
+  final String jam_selesai;
+  final int id_user;
+  const ButtonDenied({
+    super.key,
+    required this.id,
+    required this.token,
+    required this.nama_acara,
+    required this.nama_lab,
+    required this.tanggal_mulai,
+    required this.tanggal_selesai,
+    required this.jam_mulai,
+    required this.jam_selesai,
+    required this.id_user,
+    });
 
+  @override
+  State<ButtonDenied> createState() => _ButtonDeniedState();
+}
+
+class _ButtonDeniedState extends State<ButtonDenied> {
+  bool _isAcc = false;
+  TextEditingController alasan_controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -25,10 +54,7 @@ class ButtonDenied extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<bool?> _showConfirmationDialog(
-    BuildContext context, bool pilihan) async {
+  Future<bool?> _showConfirmationDialog(BuildContext context, bool pilihan) async {
   return showDialog<bool>(
     context: context,
     builder: (context) {
@@ -41,6 +67,7 @@ Future<bool?> _showConfirmationDialog(
           ),
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: TextField(
+            controller: alasan_controller,
             decoration: InputDecoration(
               hintText: 'Berikan alasan',
               hintStyle: TextStyle(color: Colors.grey),
@@ -59,6 +86,21 @@ Future<bool?> _showConfirmationDialog(
           ),
           TextButton(
             onPressed: () {
+              deleteDataKelasPengganti(widget.id.toString(), widget.token);
+              _isAcc = false;
+              create(
+                widget.token,
+                widget.id_user,
+                widget.nama_lab,
+                widget.nama_acara,
+                widget.tanggal_mulai,
+                widget.tanggal_selesai,
+                widget.jam_mulai,
+                widget.jam_selesai,
+                _isAcc,
+                alasan_controller.text,
+                
+              );
               Navigator.of(context).pop(true); // Ya
             },
             child: const Text('Ya'),
@@ -68,3 +110,6 @@ Future<bool?> _showConfirmationDialog(
     },
   );
 }
+}
+
+
