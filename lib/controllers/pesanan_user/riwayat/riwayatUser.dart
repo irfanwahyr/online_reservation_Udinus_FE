@@ -13,6 +13,7 @@ class RiwayatUser {
   final bool status;
   final String alasan;
   final int id_user;
+  final int id_jadwal;
 
   RiwayatUser({
     required this.id,
@@ -25,6 +26,7 @@ class RiwayatUser {
     required this.status,
     required this.alasan,
     required this.id_user,
+    required this.id_jadwal,
   });
 
   factory RiwayatUser.fromJson(Map<String,dynamic> json) {
@@ -39,12 +41,13 @@ class RiwayatUser {
       status: json['status'] ?? false,
       id_user: json['id_user'] ?? 0,
       alasan: json['alasan'] ?? 'kosong',
+      id_jadwal: json['id_jadwal'] ?? 0,
     );
   }
 }
 
 
-Future<RiwayatUser> create(
+Future<RiwayatUser> create_riwayat(
   String token,
   int id_user,
   String nama_lab,
@@ -54,7 +57,8 @@ Future<RiwayatUser> create(
   String jam_mulai,
   String jam_selesai,
   bool status,
-  String alasan
+  String alasan,
+  int id_jadwal,
   ) async{
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RIWAYAT'];
@@ -75,6 +79,7 @@ Future<RiwayatUser> create(
         'jam_selesai': jam_selesai,
         'status': status,
         'alasan': alasan,
+        'id_jadwal': id_jadwal,
       })
     );
     print(response.body);
@@ -121,7 +126,7 @@ Future<List<RiwayatUser>> getDataAll() async {
     await dotenv.load(fileName: "../.env");
     final env = dotenv.env['RIWAYAT'];
     final response = await http.get(Uri.parse("$env"));
-    print(response.body);
+    // print(response.body);
     // print(response.statusCode);
     if (response.statusCode == 404) {
       return []; // Kembalikan daftar kosong jika data kosong
