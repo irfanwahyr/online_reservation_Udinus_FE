@@ -88,7 +88,7 @@ Future<ShowJadwalMingguanAdmin> update(
 
     final body = jsonEncode({
       'id_hari': id_hari,
-      'id_pesan': id_pesan,
+      'id_pesan': 2,
       'mata_kuliah': mata_kuliah,
       'kelompok': kelompok,
       'jam_mulai': jam_mulai,

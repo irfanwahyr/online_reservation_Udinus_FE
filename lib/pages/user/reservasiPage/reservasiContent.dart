@@ -52,12 +52,12 @@ class _ReservasiContentState extends State<ReservasiContent> {
 
   Future<void> _selectDate(BuildContext context) async {
     DateTime firstSelectableDate = DateTime.now();
-
+    
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: tanggalYangDipilih,
       firstDate: firstSelectableDate,
-      lastDate: DateTime.utc(2040, 3, 14),
+      lastDate: DateTime.now().add(Duration(days: 6)),
       selectableDayPredicate: (DateTime date) {
         return date.isAfter(DateTime.now().subtract(Duration(days: 1)));
       },
@@ -66,9 +66,15 @@ class _ReservasiContentState extends State<ReservasiContent> {
     if (pickedDate != null && pickedDate != today) {
       setState(() {
         tanggalYangDipilih = pickedDate;
-        // Memanggil fetchdata() saat tanggal diubah
-        listJadwal =
-            fetchdata(pickedDate.weekday.toString(), labName.toString());
+        int weekNumber = ((pickedDate.day + 6) / 7).floor();
+        print("Asli | Hari ke = " + pickedDate.weekday.toString());
+        int after = pickedDate.weekday - 1;
+        print("After | Hari ke = " + after.toString());
+        // print("Tanggal = " + pickedDate.day.toString());
+        // print("Bulan ke = " + pickedDate.month.toString());
+        // print("Minggu ke = " + weekNumber.toString());
+        // print(pickedDate.)
+        listJadwal = fetchdata(pickedDate.weekday.toString(), labName.toString());
       });
     }
   }
