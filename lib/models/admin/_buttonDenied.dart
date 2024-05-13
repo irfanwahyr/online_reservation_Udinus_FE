@@ -12,6 +12,8 @@ class ButtonDenied extends StatefulWidget {
   final String jam_mulai;
   final String jam_selesai;
   final int id_user;
+  final int id_jadwal;
+
   const ButtonDenied({
     super.key,
     required this.id,
@@ -23,6 +25,7 @@ class ButtonDenied extends StatefulWidget {
     required this.jam_mulai,
     required this.jam_selesai,
     required this.id_user,
+    required this.id_jadwal,
     });
 
   @override
@@ -88,7 +91,7 @@ class _ButtonDeniedState extends State<ButtonDenied> {
             onPressed: () {
               deleteDataKelasPengganti(widget.id.toString(), widget.token);
               _isAcc = false;
-              create(
+              create_riwayat(
                 widget.token,
                 widget.id_user,
                 widget.nama_lab,
@@ -99,6 +102,7 @@ class _ButtonDeniedState extends State<ButtonDenied> {
                 widget.jam_selesai,
                 _isAcc,
                 alasan_controller.text,
+                widget.id_jadwal,
                 
               );
               Navigator.of(context).pop(true); // Ya

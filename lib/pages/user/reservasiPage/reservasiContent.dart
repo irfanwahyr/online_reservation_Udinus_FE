@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kp2024/controllers/jadwal/show_jadwal.dart';
+import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 import 'package:kp2024/models/_heading6.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDipakai.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDiproses.dart';
@@ -10,6 +11,8 @@ import 'package:kp2024/pages/user/reservasiPage/detailLabPopUp.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../controllers/user_form/kelas_pengganti.dart';
 
 class ReservasiContent extends StatefulWidget {
   static const nameRoute = 'ReservasiContent';
@@ -22,6 +25,7 @@ class ReservasiContent extends StatefulWidget {
 class _ReservasiContentState extends State<ReservasiContent> {
   final ScrollController controller = ScrollController();
   final ScrollController controller_2 = ScrollController();
+  Future<List<RiwayatUser>> listResetPesanan = getDataAll();
   DateTime today = DateTime.now();
   // DateTime? tanggalYangDipilih;
   ListReservasi listReservasi = ListReservasi();
@@ -30,20 +34,45 @@ class _ReservasiContentState extends State<ReservasiContent> {
   int? datePilihan;
   String selectedDate = "";
   Future<List<ShowJadwalMingguan>> listJadwal = fetchdata("", "");
-
   late DateTime tanggalYangDipilih;
+  String? token;
 
   @override
   void initState() {
+    super.initState();
+    resetPesanan();
+    _getToken();
     tanggalYangDipilih = DateTime.now();
+    listResetPesanan = getDataAll();
     if (today.weekday == DateTime.sunday) {
       tanggalYangDipilih = today;
     }
+    
     listJadwal = fetchdata(today.weekday.toString(), labName.toString());
-    super.initState();
     _renderLabAwal(labName);
     // Check if today is Sunday
   }
+
+  Future<void> _getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      token = prefs.getString('token');
+    });
+  }
+
+  void resetPesanan(){
+    DateTime Date_Sekarang = DateTime.now();
+    listResetPesanan.then((value) {
+      for (var i = 0; i < value.length; i++) {
+        DateTime Date_Pesanan = DateTime(int.parse(value[i].tanggal_mulai.substring(6,10)), int.parse(value[i].tanggal_mulai.substring(3,5)), int.parse(value[i].tanggal_mulai.substring(0,2)), int.parse(value[i].jam_selesai.substring(0,2)), int.parse(value[i].jam_selesai.substring(value[i].jam_selesai.length-2)));
+        // print(value[i].id_jadwal);
+        if(Date_Pesanan.isBefore(Date_Sekarang)){
+          update_pinjam(token!, value[i].id_jadwal, 1);
+        }
+      }
+    });
+  }
+
 
   void _renderLabAwal(String labName) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -66,14 +95,6 @@ class _ReservasiContentState extends State<ReservasiContent> {
     if (pickedDate != null && pickedDate != today) {
       setState(() {
         tanggalYangDipilih = pickedDate;
-        int weekNumber = ((pickedDate.day + 6) / 7).floor();
-        print("Asli | Hari ke = " + pickedDate.weekday.toString());
-        int after = pickedDate.weekday - 1;
-        print("After | Hari ke = " + after.toString());
-        // print("Tanggal = " + pickedDate.day.toString());
-        // print("Bulan ke = " + pickedDate.month.toString());
-        // print("Minggu ke = " + weekNumber.toString());
-        // print(pickedDate.)
         listJadwal = fetchdata(pickedDate.weekday.toString(), labName.toString());
       });
     }

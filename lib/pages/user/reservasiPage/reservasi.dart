@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
+import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 import 'package:kp2024/models/appBarUniversal.dart';
 import 'package:kp2024/pages/logSign.dart';
 import 'package:kp2024/pages/user/reservasiPage/pesanan.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasiContent.dart';
+import 'package:kp2024/pages/user/reservasiPage/riwayatReservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Reservasi extends StatefulWidget {
@@ -14,19 +17,22 @@ class Reservasi extends StatefulWidget {
   State<Reservasi> createState() => _ReservasiState();
 }
 
-class _ReservasiState extends State<Reservasi>
-    with SingleTickerProviderStateMixin {
+class _ReservasiState extends State<Reservasi> with SingleTickerProviderStateMixin {
   late String? _username = '';
+  late String? token = '';
   late TabController _tabController;
+  
 
   @override
   void initState() {
     super.initState();
     _getToken();
-    _tabController =
-        TabController(length: 2, vsync: this); // Initialize TabController
+    
+    
+    _tabController = TabController(length: 2, vsync: this); // Initialize TabController
   }
 
+  
   @override
   void dispose() {
     _tabController.dispose(); // Dispose TabController when not needed
@@ -37,6 +43,7 @@ class _ReservasiState extends State<Reservasi>
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _username = prefs.getString('username');
+      token = prefs.getString('token');
     });
   }
 

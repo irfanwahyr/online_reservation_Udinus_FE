@@ -230,8 +230,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                             ],
                                             rows: List.generate(
                                                 listkuliahPengganti.length, (index) {
-                                              final data_kuliah_pengganti =
-                                                  listkuliahPengganti[index];
+                                              final data_kuliah_pengganti = listkuliahPengganti[index];
                                               int id = data_kuliah_pengganti.id;
                                               String nama_dosen =
                                                   data_kuliah_pengganti.nama_dosen;
@@ -249,9 +248,9 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                                   data_kuliah_pengganti.jam_mulai;
                                               String jam_selesai =
                                                   data_kuliah_pengganti.jam_selesai;
-                                              String keterangan =
-                                                  data_kuliah_pengganti.keterangan;
-                                                  int id_user = data_kuliah_pengganti.id_user;
+                                              String keterangan = data_kuliah_pengganti.keterangan;
+                                              int id_user = data_kuliah_pengganti.id_user;
+                                              int id_jadwal = data_kuliah_pengganti.id_jadwal;
                                               _no++;
                                               return DataRow(cells: <DataCell>[
                                                 DataCell(
@@ -350,7 +349,9 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                                         jam_selesai: 
                                                         jam_selesai, 
                                                         alasan: "Diterima",
-                                                        id_user: id_user),
+                                                        id_user: id_user,
+                                                        id_jadwal: id_jadwal
+                                                        ),
                                                       SizedBox(
                                                         width: 10,
                                                       ),
@@ -364,7 +365,9 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                                         jam_mulai: jam_mulai, 
                                                         jam_selesai: 
                                                         jam_selesai, 
-                                                        id_user: id_user
+                                                        id_user: id_user,
+                                                        id_jadwal: id_jadwal,
+                                                        
                                                       ),
                                                     ],
                                                   ),
@@ -668,6 +671,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
     String jam_selesai,
     String alasan,
     int id_user,
+    int id_jadwal,
   ) {
     showDialog(
       context: context,
@@ -683,6 +687,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
           jam_selesai: jam_selesai,
           alasan: alasan,
           id_user: id_user,
+          id_jadwal: id_jadwal,
         );
       },
     );
