@@ -332,7 +332,6 @@ class _PesananState extends State<Pesanan> {
                                           //   width: 10,
                                           // ),
                                           ButtonDeletedKecil(onTap: (){
-
                                             deletePesananKuliahPengganti(datakuliahpengganti.id, datakuliahpengganti.id_jadwal, token!, datakuliahpengganti.jam_mulai, datakuliahpengganti.jam_selesai);
                                           }),
                                         ],
