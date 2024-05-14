@@ -14,6 +14,7 @@ class RiwayatUser {
   final String alasan;
   final int id_user;
   final int id_jadwal;
+  final bool flag;
 
   RiwayatUser({
     required this.id,
@@ -27,6 +28,7 @@ class RiwayatUser {
     required this.alasan,
     required this.id_user,
     required this.id_jadwal,
+    this.flag = false,
   });
 
   factory RiwayatUser.fromJson(Map<String,dynamic> json) {
@@ -42,6 +44,7 @@ class RiwayatUser {
       id_user: json['id_user'] ?? 0,
       alasan: json['alasan'] ?? 'kosong',
       id_jadwal: json['id_jadwal'] ?? 0,
+      flag: json['flag'] ?? false,
     );
   }
 }
@@ -80,10 +83,11 @@ Future<RiwayatUser> create_riwayat(
         'status': status,
         'alasan': alasan,
         'id_jadwal': id_jadwal,
+        'flag': false,
       })
     );
-    print(response.body);
-    print(response.statusCode);
+    // print(response.body);
+    // print(response.statusCode);
 
     if (response.statusCode == 201){
       return RiwayatUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
@@ -146,5 +150,22 @@ Future<List<RiwayatUser>> getDataAll() async {
     }
   } catch (error) {
     throw Exception('Failed to load data');
+  }
+}
+
+Future<RiwayatUser> update_flag(int id) async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['RIWAYAT'];
+  final response = await http.patch(
+    Uri.parse("$env/update/$id"),
+    body: jsonEncode(<String, dynamic>{
+    })
+  );
+  print(response.body);
+  print(response.statusCode);
+  if (response.statusCode == 200) {
+    return RiwayatUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load');
   }
 }

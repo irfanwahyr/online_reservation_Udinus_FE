@@ -90,7 +90,8 @@ class _PesananState extends State<Pesanan> {
               child: Text("Error: ${snapshot.error}"),
             );
           } else if (snapshot.hasData){
-            int _no = 0;
+            int _no_proses = 0;
+            int _no_riwayat = 0;
             final listkuliah_pengganti = snapshot.data![0];
             final listacara_organisasi = snapshot.data![1];
             final listacara_kampus = snapshot.data![2];
@@ -110,9 +111,9 @@ class _PesananState extends State<Pesanan> {
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width >= 1300
-                    ? MediaQuery.of(context).size.width * 0.6
+                    ? MediaQuery.of(context).size.width * 0.75
                     : MediaQuery.of(context).size.width * 0.95,
-                height: MediaQuery.of(context).size.height * 0.50,
+                height: MediaQuery.of(context).size.height * 0.75,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: Colors.green[50],
@@ -260,14 +261,14 @@ class _PesananState extends State<Pesanan> {
                                 ),
                               ],
                               rows: List<DataRow>.generate(maxRows, (index) {
-                                _no++;
+                                _no_proses++;
                                 if(index < jumlahKuliahPengganti){
                                     final datakuliahpengganti = listkuliah_pengganti[index];
                                     return DataRow(cells: <DataCell>[
                                     DataCell(
                                       Center(
                                         child: Text(
-                                          _no.toString(),
+                                          _no_proses.toString(),
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -346,7 +347,7 @@ class _PesananState extends State<Pesanan> {
                                     DataCell(
                                       Center(
                                         child: Text(
-                                          _no.toString(),
+                                          _no_proses.toString(),
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -425,7 +426,7 @@ class _PesananState extends State<Pesanan> {
                                     DataCell(
                                       Center(
                                         child: Text(
-                                          _no.toString(),
+                                          _no_proses.toString(),
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -511,9 +512,9 @@ class _PesananState extends State<Pesanan> {
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width >= 1300
-                    ? MediaQuery.of(context).size.width * 0.6
+                    ? MediaQuery.of(context).size.width * 0.75
                     : MediaQuery.of(context).size.width * 0.95,
-                height: MediaQuery.of(context).size.height * 0.50,
+                height: MediaQuery.of(context).size.height * 0.75,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: Colors.green[50],
@@ -683,11 +684,12 @@ class _PesananState extends State<Pesanan> {
                                 String jam_mulai = data_riwayat_user.jam_mulai;
                                 String jam_selesai = data_riwayat_user.jam_selesai;
                                 String alasan = data_riwayat_user.alasan;
+                                _no_riwayat++;
                                 return DataRow(cells: <DataCell>[
                                         DataCell(
                                           Center(
                                             child: Text(
-                                              _no.toString(),
+                                              _no_riwayat.toString(),
                                               textAlign: TextAlign.center,
                                             ),
                                           ),

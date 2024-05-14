@@ -56,7 +56,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
   Future<void> _getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      token = prefs.getString('token');
+      token = prefs.getString('token') ?? "";
     });
   }
 
@@ -65,9 +65,62 @@ class _ReservasiContentState extends State<ReservasiContent> {
     listResetPesanan.then((value) {
       for (var i = 0; i < value.length; i++) {
         DateTime Date_Pesanan = DateTime(int.parse(value[i].tanggal_mulai.substring(6,10)), int.parse(value[i].tanggal_mulai.substring(3,5)), int.parse(value[i].tanggal_mulai.substring(0,2)), int.parse(value[i].jam_selesai.substring(0,2)), int.parse(value[i].jam_selesai.substring(value[i].jam_selesai.length-2)));
-        // print(value[i].id_jadwal);
-        if(Date_Pesanan.isBefore(Date_Sekarang)){
-          update_pinjam(token!, value[i].id_jadwal, 1);
+        // print(Date_Pesanan);
+        if(Date_Pesanan.isBefore(Date_Sekarang) && value[i].flag == false){
+          List<String> ListJamMulai = [
+            "07.00",
+            "07.50",
+            "08.40",
+            "09.30",
+            "10.20",
+            "11.10",
+            "12.30",
+            "13.20",
+            "14.10",
+            "15.00",
+            "16.20",
+            "17.10",
+            "18.30",
+            "19.20",
+            "20.10",
+          ];
+
+          List<String> ListJamSelesai = [
+            "07.50",
+            "08.40",
+            "09.30",
+            "10.20",
+            "11.10",
+            "12.00",
+            "13.20",
+            "14.10",
+            "15.00",
+            "15.50",
+            "17.10",
+            "18.00",
+            "19.20",
+            "20.10",
+            "21.00",
+          ];
+
+          int a = 0, b = 0, c = 0;
+
+          for (var j = 0; j < ListJamSelesai.length; j++) {
+            if(value[i].jam_mulai == ListJamMulai[j]){
+              a = j;
+            }
+            if(value[i].jam_selesai == ListJamSelesai[j]){
+              b = j;
+              break;
+            }
+          }
+          c = b - a;
+          int id_jadwal = value[i].id_jadwal;
+          for (var k = 0; k <= c; k++) {
+            update_pinjam(token!, id_jadwal, 1);
+            update_flag(id_jadwal);
+            id_jadwal++;
+          }
         }
       }
     });

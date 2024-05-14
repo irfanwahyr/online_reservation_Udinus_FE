@@ -87,6 +87,7 @@ class _ReservasiState extends State<Reservasi> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarUniversal(
+        token: token ?? "", // Pass the token
         username: _username ?? "", // Pass the username
         logoutCallback: () {
           _logout(); // Logout callback
