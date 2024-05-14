@@ -21,15 +21,22 @@ class LogSign extends StatefulWidget {
 
 class _LogSignState extends State<LogSign> {
   final TextEditingController emailControllersignup = TextEditingController();
-  final TextEditingController passwordControllersignup = TextEditingController();
-  final TextEditingController usernameControllersignup = TextEditingController();
+  final TextEditingController passwordControllersignup =
+      TextEditingController();
+  final TextEditingController usernameControllersignup =
+      TextEditingController();
   final TextEditingController emailControllerlogin = TextEditingController();
   final TextEditingController passwordControllerlogin = TextEditingController();
+
+  bool _isPasswordVisibleSignup = false;
+  bool _isPasswordVisibleLogin = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack(onPressed: (){Navigator.pushReplacementNamed(context, Reservasi.nameRoute);}).buildAppBar(context),
+      appBar: AppBarBack(onPressed: () {
+        Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+      }).buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -105,10 +112,23 @@ class _LogSignState extends State<LogSign> {
                 ),
                 filled: true,
                 fillColor: const Color.fromARGB(48, 142, 203, 252),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisibleLogin
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisibleLogin = !_isPasswordVisibleLogin;
+                    });
+                  },
+                ),
               ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
               controller: passwordControllerlogin,
+              obscureText: !_isPasswordVisibleLogin,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -117,28 +137,31 @@ class _LogSignState extends State<LogSign> {
             Center(
               child: ButtonSubmit().buildButtonSubmit(
                   text: "Masuk",
-                  onPressed: () async{
+                  onPressed: () async {
                     String email = emailControllerlogin.text;
                     String password = passwordControllerlogin.text;
                     await login(email, password).then((value) async {
-                      SharedPreferences srf = await SharedPreferences.getInstance();
+                      SharedPreferences srf =
+                          await SharedPreferences.getInstance();
                       srf.setString('token', value.token);
                       srf.setInt('id_user', value.id_user);
                       srf.setString('email', value.email);
                       srf.setString('username', value.username);
                       srf.setBool('role', value.role);
                       srf.setBool('isLoggedIn', true);
-                      srf.setInt('loginTime', DateTime.now().millisecondsSinceEpoch);
-                      if(srf.getBool('role') == false){
-                        Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
-                      }
-                      else{
-                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                      srf.setInt(
+                          'loginTime', DateTime.now().millisecondsSinceEpoch);
+                      if (srf.getBool('role') == false) {
+                        Navigator.pushReplacementNamed(
+                            context, Reservasi.nameRoute);
+                      } else {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
                         prefs.setInt('page_admin', 0);
-                        Navigator.pushReplacementNamed(context, HomePageAdmin.nameRoute);
+                        Navigator.pushReplacementNamed(
+                            context, HomePageAdmin.nameRoute);
                       }
                     });
-
                   }),
             )
           ],
@@ -182,10 +205,23 @@ class _LogSignState extends State<LogSign> {
                 ),
                 filled: true,
                 fillColor: const Color.fromARGB(48, 142, 203, 252),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisibleSignup
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisibleSignup = !_isPasswordVisibleSignup;
+                    });
+                  },
+                ),
               ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
               controller: passwordControllersignup,
+              obscureText: !_isPasswordVisibleSignup,
               onSubmitted: (value) {
                 // masukkan fungsi
               },
@@ -205,8 +241,7 @@ class _LogSignState extends State<LogSign> {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.done,
               controller: usernameControllersignup,
-              onSubmitted: (value) {
-              },
+              onSubmitted: (value) {},
             ),
             const SizedBox(height: 20),
             Center(
@@ -218,12 +253,7 @@ class _LogSignState extends State<LogSign> {
                       String password = passwordControllersignup.text;
                       String username = usernameControllersignup.text;
 
-                      create(
-                        email,
-                        password,
-                        username,
-                        0
-                      );
+                      create(email, password, username, 0);
                     });
                   }),
             )

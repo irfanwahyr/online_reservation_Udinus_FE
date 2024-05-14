@@ -16,22 +16,20 @@ class ButtonAcc extends StatefulWidget {
   final int id_user;
   final int id_jadwal;
 
-  const ButtonAcc({super.key, 
-  required this.id,
-  required this.token, 
-  required this.nama_acara, 
-  required this.nama_lab, 
-  required this.tanggal_mulai, 
-  required this.tanggal_selesai, 
-  required this.jam_mulai, 
-  required this.jam_selesai, 
-  required this.alasan, 
-  required this.id_user,
-  required this.id_jadwal
-  
-  });
+  const ButtonAcc(
+      {super.key,
+      required this.id,
+      required this.token,
+      required this.nama_acara,
+      required this.nama_lab,
+      required this.tanggal_mulai,
+      required this.tanggal_selesai,
+      required this.jam_mulai,
+      required this.jam_selesai,
+      required this.alasan,
+      required this.id_user,
+      required this.id_jadwal});
 
-  
   @override
   State<ButtonAcc> createState() => _ButtonAccState();
 }
@@ -60,6 +58,7 @@ class _ButtonAccState extends State<ButtonAcc> {
       ),
     );
   }
+
   Future<bool?> _showConfirmationDialog(BuildContext context) async {
     return showDialog<bool>(
       context: context,
@@ -78,7 +77,18 @@ class _ButtonAccState extends State<ButtonAcc> {
               onPressed: () {
                 deleteDataKelasPengganti(widget.id.toString(), widget.token);
                 _isAcc = true;
-                create_riwayat(widget.token, widget.id_user, widget.nama_lab, widget.nama_acara, widget.tanggal_mulai, widget.tanggal_selesai, widget.jam_mulai, widget.jam_selesai, _isAcc, widget.alasan, widget.id_jadwal);
+                create_riwayat(
+                    widget.token,
+                    widget.id_user,
+                    widget.nama_lab,
+                    widget.nama_acara,
+                    widget.tanggal_mulai,
+                    widget.tanggal_selesai,
+                    widget.jam_mulai,
+                    widget.jam_selesai,
+                    _isAcc,
+                    widget.alasan,
+                    widget.id_jadwal);
                 update_pinjam(widget.token, widget.id_jadwal, 2);
                 Navigator.of(context).pop(true); // Ya
               },
@@ -90,4 +100,3 @@ class _ButtonAccState extends State<ButtonAcc> {
     );
   }
 }
-
