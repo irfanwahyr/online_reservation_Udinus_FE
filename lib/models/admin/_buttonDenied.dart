@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
+import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 
 class ButtonDenied extends StatefulWidget {
   final int id;
@@ -89,8 +90,59 @@ class _ButtonDeniedState extends State<ButtonDenied> {
           ),
           TextButton(
             onPressed: () {
+              List<String> ListJamMulai = [
+                "07.00",
+                "07.50",
+                "08.40",
+                "09.30",
+                "10.20",
+                "11.10",
+                "12.30",
+                "13.20",
+                "14.10",
+                "15.00",
+                "16.20",
+                "17.10",
+                "18.30",
+                "19.20",
+                "20.10",
+              ];
+
+              List<String> ListJamSelesai = [
+                "07.50",
+                "08.40",
+                "09.30",
+                "10.20",
+                "11.10",
+                "12.00",
+                "13.20",
+                "14.10",
+                "15.00",
+                "15.50",
+                "17.10",
+                "18.00",
+                "19.20",
+                "20.10",
+                "21.00",
+              ];
+
+              int a = 0, b = 0, c = 0;
+
+              for (var j = 0; j < ListJamSelesai.length; j++) {
+                if(widget.jam_mulai == ListJamMulai[j]){
+                  a = j;
+                }
+                if(widget.jam_selesai == ListJamSelesai[j]){
+                  b = j;
+                  break;
+                }
+              }
+              c = b - a;
+              int id_jadwal = widget.id_jadwal;
+
               deleteDataKelasPengganti(widget.id.toString(), widget.token);
               _isAcc = false;
+
               create_riwayat(
                 widget.token,
                 widget.id_user,
@@ -103,8 +155,13 @@ class _ButtonDeniedState extends State<ButtonDenied> {
                 _isAcc,
                 alasan_controller.text,
                 widget.id_jadwal,
-                
               );
+
+              for (var k = 0; k <= c; k++) {
+                update_pinjam(widget.token, id_jadwal, 1);
+                id_jadwal++;
+              }
+
               Navigator.of(context).pop(true); // Ya
             },
             child: const Text('Ya'),

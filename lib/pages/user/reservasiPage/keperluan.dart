@@ -8,6 +8,7 @@ import 'package:kp2024/pages/logSign.dart';
 import 'package:kp2024/pages/user/formKeperluan/acaraKampus.dart';
 import 'package:kp2024/pages/user/formKeperluan/acaraOrganisasi.dart';
 import 'package:kp2024/pages/user/formKeperluan/kuliahPengganti.dart';
+import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Keperluan extends StatefulWidget {
@@ -20,6 +21,7 @@ class Keperluan extends StatefulWidget {
 
 class _KeperluanState extends State<Keperluan> {
   late String? _username = '';
+  late String? token = '';
   @override
   void initState() {
     super.initState();
@@ -30,6 +32,7 @@ class _KeperluanState extends State<Keperluan> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _username = prefs.getString('username');
+      token = prefs.getString('token');
     });
   }
 
@@ -73,10 +76,15 @@ class _KeperluanState extends State<Keperluan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar :  AppBarUniversal(
+        token: token ?? "", // Pass the token
         username: _username ?? "", // Pass the username
         logoutCallback: () {
           _logout(); // Logout callback
         },
+        pushnamed: () {
+          Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+        }
+
       ),
       body: SingleChildScrollView(
         child: Column(
