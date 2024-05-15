@@ -17,22 +17,21 @@ class Reservasi extends StatefulWidget {
   State<Reservasi> createState() => _ReservasiState();
 }
 
-class _ReservasiState extends State<Reservasi> with SingleTickerProviderStateMixin {
+class _ReservasiState extends State<Reservasi>
+    with SingleTickerProviderStateMixin {
   late String? _username = '';
   late String? token = '';
   late TabController _tabController;
-  
 
   @override
   void initState() {
     super.initState();
     _getToken();
-    
-    
-    _tabController = TabController(length: 2, vsync: this); // Initialize TabController
+
+    _tabController =
+        TabController(length: 2, vsync: this); // Initialize TabController
   }
 
-  
   @override
   void dispose() {
     _tabController.dispose(); // Dispose TabController when not needed
@@ -53,7 +52,8 @@ class _ReservasiState extends State<Reservasi> with SingleTickerProviderStateMix
     if (logoutConfirmed ?? false) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.clear();
-      Navigator.pushReplacementNamed(context, LogSign.nameRoute);
+      // Navigator.pushReplacementNamed(context, LogSign.nameRoute);
+      Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
     }
   }
 

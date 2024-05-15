@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/pages/logSign.dart';
 import 'package:kp2024/pages/user/reservasiPage/reservasi.dart';
 
 class AppBarUniversal extends StatelessWidget implements PreferredSizeWidget {
@@ -18,13 +19,15 @@ class AppBarUniversal extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-    leading: Builder(
+      leading: Builder(
         builder: (context) {
           // Mendapatkan nama rute saat ini
           var currentRoute = ModalRoute.of(context)?.settings.name;
 
           // Menentukan ikon berdasarkan rute saat ini
-          var icon = currentRoute == Reservasi.nameRoute ? Icons.refresh : Icons.arrow_back;
+          var icon = currentRoute == Reservasi.nameRoute
+              ? Icons.refresh
+              : Icons.arrow_back;
 
           // Menentukan aksi berdasarkan rute saat ini
           var onPressed = () {
@@ -61,34 +64,56 @@ class AppBarUniversal extends StatelessWidget implements PreferredSizeWidget {
                   color: Colors.white,
                 ),
               ),
-              
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.person_2_rounded, color: Colors.white),
-                  SizedBox(width: 10),
-                  Text(
-                    '$username',
-                    style: TextStyle(
-                      color: Colors.white,
+
+              if (token.isEmpty)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.person_2_rounded, color: Colors.white),
+                    SizedBox(width: 10),
+                    Text(
+                      'Not Login yet',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                )
+              else
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.person_2_rounded, color: Colors.white),
+                    SizedBox(width: 10),
+                    Text(
+                      '$username',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
 
               ElevatedButton.icon(
                 onPressed: () {
-                  logoutCallback();
+                  if (token.isEmpty) {
+                    Navigator.pushNamed(
+                        context,
+                        LogSign
+                            .nameRoute); // Ganti dengan rute halaman login Anda
+                  } else {
+                    logoutCallback();
+                  }
                 },
-                icon: Icon(Icons.logout),
-                label: Text("Logout"),
-              )
+                icon: token.isEmpty ? Icon(Icons.login) : Icon(Icons.logout),
+                label: token.isEmpty ? Text("Login") : Text("Logout"),
+              ),
             ],
           ),
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 1, 24, 50),
-      toolbarHeight: 50, 
+      toolbarHeight: 50,
     );
   }
 

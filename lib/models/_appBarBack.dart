@@ -10,7 +10,7 @@ class AppBarBack {
       iconTheme: IconThemeData(color: Colors.white),
       backgroundColor: const Color.fromARGB(255, 1, 24, 50),
       title: Text(
-        "Back",
+        "Silahkan Login Atau Daftar Terlebih Dahulu",
         style: TextStyle(color: Colors.white),
       ),
       leading: IconButton(

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/login_signin/signinLogin.dart';
 import 'package:kp2024/models/_appBarBack.dart';
@@ -30,6 +28,11 @@ class _LogSignState extends State<LogSign> {
 
   bool _isPasswordVisibleSignup = false;
   bool _isPasswordVisibleLogin = false;
+
+  String? emailSalah;
+  String? passwordSalah;
+  String? loginError;
+  String? signupError;
 
   @override
   Widget build(BuildContext context) {
@@ -74,190 +77,254 @@ class _LogSignState extends State<LogSign> {
   }
 
   List<Widget> buildLoginSignup() {
+    final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+    final GlobalKey<FormState> _signupFormKey = GlobalKey<FormState>();
+
     return [
       SizedBox(
         width: 500,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Heading1(text: "LOGIN", color: Colors.black),
-            const SizedBox(height: 40),
-            const Heading2(text: "Email", color: Colors.black),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Masukkan Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                filled: true,
-                fillColor: const Color.fromARGB(48, 142, 203, 252),
-              ),
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.done,
-              controller: emailControllerlogin,
-              onSubmitted: (value) {
-                // masukkan fungsi
-              },
-            ),
-            const SizedBox(height: 20),
-            const Heading2(text: "Password", color: Colors.black),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Masukkan Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                filled: true,
-                fillColor: const Color.fromARGB(48, 142, 203, 252),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _isPasswordVisibleLogin
-                        ? Icons.visibility
-                        : Icons.visibility_off,
+        child: Form(
+          key: _loginFormKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Heading1(text: "LOGIN", color: Colors.black),
+              const SizedBox(height: 40),
+              const Heading2(text: "Email", color: Colors.black),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Masukkan Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordVisibleLogin = !_isPasswordVisibleLogin;
-                    });
-                  },
+                  filled: true,
+                  fillColor: const Color.fromARGB(48, 142, 203, 252),
+                  errorText: emailSalah,
                 ),
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.done,
+                controller: emailControllerlogin,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  }
+                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                    return 'Email tidak valid';
+                  }
+                  return null;
+                },
               ),
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.done,
-              controller: passwordControllerlogin,
-              obscureText: !_isPasswordVisibleLogin,
-              onSubmitted: (value) {
-                // masukkan fungsi
-              },
-            ),
-            const SizedBox(height: 20),
-            Center(
-              child: ButtonSubmit().buildButtonSubmit(
+              const SizedBox(height: 20),
+              const Heading2(text: "Password", color: Colors.black),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Masukkan Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(48, 142, 203, 252),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isPasswordVisibleLogin
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisibleLogin = !_isPasswordVisibleLogin;
+                      });
+                    },
+                  ),
+                  errorText: passwordSalah,
+                ),
+                keyboardType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.done,
+                controller: passwordControllerlogin,
+                obscureText: !_isPasswordVisibleLogin,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Password tidak boleh kosong';
+                  }
+                  if (value.length < 6) {
+                    return 'Password minimal 6 karakter';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: ButtonSubmit().buildButtonSubmit(
                   text: "Masuk",
                   onPressed: () async {
-                    String email = emailControllerlogin.text;
-                    String password = passwordControllerlogin.text;
-                    await login(email, password).then((value) async {
-                      SharedPreferences srf =
-                          await SharedPreferences.getInstance();
-                      srf.setString('token', value.token);
-                      srf.setInt('id_user', value.id_user);
-                      srf.setString('email', value.email);
-                      srf.setString('username', value.username);
-                      srf.setBool('role', value.role);
-                      srf.setBool('isLoggedIn', true);
-                      srf.setInt(
-                          'loginTime', DateTime.now().millisecondsSinceEpoch);
-                      if (srf.getBool('role') == false) {
-                        Navigator.pushReplacementNamed(
-                            context, Reservasi.nameRoute);
-                      } else {
-                        SharedPreferences prefs =
+                    if (_loginFormKey.currentState!.validate()) {
+                      String email = emailControllerlogin.text;
+                      String password = passwordControllerlogin.text;
+                      login(email, password).then((value) async {
+                        SharedPreferences srf =
                             await SharedPreferences.getInstance();
-                        prefs.setInt('page_admin', 0);
-                        Navigator.pushReplacementNamed(
-                            context, HomePageAdmin.nameRoute);
-                      }
-                    });
-                  }),
-            )
-          ],
+                        srf.setString('token', value.token);
+                        srf.setInt('id_user', value.id_user);
+                        srf.setString('email', value.email);
+                        srf.setString('username', value.username);
+                        srf.setBool('role', value.role);
+                        srf.setBool('isLoggedIn', true);
+                        srf.setInt(
+                            'loginTime', DateTime.now().millisecondsSinceEpoch);
+                        if (srf.getBool('role') == false) {
+                          Navigator.pushReplacementNamed(
+                              context, Reservasi.nameRoute);
+                        } else {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setInt('page_admin', 0);
+                          Navigator.pushReplacementNamed(
+                              context, HomePageAdmin.nameRoute);
+                        }
+                      }).catchError((error) {
+                        setState(() {
+                          if (error.toString().contains('email')) {
+                            emailSalah = 'Email yang anda masukkan salah.';
+                          }
+                          // if (error.toString().contains('password')) {
+                          //   passwordSalah = 'Password yang anda masukkan salah.';
+                          // }
+                          else {
+                            // emailSalah = 'Email yang anda masukkan salah.';
+                            passwordSalah =
+                                'Password yang anda masukkan salah.';
+                          }
+                        });
+                      });
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
       const SizedBox(width: 20, height: 30),
       SizedBox(
         width: 500,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Heading1(text: "SIGNUP", color: Colors.black),
-            const SizedBox(height: 40),
-            const Heading2(text: "Email", color: Colors.black),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Masukkan Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                filled: true,
-                fillColor: const Color.fromARGB(48, 142, 203, 252),
-              ),
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.done,
-              controller: emailControllersignup,
-              onSubmitted: (value) {
-                // masukkan fungsi
-              },
-            ),
-            const SizedBox(height: 20),
-            const Heading2(text: "Password", color: Colors.black),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Masukkan Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                filled: true,
-                fillColor: const Color.fromARGB(48, 142, 203, 252),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _isPasswordVisibleSignup
-                        ? Icons.visibility
-                        : Icons.visibility_off,
+        child: Form(
+          key: _signupFormKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Heading1(text: "SIGNUP", color: Colors.black),
+              const SizedBox(height: 40),
+              const Heading2(text: "Email", color: Colors.black),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Masukkan Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordVisibleSignup = !_isPasswordVisibleSignup;
-                    });
-                  },
+                  filled: true,
+                  fillColor: const Color.fromARGB(48, 142, 203, 252),
+                  errorText: signupError,
                 ),
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.done,
+                controller: emailControllersignup,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  }
+                  if (!RegExp(r'^[^@]+@[^@]+.[^@]+').hasMatch(value)) {
+                    return 'Email tidak valid';
+                  }
+                  return null;
+                },
               ),
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.done,
-              controller: passwordControllersignup,
-              obscureText: !_isPasswordVisibleSignup,
-              onSubmitted: (value) {
-                // masukkan fungsi
-              },
-            ),
-            const SizedBox(height: 20),
-            const Heading2(text: "Nama Lengkap", color: Colors.black),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Masukkan Nama Lengkap',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+              const SizedBox(height: 20),
+              const Heading2(text: "Password", color: Colors.black),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Masukkan Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(48, 142, 203, 252),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isPasswordVisibleSignup
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisibleSignup = !_isPasswordVisibleSignup;
+                      });
+                    },
+                  ),
+                  errorText: signupError,
                 ),
-                filled: true,
-                fillColor: const Color.fromARGB(48, 142, 203, 252),
+                keyboardType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.done,
+                controller: passwordControllersignup,
+                obscureText: !_isPasswordVisibleSignup,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Password tidak boleh kosong';
+                  }
+                  if (value.length < 6) {
+                    return 'Password minimal 6 karakter';
+                  }
+                  return null;
+                },
               ),
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.done,
-              controller: usernameControllersignup,
-              onSubmitted: (value) {},
-            ),
-            const SizedBox(height: 20),
-            Center(
-              child: ButtonSubmit().buildButtonSubmit(
+              const SizedBox(height: 20),
+              const Heading2(text: "Nama Lengkap", color: Colors.black),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Masukkan Nama Lengkap',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(48, 142, 203, 252),
+                ),
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.done,
+                controller: usernameControllersignup,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Nama lengkap tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: ButtonSubmit().buildButtonSubmit(
                   text: "Daftar",
                   onPressed: () {
-                    setState(() {
+                    if (_signupFormKey.currentState!.validate()) {
                       String email = emailControllersignup.text;
                       String password = passwordControllersignup.text;
                       String username = usernameControllersignup.text;
-
-                      create(email, password, username, 0);
-                    });
-                  }),
-            )
-          ],
+                      create(email, password, username, 0).catchError((error) {
+                        setState(() {
+                          signupError =
+                              'Gagal membuat akun. Silakan coba lagi.';
+                        });
+                      });
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ];

@@ -7,6 +7,7 @@ import 'package:kp2024/models/reservasiModel/_buttonDipakai.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDiproses.dart';
 import 'package:kp2024/models/reservasiModel/_buttonReservasi.dart';
 import 'package:kp2024/pages/dashboard/footer.dart';
+import 'package:kp2024/pages/logSign.dart';
 import 'package:kp2024/pages/user/reservasiPage/detailLabPopUp.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
@@ -47,7 +48,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
     if (today.weekday == DateTime.sunday) {
       tanggalYangDipilih = today;
     }
-    
+
     listJadwal = fetchdata(today.weekday.toString(), labName.toString());
     _renderLabAwal(labName);
     // Check if today is Sunday
@@ -60,13 +61,20 @@ class _ReservasiContentState extends State<ReservasiContent> {
     });
   }
 
-  void resetPesanan(){
+  void resetPesanan() {
     DateTime Date_Sekarang = DateTime.now();
     listResetPesanan.then((value) {
       for (var i = 0; i < value.length; i++) {
-        DateTime Date_Pesanan = DateTime(int.parse(value[i].tanggal_mulai.substring(6,10)), int.parse(value[i].tanggal_mulai.substring(3,5)), int.parse(value[i].tanggal_mulai.substring(0,2)), int.parse(value[i].jam_selesai.substring(0,2)), int.parse(value[i].jam_selesai.substring(value[i].jam_selesai.length-2)));
+        DateTime Date_Pesanan = DateTime(
+            int.parse(value[i].tanggal_mulai.substring(6, 10)),
+            int.parse(value[i].tanggal_mulai.substring(3, 5)),
+            int.parse(value[i].tanggal_mulai.substring(0, 2)),
+            int.parse(value[i].jam_selesai.substring(0, 2)),
+            int.parse(value[i]
+                .jam_selesai
+                .substring(value[i].jam_selesai.length - 2)));
         // print(Date_Pesanan);
-        if(Date_Pesanan.isBefore(Date_Sekarang) && value[i].flag == false){
+        if (Date_Pesanan.isBefore(Date_Sekarang) && value[i].flag == false) {
           List<String> ListJamMulai = [
             "07.00",
             "07.50",
@@ -106,10 +114,10 @@ class _ReservasiContentState extends State<ReservasiContent> {
           int a = 0, b = 0, c = 0;
 
           for (var j = 0; j < ListJamSelesai.length; j++) {
-            if(value[i].jam_mulai == ListJamMulai[j]){
+            if (value[i].jam_mulai == ListJamMulai[j]) {
               a = j;
             }
-            if(value[i].jam_selesai == ListJamSelesai[j]){
+            if (value[i].jam_selesai == ListJamSelesai[j]) {
               b = j;
               break;
             }
@@ -126,7 +134,6 @@ class _ReservasiContentState extends State<ReservasiContent> {
     });
   }
 
-
   void _renderLabAwal(String labName) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('nama_lab', labName);
@@ -134,7 +141,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
 
   Future<void> _selectDate(BuildContext context) async {
     DateTime firstSelectableDate = DateTime.now();
-    
+
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: tanggalYangDipilih,
@@ -148,7 +155,8 @@ class _ReservasiContentState extends State<ReservasiContent> {
     if (pickedDate != null && pickedDate != today) {
       setState(() {
         tanggalYangDipilih = pickedDate;
-        listJadwal = fetchdata(pickedDate.weekday.toString(), labName.toString());
+        listJadwal =
+            fetchdata(pickedDate.weekday.toString(), labName.toString());
       });
     }
   }
@@ -189,7 +197,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
 
                   // Memanggil fungsi list_id
                   list_id(idList, idPesanList);
-                  
+
                   return Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: SingleChildScrollView(
@@ -206,9 +214,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ElevatedButton(
-                                onPressed: () {
-                                 
-                                },
+                                onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(buttonWidth, buttonHeight),
                                 ),
@@ -539,7 +545,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
     for (int i = 0; i < 15; i++) {
       switch (id_pesan.toString()) {
         case "1":
-        buttons.add(
+          buttons.add(
             ButtonReservasi(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -555,18 +561,20 @@ class _ReservasiContentState extends State<ReservasiContent> {
                 await prefs.setInt('id_hari', id_hari);
                 await prefs.setString('default_mata_kuliah', mata_kuliah);
                 await prefs.setString('default_kelompok', kelompok);
-                Navigator.pushNamed(context, Keperluan.nameRoute);
+                if (token!.isEmpty) {
+                  Navigator.pushNamed(context, LogSign.nameRoute);
+                } else {
+                  Navigator.pushNamed(context, Keperluan.nameRoute);
+                }
               },
             ),
           );
-          
+
           break;
         case "2":
-        buttons.add(
+          buttons.add(
             const ButtonDipakai(),
           );
-
-          
 
           break;
         case "3":
@@ -584,11 +592,11 @@ class _ReservasiContentState extends State<ReservasiContent> {
 }
 
 void list_id(List<int> idList, List<int> idPesanList) async {
-
   SharedPreferences prefs = await SharedPreferences.getInstance();
 // Menyimpan list ID ke dalam SharedPreferences
   await prefs.setStringList('idList', idList.map((e) => e.toString()).toList());
 
   // Menyimpan list ID pesan ke dalam SharedPreferences
-  await prefs.setStringList('idPesanList', idPesanList.map((e) => e.toString()).toList());
+  await prefs.setStringList(
+      'idPesanList', idPesanList.map((e) => e.toString()).toList());
 }
