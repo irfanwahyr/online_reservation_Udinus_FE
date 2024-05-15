@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
+import 'package:kp2024/controllers/peminjaman_admin/konfirmasi_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 
@@ -158,7 +159,7 @@ class _ButtonDeniedState extends State<ButtonDenied> {
               );
 
               for (var k = 0; k <= c; k++) {
-                update_pinjam(widget.token, id_jadwal, 1);
+                update_pinjam(widget.token, id_jadwal, "kosong", "kosong", 1);
                 id_jadwal++;
               }
 

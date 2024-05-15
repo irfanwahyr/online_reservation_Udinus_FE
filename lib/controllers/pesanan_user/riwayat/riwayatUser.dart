@@ -156,9 +156,32 @@ Future<List<RiwayatUser>> getDataAll() async {
 Future<RiwayatUser> update_flag(int id) async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['RIWAYAT'];
-  final response = await http.patch(
+  final response = await http.post(
     Uri.parse("$env/update/$id"),
     body: jsonEncode(<String, dynamic>{
+    })
+  );
+  print(response.body);
+  print(response.statusCode);
+  if (response.statusCode == 200) {
+    return RiwayatUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
+Future<RiwayatUser> reset_jadwal(
+    int id,
+    int id_pesan,
+
+  ) async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['RESERVASI'];
+  final response = await http.patch(
+    Uri.parse("$env/reset_jadwal/$id"),
+    
+    body: jsonEncode(<String, dynamic>{
+      'id_pesan': id_pesan,
     })
   );
   print(response.body);
