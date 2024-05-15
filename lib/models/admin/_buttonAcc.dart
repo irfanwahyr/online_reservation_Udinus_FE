@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
+import 'package:kp2024/controllers/peminjaman_admin/konfirmasi_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 
@@ -139,7 +140,7 @@ class _ButtonAccState extends State<ButtonAcc> {
                   widget.alasan,
                   widget.id_jadwal);
               for (var k = 0; k <= c; k++) {
-                update_pinjam(widget.token, id_jadwal, 2);
+                konfirmasi_admin(widget.token, id_jadwal, 2);
                 print("Update id jadwal " + id_jadwal.toString());
                 id_jadwal++;
               }

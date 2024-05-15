@@ -120,7 +120,7 @@ Future<KelasPengganti> create(
     }
     c = b - a;
     for (var i = 0; i < c; i++) {
-      update_pinjam(token, id_matkul, 3);
+      update_pinjam(token, id_matkul, kelompok, mata_kuliah, 3);
       id_matkul++;
     }
     return KelasPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
@@ -132,6 +132,8 @@ Future<KelasPengganti> create(
 Future<KelasPengganti> update_pinjam(
     String token,
     int id,
+    String kelompok,
+    String mata_kuliah,
     int id_pesan,
 
   ) async {
@@ -145,11 +147,14 @@ Future<KelasPengganti> update_pinjam(
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, dynamic>{
+      'kelompok': kelompok,
+      'mata_kuliah': mata_kuliah,
       'id_pesan': id_pesan,
     })
   );
   print(response.body);
   print(response.statusCode);
+
   if (response.statusCode == 200) {
     return KelasPengganti.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {

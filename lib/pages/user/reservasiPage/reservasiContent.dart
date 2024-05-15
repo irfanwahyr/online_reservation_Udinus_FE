@@ -124,11 +124,14 @@ class _ReservasiContentState extends State<ReservasiContent> {
           }
           c = b - a;
           int id_jadwal = value[i].id_jadwal;
+          int id_riwayat = value[i].id;
+          id_riwayat++;
           for (var k = 0; k <= c; k++) {
-            update_pinjam(token!, id_jadwal, 1);
-            update_flag(id_jadwal);
+            print(id_jadwal);
+            reset_jadwal(id_jadwal, 1);
             id_jadwal++;
           }
+          update_flag(id_riwayat);
         }
       }
     });
@@ -439,8 +442,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                                                       String jamMulai =
                                                           jadwal_idx.jam_mulai;
                                                       String jamSelesai =
-                                                          jadwal_idx
-                                                              .jam_selesai;
+                                                          jadwal_idx.jam_selesai;
                                                       String waktuText =
                                                           "$jamMulai - $jamSelesai";
                                                       return DataRow(
