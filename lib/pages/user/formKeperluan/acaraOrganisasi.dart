@@ -26,14 +26,17 @@ class AcaraOrganisasi extends StatefulWidget {
 }
 
 class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
-
-  final TextEditingController nama_organisasi_controller = TextEditingController();
-  final TextEditingController penanggung_jawab_controller = TextEditingController();
+  final TextEditingController nama_organisasi_controller =
+      TextEditingController();
+  final TextEditingController penanggung_jawab_controller =
+      TextEditingController();
   final TextEditingController no_whatsapp_controller = TextEditingController();
   final TextEditingController nama_acara_controller = TextEditingController();
   final TextEditingController nama_lab_controller = TextEditingController();
-  final TextEditingController tanggal_mulai_controller = TextEditingController();
-  final TextEditingController tanggal_selesai_controller = TextEditingController();
+  final TextEditingController tanggal_mulai_controller =
+      TextEditingController();
+  final TextEditingController tanggal_selesai_controller =
+      TextEditingController();
   final TextEditingController jam_mulai_controller = TextEditingController();
   final TextEditingController jam_selesai_controller = TextEditingController();
   final TextEditingController keterangan_controller = TextEditingController();
@@ -76,7 +79,21 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack(onPressed: (){Navigator.pushReplacementNamed(context, Keperluan.nameRoute);}).buildAppBar(context),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 1, 24, 50),
+        title: Text(
+          "Back",
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamed(context, Keperluan.nameRoute);
+          },
+        ),
+        toolbarHeight: 50,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
@@ -169,8 +186,8 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
           ),
           FieldContainer(
               judul: "Ruangan Dipilih",
-              dataDikirim: nama_lab
-                  .toString()), //dataDikirim di ganti dari database wer
+              dataDikirim:
+                  nama_lab.toString()), //dataDikirim di ganti dari database wer
           const SizedBox(height: 10),
           FieldTanggal(
             judul: "Masukkan Tanggal",
@@ -204,9 +221,9 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
           ),
           const SizedBox(height: 15),
           FieldKeterangan(
-              judul: "Keterangan Tambahan",
-              keyboardType: TextInputType.text,
-              controller: keterangan_controller,
+            judul: "Keterangan Tambahan",
+            keyboardType: TextInputType.text,
+            controller: keterangan_controller,
           ),
           const SizedBox(height: 10),
           UploadPDFButton(
@@ -236,21 +253,20 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
                   onPressed: () {
                     setState(() {
                       create(
-                        nama_organisasi_controller.text,
-                        penanggung_jawab_controller.text,
-                        no_whatsapp_controller.text,
-                        nama_acara_controller.text,
-                        nama_lab ?? "",
-                        tanggal_mulai ?? "",
-                        tanggal_selesai!,
-                        jam_mulai ?? "",
-                        jam_selesai ?? "",
-                        keterangan_controller.text,
-                        id_user ?? 0,
-                        proposalFile!,
-                        suratPeminjamanFile!,
-                        token ?? ""
-                      );
+                          nama_organisasi_controller.text,
+                          penanggung_jawab_controller.text,
+                          no_whatsapp_controller.text,
+                          nama_acara_controller.text,
+                          nama_lab ?? "",
+                          tanggal_mulai ?? "",
+                          tanggal_selesai!,
+                          jam_mulai ?? "",
+                          jam_selesai ?? "",
+                          keterangan_controller.text,
+                          id_user ?? 0,
+                          proposalFile!,
+                          suratPeminjamanFile!,
+                          token ?? "");
                     });
                     Navigator.pushNamed(context, Reservasi.nameRoute);
                   }),

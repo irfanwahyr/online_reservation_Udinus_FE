@@ -72,7 +72,7 @@ class AppBarUniversal extends StatelessWidget implements PreferredSizeWidget {
                     Icon(Icons.person_2_rounded, color: Colors.white),
                     SizedBox(width: 10),
                     Text(
-                      'Not Login yet',
+                      'Anda Belum Login',
                       style: TextStyle(
                         color: Colors.white,
                       ),

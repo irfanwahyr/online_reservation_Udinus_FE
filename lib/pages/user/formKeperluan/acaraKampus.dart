@@ -78,9 +78,21 @@ class _AcaraKampusState extends State<AcaraKampus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack(onPressed: () {
-        Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
-      }).buildAppBar(context),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 1, 24, 50),
+        title: Text(
+          "Back",
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamed(context, Keperluan.nameRoute);
+          },
+        ),
+        toolbarHeight: 50,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(

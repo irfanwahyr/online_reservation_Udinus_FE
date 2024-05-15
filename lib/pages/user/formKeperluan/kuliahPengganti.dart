@@ -83,9 +83,21 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBack(onPressed: () {
-        Navigator.pushReplacementNamed(context, Keperluan.nameRoute);
-      }).buildAppBar(context),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 1, 24, 50),
+        title: Text(
+          "Back",
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamed(context, Keperluan.nameRoute);
+          },
+        ),
+        toolbarHeight: 50,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
@@ -194,14 +206,14 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
             onJamSelesaiSelected: (String val) async {
               SharedPreferences srf = await SharedPreferences.getInstance();
               bool? booked = srf.getBool('booked') ?? false;
-                if (booked) {
-                  _showConfirmationDialog(context);
-                } else {
-                  srf.setBool('booked', false);
-                }
-                setState(() {
-                  jam_selesai = val;
-                });
+              if (booked) {
+                _showConfirmationDialog(context);
+              } else {
+                srf.setBool('booked', false);
+              }
+              setState(() {
+                jam_selesai = val;
+              });
             },
           ),
           const SizedBox(height: 15),
@@ -217,31 +229,29 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
               child: HoverButtonPrimary(
                 text: "Submit",
                 onPressed: () {
-                      setState(() {
-                        create(
-                          nama_dosen.text,
-                          mata_kuliah.text,
-                          kelompok.text,
-                          no_whatsapp.text,
-                          nama_lab ?? "",
-                          tanggal_mulai ?? "",
-                          jam_mulai ?? "",
-                          jam_selesai ?? "",
-                          keterangan.text,
-                          id_user ?? 0,
-                          token ?? "",
-                          id_hari ?? 0,
-                          id_matkul ?? 0,
-                          default_mata_kuliah ?? "",
-                          default_kelompok ?? "",
-                          default_jam_mulai ?? "",
-                          default_jam_selesai ?? ""
-                        );
-                      });
-                      Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
-                    },
+                  setState(() {
+                    create(
+                        nama_dosen.text,
+                        mata_kuliah.text,
+                        kelompok.text,
+                        no_whatsapp.text,
+                        nama_lab ?? "",
+                        tanggal_mulai ?? "",
+                        jam_mulai ?? "",
+                        jam_selesai ?? "",
+                        keterangan.text,
+                        id_user ?? 0,
+                        token ?? "",
+                        id_hari ?? 0,
+                        id_matkul ?? 0,
+                        default_mata_kuliah ?? "",
+                        default_kelompok ?? "",
+                        default_jam_mulai ?? "",
+                        default_jam_selesai ?? "");
+                  });
+                  Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                },
               ),
-
             ),
           ),
         ],
@@ -261,7 +271,7 @@ class _KuliahPenggantiState extends State<KuliahPengganti> {
               onPressed: () async {
                 SharedPreferences srf = await SharedPreferences.getInstance();
                 srf.setBool('booked', false);
-                  Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
+                Navigator.pushReplacementNamed(context, Reservasi.nameRoute);
               },
               child: Text('Tutup'),
             ),
