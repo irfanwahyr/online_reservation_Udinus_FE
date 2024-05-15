@@ -3,14 +3,12 @@ import 'package:kp2024/pages/admin/daftarLaboratorium.dart';
 import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/daftarPengguna.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
+import 'package:kp2024/pages/admin/riwayatPesananUser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SideBarAdmin extends StatefulWidget {
-  const SideBarAdmin({
-    Key? key,
-    required this.username,
-    required this.email
-  }) : super(key: key);
+  const SideBarAdmin({Key? key, required this.username, required this.email})
+      : super(key: key);
 
   final String username;
   final String email;
@@ -21,10 +19,9 @@ class SideBarAdmin extends StatefulWidget {
 
 String? username, email;
 
-
 class _SideBarAdminState extends State<SideBarAdmin> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     SharedPreferences.getInstance().then((SharedPreferences srf) {
       setState(() {
@@ -60,6 +57,13 @@ class _SideBarAdminState extends State<SideBarAdmin> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.timer_outlined),
+            title: Text("Riwayat Peminjaman"),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, RiwayatPesananUser.nameRoute);
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.supervised_user_circle_sharp),
             title: Text("Daftar Pengguna"),
             onTap: () {
@@ -70,14 +74,16 @@ class _SideBarAdminState extends State<SideBarAdmin> {
             leading: Icon(Icons.book_rounded),
             title: Text("Daftar Matkul"),
             onTap: () {
-              Navigator.pushReplacementNamed(context, DaftarMataKuliah.nameRoute);
+              Navigator.pushReplacementNamed(
+                  context, DaftarMataKuliah.nameRoute);
             },
           ),
           ListTile(
             leading: Icon(Icons.computer),
             title: Text("Daftar Laboratorium"),
             onTap: () {
-              Navigator.pushReplacementNamed(context, DaftarLaboratorium.nameRoute);
+              Navigator.pushReplacementNamed(
+                  context, DaftarLaboratorium.nameRoute);
             },
           ),
         ],

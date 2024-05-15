@@ -5,6 +5,7 @@ import 'package:kp2024/pages/admin/daftarMataKuliah.dart';
 import 'package:kp2024/pages/admin/daftarPengguna.dart';
 import 'package:kp2024/pages/admin/homePageAdmin.dart';
 import 'package:kp2024/pages/admin/kontenDaftarMataKuliah/jadwalHari.dart';
+import 'package:kp2024/pages/admin/riwayatPesananUser.dart';
 import 'package:kp2024/pages/detailLab/DetailLaboratorium.dart';
 import 'package:kp2024/pages/homePage.dart';
 import 'package:kp2024/pages/laboratorium/labDekstop.dart';
@@ -68,6 +69,7 @@ class _MyAppState extends State<MyApp> {
         JadwalHari.nameRoute: (context) => JadwalHari(),
         RiwayatReservasi.nameRoute: (context) => RiwayatReservasi(),
         ReservasiContent.nameRoute: (context) => ReservasiContent(),
+        RiwayatPesananUser.nameRoute : (context) => RiwayatPesananUser(),
       },
     );
   }
