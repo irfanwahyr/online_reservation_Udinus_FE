@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kp2024/models/admin/_buttonAcc.dart';
-import 'package:kp2024/models/admin/_buttonDenied.dart';
+import 'package:kp2024/models/admin/_buttonAccKelasPengganti.dart';
+import 'package:kp2024/models/admin/_buttonDeniedKelasPengganti.dart';
 import 'package:kp2024/models/admin/_buttonProposal.dart';
 import 'package:kp2024/models/admin/_buttonSuratPinjam.dart';
 import 'package:kp2024/controllers/peminjaman_admin/acarakampus_admin.dart';

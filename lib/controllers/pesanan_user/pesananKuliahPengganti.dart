@@ -114,7 +114,7 @@ Future<void> deletePesananKuliahPengganti(int id, int id_jadwal, String token, S
         a = i;
       }
       if(jamSelesai == jamList[i]){
-        b = i;
+        b = i+1;
         break;
       }
     }

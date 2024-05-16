@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kp2024/models/admin/_buttonAcc.dart';
-import 'package:kp2024/models/admin/_buttonDenied.dart';
+import 'package:kp2024/models/admin/_buttonAccKelasPengganti.dart';
+import 'package:kp2024/models/admin/_buttonAccOrganisasi.dart';
+import 'package:kp2024/models/admin/_buttonDeniedKelasPengganti.dart';
+import 'package:kp2024/models/admin/_buttonDeniedOrganisasi.dart';
 import 'package:kp2024/models/admin/_buttonProposal.dart';
 import 'package:kp2024/models/admin/_buttonSuratPinjam.dart';
 import 'package:kp2024/controllers/peminjaman_admin/acaraorganisasi_admin.dart';
@@ -305,6 +307,9 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                                         String surat_peminjaman =
                                             data_acara_organisasi
                                                 .surat_peminjaman;
+                                        int id = data_acara_organisasi.id;
+                                        int id_user = data_acara_organisasi.id_user;
+                                        int id_jadwal = data_acara_organisasi.id_jadwal;
                                         _no++;
                                         return DataRow(cells: <DataCell>[
                                           DataCell(
@@ -449,9 +454,31 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              // ButtonAcc(),
+                                              ButtonAccOrganisasi(
+                                                id: id,
+                                                token: token!,
+                                                nama_acara: nama_acara,
+                                                nama_lab: nama_lab,
+                                                tanggal_mulai: tanggal_mulai,
+                                                tanggal_selesai: tanggal_selesai,
+                                                jam_mulai: jam_mulai,
+                                                jam_selesai: jam_selesai,
+                                                alasan: "Diterima",
+                                                id_user: id_user,
+                                                id_jadwal: id_jadwal),
                                               SizedBox(width: 10),
-                                              // ButtonDenied(),
+                                              ButtonDeniedOrganisasi(
+                                                id: id,
+                                                token: token!,
+                                                nama_acara: nama_acara,
+                                                nama_lab: nama_lab,
+                                                tanggal_mulai: tanggal_mulai,
+                                                tanggal_selesai: tanggal_selesai,
+                                                jam_mulai: jam_mulai,
+                                                jam_selesai: jam_selesai,
+                                                id_user: id_user,
+                                                id_jadwal: id_jadwal
+                                              ),
                                             ],
                                           )),
                                         ]);
@@ -476,6 +503,38 @@ class _AcaraOrganisasiAdminState extends State<AcaraOrganisasiAdmin> {
           return Container(); // Added to handle all paths in the function
         },
       ),
+    );
+  }
+  void _showConfirmPopUp(
+    int id,
+    String token,
+    String nama_acara,
+    String nama_lab,
+    String tanggal_mulai,
+    String tanggal_selesai,
+    String jam_mulai,
+    String jam_selesai,
+    String alasan,
+    int id_user,
+    int id_jadwal,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ButtonAccOrganisasi(
+          id: id,
+          token: token,
+          nama_acara: nama_acara,
+          nama_lab: nama_lab,
+          tanggal_mulai: tanggal_mulai,
+          tanggal_selesai: tanggal_selesai,
+          jam_mulai: jam_mulai,
+          jam_selesai: jam_selesai,
+          alasan: alasan,
+          id_user: id_user,
+          id_jadwal: id_jadwal,
+        );
+      },
     );
   }
 }

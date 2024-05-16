@@ -4,7 +4,7 @@ import 'package:kp2024/controllers/peminjaman_admin/konfirmasi_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 
-class ButtonDenied extends StatefulWidget {
+class ButtonDeniedOrganisasi extends StatefulWidget {
   final int id;
   final String token;
   final String nama_acara;
@@ -16,7 +16,7 @@ class ButtonDenied extends StatefulWidget {
   final int id_user;
   final int id_jadwal;
 
-  const ButtonDenied({
+  const ButtonDeniedOrganisasi({
     super.key,
     required this.id,
     required this.token,
@@ -31,10 +31,10 @@ class ButtonDenied extends StatefulWidget {
     });
 
   @override
-  State<ButtonDenied> createState() => _ButtonDeniedState();
+  State<ButtonDeniedOrganisasi> createState() => _ButtonDeniedOrganisasiState();
 }
 
-class _ButtonDeniedState extends State<ButtonDenied> {
+class _ButtonDeniedOrganisasiState extends State<ButtonDeniedOrganisasi> {
   bool _isAcc = false;
   TextEditingController alasan_controller = TextEditingController();
   @override
@@ -159,7 +159,7 @@ class _ButtonDeniedState extends State<ButtonDenied> {
               );
 
               for (var k = 0; k <= c; k++) {
-                update_pinjam(widget.token, id_jadwal, "kosong", "kosong", 1);
+                reset_jadwal(id_jadwal, "kosong", "kosong", 1);
                 id_jadwal++;
               }
 

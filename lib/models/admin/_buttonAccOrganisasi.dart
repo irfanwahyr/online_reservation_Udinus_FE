@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kp2024/controllers/peminjaman_admin/acaraorganisasi_admin.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/controllers/peminjaman_admin/konfirmasi_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
 import 'package:kp2024/controllers/user_form/kelas_pengganti.dart';
 
-class ButtonAcc extends StatefulWidget {
+class ButtonAccOrganisasi extends StatefulWidget {
   final int id;
   final String token;
   final String nama_acara;
@@ -17,7 +18,7 @@ class ButtonAcc extends StatefulWidget {
   final int id_user;
   final int id_jadwal;
 
-  const ButtonAcc(
+  const ButtonAccOrganisasi(
       {super.key,
       required this.id,
       required this.token,
@@ -32,10 +33,10 @@ class ButtonAcc extends StatefulWidget {
       required this.id_jadwal});
 
   @override
-  State<ButtonAcc> createState() => _ButtonAccState();
+  State<ButtonAccOrganisasi> createState() => _ButtonAccOrganisasiState();
 }
 
-class _ButtonAccState extends State<ButtonAcc> {
+class _ButtonAccOrganisasiState extends State<ButtonAccOrganisasi> {
   bool _isAcc = false;
   @override
   Widget build(BuildContext context) {
@@ -119,13 +120,13 @@ class _ButtonAccState extends State<ButtonAcc> {
                   a = j;
                 }
                 if(widget.jam_selesai == ListJamSelesai[j]){
-                  b = j;
+                  b = j+1;
                   break;
                 }
               }
               c = b - a;
               int id_jadwal = widget.id_jadwal;
-              deleteDataKelasPengganti(widget.id.toString(), widget.token);
+              deleteDataAcaraOrganisasi(widget.id.toString(), widget.token);
               _isAcc = true;
               create_riwayat(
                   widget.token,

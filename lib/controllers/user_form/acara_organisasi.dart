@@ -21,6 +21,7 @@ class AcaraOrganisasi {
   final int id_user;
   final String proposal_acara;
   final String surat_peminjaman;
+  final int id_matkul;
 
   AcaraOrganisasi({
     required this.nama_organisasi,
@@ -36,6 +37,7 @@ class AcaraOrganisasi {
     required this.id_user,
     required this.proposal_acara,
     required this.surat_peminjaman,
+    required this.id_matkul,
   });
 
   factory AcaraOrganisasi.fromJson(Map<String, dynamic> json){
@@ -52,7 +54,8 @@ class AcaraOrganisasi {
       keterangan: json['keterangan'] ?? "kosong",
       id_user: json['id_user'] ?? 0,
       proposal_acara: json['proposal_acara'] ?? "kosong",
-      surat_peminjaman: json['surat_peminjaman'] ?? "kosong"
+      surat_peminjaman: json['surat_peminjaman'] ?? "kosong",
+      id_matkul: json['id_matkul'] ?? 0,
     );
   }
 }
@@ -71,7 +74,8 @@ Future<AcaraOrganisasi> create(
   int id_user,
   PlatformFile? proposal_acara,
   PlatformFile? surat_peminjaman,
-  String token) async {
+  String token,
+  int id_matkul) async {
   await dotenv.load(fileName: "../.env");
   final env = dotenv.env['ACARAORGANISASI'];
 
@@ -91,6 +95,7 @@ Future<AcaraOrganisasi> create(
   request.fields['jam_selesai'] = jam_selesai;
   request.fields['keterangan'] = keterangan;
   request.fields['id_user'] = id_user.toString();
+  request.fields['id_jadwal'] = id_matkul.toString();
 
   if (proposal_acara != null) {
     final fileBytes = kIsWeb
@@ -124,8 +129,94 @@ Future<AcaraOrganisasi> create(
   }
 
   if (response.statusCode == 201) {
+    List<String> ListJamMulai = [
+      "07.00",
+      "07.50",
+      "08.40",
+      "09.30",
+      "10.20",
+      "11.10",
+      "12.30",
+      "13.20",
+      "14.10",
+      "15.00",
+      "16.20",
+      "17.10",
+      "18.30",
+      "19.20",
+      "20.10",
+    ];
+
+    List<String> ListJamSelesai = [
+      "07.50",
+      "08.40",
+      "09.30",
+      "10.20",
+      "11.10",
+      "12.00",
+      "13.20",
+      "14.10",
+      "15.00",
+      "15.50",
+      "17.10",
+      "18.00",
+      "19.20",
+      "20.10",
+      "21.00",
+    ];
+
+    int a = 0, b = 0, c = 0;
+
+    for (var j = 0; j < ListJamSelesai.length; j++) {
+      if (jam_mulai == ListJamMulai[j]) {
+        a = j;
+      }
+      if (jam_selesai == ListJamSelesai[j]) {
+        b = j+1;
+        break;
+      }
+    }
+    c = b - a;
+    
+    for (var i = 0; i < c; i++) {
+      update_pinjam(token, id_matkul, nama_organisasi, nama_acara, 3);
+      id_matkul++;
+    }
     return AcaraOrganisasi.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to create event');
+  }
+}
+
+Future<AcaraOrganisasi> update_pinjam(
+    String token,
+    int id,
+    String kelompok,
+    String mata_kuliah,
+    int id_pesan,
+
+  ) async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['RESERVASI'];
+  final response = await http.patch(
+    Uri.parse("$env/update_pinjam/$id"),
+    headers: <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      'kelompok': kelompok,
+      'mata_kuliah': mata_kuliah,
+      'id_pesan': id_pesan,
+    })
+  );
+  print(response.body);
+  print(response.statusCode);
+
+  if (response.statusCode == 200) {
+    return AcaraOrganisasi.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load');
   }
 }

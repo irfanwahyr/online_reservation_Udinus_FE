@@ -172,6 +172,8 @@ Future<RiwayatUser> update_flag(int id) async {
 
 Future<RiwayatUser> reset_jadwal(
     int id,
+    String kelompok,
+    String mata_kuliah,
     int id_pesan,
 
   ) async {
@@ -179,13 +181,51 @@ Future<RiwayatUser> reset_jadwal(
   final env = dotenv.env['RESERVASI'];
   final response = await http.patch(
     Uri.parse("$env/reset_jadwal/$id"),
-    
+    headers: <String, String>{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
     body: jsonEncode(<String, dynamic>{
+      'kelompok': kelompok,
+      'mata_kuliah': mata_kuliah,
+      'id_pesan': id_pesan,
+    })
+  );
+
+  print(response.body);
+  print(response.statusCode);
+
+  if (response.statusCode == 200) {
+    return RiwayatUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
+Future<RiwayatUser> update_pinjam(
+    int id,
+    String kelompok,
+    String mata_kuliah,
+    int id_pesan,
+
+  ) async {
+  await dotenv.load(fileName: "../.env");
+  final env = dotenv.env['RESERVASI'];
+  final response = await http.patch(
+    Uri.parse("$env/update_pinjam/$id"),
+    headers: <String, String>{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      'kelompok': kelompok,
+      'mata_kuliah': mata_kuliah,
       'id_pesan': id_pesan,
     })
   );
   print(response.body);
   print(response.statusCode);
+
   if (response.statusCode == 200) {
     return RiwayatUser.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
   } else {
