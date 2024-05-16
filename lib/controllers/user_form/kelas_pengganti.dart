@@ -87,14 +87,13 @@ Future<KelasPengganti> create(
     })
   );
   if (response.statusCode == 201) {
-    List<String> jamList = [
+    List<String> ListJamMulai = [
       "07.00",
       "07.50",
       "08.40",
       "09.30",
       "10.20",
       "11.10",
-      "12.00",
       "12.30",
       "13.20",
       "14.10",
@@ -104,17 +103,34 @@ Future<KelasPengganti> create(
       "18.30",
       "19.20",
       "20.10",
-      "21.00"
     ];
 
-    int a = 0, b = 0, c = 0;
+    List<String> ListJamSelesai = [
+      "07.50",
+      "08.40",
+      "09.30",
+      "10.20",
+      "11.10",
+      "12.00",
+      "13.20",
+      "14.10",
+      "15.00",
+      "15.50",
+      "17.10",
+      "18.00",
+      "19.20",
+      "20.10",
+      "21.00",
+    ];
 
-    for (var i = 0; i < jamList.length; i++) {
-      if(jamMulai == jamList[i]){
-        a = i;
+    int a = 0, b = 1, c = 0;
+
+    for (var j = 0; j < ListJamSelesai.length; j++) {
+      if (jamMulai == ListJamMulai[j]) {
+        a = j;
       }
-      if(jamSelesai == jamList[i]){
-        b = i;
+      if (jamSelesai == ListJamSelesai[j]) {
+        b = j+1;
         break;
       }
     }

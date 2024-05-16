@@ -26,7 +26,7 @@ class _FieldTanggalState extends State<FieldTanggal> {
           ? DateTime.parse(widget.tanggal_Mulai)
           : widget.tanggal_Selesai ?? DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.utc(2040, 3, 14),
+      lastDate: DateTime.now().add(Duration(days: 6)),
     );
 
     if (pickedDate != null) {
@@ -121,7 +121,11 @@ class _FieldTanggalState extends State<FieldTanggal> {
                           Text(
                             widget.tanggal_Selesai != null
                                 ? "${widget.tanggal_Selesai!.day.toString().padLeft(2, '0')}-${widget.tanggal_Selesai!.month.toString().padLeft(2, '0')}-${widget.tanggal_Selesai!.year}"
-                                : "Selesai",
+                                : DateTime.now().day.toString().padLeft(2, '0') +
+                                    "-" +
+                                    DateTime.now().month.toString().padLeft(2, '0') +
+                                    "-" +
+                                    DateTime.now().year.toString(),
                             style: const TextStyle(
                                 fontSize: 20, color: Colors.white),
                           ),

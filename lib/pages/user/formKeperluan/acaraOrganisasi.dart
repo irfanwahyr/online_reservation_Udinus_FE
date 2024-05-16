@@ -48,6 +48,7 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
   int? id_user;
   String? jam_selesai;
   String? token;
+  int? id_matkul;
   PlatformFile? proposalFile;
   PlatformFile? suratPeminjamanFile;
 
@@ -65,6 +66,7 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
     String? jam_selesai = prefs.getString('jam_selesai');
     String? token = prefs.getString('token');
     int? id_user = prefs.getInt('id_user');
+    int? id_matkul = prefs.getInt('id_matkul');
 
     setState(() {
       this.nama_lab = nama_lab;
@@ -73,6 +75,7 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
       this.jam_selesai = jam_selesai;
       this.id_user = id_user;
       this.token = token;
+      this.id_matkul = id_matkul;
     });
   }
 
@@ -266,7 +269,8 @@ class _AcaraOrganisasiState extends State<AcaraOrganisasi> {
                           id_user ?? 0,
                           proposalFile!,
                           suratPeminjamanFile!,
-                          token ?? "");
+                          token ?? "",
+                          id_matkul ?? 0);
                     });
                     Navigator.pushNamed(context, Reservasi.nameRoute);
                   }),

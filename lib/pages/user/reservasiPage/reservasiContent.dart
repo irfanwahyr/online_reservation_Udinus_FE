@@ -118,20 +118,20 @@ class _ReservasiContentState extends State<ReservasiContent> {
               a = j;
             }
             if (value[i].jam_selesai == ListJamSelesai[j]) {
-              b = j;
+              b = j+1;
               break;
             }
           }
           c = b - a;
           int id_jadwal = value[i].id_jadwal;
           int id_riwayat = value[i].id;
-          id_riwayat++;
-          for (var k = 0; k <= c; k++) {
+          for (var k = 0; k < c; k++) {
             print(id_jadwal);
-            reset_jadwal(id_jadwal, 1);
+            reset_jadwal(id_jadwal, "kosong", "kosong", 1);
             id_jadwal++;
           }
           update_flag(id_riwayat);
+          id_riwayat++;
         }
       }
     });

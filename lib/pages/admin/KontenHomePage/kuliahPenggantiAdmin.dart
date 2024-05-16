@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:kp2024/controllers/peminjaman_admin/kelaspengganti_admin.dart';
 import 'package:kp2024/controllers/pesanan_user/riwayat/riwayatUser.dart';
-import 'package:kp2024/models/admin/_buttonAcc.dart';
-import 'package:kp2024/models/admin/_buttonDenied.dart';
+import 'package:kp2024/models/admin/_buttonAccKelasPengganti.dart';
+import 'package:kp2024/models/admin/_buttonDeniedKelasPengganti.dart';
 import 'package:kp2024/models/buttonAlasan.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDiterima.dart';
 import 'package:kp2024/models/reservasiModel/_buttonDitolak.dart';
@@ -389,7 +389,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                                         MainAxisAlignment
                                                             .spaceEvenly,
                                                     children: [
-                                                      ButtonAcc(
+                                                      ButtonAccKuliahPengganti(
                                                         id: id,
                                                         token: token!,
                                                         nama_acara:
@@ -409,7 +409,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
                                                       SizedBox(
                                                         width: 10,
                                                       ),
-                                                      ButtonDenied(
+                                                      ButtonDeniedKelasPengganti(
                                                         id: id,
                                                         token: token!,
                                                         nama_acara:
@@ -470,7 +470,7 @@ class _KuliahPenggantiAdminState extends State<KuliahPenggantiAdmin> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return ButtonAcc(
+        return ButtonAccKuliahPengganti(
           id: id,
           token: token,
           nama_acara: nama_acara,

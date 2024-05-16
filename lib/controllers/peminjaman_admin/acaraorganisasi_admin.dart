@@ -19,6 +19,7 @@ class AdminAcaraOrganisasi {
   final String surat_peminjaman;
   final String keterangan;
   final int id_user;
+  final int id_jadwal;
 
   AdminAcaraOrganisasi({
     required this.id,
@@ -35,6 +36,7 @@ class AdminAcaraOrganisasi {
     required this.surat_peminjaman,
     required this.keterangan,
     required this.id_user,
+    required this.id_jadwal
   });
 
   factory AdminAcaraOrganisasi.fromJson(Map<String, dynamic> json) {
@@ -52,7 +54,8 @@ class AdminAcaraOrganisasi {
       proposal_acara: json['proposal_acara'] ?? "kosong",
       surat_peminjaman: json['surat_peminjaman'] ?? "kosong",
       keterangan: json['keterangan'] ?? "kosong",
-      id_user: json['id_user'] ?? 0
+      id_user: json['id_user'] ?? 0,
+      id_jadwal: json['id_jadwal'] ?? 0,
     );
   }
 }
@@ -89,33 +92,27 @@ Future<void> showFile(String namaFile) async {
     html.window.open("$env/$namaFile", "_blank");
 }
 
-// Future<AdminAcaraOrganisasi> update(String token, int id, String nama_organisasi, String penanggung_jawab, String nama_acara, 
-//                                         String no_whatsapp, String nama_lab, String tanggal_mulai, String jam_mulai, 
-//                                         String jam_selesai, String keterangan) async {
-//     await dotenv.load(fileName: "../.env");
-//     final env = dotenv.env['KELASPENGGANTI'];
-//     final response = await http.post(
-//       Uri.parse("$env/update/$id"),
-//       headers: <String, String>{
-//         'Authorization': 'Bearer $token',
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json; charset=UTF-8',
-//     },
-//     body: jsonEncode(<String, dynamic>{
-//       'nama_organisasi': nama_organisasi,
-//       'penanggung_jawab': penanggung_jawab,
-//       'nama_acara': nama_acara,
-//       'no_whatsapp': no_whatsapp,
-//       'nama_lab': nama_lab,
-//       'tanggal_mulai': tanggal_mulai,
-//       'jam_mulai': jam_mulai,
-//       'jam_selesai': jam_selesai,
-//       'keterangan': keterangan,
-//     })
-//   );
-//   if (response.statusCode == 200) {
-//     return AdminAcaraOrganisasi.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-//   } else {
-//     throw Exception('Failed to load');
-//   }
-// }
+Future<void> deleteDataAcaraOrganisasi(String id, String token) async {
+  try {
+    await dotenv.load(fileName: "../.env");
+    final env = dotenv.env['ACARAORGANISASI'];
+    final url = Uri.parse("$env/delete/$id");
+
+    final headers = <String, String>{
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    final response = await http.post(url, headers: headers);
+    print(response.body);
+    if (response.statusCode == 200) {
+      print('Data deleted successfully');
+    } else {
+      throw Exception('Failed to delete data');
+    }
+  } catch (error) {
+    throw Exception('Failed to delete data');
+  }
+}
+
