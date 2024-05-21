@@ -53,19 +53,6 @@ class _PesananState extends State<Pesanan> {
     pesanan_acara_kampus = getDataAcaraKampus(user_id);
     riwayat_user = getDataRiwayatUser(user_id);
   }
-  List<String> status = [
-    "0",
-    "0",
-    "0",
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-  ];
    // Nomor yang akan diincrement otomatis
   final ScrollController controller = ScrollController();
   final ScrollController controller_2 = ScrollController();

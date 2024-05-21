@@ -123,7 +123,7 @@ Future<KelasPengganti> create(
       "21.00",
     ];
 
-    int a = 0, b = 1, c = 0;
+    int a = 0, b = 0, c = 0;
 
     for (var j = 0; j < ListJamSelesai.length; j++) {
       if (jamMulai == ListJamMulai[j]) {
