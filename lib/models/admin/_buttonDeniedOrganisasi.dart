@@ -134,7 +134,7 @@ class _ButtonDeniedOrganisasiState extends State<ButtonDeniedOrganisasi> {
                   a = j;
                 }
                 if(widget.jam_selesai == ListJamSelesai[j]){
-                  b = j;
+                  b = j+1;
                   break;
                 }
               }
@@ -158,7 +158,7 @@ class _ButtonDeniedOrganisasiState extends State<ButtonDeniedOrganisasi> {
                 widget.id_jadwal,
               );
 
-              for (var k = 0; k <= c; k++) {
+              for (var k = 0; k < c; k++) {
                 reset_jadwal(id_jadwal, "kosong", "kosong", 1);
                 id_jadwal++;
               }

@@ -12,6 +12,7 @@ import 'package:kp2024/pages/user/reservasiPage/detailLabPopUp.dart';
 import 'package:kp2024/pages/user/reservasiPage/keperluan.dart';
 import 'package:kp2024/pages/user/reservasiPage/listReservasi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:kp2024/models/reservasiModel/_buttonUnavail.dart';
 
 import '../../../controllers/user_form/kelas_pengganti.dart';
 
@@ -437,14 +438,16 @@ class _ReservasiContentState extends State<ReservasiContent> {
                                                   rows: List.generate(
                                                     jadwal.length,
                                                     (index) {
-                                                      final jadwal_idx =
-                                                          jadwal[index];
-                                                      String jamMulai =
-                                                          jadwal_idx.jam_mulai;
-                                                      String jamSelesai =
-                                                          jadwal_idx.jam_selesai;
-                                                      String waktuText =
-                                                          "$jamMulai - $jamSelesai";
+                                                      final jadwal_idx = jadwal[index];
+                                                      String jamMulai = jadwal_idx.jam_mulai;
+                                                      String jamSelesai = jadwal_idx.jam_selesai;
+                                                      String waktuText = "$jamMulai - $jamSelesai";
+                                                      int id_pesan = jadwal_idx.id_pesan;
+                                                      int id_hari = jadwal_idx.id_hari;
+                                                      DateTime selesai = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, int.parse(jamSelesai.substring(0, 2)), int.parse(jamSelesai.substring(3, 5)));
+                                                      if (id_hari == DateTime.now().weekday && DateTime.now().isAfter(selesai)){
+                                                        id_pesan = 4;
+                                                      }
                                                       return DataRow(
                                                         cells: <DataCell>[
                                                           DataCell(
@@ -479,8 +482,7 @@ class _ReservasiContentState extends State<ReservasiContent> {
                                                             Center(
                                                               child:
                                                                   getPesanButtons(
-                                                                jadwal_idx
-                                                                    .id_pesan,
+                                                                id_pesan,
                                                                 jadwal_idx.id,
                                                                 jadwal_idx
                                                                     .id_hari,
@@ -582,6 +584,11 @@ class _ReservasiContentState extends State<ReservasiContent> {
         case "3":
           buttons.add(
             const ButtonDiproses(),
+          );
+          break;
+          case "4":
+          buttons.add(
+            const ButtonUnavailable(),
           );
           break;
         default:

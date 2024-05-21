@@ -139,7 +139,7 @@ class _ButtonAccKuliahPenggantiState extends State<ButtonAccKuliahPengganti> {
                   _isAcc,
                   widget.alasan,
                   widget.id_jadwal);
-              for (var k = 0; k <= c; k++) {
+              for (var k = 0; k < c; k++) {
                 konfirmasi_admin(widget.token, id_jadwal, 2);
                 print("Update id jadwal " + id_jadwal.toString());
                 id_jadwal++;
